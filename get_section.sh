@@ -2,8 +2,6 @@
 
 SECTION="$1"
 
-
-
 #IS_FORMATED=`echo $SECTION |  egrep "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}"` 
 
 #if [ "$IS_FORMATED" = "" ];then
@@ -12,6 +10,7 @@ SECTION="$1"
 #fi
 
 LINE_TMP="chapter_line_me_tmp"
+G988_TXT="g988.txt"
 
 cmp_decimal()
 {
@@ -26,11 +25,11 @@ dump_me_setciotn()
 {
     SECTION="$1"
     declare -A matrix
-    while IFS=' ' read -r int1 text1 text2;do
-	matrix[${count},0]=$int1
-	matrix[${count},1]=$text1
-	matrix[${count},2]=$text2
-	#echo "[${matrix[$count,0]}]" "[${matrix[$count,1]}]" "[${matrix[$count,2]}]"
+
+    while IFS=' ' read -r line_num section me_des;do
+	matrix[${count},0]=$line_num
+	matrix[${count},1]=$section
+	matrix[${count},2]=$me_des
 	count=$((count+1))
     done < $LINE_TMP
 
@@ -50,18 +49,19 @@ dump_me_setciotn()
     echo [$START][$ENDPAGE]
 
     FSECTION="${SECTION//[ \/]/_}"
-    `cat g988.txt | sed -n $START,$ENDPAGE > "ME_NAME/$FSECTION"`
+    `cat "$G988_TXT"| sed -n $START,$ENDPAGE > "ME_NAME/$FSECTION"`
 }
 
 show_me_name()
 {
     count=0
     declare -A matrix_type_name
+
     # 8,9 section refert to ME attribe
     ME_TYPE_NAME=`cat $LINE_TMP | egrep "[8-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}"`
 
-    while IFS=' ' read -r int1 text1 text2;do
-	matrix[${count},2]=$text2
+    while IFS=' ' read -r int1 text1 me_des;do
+	matrix[${count},2]=$me_des
 	echo "[${matrix[$count,2]}]"
 	dump_me_setciotn "${matrix[$count,2]}"
 	count=$((count+1))
@@ -74,7 +74,7 @@ exit
 
 file_line=`wc -l < $LINE_TMP`
 file_linep="$file_line"p
-org_final_page=`wc -l < g988.txt`
+org_final_page=`wc -l < "$G988_TXT"`
 org_final_pagep="$org_final_page"p
 final_line_1st=`sed -n $file_linep $LINE_TMP | awk -e '{print $1}'`
 
@@ -91,6 +91,6 @@ END=`cat $LINE_TMP | sed -n $PAGE_END  | awk '{print $1}' `
 END=$(($END-1))
 ENDPAGE="$END"p
 echo [$START][$ENDPAGE]
-`cat g988.txt | sed -n $START,$ENDPAGE > $SECTION`
+`cat "$G988_TXT" | sed -n $START,$ENDPAGE > $SECTION`
 
 
