@@ -1,0 +1,223 @@
+302 3.1      downstream
+303 3.2      optical network termination (ONT)
+306 3.3      optical network unit (ONU)
+311 3.4      upstream
+508 6.1       OMCI in Recommendation ITU-T G.984.1
+516 6.2       ONT functions
+523 6.3      Encapsulation in GEM frame
+527 6.4      Support of multicast connection
+538 6.5      Voice over IP management
+588 7.1      Configuration management
+608 7.2       Fault management
+615 10.5±0.5 seconds. Which alarms are to be soaked, and what the soak intervals should be, are
+619 7.3       Performance management
+625 7.4       Security management
+643 8.1       Managed entities
+980 8.2      Managed entity relation diagrams
+988 8.2.1   ONT common functions
+1084 8.2.2     Layer 2 functions
+1401 8.2.3 Routing
+1451 8.2.4    xDSL service
+1521 8.2.5 802.11 service
+1539 8.2.6 MoCA service
+1557 8.2.7 Video return path
+1583 8.2.8 VoIP service
+1733 8.2.9 Circuit emulation service
+1815 9.1      Equipment management
+1816 9.2      ANI management
+1817 9.3      Layer 2 data services
+1818 9.4      Layer 3 data services
+1819 9.5      Ethernet services
+1820 9.6      802.11 services
+1821 9.7      xDSL services
+1822 9.8      TDM services
+1823 9.9      Voice services
+1824 9.10     MoCA
+1825 9.11     Traffic management
+1826 9.12     General purpose MEs
+1827 9.13     Miscellaneous services
+1912 9.1.1     ONT-G
+2006 9.1.2     ONT2-G
+2077 9.1.3     ONT data
+2114 9.1.4   Software image
+2196 9.1.5     Cardholder
+2389 9.1.6    Circuit pack
+2526 9.1.7      ONT power shedding
+2631 9.1.8     Port mapping package-G
+2674 9.1.9    Equipment extension package
+2729 9.1.10 Protection data
+2764 9.1.11 Equipment protection profile
+2821 9.1.12 ONT remote debug
+2855 9.2     ANI management
+2860 9.2.1   ANI-G
+2969 9.2.2    T-CONT
+3017 9.2.3    GEM port network CTP
+3078 9.2.4     GEM interworking termination point
+3157 9.2.5     Multicast GEM interworking termination point
+3261 9.2.6    GEM port performance monitoring history data
+3308 9.2.7    GAL Ethernet profile
+3326 9.2.8    GAL Ethernet performance monitoring history data
+3356 9.2.9    GAL TDM profile
+3379 9.2.10 GAL TDM performance monitoring history data
+3425 9.2.11 FEC performance monitoring history data
+3465 9.3     Layer 2 data services
+3470 9.3.1   MAC bridge service profile
+3521 9.3.2    MAC bridge configuration data
+3562 9.3.3    MAC bridge performance monitoring history data
+3594 9.3.4   MAC bridge port configuration data
+3662 9.3.5   MAC bridge port designation data
+3708 9.3.6   MAC bridge port filter table data
+3748 9.3.7     MAC bridge port filter preassign table
+3807 9.3.8    MAC bridge port bridge table data
+3840 9.3.9   MAC bridge port performance monitoring history data
+3880 9.3.10 802.1p mapper service profile
+3957 9.3.11 VLAN tagging filter data
+4048 9.3.12 VLAN tagging operation configuration data
+4113 9.3.13 Extended VLAN tagging operation configuration data
+4433 9.3.14 Dot1X port extension package
+4542 9.3.15 Dot1X configuration profile
+4582 9.3.16 Dot1X performance monitoring history data
+4637 9.3.17 Radius performance monitoring history data
+4681 9.3.18 Dot1 rate limiter
+4715 9.3.19 Dot1ag maintenance domain
+4883 9.3.21 Dot1ag default MD level
+4979 9.3.22 Dot1ag MEP
+5110 9.3.23 Dot1ag MEP status
+5262 9.3.25 Dot1ag CFM stack
+5351 9.3.26 Dot1ag chassis-management info
+5417 9.3.27 Multicast operations profile
+5560 9.3.28 Multicast subscriber config info
+5600 9.3.29 Multicast subscriber monitor
+5644 9.4     Layer 3 data services
+5670 9.4.1     IP router service profile
+5699 9.4.2    IP router configuration data
+5716 9.4.3    IP port configuration data
+5775 9.4.4    IP route table
+5823 9.4.5    IP static routes
+5866 9.4.6   IP router performance monitoring history data 1
+5934 9.4.7   IP router performance monitoring history data 2
+5980 9.4.8    ICMP performance monitoring history data 1
+6043 9.4.9    ICMP performance monitoring history data 2
+6108 9.4.10 ARP service profile
+6133 9.4.11 ARP configuration data
+6160 9.4.12 IP host config data
+6233 9.4.13 IP host performance monitoring history data
+6262 9.4.14 TCP/UDP config data
+6290 9.5     Ethernet services
+6306 9.5.1   Physical path termination point Ethernet UNI
+6434 9.5.2      Ethernet performance monitoring history data
+6510 9.5.3    Ethernet performance monitoring history data 2
+6539 9.5.4   Ethernet performance monitoring history data 3
+6620 9.6       802.11 services
+6646 9.6.1     Physical path termination point 802.11 UNI
+6703 9.6.2    802.11 station management data 1
+6796 9.6.3    802.11 station management data 2
+6879 9.6.4     802.11 general purpose object
+6943 9.6.5   802.11 MAC and PHY operation and antenna data
+7043 9.6.6    802.11 PHY FHSS DSSS IR tables
+7101 9.6.7    802.11 performance monitoring history data
+7172 9.7     xDSL services
+7211 9.7.1   Physical path termination point xDSL UNI part 1
+7324 9.7.2     Physical path termination point xDSL UNI part 2
+7365 9.7.3    xDSL line configuration profile part 1
+7598 9.7.4    xDSL line configuration profile part 2
+7703 9.7.5    xDSL line configuration profile part 3
+7776 9.7.6    VDSL2 line configuration extensions
+8178 9.7.7    xDSL channel configuration profile
+8283 9.7.8   xDSL subcarrier masking downstream profile
+8330 9.7.9    xDSL subcarrier masking upstream profile
+8355 9.7.10 xDSL PSD mask profile
+8416 9.7.11 xDSL downstream RFI bands profile
+8464 9.7.12 xDSL line inventory and status data part 1
+8667 9.7.13 xDSL line inventory and status data part 2
+8817 9.7.14 xDSL line inventory and status data part 3
+8919 9.7.15 xDSL line inventory and status data part 4
+8989 9.7.16 VDSL2 line inventory and status data part 1
+9063 9.7.17 VDSL2 line inventory and status data part 2
+9126 9.7.18 VDSL2 line inventory and status data part 3
+9238 9.7.19 xDSL channel downstream status data
+9323 9.7.20 xDSL channel upstream status data
+9405 9.7.21 xDSL xTU-C performance monitoring history data
+9490 9.7.22 xDSL xTU-R performance monitoring history data
+9555 9.7.23 xDSL xTU-C channel performance monitoring history data
+9598 9.7.24 xDSL xTU-R channel performance monitoring history data
+9645 9.7.25 TC adaptor performance monitoring history data xDSL
+9692 9.8       TDM services
+9716 9.8.1     Physical path termination point CES UNI
+9878 9.8.2    Logical N x 64 kbit/s sub-port connection termination point
+9911 9.8.3    CES service profile-G
+9940 9.8.4    CES physical interface performance monitoring history data
+9981 9.8.5    Pseudowire termination point
+10107 9.8.6     RTP pseudowire parameters
+10160 9.8.7   Pseudowire maintenance profile
+10348 9.8.9     Ethernet flow termination point
+10383 9.8.10 TU CTP
+10475 9.8.11 TU performance monitoring history data
+10531 9.9     Voice services
+10569 9.9.1   Physical path termination point POTS UNI
+10659 9.9.2    SIP user data
+10721 9.9.3    SIP agent config data
+10811 9.9.4     VoIP voice CTP
+10848 9.9.5     VoIP media profile
+10917 9.9.6    Voice service profile
+10951 9.9.7    RTP profile data
+10995 9.9.8   VoIP application service profile
+11072 9.9.9     VoIP feature access codes
+11100 9.9.10 Network dial plan table
+11142 9.9.11 VoIP line status
+11215 9.9.12 Call control performance monitoring history data
+11260 9.9.13 RTP performance monitoring history data
+11316 9.9.14 SIP agent performance monitoring history data
+11374 9.9.15 SIP call initiation performance monitoring history data
+11417 9.9.16 MGC config data
+11475 9.9.17 MGC performance monitoring history data
+11545 9.9.18 VoIP config data
+11653 9.9.19 SIP config portal
+11680 9.9.20 MGC config portal
+11709 9.9.21 Physical path termination point ISDN UNI
+11774 9.10     MoCA
+11777 9.10.1 Physical path termination point MoCA UNI
+11866 9.10.2 MoCA Ethernet performance monitoring history data
+11918 9.10.3 MoCA interface performance monitoring history data
+11989 9.11     Traffic management
+11990 9.11.1 Priority queue-G
+12076 9.11.2 Traffic scheduler-G
+12121 9.11.3 GEM traffic descriptor
+12138 9.12     General purpose MEs
+12139 9.12.1 UNI-G
+12172 9.12.2 OLT-G
+12201 9.12.3 Network address
+12232 9.12.4 Authentication security method
+12267 9.12.5 Large string
+12330 9.12.7 Threshold data 2
+12355 9.12.8 OMCI
+12421 9.12.10 Attribute
+12485 9.12.11 Octet string
+12511 9.12.12 General purpose buffer
+12551 9.13     Miscellaneous services
+12552 9.13.1 Physical path termination point video UNI
+12603 9.13.2 Physical path termination point video ANI
+12752 9.13.3 Physical path termination point LCT UNI
+12782 9.13.4 Interworking VCC termination point
+12847 9.13.5 AAL 5 profile
+12878 9.13.6 AAL 5 performance monitoring history data
+12924 9.13.7 Video return path service profile
+12992 9.13.8 Video return path performance monitoring history data
+13038 9.13.9 VP network CTP-G
+13083 9.13.10 VP performance monitoring history data
+13150 11.1      ONT management and control protocol packet format
+13151 11.1.1 Introduction
+13164 11.1.2 GEM header
+13167 11.1.3 Transaction correlation identifier
+13183 11.1.4 Message type
+13245 11.1.5 Device identifier
+13247 11.1.6 Message identifier
+13522 11.1.7 Message contents
+13525 11.1.8 OMCI trailer
+13531 11.1.9 OMCI size limitations
+13559 11.1.10 Test result enumeration
+13587 11.2     Message flow control and error recovery
+13630 11.3      OMCI handling within the ONT
+13631 11.3.1 Prioritized protocol entities
+13674 11.3.2 Restrictions on the actions in relation to the protocol entities
+13678 11.3.3 Usage of the default alloc-id
