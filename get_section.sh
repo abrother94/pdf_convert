@@ -37,10 +37,10 @@ collect_g988_me_content_section_line_index()
     G988_ME_TYPE_NAME=`cat g988.txt | grep "Index" -A200 | egrep '[9]\.[0-9]{1,2}\.[0-9]{1,2}'`
 
     while IFS=$'\n' read -r one_line ;do
-	#echo "one_line[$one_line]"
+	echo "one_line[$one_line]"
 	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $1}' | sed -e 's/ *$//g'| sed -e 's/ /_/g'`
 	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}' | sed -e 's/ //g'`
-	#echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
+	echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
 	matrix_all_g988_chapter_line_count=$((matrix_all_g988_chapter_line_count+1))
     done <<< "$G988_ME_TYPE_NAME"
     #echo "matrix_all_g988_chapter_line_count[$matrix_all_g988_chapter_line_count]"
@@ -52,7 +52,7 @@ collect_all_content_section_line_index()
     while IFS=' ' read -r line_num section me_des;do
 	matrix_chapter_line_me[${matrix_all_chapter_line_count},0]=$line_num
 	matrix_chapter_line_me[${matrix_all_chapter_line_count},1]=$section
-	matrix_chapter_line_me[${matrix_all_chapter_line_count},2]=$me_des
+	matrix_chapter_line_me[${matrix_all_chapter_line_count},2]=`echo $me_des | sed -e 's/ /_/g'`
 	matrix_all_chapter_line_count=$((matrix_all_chapter_line_count+1))
     done < $LINE_TMP
 }
@@ -80,6 +80,7 @@ dump_me_setciotn()
     for (( c=0; c < "${matrix_all_chapter_line_count}"; c++ ))
     do
 	SA="${matrix_chapter_line_me[$c,2]}"
+	echo "SA[$SA]"
 	DA="${SECTION}"
 	if [ "${SA}" == "${DA}" ] ;then
 	    echo "match[${matrix_chapter_line_me[$c,0]}]"
@@ -146,11 +147,19 @@ get_me_attributes_num()
     echo "[$count] attributes"
 }
 
-collect_g988_me_content_section_line_index
-collect_all_content_section_line_index
-collect_me_content_section_line_index
+get_first_attribute_name()
+{
+    local name="$1"
+    First_Attribute=`cat "$name" | tr '\n' ' ' | sed -e 's/ \+/ /g' |  sed '0,/Attributes/ s/^.*Attributes/Attributes/' |sed -n '/Attributes /,/:/p' | cut -d ":" -f1 | sed 's/Attributes //g' | sed 's/ /_/g'` 
+    echo "$First_Attribute"
+}
 
-get_me_attributes_num "$SECTION"
+#collect_g988_me_content_section_line_index
+#collect_all_content_section_line_index
+#collect_me_content_section_line_index
+#dump_all_me_1
+#get_me_attributes_num "$SECTION"
+#get_first_attribute_name "$SECTION"
 
 exit
 
