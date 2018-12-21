@@ -40,10 +40,10 @@ collect_g988_me_content_section_line_index()
 	#echo "one_line[$one_line]"
 	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $1}' | sed -e 's/ *$//g'| sed -e 's/ /_/g'`
 	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}' | sed -e 's/ //g'`
-	echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
+	#echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
 	matrix_all_g988_chapter_line_count=$((matrix_all_g988_chapter_line_count+1))
     done <<< "$G988_ME_TYPE_NAME"
-    echo "matrix_all_g988_chapter_line_count[$matrix_all_g988_chapter_line_count]"
+    #echo "matrix_all_g988_chapter_line_count[$matrix_all_g988_chapter_line_count]"
 }
 
 
@@ -137,9 +137,20 @@ find_me_class_id()
 	fi
     done
 }
+
+
+get_me_attributes_num()
+{
+    local name=$1
+    count=`cat "$name" | egrep '(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\))' | wc -l`
+    echo "[$count] attributes"
+}
+
 collect_g988_me_content_section_line_index
 collect_all_content_section_line_index
 collect_me_content_section_line_index
+
+get_me_attributes_num "$SECTION"
 
 exit
 
@@ -163,5 +174,29 @@ END=$(($END-1))
 ENDPAGE="$END"p
 echo [$START][$ENDPAGE]
 `cat "$G988_TXT" | sed -n $START,$ENDPAGE > $SECTION`
+
+
+
+#//GET ATTRIBUTE
+#sed -n '/Managed entity id/,/Notifications/p' FILENAME
+
+
+#//Find how many attributes
+#cat ONT-G | egrep '(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\))' | wc -l
+#//GET Read/Write type
+#(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\))
+#(R)
+#(W)
+#(R, W)
+#(W, Set-by-create) 
+#(R, W, Set-by-create)
+
+#sed -n '/Managed entity id/,/Notifications/p' FI
+
+
+#\([0-9]{1,100} (byte|bytes)\)
+
+#(1 byte) (8 bytes) (22 bytes)
+
 
 
