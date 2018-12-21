@@ -36,10 +36,11 @@ collect_g988_me_content_section_line_index()
     # 8,9 section refert to ME attribe
     G988_ME_TYPE_NAME=`cat g988.txt | grep "Index" -A200 | egrep '[9]\.[0-9]{1,2}\.[0-9]{1,2}'`
 
-    while IFS=' ' read -r me_des section class_id ;do
-	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]=$me_des
-	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]=$section
-	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},2]=$class_id
+    while IFS=$'\n' read -r one_line ;do
+	#echo "one_line[$one_line]"
+	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $1}' | sed -e 's/ *$//g'| sed -e 's/ /_/g'`
+	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}' | sed -e 's/ //g'`
+	echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
 	matrix_all_g988_chapter_line_count=$((matrix_all_g988_chapter_line_count+1))
     done <<< "$G988_ME_TYPE_NAME"
     echo "matrix_all_g988_chapter_line_count[$matrix_all_g988_chapter_line_count]"
@@ -72,7 +73,7 @@ collect_me_content_section_line_index()
 
 dump_me_setciotn()
 {
-    SECTION="$1"
+    local SECTION="$1"
     echo "dump name[$SECTION]"
     local c=0
 
@@ -84,6 +85,7 @@ dump_me_setciotn()
 	    echo "match[${matrix_chapter_line_me[$c,0]}]"
 	    START=${matrix_chapter_line_me[$c,0]}
 	    END=${matrix_chapter_line_me[$(($c+1)),0]}
+	    END=$(($END-1))
 	    break
 	fi
     done
@@ -93,6 +95,18 @@ dump_me_setciotn()
 
     FSECTION="${SECTION//[ \/]/_}"
     RES=`cat "$G988_TXT"| sed -n $START,$ENDPAGE > "ME_NAME/$FSECTION"`
+}
+
+dump_all_me_1()
+{
+    local c=0
+    echo "dump_all_me count[$matrix_all_g988_chapter_line_count]"
+    for (( c=0; c < "${matrix_all_g988_chapter_line_count}"; c++ ))
+    do
+	NAME=${matrix_g988_chapter_line_me["$c",0]}
+	echo "dump_all_me name[$NAME]"
+        dump_me_setciotn "${NAME}"
+    done
 }
 
 dump_all_me()
@@ -107,7 +121,22 @@ dump_all_me()
     done
 }
 
+find_me_class_id()
+{
+    local me_name="$1"
+    echo "dump name[$me_name]"
+    local c=0
 
+    for (( c=0; c < "${matrix_all_g988_chapter_line_count}"; c++ ))
+    do
+	SA="${matrix_g988_chapter_line_me[$c,0]}"
+	DA="${me_name}"
+	if [ "${SA}" == "${DA}" ] ;then
+	    echo "${matrix_g988_chapter_line_me[$c,1]}"
+	    break
+	fi
+    done
+}
 collect_g988_me_content_section_line_index
 collect_all_content_section_line_index
 collect_me_content_section_line_index
