@@ -1,0 +1,58 @@
+9.6.6    802.11 PHY FHSS DSSS IR tables
+Relationships
+One instance of this managed entity may exist for each instance of an [IEEE 802.11] interface. The
+ONT automatically creates an instance of this entity whenever it creates an instance of the PPTP
+802.11 UNI.
+Attributes
+Managed entity id:           This attribute uniquely identifies each instance of this managed
+                             entity. Through an identical ID, this managed entity is implicitly
+                             linked to an instance of the physical path termination point 802.11
+                             UNI. (R) (mandatory) (2 bytes)
+dot11 hop time:              This attribute reports the time in microseconds for the PMD to
+                             change from channel 2 to channel 80. (R) (mandatory) (1 byte)
+dot11 current channel        This attribute provisions the channel number of the RF synthesizer.
+number:                      (R, W) (mandatory) (1 byte)
+dot11 max dwell time:        This attribute reports the maximum time in TU that the transmitter
+                             operates on a single channel. (R) (mandatory) (2 bytes)
+dot11 current dwell time:    This attribute provisions the time in TU that the transmitter may
+                             operate on a single channel. The default is 19 TU. (R, W)
+                             (mandatory) (2 bytes)
+dot11 current set:           This attribute provisions the set of patterns to be used by the PHY
+                             LME to determine the hop sequence. (R, W) (mandatory) (1 byte)
+dot11 current pattern:       This attribute provisions the pattern to be used by the PHY LME to
+                             determine the hop sequence. (R, W) (mandatory) (1 byte)
+dot11 current index:         This attribute provisions the index value to be used by the PHY LME
+                             to determine the current channel number. (R, W) (mandatory)
+                             (1 byte)
+dot11 current channel:       This attribute provisions the operating frequency channel to be used
+                             by the DSSS PHY. Valid channel numbers are defined in
+                             clause 15.4.6.2 of [IEEE 802.11]. (R, W) (mandatory) (1 byte)
+                               values are:
+                               0x01     Energy detect only (ED only).
+                               0x02     Carrier sense only (CS only).
+                               0x04     Carrier sense and energy detect (ED and CS).
+                               or the sum of any of these values. (R) (mandatory) (1 byte)
+dot11 current CCA mode:        This attribute provisions the CCA method to be used by the PHY.
+                               Valid values are:
+                               0x01     Energy detect only (ED only).
+                               0x02     Carrier sense only (CS only).
+                               0x04     Carrier sense and energy detect (ED and CS).
+                               (R, W) (mandatory) (1 byte)
+dot11 ED threshold:            This attribute provisions the energy detect threshold to be used by
+                               the DSSS PHY. (R, W) (mandatory) (4 bytes)
+                               Together, the following two attributes specify when energy detected
+                               in the channel can be ignored. Units are in time ticks.
+dot11 CCA watchdog             (R, W) (mandatory) (4 bytes)
+timer max:
+dot11 CCA watchdog             (R, W) (mandatory) (4 bytes)
+count max:
+dot11 CCA watchdog             This attribute provisions the minimum value to which the dot11
+timer min:                     CCA watchdog timer max can be set. Units are time ticks. (R, W)
+                               (mandatory) (4 bytes)
+dot11 CCA watchdog             This attribute provisions the minimum value to which the dot11
+count min:                     CCA watchdog count can be set. Units are time ticks. (R, W)
+                               (mandatory) (4 bytes)
+Actions
+Get, set
+Notifications
+None.

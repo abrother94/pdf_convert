@@ -1,0 +1,55 @@
+9.1.9    Equipment extension package
+This managed entity supports optional extensions to circuit pack managed entities. If the circuit
+pack supports these features, the ONT creates and deletes this managed entity along with its
+associated real or virtual circuit pack.
+Relationships
+An equipment extension package may be contained by an ONT-G or cardholder.
+Attributes
+Managed entity id:       This attribute uniquely identifies each instance of this managed entity.
+                         Through an identical ID, this managed entity is implicitly linked to an
+                         instance of the ONT-G or cardholder. (R) (mandatory) (2 bytes)
+                       example physical security detectors at an enclosure. Each pair of bits is
+                       defined as follows:
+                       00      Sense point disabled (default).
+                       01      Report contact closure.
+                       10      Report contact open.
+                       11      Sense point disabled (same as 00).
+                       If the byte is represented in binary as 0B hhgg ffee ddcc bbaa, bits hh
+                       correspond to sense point 1, while bits aa correspond to sense point 8.
+                       (R, W) (optional) (2 bytes)
+                       NOTE – Some specific sense point applications are already defined on the ONT-G
+                       managed entity. It is the vendor's choice how to configure and report sense points
+                       that appear both generically and specifically.
+Contact closure        This attribute provisions an ONT that supports external contact closure
+output:                outputs, for example sump pump or air conditioner activation at an ONT
+                       enclosure. A contact point is said to be released when it is not energized.
+                       Whether this corresponds to an open or a closed electrical circuit depends
+                       on the ONT's wiring options. Upon ONT initialization, all contact points
+                       should go to the released state.
+                       If the byte is represented in binary as 0B hhgg ffee ddcc bbaa, bits hh
+                       correspond to contact output point 1, while bits aa correspond to contact
+                       output point 8.
+                       On write, the bits of this attribute have the following meaning:
+                       0x       No change to contact output point state.
+                       10       Release contact output point.
+                       11       Operate contact output point.
+                       On read, the left bit in each pair should be set to 0 at the ONT and ignored
+                       at the OLT. The right bit indicates a released output point with 0 and an
+                       operated point with 1. (R, W) (optional) (2 bytes)
+Actions
+Get, set
+Notifications
+Alarm
+    Number                    Alarm                                      Description
+        0       Reserved
+        1       Sense point 1                         Environmental sense point 1 active
+        2       Sense point 2                         Environmental sense point 2 active
+        3       Sense point 3                         Environmental sense point 3 active
+        4       Sense point 4                         Environmental sense point 4 active
+        5       Sense point 5                         Environmental sense point 5 active
+     Number                      Alarm                                     Description
+          6        Sense point 6                       Environmental sense point 6 active
+          7        Sense point 7                       Environmental sense point 7 active
+          8        Sense point 8                       Environmental sense point 8 active
+      9..207       Reserved
+     208..223      Vendor-specific alarms              Not to be standardized

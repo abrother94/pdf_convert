@@ -1,0 +1,102 @@
+9.7.14 xDSL line inventory and status data part 3
+This managed entity extends the attributes defined in the xDSL line inventory and status data
+parts 1 and 2. This ME reports downstream attributes.
+Relationships
+This is one of the status MEs pointed to by a physical path termination point xDSL managed entity.
+The ONT automatically creates or deletes an instance of this managed entity upon creation or
+deletion of a physical path termination point xDSL that supports these attributes.
+Attributes
+Managed entity id:              This attribute uniquely identifies each instance of this managed
+                                entity. Through an identical ID, this managed entity is implicitly
+                                linked to an instance of the physical path termination point xDSL
+                                managed entity. (R) (mandatory) (2 bytes)
+TSSpsds table:                  This table contains downstream transmit spectrum shaping attributes
+                                expressed as the set of breakpoints exchanged during
+                                [ITU-T G.994.1]. Each breakpoint consists of a two-byte subcarrier
+                                index and the associated shaping attribute. The shaping attribute is
+                                one byte, an integer value in the 0 to 126 range, represented as a
+                                multiple of –0.5 dB. The special value 127 indicates that the
+                                subcarrier is not transmitted. (R) (mandatory) (3N bytes, where N is
+                                the number of breakpoints)
+HLINSCds:       This attribute is the scale factor to be applied to the downstream
+                Hlin(f) values. It is coded as a 16-bit unsigned integer. This attribute
+                is only available after a loop diagnostic procedure. (R) (mandatory)
+                (2 bytes)
+HLINpsds table: This attribute is an array of complex coefficients {a, b} that represent
+                the downstream transfer function Hlin(f) in linear form. Each array
+                entry represents Hlin(f ) = i*HLINGds*Δf for a particular subcarrier
+                group index i, ranging from 0 to min(NSds, 511). Hlin(f) may be
+                reconstructed from the array as ((HLINSCds/215)*((a(i) +
+                j*b(i))/215)), where a(i) and b(i) are 2s complement integers in the
+                range (–215 + 1) to (+215 – 1). The granularity of a and b depends on
+                the scale factor.
+                The special value a(i) = b(i) = –215 indicates that no measurement
+                could be done for this subcarrier group because it is out of the
+                passband or that the attenuation is out of range to be represented.
+                This attribute is only available after a loop diagnostic procedure. (R)
+                (mandatory) (4N bytes, where N is the number of subcarrier groups)
+HLOGMTds:       After a loop diagnostic procedure, this attribute contains the number
+                of symbols used to measure the downstream Hlog(f) values. It is a
+                16-bit unsigned value that corresponds to the value specified in the
+                corresponding Recommendation (e.g., the number of symbols in a
+                one-second interval for [ITU-T G.992.3]). (R) (mandatory) (2 bytes)
+HLOGpsds table: The HLOGpsds attribute contains an array of numbers m(i), where i
+                is a particular subcarrier group index, ranging from 0 to min(NSds,
+                511), and m lies in the range 0..1022, with a granularity of 0.1 dB.
+                The downstream transfer function Hlog(f) can be reconstructed by
+                the OLT management client as (6 – m(i)/10) dBm/Hz, with a range
+                from +6 to approximately –96 dBm/Hz.
+                The special value m = 1023 indicates that no measurement could be
+                done for this subcarrier group because it is out of the passband or that
+                the attenuation is out of range to be represented.
+                (R) (mandatory) (2N bytes, where N is the number of subcarrier
+                groups)
+QLNMTds:        After a loop diagnostic procedure, the quiet line noise PSD
+                measurement time attribute contains the number of symbols used to
+                measure the downstream QLN(f) values. It is a 16-bit unsigned value
+                that corresponds to the value specified in the Recommendation (e.g.,
+                the number of symbols in a one-second interval for
+                [ITU-T G.992.3]). (R) (mandatory) (2 bytes)
+QLNpsds table:  The quiet line noise PSD attribute contains an array of numbers n(i),
+                where i is a subcarrier group index, ranging from 0 to min(NSds,
+                511), and n lies in the range 0..254, with granularity 0.5 dB. The
+                downstream quiet line noise function QLN(f ) can be reconstructed
+                by the OLT management client as (–23 – n(i)/2) dBm/Hz, with a
+                range from –150 to –23 dBm/Hz.
+                                The special value n = 255 indicates that no measurement could be
+                                done for this subcarrier group because it is out of the passband or that
+                                the noise PSD is out of range to be represented.
+                                (R) (mandatory) (N bytes, where N is the number of subcarrier
+                                groups)
+SNRMTds:                        After a loop diagnostic procedure, the SNR measurement time
+                                attribute contains the number of symbols used to measure the
+                                downstream SNR(f) values. It is a 16-bit unsigned value that
+                                corresponds to the value specified in the Recommendation (e.g., the
+                                number of symbols in a one-second interval for [ITU-T G.992.3]).
+                                (R) (mandatory) (2 bytes)
+SNRpsds table:                  The SNRpsds attribute contains an array of numbers snr(i), where i is
+                                a subcarrier group index, ranging from 0 to min(NSds, 511), and snr
+                                lies in the range 0..254, with a granularity of 0.5 dB. The
+                                downstream SNR function SNR(f), can be reconstructed by the OLT
+                                management client as (–32 + snr(i)/2) dBm/Hz, with a range from
+                                –160 to –32 dBm/Hz.
+                                The special value snr = 255 indicates that no measurement could be
+                                done for this subcarrier group because it is out of the passband or that
+                                the noise PSD is out of range to be represented.
+                                (R) (mandatory) (N bytes, where N is the number of subcarrier
+                                groups)
+BITSpsds table:                 This attribute reports the downstream bits allocation table per
+                                subcarrier. It is an array of values in the range 0..15 for subcarriers
+                                0..NSds. Entries for subcarriers out of the downstream medley set are
+                                set to 0. (R) (mandatory) (N bytes, where N is the number of
+                                subcarriers)
+GAINSpsds table:                This attribute contains the downstream gain allocation table per
+                                subcarrier. It is an array of integer values in the range 0..4093 for
+                                subcarriers 0..NSds. The gain is represented as a multiple of 1/512 on
+                                a linear scale. Entries for subcarriers out of the downstream medley
+                                set are set to 0. (R) (mandatory) (2N bytes, where N is the number of
+                                subcarriers)
+Actions
+Get, get next
+Notifications
+None.

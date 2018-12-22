@@ -1,3 +1,10 @@
+9.1.1     ONT-G
+This managed entity represents the ONT as equipment. The ONT automatically creates an instance
+of this managed entity. It assigns values to read-only attributes according to data within the ONT
+itself.
+Relationships
+All other managed entities in this Recommendation are related directly or indirectly to the ONT-G
+entity.
 Attributes
 Managed entity id:      This attribute uniquely identifies each instance of this managed entity.
                         There is only one instance, number 0. (R) (mandatory) (2 bytes)
@@ -52,4 +59,36 @@ Synchronize time:      This action synchronizes the start time of all performanc
                        entities is set to 0 and restarted. See clause I.1.9 for further discussion
                        of PM.
 Notifications
-
+Test result:           Test results are reported via a test result message if the test is invoked by a
+                       test command from the OLT.
+  Number     Attribute value change                                Description
+       1    Vendor id                Vendor identification
+       2    Version                  Version of ONT as defined by vendor
+       3    Serial number            Serial number of ONT
+     4..7   N/A
+       8    Op state                 Operational state change
+    9..16   Reserved
+ Alarm
+  Number              Alarm                                        Description
+       0    Equipment alarm          Functional failure on an internal interface
+       1    Powering alarm           Loss of external power
+       2    Battery missing          Battery is provisioned but missing
+       3    Battery failure          Battery is provisioned and present but cannot recharge
+       4    Battery low              Battery is provisioned and present but its voltage is too low
+       5    Physical intrusion       Applies if the ONT supports detection such as door or box open
+       6    ONT self test failure    ONT has failed autonomous self test
+       7    Dying gasp               ONT is powering off imminently
+       8    Temperature yellow       No service shutdown at present, but the circuit pack is operating
+                                     beyond its recommended range
+       9    Temperature red          Some services have been shut down to avoid equipment damage.
+                                     The operational state of the affected PPTPs indicates the affected
+                                     services
+      10    Voltage yellow           No service shutdown at present, but the line power voltage is below
+                                     its recommended minimum. Service restrictions may be in effect,
+                                     such as permitting no more than N lines off-hook or ringing at one
+                                     time
+      11    Voltage red              Some services have been shut down to avoid power collapse. The
+                                     operational state of the affected PPTPs indicates the affected
+                                     services
+   12..207  Reserved
+  208..223 Vendor-specific alarms    Not to be standardized

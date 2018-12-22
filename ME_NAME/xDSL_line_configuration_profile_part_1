@@ -1,0 +1,233 @@
+9.7.3    xDSL line configuration profile part 1
+The overall xDSL line configuration profile is modelled in several parts, all of which are associated
+together through a common managed entity id (the client physical path termination point xDSL UNI
+part 1 has a single pointer, which refers to the entire set of line configuration profile parts).
+Be aware that a number of attributes in the line configuration profile family affect the real-time
+service delivery of an xDSL UNI, for example by triggering diagnostics. Despite the fact that they
+are called profiles, it may be advisable to instantiate a complete set of these MEs for each PPTP
+xDSL UNI.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the physical
+path termination point xDSL UNI.
+Attributes
+Managed entity id:                This attribute uniquely identifies each instance of this managed
+                                  entity. The value 0 is reserved. All xDSL and VDSL2 line
+                                  configuration profiles that pertain to a given physical path
+                                  termination point xDSL must share a common managed entity id.
+                                  (R, Set-by-create) (mandatory) (2 bytes)
+xTU transmission system           This configuration attribute specifies the transmission system
+enabling (xTSE):                  coding types to be allowed by the near-end xTU. It is a bit map as
+                                  defined in Table 9.7.12-1.
+                                  NOTE 1 – An additional byte enabling VDSL2 capabilities is defined in
+                                  the VDSL2 transmission system enabling attribute of the xDSL line
+                                  configuration profile part 2 managed entity.
+                                  (R, W, Set-by-create) (mandatory) (7 bytes)
+Power management state         This configuration parameter forces the line state of the near-end
+forced:                        xTU. It is coded as an integer value with following definition:
+                               0     Force the line from the L3 idle state to the L0 full-on state.
+                                     This transition requires the short initialization procedures.
+                                     After reaching the L0 state, the line may enter into or exit
+                                     from the L2 low power state if the L2 state is enabled. If the
+                                     L0 state is not reached after a vendor-discretionary number of
+                                     retries and/or within a vendor-discretionary timeout, an
+                                     initialization failure occurs. Whenever the line is in the L3
+                                     state, it attempts to transition to the L0 state until it is forced
+                                     into another state through this configuration parameter.
+                               2     Force the line from the L0 full-on to L2 low power state. This
+                                     is an out-of-service test value for triggering the L2 mode.
+                               3     Force the line from the L0 full-on or L2 low power state to
+                                     the L3 idle state. This transition requires the orderly
+                                     shutdown procedure. After reaching the L3 state, the line
+                                     remains there until it is forced into another state through this
+                                     configuration parameter.
+                               (R, W, Set-by-create) (mandatory) (1 byte)
+Power management state         This configuration parameter specifies the line states into which
+enabling:                      the xTU-C or xTU-R may autonomously go. It is a bit map (0 if
+                               not allowed, 1 if allowed) with the following definition:
+                               Bit 1 (LSB):        L3 idle state.
+                               Bit 2:              L1/L2 low power state.
+                               (R, W, Set-by-create) (mandatory) (1 byte)
+Downstream target noise        This attribute specifies the noise margin the xTU-R receiver must
+margin:                        achieve, relative to the BER requirement for each of the
+                               downstream bearer channels, to successfully complete
+                               initialization. Its value ranges from 0 (0.0 dB) to 310 (31.0 dB).
+                               (R, W, Set-by-create) (mandatory) (2 bytes)
+Upstream target noise margin: This attribute specifies the noise margin the xTU-C receiver must
+                               achieve, relative to the BER requirement for each of the upstream
+                               bearer channels, to successfully complete initialization. Its value
+                               ranges from 0 (0.0 dB) to 310 (31.0 dB). (R, W, Set-by-create)
+                               (mandatory) (2 bytes)
+Downstream maximum noise This attribute specifies the maximum noise margin the xTU-R
+margin:                        receiver tries to sustain. If the noise margin is above this level, the
+                               xTU-R requests the xTU-C to reduce its transmit power, if this
+                               functionality is supported. Its value ranges from 0 (0.0 dB) to 310
+                               (31.0 dB). The special value 0xFFFF indicates that the maximum
+                               noise margin limit is unbounded. (R, W, Set-by-create)
+                               (mandatory) (2 bytes)
+margin:                    receiver tries to sustain. If the noise margin is above this level, the
+                           xTU-C requests the xTU-R to reduce its transmit power, if this
+                           functionality is supported. Its value ranges from 0 (0.0 dB) to 310
+                           (31.0 dB). The special value 0xFFFF indicates that the maximum
+                           noise margin limit is unbounded. (R, W, Set-by-create)
+                           (mandatory) (2 bytes)
+Downstream minimum noise   This attribute specifies the minimum noise margin the xTU-R
+margin:                    receiver must tolerate. If the noise margin falls below this level,
+                           the xTU-R requests the xTU-C to increase its transmit power. If an
+                           increase in xTU-C transmit power is not possible, a loss-of-margin
+                           (LOM) defect occurs, the xTU-R fails and attempts to re-initialize,
+                           and the PPTP declares a line initialization failure (LINIT) alarm.
+                           Its value ranges from 0 (0.0 dB) to 310 (31.0 dB). (R, W,
+                           Set-by-create) (mandatory) (2 bytes)
+Upstream minimum noise     This attribute specifies the minimum noise margin the xTU-C
+margin:                    receiver must tolerate. If the noise margin falls below this level,
+                           the xTU-C requests the xTU-R to increase its transmit power. If an
+                           increase in xTU-R transmit power is not possible, a loss-of-margin
+                           (LOM) defect occurs, the xTU-C fails and attempts to re-initialize,
+                           and the PPTP declares a line initialization failure (LINIT) alarm.
+                           Its value ranges from 0 (0.0 dB) to 310 (31.0 dB). (R, W,
+                           Set-by-create) (mandatory) (2 bytes)
+Downstream rate adaptation This attribute specifies the mode of operation of a rate-adaptive
+mode:                      xTU-C in the transmit direction. The parameter can take three
+                           values.
+                           1 Mode 1: MANUAL – Rate changed manually.
+                                   At startup:
+                                   The downstream minimum data rate parameter (see xDSL
+                                   channel config profile) specifies the minimum required
+                                   data rate for each downstream bearer channel, with a
+                                   downstream noise margin that is at least as large as the
+                                   specified downstream target noise margin, relative to the
+                                   required BER for each of the downstream bearer channels.
+                                   If the xTU-C fails to achieve the downstream minimum
+                                   data rate for any of the bearer channels, the xTU-C fails to
+                                   initialize and the PPTP declares a line initialization failure
+                                   (LINIT) alarm. Although the xTU-C and the line might be
+                                   able to support a higher data rate, the xTU-C does not
+                                   transmit a higher data rate than is requested.
+                                   At showtime:
+                                   The xTU-C transmitter maintains the specified downstream
+                                   minimum data rate for each of the bearer channels.
+                           2 Mode 2: AT_INIT – Rate automatically selected at startup
+                           only; rate does not change after that.
+                                    At startup:
+                                    The downstream minimum rate parameter specifies the
+                                    minimum required data rate for each downstream bearer
+                                    channel, with a downstream noise margin that is at least as
+                                    large as the specified downstream target noise margin,
+                                    relative to the required BER for each of the bearer
+                                    channels. If the xTU-C fails to achieve the downstream
+                                    minimum data rate for any of the bearer channels, the
+                                    xTU-C fails to initialize and the PPTP declares a line
+                                    initialization failure (LINIT) alarm. If the xTU-C
+                                    transmitter is able to support a higher downstream data rate
+                                    at initialization, the excess data rate is distributed among
+                                    the downstream bearer channels according to the weight
+                                    specified by the rate adaptation ratio parameter of each
+                                    bearer channel. When the downstream maximum data rate
+                                    is achieved in one of the bearer channels, the remaining
+                                    excess rate is assigned to the other bearer channels, still
+                                    according to their relative rate adaptation ratio parameters.
+                                    As long as the downstream data rate is below the
+                                    downstream maximum data rate for one of the bearer
+                                    channels, data rate increase takes priority over transmit
+                                    power reduction.
+                                    At showtime:
+                                    During showtime, no downstream data rate adaptation is
+                                    allowed. The downstream data rate, determined during
+                                    initialization for each bearer channel, is maintained.
+                           3 Mode 3: DYNAMIC – Data rate is automatically selected at
+                           initialization and is continuously adapted during showtime. The
+                           dynamic rate adaptation mode is optional. All related
+                           configuration parameters are also optional.
+                                    At startup:
+                                    The xTU-C starts up as in mode 2.
+                                    At showtime:
+                                    During showtime, rate adaptation is allowed according to
+                                    the rate adaptation ratios for distributing the excess data
+                                    rate amongst the bearer channels, as described in mode 2.
+                                    The downstream data rate can vary between the
+                                    downstream minimum data rate and the downstream
+                                    maximum data rate. Downstream rate adaptation is
+                                    performed when the conditions specified for downstream
+                                    upshift noise margin and downstream upshift interval – or
+                                    for downstream downshift noise margin and downstream
+                                    downshift interval – are satisfied. This means:
+                                    •      An upshift action is allowed when the downstream
+                                           noise margin is above the downstream upshift noise
+                                           margin during the downstream minimum time
+                                           interval for upshift rate adaptation (i.e., upon RAU
+                                           anomaly).
+                                     •     A downshift action is allowed when the downstream
+                                           noise margin is below the downstream downshift
+                                           noise margin during the downstream minimum time
+                                           interval for downshift rate adaptation (i.e., upon RAD
+                                           anomaly).
+                                     As long as the downstream data rate is below the
+                                     downstream maximum data rate for one of the bearer
+                                     channels, data rate increase takes priority over transmit
+                                     power reduction.
+                                     (R, W, Set-by-create) (mandatory) (1 byte)
+Upstream rate adaptation     This attribute specifies the mode of operation of a rate-adaptive
+mode:                        xTU-R in the transmit direction. The parameter is used only if
+                             rate-adaptive functionality is supported. It can take three values:
+                             1 MANUAL.
+                             2 AT_INIT.
+                             3 DYNAMIC.
+                             The definition of each of the values is identical to its definition in
+                             the downstream rate adaptation mode (replacing xTU-C with
+                             xTU-R and downstream with upstream). (R, W, Set-by-create)
+                             (mandatory) (1 byte)
+Downstream upshift noise     If the downstream noise margin is above the downstream upshift
+margin:                      noise margin and remains there for more than the time specified
+                             by the downstream minimum upshift rate adaptation interval, the
+                             xTU-R attempts to increase the downstream net data rate. This
+                             attribute ranges from 0 (0.0 dB) to 310 (31.0 dB). (R, W,
+                             Set-by-create) (optional) (2 bytes)
+Upstream upshift noise       If the upstream noise margin is above the upstream upshift noise
+margin:                      margin and remains there for more than the time specified by the
+                             upstream minimum upshift rate adaptation interval, the xTU-C
+                             attempts to increase the upstream net data rate. This attribute
+                             ranges from 0 (0.0 dB) to 310 (31.0 dB). (R, W, Set-by-create)
+                             (optional) (2 bytes)
+Upstream PSD mask selection: This attribute enables one of several upstream PSD masks. It is
+                             used only for Annexes J and M of [ITU-T G.992.3] and
+                             [ITU-T G.992.5]. The same mask selection applies to all relevant
+                             modes enabled in the xTSE line configuration parameter
+                             (Table 9.7.12-1). This attribute selects the mask with the following
+                             definition:
+                                        Annex J of G.992.3/5        Annex M of G.992.3/5
+                                  1             ADLU-32                        EU-32
+                                  2             ADLU-36                        EU-36
+                                  3             ADLU-40                        EU-40
+                                  4             ADLU-44                        EU-44
+                                  5             ADLU-48                        EU-48
+                                  6             ADLU-52                        EU-52
+                                  7             ADLU-56                        EU-56
+                                  8             ADLU-60                        EU-60
+                                  9             ADLU-64                        EU-64
+                                  (R, W, Set-by-create) (mandatory) (1 byte)
+Minimum overhead rate             This attribute specifies the minimum rate of the message based
+upstream:                         overhead to be maintained by the xTU in the upstream direction.
+                                  MSGMINus ranges from 4000 to 248 000 bit/s. This attribute is
+                                  only       valid      for      [ITU-T G.992.3],       [ITU-T G.992.4],
+                                  [ITU-T G.992.5] and [ITU-T G.993.2].
+                                  NOTE 2 – For compatibility with previous versions, values between
+                                  4000 and 65535 are interpreted as bits per second. To align with
+                                  [ITU-T G.997.1], values between 4 and 248 are interpreted as kilobits
+                                  per second. For maximum flexibility, the ONT should support both
+                                  conventions.
+                                  (R, W, Set-by-create) (optional) (2 bytes)
+Minimum overhead rate             This attribute specifies the minimum rate of the message based
+downstream:                       overhead to be maintained by the xTU in the downstream
+                                  direction. MSGMINds ranges from 4000 to 248 000 bit/s. This
+                                  attribute is only valid for [ITU-T G.992.3], [ITU-T G.992.4],
+                                  [ITU-T G.992.5] and [ITU-T G.993.2].
+                                  NOTE 3 – For compatibility with previous versions, values between
+                                  4000 and 65535 are interpreted as bits per second. To align with
+                                  [ITU-T G.997.1], values between 4 and 248 are interpreted as kilobits
+                                  per second. For maximum flexibility, the ONT should support both
+                                  conventions.
+                                  (R, W, Set-by-create) (optional) (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

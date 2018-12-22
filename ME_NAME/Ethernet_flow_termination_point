@@ -1,0 +1,35 @@
+9.8.9     Ethernet flow termination point
+The Ethernet flow termination point contains the attributes necessary to originate and terminate
+Ethernet frames in the ONT. It is appropriate when transporting pseudowire services via layer 2.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+One Ethernet flow termination point ME exists for each distinct pseudowire service that is
+transported via layer 2.
+Attributes
+Managed entity id:               This attribute uniquely identifies each instance of this managed
+                                 entity. Through an identical ID, this managed entity is implicitly
+                                 linked to an instance of the ME that is the termination point of its
+                                 traffic (e.g., a pseudowire termination point managed entity). (R,
+                                 Set-by-create) (mandatory) (2 bytes)
+Destination MAC:                 This attribute specifies the MAC address of the destination Ethernet
+                                 frames. (R, W, Set-by-create) (mandatory) (6 bytes)
+Source MAC:                      This attribute specifies the near-end MAC address. It is established
+                                 by non-OMCI means (e.g., factory programmed into ONT flash
+                                 memory) and included here for information only. (R) (mandatory)
+                                 (6 bytes)
+Tag policy:                      This attribute specifies the tagging policy to be applied to upstream
+                                 Ethernet frames:
+                                 0    untagged frame (default).
+                                 1    tagged frame.
+                                 (R, W, Set-by-create) (mandatory) (1 byte)
+TCI:                             If the tag policy calls for tagging of upstream Ethernet frames, this
+                                 attribute specifies the tag control information, which includes the
+                                 VLAN tag, P-bits and CFI bit. (R, W) (optional) (2 bytes)
+Loopback:                        This attribute sets the loopback configuration:
+                                 0 No loopback.
+                                 1 Loopback of downstream traffic at MAC client.
+                                 (R, W) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

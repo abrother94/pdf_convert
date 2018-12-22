@@ -1,0 +1,71 @@
+9.1.2     ONT2-G
+This managed entity contains additional attributes associated with the G-PON ONT. The ONT
+automatically creates an instance of this managed entity. Its attributes are populated according to
+the data within the ONT itself.
+Relationships
+This managed entity is paired with the ONT-G entity.
+Managed entity id:     This attribute uniquely identifies each instance of this managed entity.
+                       There is only one instance, number 0. (R) (mandatory) (2 bytes)
+Equipment id:          This attribute may be used to identify the specific type of ONT. In North
+                       America, this may be the equipment CLEI code. (R) (optional) (20 bytes)
+OMCC version:          This attribute identifies the version of the OMCC protocol being used by the
+                       ONT. This allows the OLT to manage a network with ONTs that support
+                       different OMCC versions. Release levels of this Recommendation may be
+                       supported with the following code points:
+                       0x80     G.984.4 06/04.
+                                NOTE – For historic reasons, this codepoint may also appear in ONTs
+                                that support later versions.
+                       0x81     G.984.4 Amd.1 (06/05).
+                       0x82     G.984.4 Amd.2 (03/06).
+                       0x83     G.984.4 Amd.3 (12/06).
+                       0x84     G.984.4 (02/08).
+                       (R) (mandatory) (1 byte)
+Vendor product code: This attribute provides a vendor-specific product code for the ONT. (R)
+                       (optional) (2 bytes)
+Security capability:   This attribute advertises the security capabilities of the ONT. The following
+                       codepoints are defined:
+                       0         Reserved.
+                       1         AES encryption of the downstream payload supported.
+                       2..255    Reserved.
+                       (R) (mandatory) (1 byte)
+Security mode:         This attribute specifies the current security mode of the ONT. All secure
+                       GEM ports in an ONT must use the same security mode at any given time.
+                       The following codepoints are defined:
+                       0        Reserved.
+                       1        AES algorithm used for unicast traffic.
+                       2..255 Reserved.
+                       Upon ME instantiation, the ONT sets this attribute to 1, AES. If new
+                       encryption modes are standardized, then AES will be the default, and the
+                       new modes will be settable via writing to this attribute. This does not mean
+                       that any channels are encrypted; that process is negotiated at the PLOAM
+                       layer. It only signifies that AES is the security mode to be used on any
+                       channels that the OLT may choose to encrypt. (R, W) (mandatory) (1 byte)
+Total priority queue This attribute reports the total number of priority queues that are not
+number:                  associated with a circuit pack, but with the ONT in its entirety. The
+                         maximum value is 0x0FFF. Upon ME instantiation, the ONT sets this
+                         attribute to the value that represents its capabilities. (R) (mandatory)
+                         (2 bytes)
+Total traffic            This attribute reports the total number of traffic schedulers that are not
+scheduler number:        associated with a circuit pack, but with the ONT in its entirety. The ONT
+                         supports null function, HOL scheduling and WRR from the priority control
+                         and guarantee of minimum rate control points of view, respectively. If the
+                         ONT has no traffic schedulers, this attribute is 0. (R) (mandatory) (1 byte)
+Mode:                    This attribute identifies whether the ONT can operate in ATM-only mode
+                         (0), GEM-only mode (1), or both ATM and GEM mode (2). ATM mode is
+                         deprecated; this attribute should always be set to 1. (R) (mandatory) (1 byte)
+Total GEM port-ID        This attribute reports the total number of GEM port-IDs supported by the
+number:                  ONT. The maximum value is 0x0FFF. Upon ME instantiation, the ONT sets
+                         this attribute to the value that represents its capabilities. (R) (optional)
+                         (2 bytes)
+SysUpTime:               This attribute counts the 10 ms intervals since the ONT was last initialized.
+                         It rolls over to 0 when full (See [b-IETF RFC 1213]). (R) (optional)
+                         (4 bytes)
+Actions
+Get, set
+Notifications
+ Attribute value change
+  Number     Attribute value change                              Description
+      1     N/A
+      2     OMCC version               OMCC version supported in the ONT
+     3..9   N/A
+   10..16   Reserved

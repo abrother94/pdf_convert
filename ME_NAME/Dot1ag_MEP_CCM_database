@@ -1,0 +1,131 @@
+9.3.22 Dot1ag MEP
+This managed entity models a maintenance association end point (MEP) as defined primarily in
+[b-IEEE 802.1ag] and secondarily in [b-ITU-T Y.1731]. It is created and deleted by the OLT. A
+MEP exists at one of eight possible maintenance levels, and resides at the boundary of a
+maintenance domain. It inherits a name, and optionally a set of associated VLANs, from its
+associated MA.
+Relationships
+One or more MEPs may be associated with a MAC bridge port or an 802.1p mapper in the absence
+of a MAC bridge. A MEP is also associated with zero or more VLANs and a maintenance
+association.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            (R, Set-by-create) (mandatory) (2 bytes)
+Layer 2 entity pointer:     Depending on the value of the layer 2 type attribute, this pointer
+                            specifies the MAC bridge port configuration data ME or the 802.1p
+                            mapper service profile ME with which this MEP is associated. (R, W,
+                            Set-by-create) (mandatory) (2 bytes)
+                            bridge port (value 0) or an 802.1p mapper (value 1). (R, W,
+                            Set-by-create) (mandatory) (1 byte)
+MA pointer:                 This pointer specifies the maintenance association (MA) with which
+                            this MEP is associated. (R, W, Set-by-create) (mandatory) (2 bytes)
+MEP ID:                     This attribute specifies the MEP's own identity in the MA. For a given
+                            MA, the MEP ID must be unique throughout the network defined by
+                            the MD. The MEP ID is defined in the range 1..8191. The default value
+                            0 indicates that no MEP ID is (yet) configured. (R, W, Set-by-create)
+                            (mandatory) (2 bytes)
+MEP control:                This attribute specifies some of the overall behavioural aspects of the
+                            MEP. It is interpreted as follows. Ethernet AIS generation should not
+                            be enabled simultaneously with CCMs.
+    Bit                                 Interpretation when bit value = 1
+ 1 (LSB)   Reserved
+     2     MEP generates continuity check messages, CCMs
+     3     Enable Y.1731 server MEP function
+     4     Enable generation of Ethernet AIS
+     5     This is an up MEP, facing toward the core of the bridge. If more than one MEP exists on a
+           given maintenance association and on a given bridge, all such MEPs must face the same
+           direction.
+   6..8    Reserved
+                            (R, W, Set-by-create) (mandatory) (1 byte)
+Primary VLAN:               This attribute is a 12-bit VLAN ID. The value 0 indicates that the MEP
+                            inherits its primary VLAN from its parent MA. CFM messages, except
+                            forwarded LTMs, are tagged with the primary VLAN ID. If explicitly
+                            specified, the value of this attribute must be one of the VLANs
+                            associated with the parent MA. (R, W, Set-by-create) (mandatory)
+                            (2 bytes)
+Administrative state:       This attribute locks (1) and unlocks (0) the functions performed by this
+                            managed entity. When the administrative state is set to lock, all
+                            functions are blocked, and alarms for this managed entity are no longer
+                            generated. Because spurious alarms may be generated during the
+                            process of configuring CFM across a network, the default value for this
+                            attribute is locked. (R, W, Set-by-create) (mandatory) (1 byte)
+CCM and LTM priority: By default, CCM and LTM frames are transmitted with the highest
+                            Ethernet priority available. Ranging from 0..7, this attribute permits
+                            these frames to be explicitly prioritized, which may be needed if flows
+                            are separated, e.g., by 802.1p priority. The priority specified in this
+                            attribute is also used in LTR frames originated by this MEP. (R, W,
+                            Set-by-create) (mandatory) (1 byte)
+                               received LTRs to be directed to the correct originator. The attribute
+                               includes the originator MAC address and a locally-defined identifier. If
+                               this field is 0 (default), the ONT uses the MEP's MAC address, with 0
+                               as the locally-defined identifier. (R, W, Set-by-create) (mandatory)
+                               (8 bytes)
+Peer MEP IDs:                  This attribute lists the expected peer MEPs for CCMs, 2 bytes per MEP
+                               ID. [b-IEEE 802.1ag] allows for multipoint networks, and therefore a
+                               list of peer MEPs. This attribute allows for up to 12 peers for a given
+                               MEP, though G-PON applications are expected to need only a single
+                               peer. Missing or unexpected messages trigger alarm declaration after a
+                               soak interval. Unused peer MEP slots should be set to 0. (R, W)
+                               (mandatory) (24 bytes)
+ETH AIS control:               This attribute controls the generation of Ethernet AIS frames when
+                               they are enabled through the MEP control attribute. It is interpreted as
+                               follows:
+    Bit                                              Interpretation
+ 1 (LSB)   Transmission period
+               0: Once per second
+               1: Once per minute
+    2..4   P-bit priority of transmitted ETH AIS frames
+    5..7   The maintenance level at which the client MEP exists
+     8     Reserved
+                               (R, W, Set-by-create) (mandatory if ETH AIS is enabled) (1 byte)
+Fault alarm threshold:         This attribute specifies the lowest priority alarm that is allowed to
+                               generate a fault alarm. It is defined as follows:
+                               1     All defects generate alarms after suitable soaking, including AIS
+                                     and RDICCM.
+                               2     Alarm generated only by one of: MACstatus, RemoteCCM,
+                                     ErrorCCM, XconCCM. This value is recommended as the default
+                                     in [b-IEEE 802.1ag].
+                               3     Alarm generated only by one of: RemoteCCM, ErrorCCM,
+                                     XconCCM.
+                               4     Alarm generated only by one of: ErrorCCM, XconCCM.
+                               5     Alarm generated only by: XconCCM.
+                               6     No alarms are to be reported. This setting may be useful during
+                                     configuration of services across the network when spurious alarms
+                                     could otherwise be generated.
+                               (R, W, Set-by-create) (optional) (1 byte)
+time:                          MEP declares an alarm. It is expressed in ten-millisecond units with a
+                               range of 250 to 1000, i.e., 2.5 to 10 seconds. The default is
+                               recommended to be 2.5 seconds. (R, W) (mandatory) (2 bytes)
+Alarm clear soak time:         This attribute defines the defect-free soak time that must elapse before
+                               the MEP clears an alarm. It is expressed in ten-millisecond units with a
+                               range of 250 to 1000, i.e., 2.5 to 10 seconds. The default is
+                               recommended to be 10 seconds. (R, W) (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Test:                          The test operation causes the MEP to originate one or more loopback
+                               messages (LBMs) or a linktrace message (LTM) in accordance with
+                               the message format defined in clause II.2.27.
+The link trace test returns its results in a general purpose buffer ME, which must have been created
+in advance by the OLT. Upon completion of the linktrace operation, the general purpose buffer
+contains a sequence of LTR entries in the order they were received:
+            Length field, 2 bytes                                      Length bytes
+              Length of LTR1                  LTR: link trace reply 1 (clause 21.9 of [b-IEEE 802.1ag])
+              Length of LTR2                  LTR: link trace reply 2
+                    Etc.
+[b-IEEE 802.1ag] defines the data structure for the linktrace database in detail, but the definition is
+essentially the same as the LTR PDU itself. OMCI simply records the messages for parsing and
+analysis at the OLT or the EMS.
+If the ONT cannot allocate enough memory for the entire list, it keeps the most recent responses and
+discards the older LTRs as necessary (LTR1, LTR2, …).
+Notifications
+ Alarm
+    Number                     Alarm                                        Description
+        0       RDI CCM                              RDI received in CCM from peer MEP
+        1       MAC status                           Port or interface status failure at peer MEP
+        2       Remote CCM                           Loss of continuity with peer MEP
+        3       Error CCM                            Invalid CCMs received
+        4       Xcon CCM                             CCMs received from other MA or lower MD level
+        5       Unexpected period                    Unexpected period
+        6       AIS                                  Ethernet AIS received
+     7..207     Reserved
+    208..223    Vendor-specific alarms               Not to be standardized

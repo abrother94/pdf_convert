@@ -1,0 +1,41 @@
+9.8.4    CES physical interface performance monitoring history data
+This managed entity collects statistics for a CES physical interface. Interfaces include DS1, DS3,
+E1, E3, J1, J2 and possibly others. The performance management requirements of particular
+interfaces are described in the corresponding ITU-T or other standard document, e.g.,
+[ITU-T G.784].
+Instances of this managed entity are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+An instance of this managed entity is associated with one instance of the physical path termination
+point CES UNI.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. Through an identical ID, this managed entity is implicitly
+                              linked to an instance of the physical path termination point CES UNI.
+                              (R, Set-by-create) (mandatory) (2 bytes)
+Interval end time:            This attribute identifies the most recently finished 15-minute interval.
+                              (R) (mandatory) (1 byte)
+Threshold data 1/2 id:        This attribute points to an instance of the threshold data 1 managed
+                              entity that contains PM threshold values. Since no threshold value
+                              attribute number exceeds 7, a threshold data 2 ME is optional. (R, W,
+                              Set-by-create) (mandatory) (2 bytes)
+Errored seconds:              (R) (mandatory) (2 bytes)
+Severely errored seconds:       (R) (mandatory) (2 bytes)
+Burst errored seconds:          A burst errored second is any second that is not a UAS, that contains
+                                between 2 and 319 error events but no LOS, AIS or OOF condition.
+                                (R) (optional) (2 bytes)
+Unavailable seconds:            (R) (mandatory) (2 bytes)
+Controlled slip seconds:        (R) (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+      Number         Threshold crossing alert                   Threshold value attribute # (Note)
+          0          ES                                                          1
+          1          SES                                                         2
+          2          BES                                                         3
+          3          UAS                                                         4
+          4          CSS                                                         5
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold
+ data 1 managed entity.

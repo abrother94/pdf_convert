@@ -1,0 +1,52 @@
+9.10.2 MoCA Ethernet performance monitoring history data
+This managed entity collects performance monitoring data for a MoCA Ethernet interface. Instances
+of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity is associated with an instance of the PPTP MoCA UNI managed
+entity.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            Through an identical ID, this managed entity is implicitly linked to an
+                            instance of the physical path termination point MoCA UNI. (R,
+                            Set-by-create) (mandatory) (2 bytes)
+Interval end time:          This attribute identifies the most recently finished 15-minute interval. (R)
+                            (mandatory) (1 byte)
+Threshold data 1/2 id:      This attribute points to an instance of the threshold data 1 and 2 managed
+                            entities that contains PM threshold values. (R, W, Set-by-create)
+                            (mandatory) (2 bytes)
+Incoming PM refers to upstream traffic received on the UNI; outgoing PM refers to downstream
+traffic transmitted on the UNI.
+Incoming unicast packets:           (R) (optional) (4 bytes)
+Incoming discarded packets:         (R) (optional) (4 bytes)
+Incoming errored packets:           (R) (optional) (4 bytes)
+Incoming unknown packets:           (R) (optional) (4 bytes)
+Incoming multicast packets:         (R) (optional) (4 bytes)
+Incoming broadcast packets:         (R) (optional) (4 bytes)
+Incoming octets:                    (R) (optional) (4 bytes)
+Outgoing unicast packets:           (R) (optional) (4 bytes)
+Outgoing discarded packets:         (R) (optional) (4 bytes)
+Outgoing errored packets:           (R) (optional) (4 bytes)
+Outgoing unknown packets:           (R) (optional) (4 bytes)
+Outgoing multicast packets:         (R) (optional) (4 bytes)
+Outgoing broadcast packets:         (R) (optional) (4 bytes)
+Outgoing octets:                    (R) (optional) (4 bytes)
+Actions
+Create, delete, get, set
+ Threshold crossing alert
+     Number                 Threshold crossing alert                  Threshold value attribute # (Note)
+         0           Incoming unicast packets                                         1
+         1           Incoming discarded packets                                       2
+         2           Incoming error packets                                           3
+         3           Incoming unknown packets                                         4
+         4           Incoming multicast packets                                       5
+         5           Incoming broadcast packets                                       6
+         6           Incoming octets                                                  7
+         7           Outgoing unicast packets                                         8
+         8           Outgoing discarded packets                                       9
+         9           Outgoing error packets                                          10
+        10           Outgoing unknown packets                                        11
+        11           Outgoing multicast packets                                      12
+        12           Outgoing broadcast packets                                      13
+        13           Outgoing octets                                                 14
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold
+ data 1/2 managed entities.

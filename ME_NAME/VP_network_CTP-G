@@ -1,0 +1,45 @@
+9.13.9 VP network CTP-G
+This managed entity represents the termination of VP links on an ONT. It aggregates connectivity
+functionality from the network view and alarms from the network element view as well as artefacts
+from trails. Instances of this managed entity are created and deleted by the OLT.
+An instance of the VP network CTP-G managed entity can be deleted only when no ATM
+interworking VCC termination point is associated with it. It is the responsibility of the OLT to
+ensure that this condition is met.
+Relationships
+Zero or more instances of the VP network CTP-G managed entity may exist for each instance of the
+interworking VCC termination point managed entity.
+Attributes
+Managed entity id:              This attribute uniquely identifies each instance of this managed
+                                entity. It must be unique over all GEM port network CTP and VP
+                                network CTP-G MEs. (R, Set-by-create) (mandatory) (2 bytes)
+VPI value:                      This attribute identifies the VPI value associated with the VP link
+                                being terminated. (R, W, Set-by-create) (mandatory) (2 bytes)
+UNI pointer:                    This pointer indicates the xDSL physical path termination point UNI
+                                associated with this VP termination point. The bearer channel may
+                                be indicated by the two most significant bits of the pointer. (R, W,
+                                Set-by-create) (mandatory) (2 bytes)
+Direction:                      This attribute specifies whether the VP link is used for UNI-to-ANI
+                                (value 1), ANI-to-UNI (value 02), or bidirectional (value 3)
+                                connection. (R, W, Set-by-create) (mandatory) (1 byte)
+Priority queue pointer          Not used, should be set to 0. (R, W, Set-by-create) (mandatory)
+for downstream:                 (2 bytes)
+Traffic management              Not used, should be set to 0. (R, W, Set-by-create) (mandatory)
+pointer for upstream:           (2 bytes)
+Traffic descriptor profile      Not used, should be set to 0. (R, W, Set-by-create) (optional)
+pointer:                        (2 bytes)
+UNI counter:                    Not used, should be set to 0. (R) (optional) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+ Alarm
+  Number              Alarm                                         Description
+      0      VP AIS LMIR                VP-AIS receiving indication (optional)
+      1      VP RDI LMIR                VP-RDI receiving indication (optional)
+      2      VP AIS LMIG                VP-AIS generation indication (optional)
+      3      VP RDI LMIG                VP-RDI generation indication (optional)
+      4      Segment loss of            Loss of continuity is detected when the VP network CTP-G is a
+             continuity                 segment end point (optional)
+      5      End-to-end loss of         Loss of continuity can be detected when the VP network CTP-G
+             continuity                 supports an interworking VCC termination point (optional)
+   6..207    Reserved
+  208..223   Vendor-specific alarms     Not to be standardized

@@ -1,0 +1,168 @@
+9.3.19 Dot1ag maintenance domain
+A maintenance domain (MD) is a context within which CFM connectivity verification can occur.
+Individual services (maintenance associations: MAs) exist within an MD. A maintenance domain is
+created and deleted by the OLT. The MD managed entity is specified by [b-IEEE 802.1ag] in such a
+way that the same provisioning can be used for all associated systems in a network; the OMCI
+definition accordingly avoids ONT-specific information such as pointers.
+Relationships
+Several MDs may be associated with a given bridge, at various MD levels, and a given MD may be
+associated with any number of bridges.
+Attributes
+Managed entity id:            This attribute uniquely identifies an instance of this managed entity.
+                              The values 0 and 0xFFFF are reserved. (R, Set-by-create) (mandatory)
+                              (2 bytes)
+MD level:                     This attribute ranges from 0..7 and specifies the maintenance level of
+                              this MD. Higher numbers have wider geographic scope. (R, W,
+                              Set-by-create) (mandatory) (1 byte)
+MD name format:               This attribute specifies one of several possible formats for the MD
+                              name attribute. (R, W, Set-by-create) (mandatory) (1 byte)
+   Value         MD name format                       MD name attribute                  Defined in
+      1      None                         No MD name present                         [b-IEEE 802.1ag]
+      2      DNS-like name                Globally unique text string derived from a         "
+                                          DNS name
+      3      MAC addr and UINT            MAC address, followed by a two-octet               "
+                                          unsigned integer, total length 8 bytes
+      4      Character string             String of printable characters. This is            "
+                                          recommended to be the default value.
+     32      ICC-based                    ITU carrier code followed by locally       [b-ITU-T Y.1731]
+                                          assigned UMC code, 13 bytes with trailing      (Annex A)
+                                          nulls as needed
+   Others    Reserved
+                         value is the left-justified maintenance domain name. The MD name
+                         may or may not be a printable character string, so an octet string is the
+                         appropriate representation. If the MD name format specifies a
+                         DNS-like name or a character string, the string is null-terminated;
+                         otherwise its length is determined by the MD name format. If the MD
+                         has no name (MD name format = 0), this attribute is undefined. Note
+                         that binary comparisons of the MD name are made in other CFM state
+                         machines, so blanks, alphabetic case, etc., are significant. Further note
+                         that the maintenance domain name and the maintenance association
+                         name must be packed (with additional bytes) into 48-byte CFM
+                         message headers. (R, W) (mandatory if MD name format is not 1)
+                         (25 bytes * 2 attributes)
+MHF creation:            This attribute determines whether an associated bridge creates an MHF
+                         for this MD or not, under circumstances defined in clause 22.2.3 of
+                         [b-IEEE 802.1ag]. This attribute is an enumeration with the following
+                         values:
+                         1    None, the default value.
+                         2    Default. The bridge can create MHFs on an associated VID on any
+                              port through which the VID can pass, where: i) there are no lower
+                              active MD levels or ii) there is a MEP at the next lower active MD
+                              level on the port.
+                         3    Explicit. The bridge can create MHFs on an associated VID on any
+                              port through which the VID can pass, but only if a MEP exists at
+                              some lower maintenance level.
+                         (R, W, Set-by-create) (mandatory) (1 byte)
+Sender ID permission:    This attribute determines the content of the sender ID TLV included in
+                         CFM messages transmitted by maintenance points controlled by this
+                         MD. Chassis ID and management address information is available
+                         from the dot1ag chassis-management info managed entity. The
+                         attribute is an enumeration with the following values:
+                         1    None: The sender ID TLV is not to be sent, default.
+                         2    Chassis: The chassis ID length, chassis ID subtype, and chassis ID
+                              fields of the sender ID TLV are to be sent, but not the management
+                              address fields.
+                         3    Manage: The management address fields of the sender ID TLV are
+                              to be sent, but the chassis ID length is to be transmitted with a
+                              0 value, and the chassis ID subtype, and chassis ID fields are not to
+                              be sent.
+                         4    ChassisManage: All chassis ID and management address fields are
+                              to be sent.
+                         (R, W, Set-by-create) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.
+This managed entity models an IEEE 802.1 service defined on a bridge port. A maintenance
+association (MA) is a set of endpoints on opposite sides of a network, all existing at a defined
+maintenance level. One of the endpoints resides on the local ONT; the others are understood to be
+configured in a consistent way on external equipments. [b-ITU-T Y.1731] refers to the MA as a
+maintenance entity group (MEG).
+A maintenance association is created and deleted by the OLT.
+Relationships
+Any number of MAs may be associated with a given maintenance domain, or may stand on their
+own without an MD. One or more MAs may be associated with a MAC bridge or 802.1p mapper.
+An MA exists at one of eight possible maintenance levels.
+Attributes
+Managed entity id:            This attribute uniquely identifies an instance of this managed entity.
+                              The values 0 and 0xffff are reserved. (R, Set-by-create) (mandatory)
+                              (2 bytes)
+MD pointer:                   This pointer specifies the dot1ag maintenance domain with which this
+                              MA is associated. The default null pointer specifies that the MA is not
+                              associated with an MD. (R, W, Set-by-create) (mandatory) (2 bytes)
+Short MA name format:         This attribute specifies one of several possible formats for the short
+                              MA name attribute. Value 1, the primary VLAN ID, is recommended
+                              to be the default. (R, W, Set-by-create) (mandatory) (1 byte)
+   Value          Short MA name format                            Short MA name attribute
+      1      Primary VID                           2 octets, 12 LSBs specify primary VID, 0 if none
+      2      Character string                      String of up to 45 printable characters
+      3      Two-byte integer                      2-octet unsigned integer
+      4      VPN ID                                7 octets, as defined in [b-IETF RFC 2685]
+    Other    Reserved
+Short MA name 1, Short These two attributes may be regarded as an octet string whose value is
+MA name 2:                    the left-justified maintenance association name. Because the MA name
+                              may or may not be a printable character string, an octet string is the
+                              appropriate representation. If the short MA name format specifies a
+                              character string, the string is null-terminated; otherwise its length is
+                              determined by the short MA name format. Note that binary
+                              comparisons of the short MA name are made in other CFM state
+                              machines, so blanks, alphabetic case, etc., are significant. Further note
+                              that the maintenance domain name and the maintenance association
+                              short name must be packed (with additional bytes) into 48-byte CFM
+                              message headers. (R, W) (mandatory) (25 bytes * 2 attributes)
+                      the rate at which they are generated. The MEP also expects to receive
+                      CCMs from each of the other MEPs in its CC database at this rate.
+                      0:  CCM transmission disabled.
+                      1:  3.33 ms.
+                      2:  10 ms.
+                      3:  100 ms.
+                      4:  1 s.
+                      5:  10 s.
+                      6:  1 min.
+                      7:  10 min.
+                      Short intervals should be used judiciously, as they can interfere with
+                      the network's ability to handle subscriber traffic. The recommended
+                      value is 1 second. (R, W, Set-by-create) (mandatory) (1 byte)
+Associated VLANs:     This attribute is a list of up to 12 VLAN IDs with which this MA is
+                      associated. Once a set of VLANs is defined, the ONT should deny
+                      operations to other dot1ag maintenance associations or dot1ag default
+                      MD level entries that conflict with the set membership. The all-zeros
+                      value indicates that this MA is not associated with any VLANs.
+                      Assuming that the attribute is not 0, the first entry is understood to be
+                      the primary VLAN. Except forwarded LTMs, CFM messages emitted
+                      by maintenance points in this MA are tagged with the primary VLAN
+                      ID. (R, W) (mandatory) (2 bytes/entry * 12 entries = 24 bytes)
+MHF creation:         This attribute determines whether the bridge creates an MHF or not,
+                      under circumstances defined in clause 22.2.3 of [b-IEEE 802.1ag].
+                      This attribute is an enumeration with the following values:
+                      1   None; no MHFs are created on this bridge for this MA.
+                      2   Default. The bridge can create MHFs on this VID on any port
+                          through which the VID can pass.
+                      3   Explicit. The bridge can create MHFs on this VID on any port
+                          through which the VID can pass, but only if a MEP exists at some
+                          lower maintenance level.
+                      4   Defer. This value causes the ONT to use the setting of the parent
+                          MD. This is recommended to be the default value.
+                      (R, W, Set-by-create) (mandatory) (1 byte)
+Sender ID permission: This attribute determines the content of the sender ID TLV included in
+                      CFM messages transmitted by maintenance points controlled by this
+                      MA. This attribute is the same as that defined in the description of the
+                      dot1ag maintenance domain managed entity, with the addition of code
+                      point 5.
+                      1   None: The sender ID TLV is not to be sent, default.
+                      2   Chassis: The chassis ID length, chassis ID subtype, and chassis ID
+                          fields of the sender ID TLV are to be sent, but not the management
+                          address fields.
+                                  to be sent, but the chassis ID length is to be transmitted with a 0
+                                  value, and the chassis ID subtype, and chassis ID fields are not to
+                                  be sent.
+                              4   ChassisManage: All chassis ID and management address fields are
+                                  to be sent.
+                              5   Defer: The content of the sender ID TLV is determined by the
+                                  corresponding maintenance domain attribute. This is recommended
+                                  to be the default value.
+                              (R, W, Set-by-create) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

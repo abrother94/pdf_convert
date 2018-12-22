@@ -1,0 +1,41 @@
+9.7.2     Physical path termination point xDSL UNI part 2
+This managed entity represents the point in the ONT where physical paths terminate on an xDSL
+CO modem (xTU-C). Standards and chip sets support several forms of DSL, including VDSL2, and
+the xDSL managed entity family is used for all of them, with specific extensions for technology
+variations (a legacy family of managed entities is documented in [ITU-T G.983.2] for
+[ITU-T G.993.1] VDSL1).
+The ONT creates or deletes an instance of this managed entity at the same time it creates or deletes
+the corresponding PPTP xDSL UNI part 1.
+Relationships
+An instance of this managed entity is associated with each instance of a physical path termination
+point xDSL UNI part 1.
+Attributes
+Managed entity id:                           This attribute uniquely identifies each instance of this
+                                             managed entity. Through an identical ID, this managed
+                                             entity is implicitly linked to an instance of the physical
+                                             path termination point xDSL UNI part 1. (R) (mandatory)
+                                             (2 bytes)
+                                             Each of the following eight attributes is a pointer to an
+                                             xDSL channel configuration profile managed entity. In
+                                             each case, the default value 0, set when the ME is
+                                             auto-created, is a null pointer.
+xDSL channel configuration profile           (R, W) (optional) (2 bytes)
+for bearer channel 0 downstream:
+xDSL channel configuration profile           (R, W) (optional) (2 bytes)
+for bearer channel 1 downstream:
+xDSL channel configuration profile           (R, W) (optional) (2 bytes)
+for bearer channel 2 downstream:
+xDSL channel configuration profile           (R, W) (optional) (2 bytes)
+for bearer channel 3 downstream:
+xDSL channel configuration profile           (R, W) (optional) (2 bytes)
+for bearer channel 0 upstream:
+xDSL channel configuration profile         (R, W) (optional) (2 bytes)
+for bearer channel 1 upstream:
+xDSL channel configuration profile         (R, W) (optional) (2 bytes)
+for bearer channel 2 upstream:
+xDSL channel configuration profile         (R, W) (optional) (2 bytes)
+for bearer channel 3 upstream:
+Actions
+Get, set
+Notifications
+None.

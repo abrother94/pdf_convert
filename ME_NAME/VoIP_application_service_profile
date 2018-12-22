@@ -1,0 +1,77 @@
+9.9.8   VoIP application service profile
+The VoIP application service profile defines attributes of calling features used in conjunction with a
+VoIP line service. It is optional for ONTs that support VoIP service. If a non-OMCI interface is
+used to manage SIP for VoIP, this ME is unnecessary. The non-OMCI interface supplies the
+necessary data, which may be read back to the OLT via the SIP config portal ME.
+An instance of this managed entity is created and deleted by the OLT. A VoIP application service
+managed object is needed for each unique set of profile attributes.
+Relationships
+An instance of this managed entity is associated with zero or more SIP user data MEs.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity.
+                           (R, Set-by-create) (mandatory) (2 bytes)
+                          the value 0 disables the feature; 1 enables it.
+                          0x01               Calling number
+                          0x02               Calling name
+                          0x04               CID blocking (both number and name)
+                          0x08               CID number – Permanent presentation status for
+                                             number
+                                             (0 = public, 1 = private)
+                          0x10               CID name – Permanent presentation status for name
+                                             (0 = public, 1 = private)
+                          0x20               Anonymous CID blocking (ACR). It may not be
+                                             possible to support this in the ONT.
+                          0x40..0x80         Not used
+                          The default value is disabled. (R, W, Set-by-create) (mandatory) (1 byte)
+Call waiting features:    This attribute contains a bit map of call waiting features. The value 0
+                          disables the feature; 1 enables it.
+                          0x01               Call waiting
+                          0x02               Caller ID announcement
+                          0x04..0x80         Not used
+                          The default value is disabled. (R, W, Set-by-create) (mandatory) (1 byte)
+Call progress or transfer This attribute is a bit map of call processing features. The value 0
+features:                 disables the feature; 1 enables it.
+                          0x0001             3way
+                          0x0002             Call transfer
+                          0x0004             Call hold
+                          0x0008             Call park
+                          0x0010             Do not disturb
+                          0x0020             Flash on emergency service call (flash is to be
+                                             processed during an emergency service call)
+                          0x0040             Emergency service originating hold (determines
+                                             whether call clearing is to be performed on on-hook
+                                             during an emergency service call)
+                          0x0080             6way
+                          0x0100..0x8000 Not used
+                          The default value is disabled. (R, W, Set-by-create) (mandatory)
+                          (2 bytes)
+Call presentation         This attribute is a bit map of call presentation features. The value 0
+features:                 disables the feature; 1 enables it.
+                          0x0001             Message waiting indication splash ring
+                          0x0002             Message waiting indication special dial tone
+                          0x0004             Message waiting indication visual indication
+                          0x0008             Call forwarding indication
+                          0x0010..0x8000     Not used
+                          The default value is disabled. (R, W, Set-by-create) (mandatory)
+                          (2 bytes)
+Direct connect feature: This attribute is a bit map of characteristics associated with the direct
+                             connect feature. The value 0 disables the feature; 1 enables it.
+                             0x01                Direct connect feature enabled
+                             0x02                Dial tone feature delay option
+                             The default value is disabled. (R, W, Set-by-create) (mandatory) (1 byte)
+Direct connect URI           If this attribute is set to its default value 0xFFFF, no URI is defined.
+pointer:                     Otherwise, this attribute points to a network address managed entity that
+                             specifies the URI of the direct connect. (R, W, Set-by-create)
+                             (mandatory) (2 bytes)
+Bridged line agent URI If this attribute is set to its default value 0xFFFF, no URI is defined.
+pointer:                     Otherwise, this attribute points to a network address managed entity that
+                             specifies the URI of the bridged line agent. (R, W, Set-by-create)
+                             (mandatory) (2 bytes)
+Conference factory URI If this attribute is set to its default value 0xFFFF, no URI is defined.
+pointer:                     Otherwise, this attribute points to a network address managed entity that
+                             specifies the URI of the conference factory. (R, W, Set-by-create)
+                             (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

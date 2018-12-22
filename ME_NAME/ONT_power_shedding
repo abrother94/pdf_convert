@@ -1,0 +1,105 @@
+9.1.7      ONT power shedding
+This managed entity models the ONT's ability to shed services when the ONT goes into battery
+operation mode after AC power failure. Shedding classes are defined, which may span multiple
+circuit pack types. This feature works in conjunction with the power shed override attribute of the
+circuit pack managed entity, which can selectively prevent power shedding of priority ports.
+An ONT that supports power shedding automatically creates an instance of this managed entity.
+Table 9.1.5-1. In the case of hybrid LIM types, multiple shedding classes may affect a circuit pack
+if the hardware is capable of partial power shedding.
+An ONT may choose to model its ports with the port mapping package-G of clause 9.1.8, rather
+than with real or virtual circuit packs. In this case, power shedding pertains to individual PPTPs, as
+listed in the second column of the table.
+          Shedding class               PPTP type         Coding                  Content
+  ATM                              ATM PPTP                1..12   Various ATM UNIs
+  CES                              CES PPTP                 13     C1.5 (DS1)
+                                                            14     C2.0 (E1)
+                                                            15     C6.3 (J2)
+                                                            16     C-DS1/E1
+                                                            17     C-DS1/E1/J1
+                                                            18     C6.3U (J2)
+                                                            19     C192k
+                                                            20     C44.7 (DS3)
+                                                            21     C34.3 (E3)
+  Data                             Ethernet PPTP            22     10BaseT
+                                                            23     100BaseT
+                                                            24     10/100BaseT
+  Frame                            Unspecified            25..27   Non-Ethernet LANs
+  CES                              CES PPTP                 28     C1.5 (J1)
+  SONET                            SONET                    29     A150SMF SONET
+                                                            30     A150MMF SONET
+                                                            31     A150UTP SONET
+  Voice                            POTS PPTP                32     POTS
+                                   ISDN PPTP                33     ISDN-BRI
+  Data                             Ethernet PPTP            34     Gigabit optical Ethernet
+  DSL                              xDSL PPTP                35     xDSL
+                                   Unspecified              36     SHDSL
+                                   VDSL PPTP                37     [ITU-T G.993.1] VDSL
+  N/A                              Video UNI                38     Video service
+  N/A                              LCT PPTP                 39     LCT
+  Data                             802.11 PPTP              40     802.11
+  Voice (DSL may also apply)       xDSL + POTS              41     xDSL/POTS
+                                   VDSL + POTS              42     [ITU-T G.993.1] VDSL/POTS
+  N/A                              Unspecified              43     Common equipment
+                                   Unspecified              44     Combined video, PON
+                                   Unspecified              45     Mixed services (power shedding
+                                                                   based on port type)
+ Data                             MOCA PPTP                46       MoCA
+ Data                             Ethernet PPTP            47       10/100/1000BaseT
+ N/A                              PON PPTP              243..254    G-PON and B-PON ANIs
+ Video overlay                    Video ANI PPTP
+ Video return                     Video RPD
+Relationships
+One instance of this managed entity is associated with the ONT managed entity.
+Attributes
+Managed entity id:      This attribute uniquely identifies each instance of this managed entity.
+                        There is only one instance, number 0. (R) (mandatory) (2 bytes)
+                        Restore power timer The time delay, in seconds, before resetting shedding timers after full power
+reset interval:         restoration. Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                        (mandatory) (2 bytes)
+                        For each class of service, an interval attribute is defined below. The value 0
+                        disables power shedding, while the value 1 enables immediate power shed,
+                        that is, as soon as AC power fails. Other values specify the time, in seconds,
+                        to keep the service active after AC failure before shutting them down and
+                        shedding power. Upon ME instantiation, the ONT sets each of the interval
+                        attributes to 0.
+Data class shedding     (R, W) (mandatory) (2 bytes)
+interval:
+                        Voice class shedding Note that this attribute only pertains to voice services that terminate on the
+interval:               ONT, not to voice services that may reside in the customer premises served
+                        by a data type port. (R, W) (mandatory) (2 bytes)
+Video overlay class     (R, W) (mandatory) (2 bytes)
+shedding interval:
+Video return class      (R, W) (mandatory) (2 bytes)
+shedding interval:
+DSL class shedding      (R, W) (mandatory) (2 bytes)
+interval:
+ATM class shedding (R, W) (mandatory) (2 bytes)
+interval:
+CES class shedding      (R, W) (mandatory) (2 bytes)
+interval:
+Frame class shedding (R, W) (mandatory) (2 bytes)
+interval:
+SONET class             (R, W) (mandatory) (2 bytes)
+shedding interval:
+                          two-byte field is depicted 0b ABCD EFGH IJKL MNOP, its bits are
+                          assigned:
+                          A    Data class
+                          B    Voice class
+                          C    Video overlay class
+                          D    Video return class
+                          E    DSL class
+                          F    ATM class
+                          G    CES class
+                          H    Frame class
+                          I    SONET class
+                          J..P Reserved and set to 0
+                          The ONT sets each bit when power shedding is active, and clears it when
+                          the service is restored. (R) (optional) (2 bytes)
+Actions
+Get, set
+Notifications
+ Attribute value change
+   Number          Attribute value change                               Description
+      1..10     N/A
+       11       Shedding status                  State change of a shedding function
+     12..16     Reserved

@@ -1,0 +1,43 @@
+9.4.5    IP static routes
+This managed entity stores IP static routes. The ONT automatically creates or deletes an instance of
+this managed entity upon creation or deletion of an instance of the IP router service profile.
+Relationships
+An instance of this managed entity is associated with an instance of the IP router service profile.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          Through an identical ID, this managed entity is implicitly linked to an
+                          instance of the IP router service profile. (R) (mandatory) (2 bytes)
+Ip static route table     This attribute indicates the maximum number of routes that can be stored
+max size:                 in the static route table. Its value is determined by the ONT
+                          implementation. (R) (mandatory) (2 bytes)
+Ip static route table:    This attribute stores static routes. A route contains several fields, defined
+                          below.
+                          route id:             A unique identifier of a route within the static route
+                                                table. (1 byte)
+                          action:               Remove (0) or add (1) this route, meaningful during
+                                                the set action only. When a static route is being
+                                                removed, the route is identified by the route id field.
+                                                (1 byte)
+                          destination           The IP destination address of this route. This field
+                          address:              may be set to the default route address 0.0.0.0.
+                                                (4 bytes)
+                          destination           The address mask associated with the destination
+                          address mask:         address. (4 bytes)
+                          next hop:             The address of the next router on remote routes. This
+                                                field is not used when the next hop is reached
+                                                through an unnumbered link. (4 bytes, 0xFFFF FFFF
+                                                when not used)
+                                                hop should be reached. This field is used when the
+                                                next hop is reached through an unnumbered link and
+                                                when a static route is set to support a fully meshed
+                                                network. (1 byte, 0xFF when not used)
+                          iw pointer:           Pointer to the instance of the GEM interworking
+                                                termination point that identifies a link of a fully
+                                                meshed network being set by this attribute. The
+                                                value 0 is a null pointer. (2 bytes)
+                          metric:               The routing metric for this route. (4 bytes)
+                          (R, W) (mandatory) (21N bytes, where N is the number of routes)
+Actions
+Get, get next, set
+Notifications
+None.

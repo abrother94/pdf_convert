@@ -1,0 +1,91 @@
+9.3.11 VLAN tagging filter data
+This managed entity organizes data associated with VLAN tagging. Instances of this managed
+entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity is associated with an instance of a MAC bridge port
+configuration data managed entity. By definition, tag filtering occurs closer to the MAC bridge than
+the tagging operation. Schematically, the ordering of the functions is:
+ANI – Tag_operation – Tag_filtering – Bridging – Tag_filtering – Tag_operation – UNI
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              Through an identical ID, this managed entity is implicitly linked to an
+                              instance of the MAC bridge port configuration data ME.
+                              (R, Set-by-create) (mandatory) (2 bytes)
+VLAN filter list:             This attribute lists provisioned TCI values for the bridge port. A TCI
+                              value (consisting of user priority, CFI and VID) is represented by
+                              2 bytes. 12 VLAN entries are supported. The first N are valid, where N
+                              is given by the number of entries attribute. (R, W, Set-by-create)
+                              (mandatory) (24 bytes)
+Forward operation:            When a frame is received, it is processed according to the operation
+                              specified by the forward operation table. (R, W, Set-by-create)
+                              (mandatory) (1 byte)
+    Forward                                          Type of received frame
+    operation                                Tagged                                   Untagged
+       0x00        Action (a)                                                Action (a)
+       0x01        Action (c)                                                Action (a)
+       0x02        Action (a)                                                Action (e)
+       0x03        Action (f) (VID investigation)                            Action (a)
+       0x04        Action (f) (VID investigation)                            Action (e)
+       0x05        Action (g) (VID investigation)                            Action (a)
+       0x06        Action (g) (VID investigation)                            Action (e)
+       0x07        Action (f) (user priority investigation)                  Action (a)
+       0x08        Action (f) (user priority investigation)                  Action (e)
+       0x09        Action (g) (user priority investigation)                  Action (a)
+      0x0A         Action (g) (user priority investigation)                  Action (e)
+      0x0B         Action (f) (TCI investigation)                            Action (a)
+      0x0C         Action (f) (TCI investigation)                            Action (e)
+      0x0D         Action (g) (TCI investigation)                            Action (a)
+       0x0E        Action (g) (TCI investigation)                            Action (e)
+       0x0F        Action (h) (VID investigation)                            Action (a)
+       0x10        Action (h) (VID investigation)                            Action (e)
+       0x11        Action (h) (user priority investigation)                  Action (a)
+       0x12        Action (h) (user priority investigation)                  Action (e)
+       0x13        Action (h) (TCI investigation)                            Action (a)
+       0x14        Action (h) (TCI investigation)                            Action (e)
+       0x15        Action (b) (Unconditional forwarding)                     Action (e)
+This table and the actions are discussed in detail below.
+Number of entries:             This attribute specifies the number of valid entries in the VLAN filter
+                               list. (R, W, Set-by-create) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.
+Supplementary explanation
+This clause explains the actions specified in the forward operation attribute.
+The format of an Ethernet frame for VLAN services is described in [IEEE 802.1Q]:
+a)  Basic MAC bridge       As shown in Figure 9.3.11-2, if the DA (destination MAC address) in
+    operation:             the received frame is listed in the MAC bridge port bridge table data
+                           for one or more ports, this frame is forwarded on those ports.
+                           Otherwise, it is flooded to all ports except the receiving port. From the
+                           viewpoint of the transmitting port, a frame is forwarded either if its DA
+                           is in the port's MAC bridge port bridge table data or if its DA does not
+                           appear in the MAC bridge port bridge table data of any port on the
+                           bridge. This is the basic behaviour of a bridge that is not aware of
+                           VLANs.
+                        Figure 9.3.11-2 – Basic MAC bridge operation
+Other possible actions are as follows.
+b)   Unconditional forwarding of A tagged frame is forwarded without investigation of TCI.
+     tagged frame:
+c)   Unconditional discarding of        A tagged frame is discarded without investigation of TCI.
+     tagged frame:
+d)   Unconditional forwarding of An untagged frame is forwarded without investigation of TCI.
+     untagged frame:
+e)   Unconditional discarding of        An untagged frame is discarded without investigation of TCI.
+     untagged frame:
+f)   Positive filtering by TCI:         If some or all (Note) of the fields in the TCI of the received
+                                        frame are included in the VLAN filter list, it is forwarded
+                                        according to action a) as shown in Figure 9.3.11-3. Otherwise,
+                                        its TCI is ignored and it is controlled by action a).
+                         Figure 9.3.11-3 – Positive filtering by TCI operation
+NOTE – The phrase some or all refers to the parts or the entirety of the TCI field called out by the specific
+value provisioned into the forward operation attribute.
+g)   Negative filtering by TCI:        If some or all of the fields in the TCI of the received frame are
+                                       included in the VLAN filter list, it is not forwarded by this port.
+                                       Otherwise, it is forwarded according to action a) as shown in
+                                       Figure 9.3.11-4.
+                       Figure 9.3.11-4 – Negative filtering by TCI operation
+h)   Positive filtering by TCI       If some or all of the fields in the TCI of the received frame are
+     and dropping for no match: included in the VLAN filter list, it is forwarded according to
+                                     action a) as shown in Figure 9.3.11-5. If its TCI is not accepted
+                                     by any port on the bridge, the frame is discarded.
+           Figure 9.3.11-5 – Positive filtering by TCI operation, dropping for no match

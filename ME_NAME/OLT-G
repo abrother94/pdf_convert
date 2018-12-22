@@ -1,0 +1,29 @@
+9.12.2 OLT-G
+NOTE – Except for its name, this managed entity is identical to the OLTB-PON ME documented in
+[ITU-T G.983.2].
+This optional managed entity identifies the OLT to which an ONT is connected. This ME provides
+a way for the ONT to configure itself for operability with a particular OLT.
+An ONT that supports this managed entity automatically creates an instance of it. Immediately
+following the startup phase, the OLT should set the ONT to the desired configuration. Interpretation
+of the attributes is a matter for negotiation between the two vendors involved.
+Relationships
+One instance of this managed entity is associated with the ONT managed entity.
+Attributes
+Managed entity id:       This attribute uniquely identifies each instance of this managed entity.
+                         There is only one instance, number 0. (R) (mandatory) (2 bytes)
+OLT vendor id:           This attribute identifies the OLT vendor. It is the same as the 4 most
+                         significant bytes of an ONT serial number specified in [ITU-T G.984.3].
+                         Upon instantiation, this attribute comprises all spaces. (R, W) (mandatory)
+                         (4 bytes)
+Equipment id:            This attribute may be used to identify the specific type of OLT. The
+                         default value of all spaces indicates that equipment ID information is not
+                         available or applicable to the OLT being represented. (R, W) (mandatory)
+                         (20 bytes)
+Version:                 This attribute identifies the version of the OLT as defined by the vendor.
+                         The default left-justified ASCII string "0" (padded with trailing nulls)
+                         indicates that version information is not available or applicable to the OLT
+                         being represented. (R, W) (mandatory) (14 bytes)
+Actions
+Get, set
+Notifications
+None.

@@ -1,0 +1,113 @@
+9.7.1   Physical path termination point xDSL UNI part 1
+This managed entity represents the point where physical paths terminate on an xDSL CO modem
+(xTU-C). The xDSL managed entity family is used for ADSL and VDSL2 services (an existing
+legacy family of VDSL managed entities remains valid for [ITU-T G.993.1] VDSL. It is
+documented in [ITU-T G.983.2]).
+The ONT automatically creates an instance of this managed entity per port:
+•       When the ONT has xDSL ports built into its factory configuration.
+•       When a cardholder is provisioned to expect a circuit pack of xDSL type.
+•       When a cardholder provisioned for plug-and-play is equipped with a circuit pack of xDSL
+        type. Note that the installation of a plug-and-play card may indicate the presence of xDSL
+        ports via equipment ID as well as its type, and indeed may cause the ONT to instantiate a
+        port mapping package that specifies xDSL ports.
+The ONT automatically deletes instances of this managed entity when a cardholder is neither
+provisioned to expect an xDSL circuit pack, nor is it equipped with an xDSL circuit pack.
+Relationships
+An instance of this managed entity is associated with each instance of a real or preprovisioned
+xDSL port.
+Attributes
+Managed entity id:             This attribute uniquely identifies each instance of this managed
+                               entity. This two-byte number indicates the physical position of the
+                               UNI. The six least significant bits of the first byte are the slot id,
+                               defined in clause 9.1.5. The two most significant bits indicate the
+                               channel number in some of the implicitly linked MEs, and must be 0
+                               in the PPTP itself. This reduces the possible number of physical slots
+                               to 64. The second byte is the port ID, with range 1..255. (R)
+                               (mandatory) (2 bytes)
+Loopback configuration:        This attribute represents the loopback configuration of this physical
+                               interface.
+                               0   No loopback.
+                               1   Loopback2 – A loopback at the ONT toward the OLT. The OLT
+                                   can execute a physical level loopback test after loopback2 is set.
+                               Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                               (mandatory) (1 byte)
+Administrative state:          This attribute locks (1) and unlocks (0) the functions performed by
+                               this managed entity. When the administrative state is set to lock, all
+                               user functions of this UNI are blocked, and alarms, TCAs and AVCs
+                               for this managed entity and all dependent managed entities are no
+                               longer generated. Selection of a default value for this attribute is
+                               outside the scope of this Recommendation. (R, W) (mandatory)
+                               (1 byte)
+Operational state:             This attribute indicates whether or not the managed entity is capable
+                               of performing its function. Valid values are enabled (0) and disabled
+                               (1). (R) (optional) (1 byte)
+xDSL line configuration        This attribute points to an instance of the xDSL line configuration
+profile:                       profiles (part 1, 2 and 3) managed entities, and if [ITU-T G.993.2]
+                               VDSL2 is supported, also to a VDSL2 line configuration extensions
+                               ME. Upon ME instantiation, the ONT sets this attribute to 0, a null
+                               pointer. (R, W) (mandatory) (2 bytes)
+xDSL subcarrier masking        This attribute points to an instance of the xDSL subcarrier masking
+downstream profile:            downstream profile managed entity. Upon ME instantiation, the
+                               ONT sets this attribute to 0, a null pointer. (R, W) (mandatory)
+                               (2 bytes)
+xDSL subcarrier masking        This attribute points to an instance of the xDSL subcarrier masking
+upstream profile:              upstream profile managed entity. Upon ME instantiation, the ONT
+                               sets this attribute to 0, a null pointer. (R, W) (mandatory) (2 bytes)
+xDSL downstream PSD            This attribute points to an instance of the xDSL PSD mask profile
+mask profile:                  managed entity that defines downstream parameters. Upon ME
+                               instantiation, the ONT sets this attribute to 0, a null pointer. (R, W)
+                               (mandatory) (2 bytes)
+xDSL downstream RFI            This attribute points to an instance of the xDSL downstream RFI
+bands profile:                 bands profile managed entity. Upon ME instantiation, the ONT sets
+                               this attribute to 0, a null pointer. (R, W) (mandatory) (2 bytes)
+ARC:                           See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:                  See clause I.1.8. (R, W) (optional) (1 byte)
+Modem type:                    This attribute specifies the modem type. If the hardware cannot
+                               support the requested modem type, the ONT should deny the
+                               provisioning command. For backward compatibility, the attribute is
+                               optional, with a default of ATM.
+                               0   Undefined.
+                               1   ATM (default).
+                               2   PTM (Ethernet).
+                               (R, W) (optional) (1 byte)
+Upstream PSD mask profile: This attribute points to an instance of the xDSL PSD mask profile
+                               that defines upstream parameters. Upon ME instantiation, the ONT
+                               sets this attribute to 0, a null pointer. (R, W) (optional) (2 bytes)
+Actions
+Get, set
+Notifications
+Attribute value change
+  Number           Attribute value change                                  Description
+     1..2     N/A
+       3      Op state                            Operational state
+     4..8     N/A
+       9      ARC                                 ARC timer expiration
+    10..13    N/A
+    14..16    Reserved
+ Alarm
+  Number                 Alarm                                           Description
+       0      NE LOF                           Near end loss of frame
+       1      NE LOS                           Near end loss of signal
+       2      NE LOL                           Near end loss of link
+       3      NE LPR                           Near end loss of power
+       4      Card alm                         Card in alarm
+       5      FE LOF                           Far end loss of frame
+       6      FE LOS                           Far end loss of signal
+       7      FE LOL                           Far end loss of link
+       8      FE LPR                           Far end loss of power
+       9      DRT up                           Data rate threshold upshift (Note 1)
+      10      DRT down                         Data rate threshold downshift (Note 1)
+      11      LINIT                            Line initialization failure
+      12      LCD                              Loss of cell delineation, near end (Note 2)
+      13      NCD                              No cell delineation, near end (Note 2)
+   Number                   Alarm                                            Description
+      14         LCD-FE                           Loss of cell delineation, far end (Note 2)
+      15         NCD-FE                           No cell delineation, far end (Note 2)
+    16..207      Reserved
+   208..223      Vendor-specific alarms           Not to be standardized
+ NOTE 1 – The data rate upshift and downshift notifications are triggered by individual bearer channels.
+ The alarms may be declared against the UNI itself, or against one of the bearer channels. In the latter case,
+ the two MSBs of the instance identifier in the alarm message specify the bearer channel.
+ NOTE 2 – These alarms are meaningful only for ATM transport. The alarms may be declared against the
+ UNI itself, or against one of the bearer channels. In the latter case, the two MSBs of the instance identifier
+ in the alarm message specify the bearer channel.

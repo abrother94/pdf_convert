@@ -1,0 +1,56 @@
+9.9.13 RTP performance monitoring history data
+NOTE – This managed entity was formerly known under the name RTP monitoring data.
+This managed entity collects performance monitoring data related to an RTP session. Instances of
+this managed entity are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+An instance of this managed entity is associated with an instance of the PPTP POTS UNI managed
+entity.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity.
+                           Through an identical ID, this managed entity is implicitly linked to an
+                           instance of the PPTP POTS UNI ME. (R, Set-by-create) (mandatory)
+                           (2 bytes)
+Interval end time:         This attribute identifies the most recently finished 15-minute interval.
+                           (R) (mandatory) (1 byte)
+Threshold data 1/2 id:     This attribute points to an instance of the threshold data 1 managed entity
+                           that contains PM threshold values. Since no threshold value attribute
+                           number exceeds 7, a threshold data 2 ME is optional. (R, W,
+                           Set-by-create) (mandatory) (2 bytes)
+RTP errors:                This attribute counts RTP packet errors. (R) (mandatory) (4 bytes)
+Packet loss:               This attribute represents the fraction of packets lost. This attribute is
+                           calculated at the end of the 15-minute interval, and is undefined under
+                           the get current data action. The value 0 indicates no packet loss, scaling
+                           linearly to 0xFFFF to indicate 100% packet loss (zero divided by zero is
+                           defined to be zero). (R) (mandatory) (4 bytes)
+Maximum jitter:            This attribute is a high water mark that represents the maximum jitter
+                           identified during the measured interval, expressed in RTP timestamp
+                           units. (R) (mandatory) (4 bytes)
+Maximum time between This attribute is a high water mark that represents the maximum time
+RTCP packets:              between RTCP packets during the measured interval, in milliseconds.
+                           (R) (mandatory) (4 bytes)
+Buffer underflows:         This attribute counts the number of times the reassembly buffer
+                           underflows. In case of continuous underflow caused by a loss of IP
+                           packets, a single buffer underflow should be counted. If the interworking
+                           function is implemented with multiple buffers, such as a packet level
+                           buffer and a bit level buffer, then underflow of either buffer increments
+                           this counter. (R) (mandatory) (4 bytes)
+Buffer overflows:          This attribute counts the number of times the reassembly buffer
+                           overflows. If the interworking function is implemented with multiple
+                           buffers, such as a packet level buffer and a bit level buffer, then overflow
+                           of either buffer increments this counter. (R) (mandatory) (4 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+ Threshold crossing alert
+    Number               Threshold crossing alert                  Threshold value attribute # (Note 2)
+        0        RTP PM RTP packet loss (Note 1)                                    1
+        1        RTP PM packet jitter                                               2
+        2        RTP PM no RTCP packet                                              3
+        3        RTP PM timeout                                                     4
+        4        RTP PM buffer underflows                                           6
+        5        RTP PM buffer overflows                                            7
+ NOTE 1 – Since packet loss is undefined until the end of the interval, this TCA may only be issued at the
+ interval boundary, whereupon it is then immediately cleared.
+ NOTE 2 – This number associates the TCA with the specified threshold value attribute of the threshold
+ data 1 managed entity.

@@ -1,0 +1,105 @@
+9.7.4    xDSL line configuration profile part 2
+The overall xDSL line configuration profile is modelled in several parts, all of which are associated
+together through a common managed entity id (the client physical path termination point xDSL UNI
+part 1 has a single pointer, which refers to the entire set of line configuration profile parts).
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the physical
+path termination point xDSL UNI part 1.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed
+                            entity. All xDSL and VDSL2 line configuration profiles that
+                            pertain to a given physical path termination point xDSL must
+                            share a common managed entity id. (R, Set-by-create)
+                            (mandatory) (2 bytes)
+Downstream minimum time     This parameter defines the interval during which the downstream
+interval for upshift rate   noise margin must remain above the downstream upshift noise
+adaptation:                 margin before the xTU-R attempts to increase the downstream net
+                            data rate. Its value ranges from 0 to 16383 seconds. (R, W,
+                            Set-by-create) (optional) (2 bytes)
+Upstream minimum time       This parameter defines the interval during which the upstream
+interval for upshift rate   noise margin must remain above the upstream upshift noise
+adaptation:                 margin before the xTU-C attempts to increase the upstream net
+                            data rate. Its value ranges from 0 to 16383 seconds. (R, W,
+                            Set-by-create) (optional) (2 bytes)
+Downstream downshift noise  If the downstream noise margin is below the downstream
+margin:                     downshift noise margin and remains there for more than the
+                            downstream minimum downshift rate adaptation interval, the
+                            xTU-R attempts to decrease the downstream net data rate. This
+                            attribute's value ranges from 0 (0.0 dB) to 310 (31.0 dB).
+                            (R, W, Set-by-create) (optional) (2 bytes)
+Upstream downshift noise    If the upstream noise margin is below the upstream downshift
+margin:                     noise margin and remains there for more than the upstream
+                            minimum downshift rate adaptation interval, the xTU-C attempts
+                            to decrease the upstream net data rate. This attribute's value ranges
+                            from 0 (0.0 dB) to 310 (31.0 dB). (R, W, Set-by-create) (optional)
+                            (2 bytes)
+Downstream minimum time     This parameter defines the interval during which the downstream
+interval for downshift rate noise margin must remain below the downstream downshift noise
+adaptation:                 margin before the xTU-R attempts to decrease the downstream net
+                            data rate. Its value ranges from 0 to 16383 seconds. (R, W,
+                            Set-by-create) (optional) (2 bytes)
+Upstream minimum time       This parameter defines the interval during which the upstream
+interval for downshift rate noise margin must remain below the upstream downshift noise
+adaptation:                 margin before the xTU-C attempts to decrease the upstream net
+                            data rate. Its value ranges from 0 to 16383 seconds. (R, W,
+                            Set-by-create) (optional) (2 bytes)
+xTU impedance state forced: This parameter forces the impedance state of the xTU-C. It applies
+                            only to the T/S interface, and is deprecated in OMCI, which stands
+                            proxy for the Q interface. It is only valid for Annex A of
+                            [ITU-T G.992.3], Annex A of [ITU-T G.992.4] and Annex A of
+                            [ITU-T G.992.5]. It is defined as follows:
+                            1     Force the xTU-C to the disabled state.
+                            2     Force the xTU-C to the inactive state.
+                            3     Force the xTU-C to the active state.
+                            (R, W, Set-by-create) (optional) (1 byte)
+                                the L2 state and the next entry into the L2 state. It is only valid for
+                                [ITU-T G.992.3], [ITU-T G.992.4] and [ITU-T G.992.5]. It ranges
+                                from 0 to 255 seconds. (R, W, Set-by-create) (mandatory) (1 byte)
+L2-time:                        This parameter specifies the minimum time between an entry into
+                                the L2 state and the first power trim in the L2 state, or between
+                                two consecutive power trims in the L2 state. It is only valid for
+                                [ITU-T G.992.3], [ITU-T G.992.4] and [ITU-T G.992.5]. It ranges
+                                from 0 to 255 seconds. (R, W, Set-by-create) (mandatory) (1 byte)
+Downstream maximum              This attribute specifies the maximum nominal transmit PSD in the
+nominal power spectral          downstream direction during initialization and showtime. A single
+density:                        MAXNOMPSDds attribute is defined per mode enabled in the
+                                xTSE line configuration attribute. It is only valid for
+                                [ITU-T G.992.3], [ITU-T G.992.4] and [ITU-T G.992.5]. Its value
+                                ranges from 0 (–60.0 dBm/Hz) to 300 (–30 dBm/Hz). (R, W,
+                                Set-by-create) (mandatory) (2 bytes)
+Upstream maximum nominal This attribute specifies the maximum nominal transmit PSD in the
+power spectral density:         upstream direction during initialization and showtime. A single
+                                MAXNOMPSDus attribute is defined per mode enabled in the
+                                xTSE line configuration attribute. It is only valid for
+                                [ITU-T G.992.3], [ITU-T G.992.4] and [ITU-T G.993.2]. Its value
+                                ranges from 0 (–60.0 dBm/Hz) to 300 (–30 dBm/Hz). (R, W,
+                                Set-by-create) (mandatory) (2 bytes)
+Downstream maximum              This attribute specifies the maximum nominal aggregate transmit
+nominal aggregate transmit      power in the downstream direction during initialization and
+power:                          showtime. It is only valid for [ITU-T G.992.3], [ITU-T G.992.4],
+                                [ITU-T G.992.5] and [ITU-T G.993.2]. Its value ranges from 0
+                                (0.0 dBm) to 255 (25.5 dBm). (R, W, Set-by-create) (mandatory)
+                                (1 byte)
+Upstream maximum nominal This parameter specifies the maximum nominal aggregate transmit
+aggregate transmit power:       power in the upstream direction during initialization and
+                                showtime. It is only valid for [ITU-T G.992.3], [ITU-T G.992.4]
+                                and [ITU-T G.992.5]. Its value ranges from 0 (0.0 dBm) to 255
+                                (25.5 dBm). (R, W, Set-by-create) (mandatory) (1 byte)
+Upstream maximum                This parameter specifies the maximum upstream aggregate receive
+aggregate receive power:        power over a set of subcarriers, as defined in the relevant
+                                Recommendation. The xTU-C requests an upstream power
+                                cutback such that the upstream aggregate receive power over that
+                                set of subcarriers is at or below the configured maximum value. It
+                                is only valid for [ITU-T G.992.3], [ITU-T G.992.4] and
+                                [ITU-T G.992.5]. This attribute ranges from 0 (–25.5 dBm) to 510
+                                (+25.5 dBm). The special value 0xFFFF indicates that no
+                                upstream maximum aggregate receive power limit is to be applied.
+                                (R, W Set-by-create) (mandatory) (2 bytes)
+VDSL2 transmission system       This configuration attribute extends the transmission system
+enabling:                       coding types to be allowed by the xTU-C. It is a bit map, defined
+                                as octet 8 (bits 57..64) in Table 9.7.12-1. (R, W, Set-by-create)
+                                (optional) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

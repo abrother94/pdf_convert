@@ -1,0 +1,126 @@
+9.8.5    Pseudowire termination point
+The pseudowire termination point supports packetized (rather than TDM) G-PON transport of TDM
+services, transported either directly over Ethernet or over UDP/IP. Instances of this managed entity
+are created and deleted by the OLT.
+Relationships
+One pseudowire termination point ME exists for each distinct TDM service that is mapped to a
+pseudowire.
+Attributes
+Managed entity id:              This attribute uniquely identifies each instance of this managed
+                                entity. (R, Set-by-create) (mandatory) (2 bytes)
+Underlying transport:           0    Ethernet, MEF8.
+                                1    UDP/IP.
+                                (R, W, Set-by-create) (mandatory) (1 byte)
+Service type:                   This attribute specifies the basic service type, either a transparent bit
+                                pipe or an encapsulation that recognizes the underlying structure of
+                                the payload.
+                                0 Basic unstructured (also known as structure agnostic).
+                                1 Octet-aligned unstructured, structure agnostic. Applicable only to
+                                    DS1, a mode in which each frame of 193 bits is encapsulated in
+                                    25 bytes with 7 padding bits.
+                                2 Structured (structure-locked).
+                                (R, W, Set-by-create) (mandatory) (1 byte)
+Signalling:           0    No signalling visible at this layer.
+                      1    CAS, to be carried in the same packet stream as the payload.
+                      2    CAS, to be carried in a separate signalling channel.
+                      (R, W, Set-by-create) (mandatory for structured service type) (1 byte)
+TDM UNI pointer:      If service type = structured, this attribute points to a logical
+                      N x 64 kbit/s sub-port connection termination point. Otherwise, this
+                      attribute points to a physical path termination point CES UNI. (R, W,
+                      Set-by-create) (mandatory) (2 bytes)
+Near-end IP info:     When the pseudowire service is transported via IP, this attribute
+                      points to an instance of the TCP/UDP config data managed entity.
+                      The default value 0 is applicable if the pseudowire is not transported
+                      via IP. (R, W, Set-by-create) (mandatory for IP transport) (2 bytes)
+Far-end IP info:      When the pseudowire service is transported via IP, this attribute
+                      points to a large string managed entity that contains the URI of the
+                      far-end termination point, for example:
+                         udp://192.168.100.221:5000 or
+                         udp://pwe3srvr.int.example.net:2222
+                      The default value 0 is applicable if the pseudowire is not transported
+                      via IP. (R, W, Set-by-create) (mandatory for IP transport) (2 bytes)
+Payload size:         Number of payload bytes per packet. Valid only if service type =
+                      unstructured or unstructured octet-aligned. Valid choices depend on
+                      the TDM service, but must include the following. Other choices are
+                      at the vendor's discretion.
+                            DS1    192.
+                            DS1    200, required only if unstructured octet-aligned service is
+                                   supported.
+                            E1     256.
+                            DS3    1024.
+                            E3     1024.
+                      (R, W, Set-by-create) (mandatory for unstructured service) (2 bytes)
+Payload encapsulation Number of 125 microsecond frames to be encapsulated in each
+delay:                pseudowire packet. Valid only if service type = structured. The
+                      minimum set of choices for various TDM services is listed below,
+                      and is affected by the possible presence of in-band signalling. Other
+                      choices are at the vendor's discretion.
+                            NxDS0, no signalling, N = 1         64 (8 ms) required,
+                                                                40 (5 ms) desired.
+                            NxDS0, no signalling, N = 2..4 32 (4 ms).
+                            NxDS0, no signalling, N > 4         8 (1 ms).
+                            NxDS0 with DS1 CAS                  24 (3 ms).
+                            NxDS0 with E1 CAS                   16 (2 ms).
+                      (R, W, Set-by-create) (mandatory for structured service) (1 byte)
+                             used, this attribute must be set to be consistent with the value of the
+                             RTP time stamp mode attribute in the RTP parameters managed
+                             entity at the far end.
+                             0        Network timing (default).
+                             1        Differential timing.
+                             2        Adaptive timing.
+                             3        Loop timing: local TDM transmit clock derived from local
+                                      TDM receive stream.
+                             (R, W) (mandatory) (1 byte)
+Transmit circuit ID:         This attribute is a pair of ECID (Ethernet circuit ID) values that the
+                             ONT transmits in the direction from the TDM termination toward the
+                             packet-switched network. MEF8 ECIDs lie in the range 1..1048575
+                             (220 – 1). To allow for the possibility of other transport (L2TP) in the
+                             future, each ECID is allocated 4 bytes.
+                             The first value is used for the payload ECID; the second is used for
+                             the optional separate signalling ECID. The first ECID is required for
+                             all MEF8 pseudowires; the second is required only if signalling is to
+                             be carried in a distinct channel. If signalling is not present, or is
+                             carried in the same channel as the payload, the second ECID should
+                             be set to 0.
+                             (R, W) (mandatory for MEF8 transport) (8 bytes)
+Expected circuit ID:         This attribute is a pair of ECID (Ethernet circuit ID) values that the
+                             ONT can expect in the direction from the packet-switched network
+                             toward the TDM termination. Checking ECIDs may be a way to
+                             detect circuit misconnection. MEF8 ECIDs lie in the range
+                             1..1048575 (220 – 1). To allow for the possibility of other transport
+                             (L2TP) in the future, each ECID is allocated 4 bytes.
+                             The first value is used for the payload ECID; the second is used for
+                             the optional separate signalling ECID. In both cases, the default value
+                             0 indicates that no ECID checking is expected.
+                             (R, W) (optional for MEF8 transport) (8 bytes)
+Received circuit ID:         This attribute indicates the actual ECID(s) received on the payload
+                             and signalling channels, respectively. It may be used for diagnostic
+                             purposes. (R) (optional for MEF8 transport) (8 bytes)
+Exception policy:            This attribute points to an instance of the pseudowire maintenance
+                             profile managed entity. If the pointer has its default value 0, the
+                             ONT's internal defaults apply. (R, W) (optional) (2 bytes)
+ARC:                         See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:                See clause I.1.8. (R, W) (optional) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+ Attribute value change
+  Number      Attribute value change                                Description
+    1..13   N/A
+     14     ARC                         Alarm reporting control cancellation
+     15     N/A
+     16     Reserved
+Alarm:                         Alarm criteria may be customized through reference to a pseudowire
+                               maintenance profile managed object, or defined by the ONT's
+                               internal defaults.
+  Number               Event                                         Description
+      0     Misconnection               Excessive ratio of stray packets received from the PSN.
+      1     Loss of packets             Excessive ratio of lost packets from the PSN.
+      2     Buffer overrun              Excessive ratio of packets lost because they arrived from the PSN
+                                        too early to be buffered for playout.
+      3     Buffer underrun             Excessive ratio of packets lost because they arrived from the PSN
+                                        too late to be buffered for playout.
+      4     Malformed packets alarm     Excessive ratio of packets lost because their structure or payload
+                                        type did not match the provisioned service.
+   5..207   Reserved
+  208..223 Vendor-specific alarms       Not to be standardized

@@ -1,0 +1,62 @@
+9.9.2    SIP user data
+The SIP user data defines the user-specific configuration attributes associated with a specific VoIP
+CTP. This entity is conditionally required for ONTs that offer VoIP SIP services. If a non-OMCI
+interface is used to manage SIP for VoIP, this ME is unnecessary. The non-OMCI interface supplies
+the necessary data, which may be read back to the OLT via the SIP config portal ME.
+An instance of this managed entity is created and deleted by the OLT. A SIP user data instance is
+required for each POTS UNI port using SIP protocol and configured by OMCI.
+Relationships
+An instance of this managed entity is associated with one VoIP voice CTP managed entity and a
+PPTP POTS UNI.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. (R, Set-by-create) (mandatory) (2 bytes)
+SIP agent pointer:            This attribute points to the SIP agent config data ME to be used for
+                              signalling. (R, W, Set-by-create) (mandatory) (2 bytes)
+User part AOR:                This attribute points to a large string that contains the user
+                              identification part of the address of record. This can take the form of
+                              an alphanumeric string or the subscriber's directory number. The
+                              value 0xFFFF is a null pointer. (R, W, Set-by-create) (mandatory)
+                              (2 bytes)
+SIP display name:             This ASCII string attribute defines the customer id used for the
+                              display attribute in outgoing SIP messages. The default value is null
+                              (all zero bytes). (R, W) (mandatory) (25 bytes)
+Username/password:            This attribute points to an authentication security method ME that
+                              contains the SIP user name and password used for authentication.
+                              0xFFFF indicates no username/password. (R, W, Set-by-create)
+                              (mandatory) (2 bytes)
+Voicemail server SIP URI: This attribute points to a network address ME that contains the name
+                              (IP address or URI) of the SIP voicemail server for SIP signalling
+                              messages. The default value 0xFFFF is a null pointer. (R, W,
+                              Set-by-create) (mandatory) (2 bytes)
+Voicemail subscription        This attribute defines the voicemail subscription expiration time in
+expiration time:              seconds. If this value is 0, the SIP agent uses an
+                              implementation-specific value. The default value of this attribute is
+                              3600 seconds. (R, W, Set-by-create) (mandatory) (4 bytes)
+Network dial plan pointer: This attribute points to a network dial plan table. The default value
+                              0xFFFF is a null pointer. (R, W, Set-by-create) (mandatory) (2 bytes)
+Application services profile This attribute points to a VoIP application services profile. The
+pointer:                      default value 0xFFFF is a null pointer. (R, W, Set-by-create)
+                              (mandatory) (2 bytes)
+Feature code pointer:         This attribute points to the VoIP feature access codes ME for this
+                              subscriber. The default value 0xFFFF is a null pointer. (R, W,
+                              Set-by-create) (mandatory) (2 bytes)
+                                  provides the analogue telephony adaptor (ATA) function. The default
+                                  value 0xFFFF is a null pointer. (R, W, Set-by-create) (mandatory)
+                                  (2 bytes)
+Release timer:                    This attribute contains a release timer defined in seconds. The value 0
+                                  specifies that the ONT is to use its internal default. The default value
+                                  of this attribute is 10 seconds. (R, W) (optional) (1 byte)
+ROH timer:                        This attribute defines the time in seconds for the receiver off hook
+                                  condition before ROH tone is applied. The value 0 disables ROH
+                                  timing. The default value is 15 seconds. (R, W) (optional) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+ Alarm
+   Number                Alarm                                        Description
+       0        SIPUA register auth        Cannot authenticate registration session (e.g., missing credentials)
+       1        SIPUA register timeout     Timeout waiting for response from registration server
+       2        SIPUA register fail        Failure response received from registration server
+    3..207      Reserved
+   208..223     Vendor-specific alarms     Not to be standardized

@@ -1,0 +1,34 @@
+9.1.12 ONT remote debug
+This managed entity is used to send vendor-specific debug commands to the ONT and receive
+vendor-specific replies back for processing on the OLT. This allows for the remote debugging of an
+ONT that may not be accessible by any other means. The command format may have two modes,
+one being text and the other free format. In text format, both the command and reply are ASCII
+strings. In free format, the content and format of command and reply are vendor-specific.
+An ONT that supports remote debugging automatically creates an instance of this managed entity. It
+is not reported during a MIB upload.
+Relationships
+One instance of this managed entity is associated with the ONT managed entity.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          There is only one instance, number 0. (R) (mandatory) (2 bytes)
+Command format:           This attribute defines the format of the command and reply attributes.
+                          Value 0 defines ASCII string format, while 1 specifies free format. (R)
+                          (mandatory) (1 byte)
+Command:                  This attribute is used to send a command to the ONT. The format of the
+                          command is defined by the command format. If the format is ASCII string,
+                          the command should be null terminated unless the string is 25 bytes long.
+                          The action of setting this attribute should trigger the ONT to discard any
+                          previous command reply information and execute the current debugging
+                          command. (W) (mandatory) (25 bytes)
+                       is defined by the command format attribute. The get, get next action
+                       sequence must be used with this attribute, since its size is unspecified. On a
+                       get action, the ONT returns the size of the reply (per normal get next usage).
+                       If the size of the reply is unknown at the time of the get, the ONT returns
+                       the value 0xFFFF FFFF. The OLT then issues get next requests until the
+                       ONT is exhausted of data, whereupon the ONT returns a parameter error
+                       response. The OLT then terminates the get next process. (R) (mandatory)
+                       (N bytes)
+Actions
+Get, get next, set
+Notifications
+None.

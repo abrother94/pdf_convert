@@ -1,0 +1,30 @@
+9.13.3 Physical path termination point LCT UNI
+This managed entity represents the local craft terminal UNI, where physical paths terminate and
+physical path level functions are performed.
+The ONT automatically creates an instance of this managed entity per port:
+•         When the ONT has LCT ports built into its factory configuration.
+•         When a cardholder is provisioned to expect a circuit pack of LCT type.
+•         When a cardholder provisioned for plug-and-play is equipped with a circuit pack of LCT
+          type. Note that the installation of a plug-and-play card may indicate the presence of LCT
+          ports via equipment ID as well as its type, and indeed may cause the ONT to instantiate a
+          port mapping package that specifies LCT ports.
+The ONT automatically deletes instances of this managed entity when a cardholder is neither
+provisioned to expect an LCT circuit pack, nor is it equipped with an LCT circuit pack.
+LCT instances are not reported during a MIB upload.
+Relationships
+An instance of this managed entity is associated with an instance of a real or virtual circuit pack
+managed entity classified as LCT type.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          This two-byte number indicates the physical position of the UNI. The first
+                          byte is the slot id (defined in clause 9.1.5). The second byte is the port ID,
+                          with range 1..255. (R) (mandatory) (2 bytes)
+Administrative            This attribute locks (1) and unlocks (0) the functions performed by this
+state:                    managed entity. When the administrative state is set to lock, all user
+                          functions of this UNI are blocked. Selection of a default value for this
+                          attribute is outside the scope of this Recommendation. (R, W) (mandatory)
+                          (1 byte)
+Actions
+Get, set
+Notifications
+None.

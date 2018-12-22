@@ -1,0 +1,33 @@
+9.8.2    Logical N x 64 kbit/s sub-port connection termination point
+This managed entity models logical sub-ports contained within a higher level TDM physical layer
+interface (e.g., DS0s within a DS1, DS1s within a DS3, etc.). An instance of this managed entity
+can represent an arbitrary (i.e., consecutive or non-consecutive) group of multiple channels/time
+slots (e.g., multiple DS0/DS1) as an integral bundle.
+An instance of this managed entity is created by the OLT before the creation of an associated
+interworking termination point (see clause 9.2.4, GEM interworking termination point).
+Relationships
+Zero or more instances of this ME are associated with an instance of the physical path termination
+point CES UNI. It can be linked from a pseudowire TP, a logical N x 64 kbit/s CTP, or an
+interworking TP.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. (R, Set-by-create) (mandatory) (2 bytes)
+Physical path termination     This attribute points to the corresponding physical path termination
+pointer:                      point CES UNI managed entity instance. (R, W, Set-by-create)
+                              (mandatory) (2 bytes)
+List of time slots:           This attribute is a bit map that indicates time slots (or component
+                              tributaries). Each bit indicates whether the corresponding time slot is
+                              included in the connection or not. The correspondence is shown in
+                              Figure 9.8.2-1.
+            Byte                                      Bit
+                      8       7         6        5          4         3          2        1
+              1     TS 0    TS 1      TS 2     TS 3       TS 4      TS 5       TS 6     TS 7
+              2     TS 8    TS 9     TS 10     TS 11      TS 12    TS 13      TS 14    TS 15
+             ...
+             12     TS 88   TS 89    TS 90     TS 91      TS 92    TS 93      TS 94    TS 95
+                              Figure 9.8.2-1 – Mapping of time slots
+                               (R, W, Set-by-create) (mandatory) (12 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

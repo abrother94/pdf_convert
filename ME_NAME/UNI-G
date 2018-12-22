@@ -1,0 +1,33 @@
+9.12.1 UNI-G
+This managed entity organizes data associated with user network interfaces (UNIs) supported by
+GEM. One instance of the UNI-G managed entity exists for each UNI supported by the ONT.
+The ONT automatically creates or deletes instances of this managed entity upon the creation or
+deletion of a real or virtual circuit pack managed entity, one per port.
+Relationships
+An instance of the UNI-G managed entity exists for each instance of a physical path termination
+point managed entity.
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              Through an identical ID, this managed entity is implicitly linked to an
+                              instance of a physical path termination point. (R) (mandatory) (2 bytes)
+Configuration option          This attribute holds the UNI configuration code field. Its bits are
+status:                       assigned as shown below.
+   Bit                 Name                                             Setting
+    1      N/A
+    2      Server trail fault             0: All TC layer alarm reporting through the OMCC is inhibited.
+           propagation TC layer           1: TC layer alarm reporting through the OMCC is not inhibited.
+    3      Server trail fault             0: All PHY layer alarm reporting through the OMCC is inhibited.
+           propagation PHY layer          1: PHY layer alarm reporting through the OMCC is not inhibited.
+    4      Server trail fault             0: All GAL layer alarm reporting through the OMCC is inhibited.
+           propagation GAL layer          1: GAL layer alarm reporting through the OMCC is not inhibited.
+  5..16    Reserved
+(R, W) (mandatory) (2 bytes)
+Administrative state:         This attribute locks (1) and unlocks (0) the functions performed by this
+                              managed entity. When the administrative state is set to lock, all user
+                              functions of this managed entity are blocked, and alarms, TCAs and
+                              AVCs for this managed entity and all dependent managed entities are
+                              no longer generated. Selection of a default value for this attribute is
+                              outside the scope of this Recommendation. (R, W) (mandatory) (1 byte)
+Actions
+Get, set
+Notifications
+None.

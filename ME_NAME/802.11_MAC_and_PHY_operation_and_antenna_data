@@ -1,0 +1,100 @@
+9.6.5   802.11 MAC and PHY operation and antenna data
+The ONT automatically creates an instance of this entity whenever it creates an instance of PPTP
+802.11 UNI.
+Relationships
+An instance of this managed entity exists for each [IEEE 802.11] interface.
+Managed entity id:          This attribute uniquely identifies each instance of this managed
+                            entity. Through an identical ID, this managed entity is implicitly
+                            linked to an instance of the physical path termination point 802.11
+                            UNI. (R) (mandatory) (2 bytes)
+dot11 MAC address:          Unique MAC address assigned to the STA. (R) (mandatory)
+                            (6 bytes)
+dot11 RTS threshold:        This attribute specifies the number of octets in an MPDU, at or
+                            below which no RTS/CTS handshake is performed. An RTS/CTS
+                            handshake is performed at the beginning of any frame exchange
+                            sequence where the PDU is of type data or management, the MPDU
+                            has an individual address in the address1 field, and the length of the
+                            MPDU is greater than this threshold. Setting this attribute to be
+                            larger than the maximum MSDU size has the effect of turning off the
+                            RTS/CTS handshake for all data and management frames transmitted
+                            by this STA. Setting this attribute to 0 has the effect of turning on the
+                            RTS/CTS handshake for all data and management frames transmitted
+                            by this STA. The default value of this attribute is 2347. (R, W)
+                            (mandatory) (2 bytes)
+dot11 short retry limit:    This attribute specifies the maximum number of transmission
+                            attempts of a frame whose length is less than or equal to dot11 RTS
+                            threshold, before a failure condition is indicated. The default value of
+                            this attribute is 7. (R, W) (mandatory) (1 byte)
+dot11 long retry limit:     This attribute specifies the maximum number of transmission
+                            attempts of a frame whose length is greater than dot11 RTS
+                            threshold, before a failure condition is indicated. The default value of
+                            this attribute is 4. (R, W) (mandatory) (1 byte)
+dot11 fragmentation         This attribute specifies the maximum size, in octets, of the MPDU
+threshold:                  that may be delivered to the PHY. An MSDU is broken into
+                            fragments if its size exceeds the value of this attribute after adding
+                            MAC headers and trailers. An MSDU or MMPDU is fragmented
+                            when the resulting frame has an individual address in the address1
+                            field, and the length of the frame is larger than this threshold. The
+                            default value for this attribute is the lesser of 2346 or the aMPDU
+                            max length of the attached PHY. The attribute value may never be
+                            set to exceed this limit, and may never be less than 256. (R, W)
+                            (mandatory) (2 bytes)
+dot11 max transmit MSDU The max transmit MSDU lifetime is the elapsed time in TU, from the
+lifetime:                   initial transmission of an MSDU until further attempts to transmit it
+                            are terminated. The default value of this attribute is 512. (R, W)
+                            (mandatory) (4 bytes)
+dot11 max receive lifetime: The max receive lifetime is the elapsed time in TU, from the initial
+                            reception of a fragmented MMPDU or MSDU until further attempts
+                            to reassemble the MMPDU or MSDU are terminated. The default
+                            value is 512. (R, W) (mandatory) (4 bytes)
+                              PLCP and PMD. Currently defined values and their corresponding
+                              PHY types are:
+                              1 FHSS 2.4 GHz.
+                              2 DSSS 2.4 GHz.
+                              3 IR baseband.
+                              (R) (mandatory) (1 byte)
+dot11 current reg domain:     The current regulatory domain this instance of the PMD is
+                              supporting. This object corresponds to one of the reg domains listed
+                              in dot11 reg domains supported value attribute of the PPTP's 802.11
+                              general purpose object of type 2. (R, W) (mandatory) (4 bytes)
+dot11 temp type:              There are different operating temperature requirements according to
+                              anticipated environmental conditions. This attribute describes the
+                              current PHY's operating temperature range capability. Currently
+                              defined values and their corresponding temperature ranges are:
+                              1    Type 1 – Commercial range, 0 to 40 degrees C.
+                              2    Type 2 – Industrial range, –30 to 70 degrees C.
+                              (R) (mandatory) (1 byte)
+dot11 current tx antenna      This pointer attribute specifies the transmit antenna to be used. The
+pointer:                      attribute is only permitted to point to an 802.11 PPTP whose 802.11
+                              general purpose object, object type 3, dot11 supported tx antenna
+                              attribute is true. The value 0 is a null pointer. (R, W) (mandatory)
+                              (2 bytes)
+dot11 diversity support:      This attribute indicates the ONT's support for diversity, encoded as:
+                              1 Diversity is available and is performed over the fixed list of
+                                   antennas defined by the dot11 diversity selection rx attribute
+                                   values of the set of general purpose object ME instances of
+                                   object type = 3.
+                              2 Diversity is not supported.
+                              3 Diversity is supported and control of diversity is also available,
+                                   in which case the corresponding 802.11 general purpose object,
+                                   object type 3, dot11 diversity selection rx attribute can be
+                                   dynamically modified by the LME.
+                              (R) (mandatory) (1 byte)
+dot11 current rx antenna      This pointer attribute specifies the receive antenna if the
+pointer:                      corresponding 802.11 general purpose object, object type 3, dot11
+                              diversity support indicates that diversity is not supported. The
+                              attribute is only permitted to point to an 802.11 PPTP whose 802.11
+                              general purpose object, object type 3, dot11 supported rx antenna
+                              attribute is true. The value 0 is a null pointer. (R, W) (mandatory)
+                              (2 bytes)
+dot11 current tx power       The power level currently being used to transmit data. Some PHYs
+level:                       also use this value to determine the receiver sensitivity requirements
+                             for CCA. Valid values range from 0 to 7 and indicate which word in
+                             the dot11 tx power levels attribute of the physical path termination
+                             point 802.11 UNI object is the current power level (which PPTP
+                             802.11 UNI is determined by the dot11 current tx antenna pointer
+                             attribute). (R, W) (mandatory) (1 byte)
+Actions
+Get, set
+Notifications
+None.

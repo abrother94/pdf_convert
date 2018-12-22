@@ -1,0 +1,40 @@
+9.12.12 General purpose buffer
+This managed entity is created by the OLT when needed to store the results of an operation, such as
+a test command, that needs to return a block of data of indeterminate size. The buffer is retrieved
+with get next operations, since its size is not known a priori. An instance of this ME is created and
+deleted by the OLT, and typically made known to an ONT ME or action through a pointer.
+The ME is defined as generically as possible, such that it can be used for other applications that
+may not initially be apparent, such as logging. The format of its contents is specific to each
+application, and is documented there.
+The general purpose buffer is neither captured in a MIB upload, nor retained in non-volatile ONT
+memory.
+Relationships
+Through a pointer, the OLT may associate a general purpose buffer with an ME and/or an operation
+that has a need to create large or indeterminate blocks of data for subsequent upload.
+Attributes
+Managed entity id:       This attribute uniquely identifies each instance of this managed entity.
+                         (R, Set-by-create) (mandatory) (2 bytes)
+Maximum size:            The ONT determines the actual size of the buffer table in the process of
+                         capturing the data directed to it. The maximum size attribute permits the
+                         OLT to restrict the maximum size of the buffer table. The default value 0
+                         indicates that the OLT imposes no limit on the size; it is recognized that
+                         ONT implementations will impose their own limits. The ONT will not
+                         create a buffer table larger than this value. If the ONT cannot allocate
+                         enough memory to accommodate this size, it should deny the ME creation
+                         action or a write operation that attempts to expand an existing ME. (R, W,
+                         Set-by-create) (optional) (4 bytes)
+Buffer table:            This attribute is an octet string that contains the result of some operation
+                         performed on the ONT. The exact content depends on the operation, and is
+                         documented with the definition of each operation. (R) (mandatory)
+                         (N bytes)
+Actions
+Create, delete, get, get next
+ Attribute value change
+     Number            Attribute value change                              Description
+         1          Reserved
+                                                    This AVC indicates that the ONT has completed
+                                                    writing the buffer, and thereby signals the OLT that the
+         2          Buffer table
+                                                    operation is complete and the buffer is available for
+                                                    upload
+       3..16        Reserved

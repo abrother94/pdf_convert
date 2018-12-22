@@ -1,0 +1,32 @@
+9.3.3    MAC bridge performance monitoring history data
+This managed entity collects performance monitoring data associated with a MAC bridge. Instances
+of this managed entity are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+This managed entity is associated with one instance of a MAC bridge service profile.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              Through an identical ID, this managed entity is implicitly linked to an
+                              instance of the MAC bridge service profile. (R, Set-by-create)
+                              (mandatory) (2 bytes)
+Interval end time:            This attribute identifies the most recently finished 15-minute interval.
+                              (R) (mandatory) (1 byte)
+Threshold data 1/2 id:        This attribute points to an instance of the threshold data 1 managed
+                              entity that contains PM threshold values. Since no threshold value
+                              attribute number exceeds 7, a threshold data 2 ME is optional. (R, W,
+                              Set-by-create) (mandatory) (2 bytes)
+Bridge learning entry         This attribute counts forwarding database entries that have been or
+discard count:                would have been learned but were discarded or replaced due to lack of
+                              space in the database table. When used with the MAC learning depth
+                              attribute of the MAC bridge service profile, the bridge learning entry
+                              discard count may be particularly useful in detecting MAC spoofing
+                              attempts. (R) (mandatory) (4 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+      Number                Threshold crossing alert             Threshold value attribute # (Note)
+         0          Bridge learning entry discard                                  1
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold
+ data 1 managed entity.

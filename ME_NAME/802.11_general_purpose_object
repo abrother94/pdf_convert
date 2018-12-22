@@ -1,0 +1,64 @@
+9.6.4     802.11 general purpose object
+Relationships
+Up to four instances of this managed entity may exist for each instance of an [IEEE 802.11]
+interface, one of each type. An instance contains one of the following [IEEE 802.11] data types:
+WEP key mappings, group addresses, supported regulatory domains, and antennas list. Each use has
+its own attributes, and a type attribute indicates which subset is active for each instance. Regardless
+of which attributes are active, each attribute is numbered, in the OMCC attribute mask, according to
+the ordering of the full attribute set indicated below.
+For object types 0 and 1, the OLT may create and delete instances of this object. For object types 2
+and 3, the ONT creates as many instances as required to model the UNI's capabilities.
+Attributes
+Managed entity id:               This attribute uniquely identifies each instance of this managed
+                                 entity. When created automatically by the ONT, the ME ID is known
+                                 to the OLT through out of band means, for example documentation.
+                                 (R, Set-by-create) (mandatory) (2 bytes)
+Object type:                     This attribute indicates how this entity is used:
+                                 0 WEP key mapping.
+                                 1 Group addresses.
+                                 2 Reg domain supported.
+                                 3 Antennas list.
+                                 For any given type, only the relevant attributes are valid. The other
+                                 attributes are unspecified. (R, Set-by-create) (mandatory) (1 byte)
+Physical path termination        This attribute points to the specific physical path termination
+point 802.11 pointer:            point 802.11 UNI to which this instance corresponds.
+                                 (R, Set-by create) (mandatory) (2 bytes)
+Attributes valid only if object type = 0, WEP key mapping:
+dot11 WEP key mapping            The MAC address of the STA for which the values from this key
+address:                         mapping entry are to be used. (R, W, Set-by-create) (mandatory)
+                                 (6 bytes)
+WEP on:                          with the dot11 WEP key mapping address STA. (R, W,
+                                 Set-by-create) (mandatory) (1 byte)
+dot11 WEP key mapping            A WEP secret key value. (W, Set-by-create) (mandatory) (5 bytes)
+value:
+Attributes valid only if object type = 1, group addresses:
+dot11 address:                   A multicast MAC address from which this STA receives frames.
+                                 (R, W, Set-by-create) (mandatory) (6 bytes)
+Attributes valid only if object type = 2, reg domain supported:
+dot11 reg domains support Operational requirements differ, depending on the regulatory
+value:                           domain. This attribute list describes the regulatory domains that the
+                                 PLCP and PMD support in this implementation. Currently defined
+                                 values and their corresponding regulatory domains are:
+                                 0x10    FCC (USA).
+                                 0x20    DOC (Canada).
+                                 0x30    ETSI (most of Europe).
+                                 0x31    Spain.
+                                 0x32    France.
+                                 0x40    MKK (Japan).
+                                 (R) (mandatory) (1 byte)
+Attributes valid only if object type = 3, antennas list:
+dot11 supported tx antenna: When true, this Boolean attribute indicates that the antenna
+                                 represented by the associated PPTP can be used as a transmit
+                                 antenna. (R) (mandatory) (1 byte)
+dot11 supported rx antenna: When true, this Boolean attribute indicates that the antenna
+                                 represented by the associated PPTP can be used as a receive antenna.
+                                 (R) (mandatory) (1 byte)
+dot11 diversity selection rx: When true, this Boolean attribute indicates that the antenna
+                                 represented by the associated PPTP can be used for receive diversity.
+                                 This attribute can only be true if the antenna can be used as a receive
+                                 antenna, as indicated by dot11 supported rx antenna. (R, W)
+                                 (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

@@ -1,0 +1,143 @@
+9.3.27 Multicast operations profile
+This managed entity expresses multicast policy. A multi-dwelling unit ONU may have several such
+policies, which are linked to subscribers as required. Some of the attributes configure IGMP
+snooping and proxy parameters, in case the defaults do not suffice, as described in
+[b-IETF RFC 2236], [b-IETF RFC 3376], [b-IETF RFC 3810] and [b-IETF RFC 2933]. Instances
+of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the multicast
+subscriber config info ME.
+Attributes
+Managed entity id:           This attribute uniquely identifies each instance of this managed entity.
+                             The values 0 and 0xffff are reserved. (R, Set-by-create) (mandatory)
+                             (2 bytes)
+IGMP version:                This attribute specifies the version of IGMP to be supported. Support of
+                             a given version implies compatible support of previous versions. If the
+                             ONT cannot support the version requested, it should deny an attempt to
+                             write or create the ME. The default value is 2. (R, W, Set-by-create)
+                             (mandatory) (1 byte)
+                             1     IGMP version 1 (deprecated).
+                             2     IGMP version 2.
+                             3     IGMP version 3.
+                             Other values reserved.
+                              transparent IGMP snooping only. The value 1 specifies snooping with
+                              proxy reporting (SPR); the value 2 specifies IGMP proxy. The function
+                              must be consistent with the capabilities specified by the other IGMP
+                              configuration attributes. (R, W, Set-by-create) (mandatory) (1 byte)
+Immediate leave:              This Boolean attribute enables the immediate leave function. The
+                              default value false disables immediate leave; true enables immediate
+                              leave. (R, W, Set-by-create) (mandatory) (1 byte)
+Upstream IGMP TCI:            Under control of the upstream IGMP tag control attribute, the upstream
+                              IGMP TCI attribute defines a VLAN ID and P-bits to add to upstream
+                              IGMP messages. (R, W, Set-by-create) (optional) (2 bytes)
+Upstream IGMP tag             This attribute controls the upstream IGMP TCI attribute. (R, W,
+control:                      Set-by-create) (optional) (1 byte)
+                              Value Meaning
+                              0             Pass upstream IGMP traffic transparently, neither adding,
+                                            stripping nor modifying tags that may be present.
+                              1             Add a VLAN tag (including P-bits) to upstream IGMP
+                                            traffic. The VLAN is specified by the upstream IGMP TCI
+                                            attribute.
+                              2             Replace the entire TCI (VLAN ID plus P-bits) on upstream
+                                            IGMP traffic. The new tag is specified by the upstream
+                                            IGMP TCI attribute.
+                              3             Replace only the VLAN ID on upstream IGMP traffic,
+                                            retaining the original CFI and P-bits. The new VLAN ID is
+                                            specified by the VLAN field of the upstream IGMP TCI
+                                            attribute.
+                              Others        Reserved.
+Upstream IGMP rate:           This attribute limits the maximum rate of upstream IGMP traffic.
+                              Traffic in excess of this limit is silently discarded. The attribute value is
+                              specified in messages/second. The default value 0 imposes no rate limit
+                              on this traffic. (R, W, Set-by-create) (optional) (4 bytes)
+Dynamic access control        This attribute is a list that specifies one or more multicast group address
+list table:                   ranges. The ONT is expected to silently discard IGMP join requests for
+                              groups that are not listed in this table.
+                              Each list entry is a vector of eight components:
+                              –    Table index (2 bytes)
+                                   The first two bytes of each entry are treated as the index of the
+                                   table. It is the responsibility of the OLT to assign and track table
+                                   indices and content. The ONT should deny set operations that
+                                   create range overlaps.
+                                   The two MSBs of this field determine the meaning of a set
+                                   operation. These bits are returned as 00 during get next operations.
+   Bits 16..15                                             Meaning
+        00        Reserved.
+        01        Write this entry into the table. Overwrite any existing entry with the same table index.
+        10        Delete this entry from the table. The remaining fields are not meaningful.
+        11        Clear all entries from the table. The remaining fields are not meaningful.
+                              –     GEM port-ID (2 bytes)
+                              –     VLAN ID. This field specifies the VLAN carrying the multicast
+                                    group downstream. The VLAN ID resides in the 12 least
+                                    significant bits; the remaining bits are set to 0 and not used. The
+                                    value 0x0000 designates an untagged downstream flow. (2 bytes)
+                              –     Source IP address. The value 0.0.0.0 specifies that source IP
+                                    address is to be ignored. (4 bytes)
+                              –     Destination IP address of the start of the multicast range. (4 bytes)
+                              –     Destination IP address of the end of the multicast range. (4 bytes)
+                              –     Imputed group bandwidth. Expressed in bytes per second, the
+                                    imputed group bandwidth is used to decide whether or not to
+                                    honour a join request in the presence of a max multicast bandwidth
+                                    limit. The default value 0 effectively allows this table entry to
+                                    avoid max bandwidth limitations. (4 bytes)
+                              –     Reserved, set to 0. (2 bytes)
+                              A single multicast group may be specified by setting start and end
+                              destination IP addresses to the same value.
+                              (R, W) (mandatory) (24N bytes, where N is the number of entries in the
+                              table)
+Discussion of table size:     While theoretically, this table could contain 16,384 entries, real-world
+                              applications are not expected to require large tables. It is instead
+                              anticipated that the table will list a moderate number of contiguous
+                              ranges, each of which shares a common GEM port, VLAN, IP source
+                              and imputed bandwidth.
+Static access control list    This attribute is a list that specifies one or more multicast group address
+table:                        ranges. Groups defined in this list are multicast on the associated
+                              UNI(s) unconditionally, that is, without the need for an IGMP join. The
+                              bandwidth of static multicast groups is not included in the current
+                              multicast bandwidth measurement maintained by the multicast
+                              subscriber monitor managed entity. If a join message is always
+                              expected, this table may be empty. Table entries have the same format
+                              as those in the dynamic access control list table. (R, W) (mandatory)
+                              (24N bytes, where N is the number of entries in the table)
+Lost groups list table:       This attribute is a list of groups from the dynamic access control list
+                              table for which there is an active join, but no downstream flow is
+                              present, possibly because of source failure, but also possibly because of
+                              misconfiguration somewhere upstream. After a join, the ONT should
+                              wait a reasonable time for upstream processing before declaring a group
+                              to be lost. Each entry is a vector of the following components:
+                              –    VLAN ID, 0 if not used. (2 bytes)
+                              –    Source IP address, 0.0.0.0 if not used. (4 bytes)
+                              –    Multicast destination IP address. (4 bytes)
+                              (R) (optional) (10N bytes)
+Robustness:                   This attribute allows tuning for possible packet loss in the network. The
+                              default value 0 causes the ONT to follow the IETF recommendation to
+                              copy the robustness value from query messages originating further
+                              upstream. (R, W, Set-by-create) (optional) (1 byte)
+Querier IP address:           This attribute specifies the IP address to be used by a proxy querier.
+                              Although it is not a legitimate IP address, the default value 0.0.0.0 is
+                              legal in this case (see [b-IETF RFC 4541]). (R, W, Set-by-create)
+                              (optional) (4 bytes)
+Query interval:               This attribute specifies the interval between general queries in seconds.
+                              The default is 125 seconds. (R, W, Set-by-create) (optional) (4 bytes)
+Query max response time: This attribute is the max response time added by the proxy into general
+                              query messages directed to UNIs. It is expressed in tenths of seconds,
+                              with a default of 100 (10 seconds). (R, W, Set-by-create) (optional)
+                              (4 bytes)
+Last member query             This attribute specifies the max response time inserted into
+interval:                     group-specific queries sent to UNIs in response to group leave
+                              messages. It is also the repetition rate of [robustness] transmissions of
+                              the query. It is specified in tenths of seconds, with a default of 10 (1
+                              second). (R, W) (optional) (4 bytes)
+Actions
+Create, delete, get, get next, set
+Notifications
+        Alarm
+        Number             Alarm                                       Description
+             0    Lost multicast group       Indicates that for one or more multicast groups, there is an
+                                             active join, but no downstream flow is present. This alarm
+                                             is equivalent to a non-zero number of entries in the lost
+                                             groups list table attribute. When the alarm is active, the
+                                             OLT may use the table to retrieve the details of the lost
+                                             group(s).
+          1..207 Reserved
+        208..223 Vendor-specific alarms      Not to be standardized

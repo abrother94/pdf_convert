@@ -1,0 +1,46 @@
+9.13.8 Video return path performance monitoring history data
+Relationships
+One instance of this managed entity may exist for each ONT. It is created by the OLT.
+Attributes
+Managed entity id:       This attribute uniquely identifies each instance of this managed entity.
+                         Through an identical ID, this managed entity is implicitly linked to an
+                         instance of the video return path service profile. (R) (mandatory) (2 bytes)
+Interval end time:       This attribute identifies the most recently finished 15-minute interval. (R)
+                         (mandatory) (1 byte)
+Threshold data           This attribute points to an instance of the threshold data 1 and 2 managed
+1/2 id:                  entities that contain PM threshold values. (R, W, Set-by-create)
+                         (mandatory) (2 bytes)
+Rx total bursts:         This attribute counts the total number of bursts detected. (R) (optional)
+                         (4 bytes)
+Rx good bursts:          This attribute counts bursts detected and received correctly. (R) (optional)
+                         (4 bytes)
+Rx FEC corrected         This attribute counts bursts detected with errors, but which were
+bursts:                  successfully corrected using FEC. (R) (optional) (4 bytes)
+Rx missed bursts:        This attribute counts bursts detected that were not received correctly (e.g.,
+                         errors that were FEC uncorrectable). (R) (optional) (4 bytes)
+Rx min power:            This attribute is a low water mark that reports the lowest power level of all
+                         bursts received in the current interval, in units of dBmV. (R) (optional)
+                         (1 byte)
+Rx max power:            This attribute is a high water mark that reports the highest power level of
+                         all bursts received in the current interval, in units of dBmV. (R) (optional)
+                         (1 byte)
+Rx current power:        This attribute reports the power level of the latest burst received, in units
+                         of dBmV. (R) (optional) (1 byte)
+Rx FEC corrected         This attribute counts the number of symbols that were corrected through
+symbols:                 the use of FEC. It provides an indicator of the bit error rate of the link. (R)
+                         (optional) (4 bytes)
+Actions
+Create, delete, set, get
+Get current data (optional)
+ Threshold crossing alert
+      Number                 Threshold crossing alert           Threshold value attribute # (Note)
+          0           Rx total bursts                                             1
+          1           Rx good bursts                                              2
+          2           Rx FEC corrected bursts                                     3
+          3           Rx missed bursts                                            4
+          4           Rx min power                                                5
+          5           Rx max power                                                6
+          6           Rx current power                                            7
+          7           Rx FEC corrected symbols                                    8
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold
+ data 1 managed entity.

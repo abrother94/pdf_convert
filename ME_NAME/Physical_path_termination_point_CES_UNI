@@ -1,0 +1,162 @@
+9.8.1     Physical path termination point CES UNI
+This managed entity represents the point at a CES UNI in the ONT where the physical path
+terminates and physical level functions are performed.
+The ONT automatically creates an instance of this managed entity per port:
+•         When the ONT has CES ports built into its factory configuration.
+•         When a cardholder is provisioned to expect a circuit pack of CES type.
+•         When a cardholder provisioned for plug-and-play is equipped with a circuit pack of CES
+          type. Note that the installation of a plug-and-play card may indicate the presence of CES
+          ports via equipment ID as well as its type, and indeed may cause the ONT to instantiate a
+          port mapping package that specifies CES ports.
+The ONT automatically deletes instances of this managed entity when a cardholder is neither
+provisioned to expect a CES circuit pack, nor is it equipped with a CES circuit pack.
+Relationships
+An instance of this managed entity is associated with each real or preprovisioned CES port. It can
+be linked from a pseudowire TP, a logical N x 64 kbit/s CTP, or an interworking TP.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. This two-byte number indicates the physical position of the
+                              UNI. The first byte is the slot id (defined in clause 9.1.5). The second
+                              byte is the port ID, with range 1..255. (R) (mandatory) (2 bytes)
+Expected type:                The following coding is used for this attribute:
+                              0           Autosense.
+                              1 to 254    One of the values from Table 9.1.5-1 that is compatible
+                                          with a CES circuit pack.
+                              Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                              (mandatory) (1 byte)
+Sensed type:                  If the value of expected type is not 0, then the value of sensed type
+                              equals the value of expected type. If expected type = 0, then the
+                              value of sensed type is one of the compatible values from
+                              Table 9.1.5-1. Upon ME instantiation, the ONT sets this attribute to 0
+                              or to the value that reflects the physically present equipment. (R)
+                              (mandatory if the ONT supports circuit packs with configurable
+                              interface types, e.g., C1.5/2/6.3) (1 byte)
+CES loopback                  This attribute specifies and reports the loopback configuration of the
+configuration:                physical interface.
+                              0    No loopback.
+                              1    Payload loopback.
+                              2    Line loopback.
+                              3    OpS-directed loopback 1 (loopback from/to PON side).
+                              4    OpS-directed loopback 2 (loopback from/to CES UNI side).
+                              5    OpS-directed loopback 3 (loopback of both PON side and CES
+                                   UNI side).
+                              6    Manual button-directed loopback (read only).
+                              7    Network-side code inband-directed loopback (read only).
+                              8    SmartJack-directed loopback (read only).
+                              9    Network-side code inband-directed loopback (armed; read
+                                   only).
+                              Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                              (mandatory) (1 byte)
+                         Figure 9.8.1-1 – CES loopback configuration
+Administrative state:       This attribute locks (1) and unlocks (0) the functions performed by
+                            this managed entity. When the administrative state is set to lock, all
+                            user functions of this UNI are blocked, and alarms, TCAs and AVCs
+                            for this managed entity and all dependent managed entities are no
+                            longer generated. Selection of a default value for this attribute is
+                            outside the scope of this Recommendation. (R, W) (mandatory)
+                            (1 byte)
+Operational state:          This attribute indicates whether or not the managed entity is capable
+                            of performing its function. Valid values are enabled (0) and disabled
+                            (1). (R) (optional) (1 byte)
+DS1 framing:                This attribute specifies the DS1 framing structure. Valid values are:
+                            0 Extended superframe.
+                            1 Superframe.
+                            2 Unframed.
+                            3 G.704.
+                            4 JT-G.704.
+                            Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                            (mandatory for DS1 interfaces) (1 byte)
+Encoding:                   This attribute specifies the line coding scheme. Valid values are:
+                            0 B8ZS.
+                            1 AMI.
+                            2 HDB3.
+                            3 B3ZS.
+                            Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                            (mandatory for DS1 and DS3 interfaces) (1 byte)
+Line length:                This attribute specifies the length of the twisted pair cable from a
+                            DS1 physical UNI to the DSX-1 cross-connect point or the length of
+                            coaxial cable from a DS3 physical UNI to the DSX-3 cross-connect
+                            point. Valid values are given in Table 9.8.1-1. Upon ME instantiation
+                            for a DS1 interface, the ONT assigns the value 0 for non-power feed
+                            type DS1 and the value 6 for power feed type DS1. Upon ME
+                            instantiation for a DS3 interface, the ONT sets this attribute to 0x0F.
+                            (R, W) (optional) (1 byte)
+DS1 mode:                   This attribute specifies the mode of a DS1. Valid values are as
+                            shown:
+ Value     Mode       Connect        Line length           Power                  Loopback
+   0         #1    DS1 CPE          Short haul      No power feed       Smart jack
+   1         #2    DS1 CPE          Long haul       No power feed       Smart jack
+   2         #3    DS1 NIU CPE      Long haul       No power feed       Intelligent office repeater
+   3         #4    DS1 NIU CPE      Long haul       With power feed     Intelligent office repeater
+                            Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                            (optional) (1 byte)
+ARC interval:                   See clause I.1.8. (R, W) (optional) (1 byte)
+Line type:                      This attribute specifies the line type used in a DS3 or E3 application.
+                                Valid values are:
+                                0    Other.
+                                1    ds3 m23.
+                                2    ds3 syntran.
+                                3    ds3 Cbit parity.
+                                4    ds3 clear channel.
+                                5    e3 framed.
+                                6    e3 plcp.
+                                (R, W) (mandatory for DS3 and E3 interfaces, not applicable to other
+                                interfaces) (1 byte)
+Actions
+Get, set
+Notifications
+ Attribute value change
+  Number       Attribute value change                                Description
+      1     N/A
+      2     Sensed type                   Sensed circuit pack type (value from Table 9.1.5-1)
+      3     CES loopback config           Loopback configuration of physical interface
+      4     N/A
+      5     Op state                      Operational state
+    6..9    N/A
+     10     ARC                           ARC timer expiration
+   11..12   N/A
+   13..16   Reserved
+Alarm:                          These alarms should be declared and cleared according to criteria
+                                defined separately in existing TDM standards.
+  Number               Alarm                                         Description
+      0     TF                            Transmitter failure
+      1     LOS                           Loss of signal
+      2     LOF                           Loss of frame
+      3     OOF                           Out of frame
+      4     RAI                           Remote alarm indication
+      5     1.5 M BAIS                    1.544 Mbit/s back alarm indication signal
+      6     R-INH                         Receive alarm inhibit
+      7     6M REC                        6.312 Mbit/s receive alarm
+      8     6M SEND                       6.312 Mbit/s send alarm
+      9     6M ERR                        6.312 Mbit/s block error
+     10      6M BERR                      6.312 Mbit/s back error
+     11      34M REC                      34.368 Mbit/s receive alarm
+     12      34M AIS                      34.368 Mbit/s alarm indication signal
+     13      2M REC                       2.048 Mbit/s receive alarm
+     14      2M AIS                       2.048 Mbit/s alarm indication signal
+     15      1.5M REC                     1.544 Mbit/s receive alarm
+     16      1.5 AIS                      1.544 Mbit/s alarm indication signal
+     17      INFO0                        INFO0 reception (INFO0)
+     18      45M RDI                      44.736 Mbit/s remote defect indication
+     19      45M AIS                      44.736 Mbit/s alarm indication signal
+   20..207   Reserved
+  208..223 Vendor-specific alarms         Not to be standardized
+                          Table 9.8.1-1 – Values for the line length attribute
+  Value                        Power feed                                       Line length
+   0x00     Non-power feed type DS1                              0..33.5 m (0..110 ft)
+   0x01     Non-power feed type DS1                              33.5..67.1 m (110..220 ft)
+   0x02     Non-power feed type DS1                              67.1..100.6 m (220..330 ft)
+   0x03     Non-power feed type DS1                              100.6..134.1 m (330..440 ft)
+   0x04     Non-power feed type DS1                              132.1..167.6 m (440..550 ft)
+   0x05     Non-power feed type DS1                              167.6..201.2 m (550..660 ft)
+   0x06     Power feed type DS1 (Wet T1), short haul             0..40.5 m (0..133 ft)
+   0x07     Power feed type DS1 (Wet T1), short haul             40.5..81.1 m (133..266 ft)
+   0x08     Power feed type DS1 (Wet T1), short haul             81.1..121.6 m (266..399 ft)
+   0x09     Power feed type DS1 (Wet T1), short haul             121.6..162.5 m (399..533 ft)
+   0x0A     Power feed type DS1 (Wet T1), short haul             162.5..199.6 m (533..655 ft)
+   0x0B     Power feed type DS1 (Wet T1), long haul              0 db
+   0x0C     Power feed type DS1 (Wet T1), long haul              7.5 db
+   0x0D     Power feed type DS1 (Wet T1), long haul              15 db
+   0x0E     Power feed type DS1 (Wet T1), long haul              22.5 db
+   0x0F     DS3 power feed                                       0..68.5 m (0..225 ft)
+   0x10     DS3 power feed                                       68.5..137.1 m (226..450 ft)

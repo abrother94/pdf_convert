@@ -1,0 +1,51 @@
+9.13.1 Physical path termination point video UNI
+This managed entity represents an RF video UNI in the ONT, where physical paths terminate and
+physical path level functions are performed.
+The ONT automatically creates an instance of this managed entity per port:
+•        When the ONT has RF video UNI ports built into its factory configuration.
+•        When a cardholder is provisioned to expect a circuit pack of video UNI type.
+•        When a cardholder provisioned for plug-and-play is equipped with a circuit pack of video
+         UNI type. Note that the installation of a plug-and-play card may indicate the presence of
+         video ports via equipment ID as well as its type, and indeed may cause the ONT to
+         instantiate a port mapping package that specifies video ports.
+The ONT automatically deletes instances of this managed entity when a cardholder is neither
+provisioned to expect a video circuit pack, nor is it equipped with a video circuit pack.
+Relationships
+One or more instances of this managed entity is associated with an instance of a real or virtual
+circuit pack classified as video type.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          This two-byte number indicates the physical position of the UNI. The first
+                          byte is the slot id (defined in clause 9.1.5). The second byte is the port ID,
+                          with range 1..255. (R) (mandatory) (2 bytes)
+Administrative            This attribute locks (1) and unlocks (0) the functions performed by this
+state:                    managed entity. When the administrative state is set to lock, all user
+                          functions of this UNI are blocked, and alarms, TCAs and AVCs for this
+                          managed entity and all dependent managed entities are no longer
+                          generated. Selection of a default value for this attribute is outside the scope
+                          of this Recommendation. (R, W) (mandatory) (1 byte)
+Operational state:        This attribute indicates whether or not the managed entity is capable of
+                          performing its function. Valid values are enabled (0) and disabled (1). (R)
+                          (optional) (1 byte)
+ARC:                      See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:             See clause I.1.8. (R, W) (optional) (1 byte)
+Power control:            This attribute controls whether power is provided to an external equipment
+                          over the video PPTP. Value 1 enables power over coaxial cable. The
+                          default value 0 disables power feed. (R, W) (optional) (1 byte)
+Actions
+Get, set
+Notifications
+       Attribute value change
+          Number           Attribute value change                      Description
+              1       N/A
+              2       Op state                         Operational state of video UNI
+              3       ARC                              ARC timer expiration
+             4..5     N/A
+            6..16     Reserved
+       Alarm
+          Number                    Alarm                               Description
+              0       Video-LOS                        No signal at the video UNI
+              1       Video-OOR-low                    RF output below rated value
+              2       Video-OOR-high                   RF output above rated value
+           3..207     Reserved                         Reserved for vendor-specific alarms
+          208..223    Vendor-specific alarms           Not to be standardized

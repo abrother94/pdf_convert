@@ -1,0 +1,37 @@
+9.9.4     VoIP voice CTP
+The VoIP voice CTP defines the attributes necessary to associate a specified VoIP service (SIP
+(e.g., [b-IETF RFC 3261]), [ITU-T H.248.x]) with a POTS UNI. This entity is conditionally
+required for ONTs that offer VoIP services. If a non-OMCI interface is used to manage VoIP
+signalling, this ME is unnecessary. The non-OMCI interface supplies the necessary data, which may
+be read back to the OLT via the SIP config portal ME or the MGC config portal ME.
+An instance of this managed entity is created and deleted by the OLT. A VoIP voice CTP managed
+object is needed for each PPTP POTS UNI served by VoIP.
+Relationships
+An instance of this managed entity links a PPTP POTS managed entity with a VoIP media profile
+and a SIP user data or MGC config data ME.
+Attributes
+Managed entity id:              This attribute uniquely identifies each instance of this managed
+                                entity. (R, Set-by-create) (mandatory) (2 bytes)
+User protocol pointer:          This attribute points to signalling protocol data. If the VoIP config
+                                data specifies that the ONT's signalling protocol is SIP, this attribute
+                                points to a SIP user data ME, which in turn points to a SIP agent
+                                config data. If the signalling protocol is H.248, this attribute points
+                                directly to an MGC config data ME. (R, W, Set-by-create)
+                                (mandatory) (2 bytes)
+PPTP pointer:                   This attribute points to the PPTP POTS UNI managed entity that
+                                serves the analogue telephone port. (R, W, Set-by-create)
+                                (mandatory) (2 bytes)
+VoIP media profile pointer: This attribute points to an associated VoIP media profile. (R, W,
+                                Set-by-create) (mandatory) (2 bytes)
+Signalling code:                This attribute specifies the POTS-side signalling:
+                                1 Loop start.
+                                2 Ground start.
+                                3 Loop reverse battery.
+                                4 Coin first.
+                                5 Dial tone first.
+                                6 Multi-party.
+                                (R, W, Set-by-create) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

@@ -1,0 +1,68 @@
+9.4.6   IP router performance monitoring history data 1
+This managed entity collects some of the IP-related performance monitoring data at an IP router.
+Instances of this managed entity are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+An instance of this managed entity is associated with an instance of the IP router service profile.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          Through an identical ID, this managed entity is implicitly linked to an
+                          instance of the IP router service profile. (R, Set-by-create) (mandatory)
+                          (2 bytes)
+Interval end time:        This attribute identifies the most recently finished 15-minute interval. (R)
+                          (mandatory) (1 byte)
+Threshold data 1/2 id:    This attribute points to an instance of the threshold data 1 and 2 managed
+                          entities that contains PM threshold values. (R, W, Set-by-create)
+                          (mandatory) (2 bytes)
+Ip in receives counter:   This attribute counts packets received from interfaces, including those with
+                          errors. (R) (mandatory) (4 bytes)
+Ip in hdr errors          This attribute counts packets discarded due to errors in their IP headers,
+counter:                  including bad checksums, version number mismatch, other format errors,
+                          time-to-live exceeded, errors discovered in processing IP options, etc. (R)
+                          (mandatory) (4 bytes)
+Ip in addr errors         This attribute counts packets discarded because their destination IP
+counter:                  addresses were not valid for this router. This includes invalid addresses
+                          (e.g., 0.0.0.0) and addresses of unsupported classes (e.g., class E). (R)
+                          (mandatory) (4 bytes)
+                             as a result of which an attempt was made to forward them. (R) (mandatory)
+                             (4 bytes)
+Ip in unknown protos         This attribute counts packets that were locally destined and received
+counter:                     successfully but discarded because of an unknown or unsupported
+                             protocol. (R) (mandatory) (4 bytes)
+Ip in discards counter: This attribute counts input packets for which no problems were
+                             encountered to prevent their continued processing, but which were
+                             nevertheless discarded, e.g., for lack of buffer space. It does not include
+                             packets discarded while awaiting re-assembly. (R) (mandatory) (4 bytes)
+Ip in delivers counter:      This attribute counts input packets successfully delivered to local IP
+                             application protocols, including ICMP. (R) (mandatory) (4 bytes)
+Ip out requests counter: This attribute counts packets originated by local IP application protocols,
+                             including ICMP. This does not include packets counted in ip forw packets
+                             counter. (R) (mandatory) (4 bytes)
+Ip out discards counter: This attribute counts output packets for which no problem was
+                             encountered to prevent transmission to their destination, but which were
+                             nevertheless discarded, e.g., for lack of buffer space. It includes packets
+                             counted in ip forw packets counter if any such packets met this discard
+                             criterion. (R) (mandatory) (4 bytes)
+Ip out no routes             This attribute counts packets discarded because no forwarding route was
+counter:                     available. It includes any packets counted in ip forw packets counter that
+                             met this no-route criterion. It also includes packets that a host could not
+                             route because all of its default gateways were down. (R) (mandatory)
+                             (4 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+      Number                   Threshold crossing alert            Threshold value attribute # (Note)
+         0            Ip in receives                                                1
+         1            Ip in hdr                                                     2
+         2            Ip in addr                                                    3
+         3            Ip forw packets                                               4
+         4            Ip in unknown protos                                          5
+         5            Ip in discards                                                6
+         6            Ip in delivers                                                7
+         7            Ip out requests                                               8
+         8            Ip out discards                                               9
+         9            Ip out no routes                                             10
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold data
+ 1/2 managed entities.

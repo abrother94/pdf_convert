@@ -1,0 +1,27 @@
+9.4.11 ARP configuration data
+This managed entity organizes data associated with the ARP function related to an IP router. The
+ONT automatically creates or deletes an instance of this managed entity upon creation or deletion of
+an associated ARP service profile.
+Relationships
+An instance of this managed entity is associated with an instance of the ARP service profile.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            Through an identical ID, this managed entity is implicitly linked to an
+                            instance of the ARP service profile. (R) (mandatory) (2 bytes)
+ARP table max size:         This attribute defines the maximum number of ARP entries that can be
+                            stored in the ARP table. Its value is determined by the ONT
+                            implementation. (R) (mandatory) (2 bytes)
+ARP table:                  This attribute lists the current entries in the ARP cache. An ARP cache
+                            entry contains several fields:
+                            port:                  The port number of the IP port associated with the
+                                                   entry. (1 byte)
+                            IP address:            An IP address. (4 bytes)
+                            MAC address:           An equivalent MAC address resolved by the ARP
+                                                   procedure. (6 bytes)
+                            type:                  The entry type such as dynamic (3) or static (4).
+                                                   (1 byte)
+                            (R) (mandatory) (12N bytes, where N is the number of entries)
+Actions
+Get, get next
+Notifications
+None.

@@ -1,0 +1,25 @@
+9.4.10 ARP service profile
+This managed entity organizes data associated with the ARP function used by an IP router. The
+OLT creates or deletes an instance of this managed entity upon the creation or deletion of the
+corresponding instance of IP port configuration data of native LAN type.
+Relationships
+An instance of this managed entity is associated with one instance of IP port configuration data of
+native LAN type. The actual content of a port's ARP cache is visible through the implicitly linked
+ARP configuration data ME.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            This two-byte number indicates the physical position of the slot id
+                            (defined in clause 9.1.5). It is 0 if the ONT is integrated. The second
+                            byte is assigned by the OLT in the range 1..255. (R, Set-by-create)
+                            (mandatory) (2 bytes)
+ARP timer:                  This attribute reports the maximum number of seconds that IP packets
+                            are held while they are awaiting address resolution by ARP at this port.
+                            (R) (mandatory) (4 bytes)
+ARP cache clear:            The Boolean value true initializes the associated ARP cache. The value
+                            false has no significance. As the value of this attribute has no physical
+                            meaning, the get action always returns the value false. (R, W)
+                            (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

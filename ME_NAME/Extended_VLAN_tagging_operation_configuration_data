@@ -1,0 +1,320 @@
+9.3.13 Extended VLAN tagging operation configuration data
+This managed entity organizes data associated with VLAN tagging. Regardless of its point of
+attachment, the specified tagging operations refer to the upstream direction. Instances of this
+managed entity are created and deleted by the OLT.
+Relationships
+Zero or one instance(s) of this managed entity may exist for an instance of any managed entity that
+can terminate or modify an Ethernet stream. By definition, tagging operation occurs farther away
+from the MAC bridge than filtering.
+Attributes
+Managed entity id:           This attribute provides a unique number for each instance of this
+                             managed entity. (R, Set-by-create) (mandatory) (2 bytes)
+Association type:            This attribute identifies the type of the ME associated with this
+                             extended VLAN tagging ME. Values are assigned as follows:
+                             0     MAC bridge port configuration data.
+                             1     802.1p mapper service profile.
+                             2     Physical path termination point Ethernet UNI.
+                             3     IP host config data.
+                             4     Physical path termination point xDSL UNI.
+                             5     GEM interworking termination point.
+                             6     Multicast GEM interworking termination point.
+                             7     Physical path termination point MoCA UNI.
+                             8     Physical path termination point 802.11 UNI.
+                             9     Ethernet flow termination point.
+                             (R, W, Set-by-create) (mandatory) (1 byte)
+Received frame VLAN          This attribute indicates the maximum number of VLAN tagging
+tagging operation table      operation entries that can be set in the received frame VLAN tagging
+max size:                    operation table. (R) (mandatory) (2 bytes)
+Input TPID:                  This attribute gives the special TPID value for operations on the input
+                             (filtering) side of the table. Typical values include 0x88a8 and 0x9100.
+                             (R, W) (mandatory) (2 bytes)
+Output TPID:                 This attribute gives the special TPID value for operations on the output
+                             (tagging) side of the table. Typical values include 0x88a8 and 0x9100.
+                             (R, W) (mandatory) (2 bytes)
+Downstream mode:         Regardless of its association, the extended VLAN tagging operation
+                         configuration data ME pertains to upstream traffic. This attribute
+                         specifies the mode for downstream mapping:
+                         0     The operation performed in the downstream direction is the
+                               inverse of that performed in the upstream direction. For
+                               one-to-one VLAN mappings, the inverse is trivially defined.
+                               Many-to-one mappings are possible, however, and these are
+                               treated as follows. If the many-to-one mapping results from
+                               multiple operation rules producing the same ANI-side tag
+                               configuration, then the first rule in the list defines the inverse
+                               operation. If the many-to-one mapping results from "do not care"
+                               fields in the filter being replaced with provisioned fields in the
+                               ANI-side tags, then the inverse is defined to set the corresponding
+                               fields on the ANI-side with their lowest value.
+                         1     No operation is performed in the downstream direction.
+                         All other values are reserved. (R, W) (mandatory) (1 byte)
+Received frame VLAN      This attribute is a table that filters and tags upstream frames. Each
+tagging operation table: entry represents a tagging rule, comprising a filtering part (the first
+                         7 fields) and a treatment part (the last 7 fields). Each incoming
+                         upstream packet is matched against each rule in list order. The first rule
+                         that matches the packet is selected as the active rule, and the packet is
+                         then treated according to that rule.
+                         There are three categories of rules: zero-tag, single-tag, and double-tag
+                         rules. Logically, these categories are separate, and apply to their
+                         respective incoming frame types. In other words, a single-tag rule
+                         should not apply to a double-tagged frame, even though the single-tag
+                         rule might match the outer tag of the double-tagged frame.
+                         Single-tag rules have a filter outer priority field = 15 (indicating no
+                         external tag), zero-tag rules have both filter priority fields = 15
+                         (indicating no tags), and double-tag rules have both filter priority fields
+                         set to a value that is different from 15 (indicating two tags).
+                         Each tagging rule is based on 'remove' and 'add' operation, where up to
+                         two tags can be removed or added. A modify operation is applied by
+                         the combination of 'remove' and 'add'.
+                         Note that when a single tag is added, the treatments use the 'inner tag'
+                         data-fields for definiteness – this is true even for treatments where a
+                         single tag is added to a frame that already has a tag, i.e., added as a
+                         second tag. The 'outer tag' data-fields are used only when two tags are
+                         added by the same rule.
+                         The terms 'inner' and 'outer' only have meaning with respect to the tags
+                         that are being filtered or added.
+                         One set operation can add, modify or delete one entry. The first 8 bytes
+                         of each entry are guaranteed to be unique, and are used to identify table
+                         entries (list order, above, refers to a sort on the first 8 bytes). The OLT
+                         deletes a table entry by setting its last eight bytes to all 0xFF.
+                                     When the table is created, the ONT should predefine three entries that
+                                     list the default treatment (of normal forwarding) for untagged,
+                                     single-tagged, and double-tagged frames. As an exception to the rule
+                                     on ordered processing, these default rules are always considered as a
+                                     last resort for frames that do not match any other applicable rule. Best
+                                     practice dictates that these entries not be deleted; however, they can be
+                                     modified to produce the desired default behaviour.
+                                              15, x, x, 15, x, x, x, (0, 15, x, x, 15, x, x)
+                                              15, x, x, 14, x, x, x, (0, 15, x, x, 15, x, x)
+                                              14, x, x, 14, x, x, x, (0, 15, x, x, 15, x, x)
+                                     NOTE 1 – x is a "do not care" field and should be set to zero.
+                                     (R, W) (mandatory) (16N bytes, where N is the number of VLAN
+                                     tagging rules)
+          32 31 30 29 28 27 26 25                                         16 15 14 13 12 11 10 9
+                                         24 23 22 21 20 19 18 17                                       8  7  6   5  4   3    2  1
+           Filter outer                                                      Filter outer            Pad (reserved)
+   Word 1                                  Filter outer VID
+             priority                                                         TPID/DE                    12 bits
+           Filter inner                                                      Filter inner    Pad (reserved)             Filter
+   Word 2                                  Filter inner VID
+             priority                                                         TPID/DE             8 bits              Ethertype
+                   Treatment, tags to remove
+                                                                                                                       Treatment
+                            Pad (reserved)                  Treatment                     Treatment
+   Word 3                                                                                                                 outer
+                                 10 bits                   outer priority                 outer VID
+                                                                                                                        TPID/DE
+                                                                                                                       Treatment
+                         Pad (reserved)                     Treatment                     Treatment
+   Word 4                                                                                                                 inner
+                             12 bits                       inner priority                 inner VID
+                                                                                                                        TPID/DE
+                                     Figure 9.3.13-1 – Received frame layout
+Received frame VLAN tagging operation table fields and operations
+Filter outer priority:               (4 bits)
+                                     0..7   Filter received frames on this outer priority (P-bit) value.
+                                     8      Do not filter on outer priority.
+                                     14     This is the default filter when no other two-tag rule applies.
+                                     15     This entry is not a double-tag rule; ignore all other outer tag filter
+                                            fields.
+                                     Other values: Reserved
+Filter outer VID:         (13 bits)
+                          0..4094 Filter received frames on this outer VID value.
+                          4096       Do not filter on the outer VID.
+                          Other values: Reserved
+Filter outer TPID/DE:     (3 bits)
+                          000 Do not filter on outer TPID field.
+                          100 Outer TPID = 8100.
+                          101 Outer TPID = input TPID attribute value, do not care about
+                                DE bit.
+                          110 Outer TPID = input TPID, DE=0.
+                          111 Outer TPID = input TPID, DE=1.
+                          Padding: 12 bits
+Filter inner priority:    (4 bits)
+                          0..7  Filter received frames on this inner priority value.
+                          8     Do not filter on inner priority.
+                          14    This is the default filter when no other one-tag rule applies.
+                          15    This entry is a no-tag rule; ignore all other filter fields.
+                          Other values: Reserved
+Filter inner VID:         (13 bits)
+                          0..4094 Filter received frames on this inner VID value.
+                          4096       Do not filter on the inner VID.
+                          Other values: Reserved
+Filter inner TPID/DE:     (3 bits)
+                          000   Do not filter on inner TPID field.
+                          100   Inner TPID = 8100.
+                          101   Inner TPID = input TPID attribute value, don't care about DE bit.
+                          110   Inner TPID = input TPID, DE=0.
+                          111   Inner TPID = input TPID, DE=1.
+                          Padding: 8 bits
+Filter Ethertype:         (4 bits) The Ethertype value on which to filter received frames, as
+                          listed below.
+                          NOTE 2 – This filter is recommended for use on untagged frames or frames
+                          with only priority.
+                          0     Do not filter on Ethertype.
+                          1     Ethertype = 0x0800 (filter IPoE frames).
+                          2     Ethertype = 0x8863 or 0x8864 (filter PPPoE frames).
+                          3     Ethertype = 0x0806 (filter ARP frames).
+                          Other values: Reserved
+Treatment tags to remove: (2 bits)
+                          0..2 Remove 0, 1 or 2 tags, respectively. If one tag is specified, then
+                                the outer tag is stripped from double-tagged frames.
+                          3     Reserved
+                          Padding: 10 bits
+Treatment outer priority: (4 bits)
+                          0..7 Add an outer tag, and insert this value as the priority in the outer
+                                VLAN tag.
+                          8     Add an outer tag, and copy the outer priority from the inner
+                                priority of the received frame.
+                          9     Add an outer tag, and copy the outer priority from the outer
+                                priority of the received frame.
+                          15 Do not add an outer tag.
+                          Other values: Reserved
+Treatment outer VID:      (13 bits)
+                          000..4094     Use this value as the VID in the outer VLAN tag.
+                          4096          Copy the outer VID from the inner VID of the received
+                                        frame.
+                          4097          Copy the outer VID from the outer VID of the received
+                                        frame.
+                          Other values: Reserved
+Treatment outer           (3 bits)
+TPID/DE:                  000           Copy TPID (and DE, if present) from inner tag of received
+                                        frame.
+                          001           Copy TPID (and DE, if present) from outer tag of received
+                                        frame.
+                          010           Set TPID = output TPID attribute value, copy DE bit from
+                                        inner tag of received frame.
+                          011           Set TPID = output TPID, copy DE from outer tag of
+                                        received frame.
+                          100           Set TPID = 0x8100.
+                          101           Reserved.
+                          110           Set TPID = output TPID, DE=0.
+                          111           Set TPID = output TPID, DE=1.
+                          Padding: 12 bits
+Treatment inner priority: (4 bits)
+                          0..7          Add an inner tag, and insert this value as the priority to
+                                        insert in the inner VLAN tag.
+                          8             Add an inner tag, and copy the inner priority from the
+                                        inner priority of the received frame.
+                          9             Add an inner tag, and copy the inner priority from the
+                                        outer priority of the received frame.
+                          15            Do not add an inner tag.
+                          Other values: Reserved
+                             000..4094          Use this value as the VID in the inner VLAN tag.
+                             4096               Copy the inner VID from the inner VID of the received
+                                                frame.
+                             4097               Copy the inner VID from the outer VID of the received
+                                                frame.
+                             Other values: Reserved
+Treatment inner              (3 bits)
+TPID/DE:                     000                Copy TPID (and DE, if present) from inner tag of received
+                                                frame.
+                             001                Copy TPID (and DE, if present) from outer tag of received
+                                                frame.
+                             010                Set TPID = output TPID attribute value, copy DE bit from
+                                                inner tag of received frame.
+                             011                Set TPID = output TPID, copy DE from outer tag of
+                                                received frame.
+                             100                Set TPID = 0x8100.
+                             101                Reserved.
+                             110                Set TPID = output TPID, DE=0.
+                             111                Set TPID = output TPID, DE=1.
+Associated ME pointer:       This attribute points to the ME with which this extended VLAN
+                             tagging operation configuration data ME is associated.
+                             NOTE 3 – When the association type is xDSL, the two most significant bits
+                             may be used to indicate a bearer channel.
+                             (R, W, Set-by-create) (mandatory) (2 bytes)
+Actions
+Create, delete, get, get next, set
+Notifications
+None.
+                                                       Filter                                                Treatment
+                                        Outer                       Inner                            Outer                   Inner
+                                                                                        Tags to
+                                                                            EtherType
+              Action type
+                                     Priority    VID     Priority     VID               Remove    Priority      VID      Priority    VID
+ Untagged frames
+ Insert 1 full tag (X):
+                                     15         4096    15          4096    0             0       15           N/A       Px          X
+ F Æ X-F
+ Default case, do nothing
+                                     15         4096    15          4096    0             0       15           N/A       15         N/A
+ Insert 2 tags (X,Y):
+                                     15         4096    15          4096    0             0       Py            Y        Px          X
+ F Æ Y-X-F
+ Single tagged frames
+ Insert 1 full tag (X):
+                                     15         4096     8           C      0             0       15           N/A       Px          X
+ C-F Æ X-C-F
+                                                         Filter                                                Treatment
+                                           Outer                      Inner                             Outer                  Inner
+                                                                                          Tags to
+                                                                              EtherType
+            Action type
+                                       Priority    VID     Priority     VID               Remove    Priority      VID      Priority    VID
+Insert 1 tag (X),
+                                       15         4096     8           C      0             0       15           N/A       8           X
+copy priority:
+C-F Æ X-C-F
+Insert 2 tags (X,Y):
+                                       15         4096     8           C      0             0       Py            Y        Px          X
+C-F Æ Y-X-C-F
+Modify tag:
+                                       15         4096     8           C      0             1       15           N/A       Px          X
+C-F Æ X-F
+Modify tag,
+                                       15         4096     8           C      0             1       15           N/A       8           X
+keep original priority:
+C-F Æ X-F
+Modify and insert tag:
+                                       15         4096     8           C      0             1       Py            Y        Px          X
+C-F Æ Y-X-F
+Remove tag:
+                                       15         4096     8           C      0             1       15           N/A       15         N/A
+C-F Æ F
+Default case, do nothing
+                                       15         4096    14          4096    0             0       15           N/A       15         N/A
+Insert two tags:
+                                       15         4096     8           C      0             0       Py            Y        Px          X
+C-F Æ Y-X-C-F
+Double tagged frames
+Insert 1 tag (X):
+                                       8           S       8           C      0             0       15           N/A       Px          X
+S-C-F Æ X-S-C-F
+Insert 1 tag (X),
+                                       8           S       8           C      0             0       15           N/A       9           X
+copy external priority:
+S-C-F Æ X-S-C-F
+Insert 2 tags (X,Y):
+                                       8           S       8           C      0             0       Py            Y        Px          X
+S-C-F Æ Y-X-S-C-F
+Insert 2 tags (X,Y),
+                                       8           S       8           C      0             0       9             Y        8           X
+copy external and internal priority:
+S-C-F Æ Y-X-S-C-F
+Modify external tag:
+                                       8           S       8           C      0             1       15           N/A       Px          X
+S-C-F Æ X-C-F
+Modify external tag,
+                                       8           S       8           C      0             1       15           N/A       9           X
+keep original priority:
+S-C-F Æ X-C-F
+Modify both tags:
+                                       8           S       8           C      0             2       Py            Y        Px          X
+S-C-F Æ Y-X-F
+Modify both tags,
+                                       8           S       8           C      0             2       9             Y        8           X
+keep original priorities:
+S-C-F Æ Y-X-F
+Swap both tags:
+                                       8           S       8           C      0             2       8            4096      9          4097
+S-C-F Æ C-S-F
+Remove outer tag:
+                                       8           S       8           C      0             1       15           N/A       15         N/A
+S-C-F Æ C-F
+Remove both tags:
+                                       8           S       8           C      0             2       15           N/A       15         N/A
+S-C-F Æ F
+Default case, do nothing
+                                       14         4096    14          4096    0             0       15           N/A       15         N/A
+S-C-F Æ S-C-F

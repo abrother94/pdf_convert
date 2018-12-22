@@ -1,0 +1,92 @@
+9.8.10 TU CTP
+This managed entity organizes data that describes the TU path adaptation processing functions of
+the ONT for SDH services. Instances of this managed entity are created and deleted at the request of
+the OLT.
+Relationships
+One or more instances of this managed entity may be associated with an instance of a physical path
+termination point CES UNI that supports SDH.
+Attributes
+Managed entity id:            This attribute provides a unique number for each instance of this
+                              managed entity. (R, Set-by-create) (mandatory) (2 bytes)
+TU type:                      This attribute identifies the TU type. (R, Set-by-create) (mandatory)
+                              (1 byte)
+                              1    TU-11.
+                              2    TU-12.
+                              3    TU-2.
+                              4    TU-3.
+GEM frame loss integration This attribute specifies the GEM frame loss integration period in
+period:                       milliseconds. If GEM frame loss persists for this period, the
+                              associated GEM interworking termination point generates a GEM
+                              frame starvation alarm. (R, W, Set-by-create) (mandatory) (2 bytes)
+Transmit J1/J2:               This attribute is the path trace byte string that the ONT transmits
+                              upstream. Its default value is null. If set, the ONT inserts a byte of
+                              this attribute into the J1 or J2 into each TU payload frame. See
+                              [ITU-T G.707] for further information. (R, W, Set-by-create)
+                              (mandatory) (16 bytes)
+Expected J1/J2:               This attribute is the path trace byte string that the ONT expects to
+                              receive in the downstream direction. Its default value is null. If set,
+                              the ONT compares the J1 or J2 in each received TU payload with this
+                              attribute. If the received J1/J2 string differs, a TIM alarm is
+                              generated. See [ITU-T G.707] for further information. (R, W,
+                              Set-by-create) (mandatory) (16 bytes)
+Received J1/J2:               This attribute is the actual path trace byte string that the ONT
+                              received in the downstream direction. See [ITU-T G.707] for further
+                              information. (R) (mandatory) (16 bytes)
+TIM monitor admin:            This attribute specifies whether or not the TIM (trace indicator
+                              mismatch) alarm is monitored. The following code points are
+                              defined:
+                              0    Enable.
+                              1    Disable.
+                              Selection of a default value for this attribute is outside the scope of
+                              this Recommendation, as it is normally handled through
+                              supplier-operator negotiations. (R, W) (mandatory) (1 byte)
+                          occurs. The following code points are defined:
+                          0   Enable.
+                          1   Disable.
+                          Selection of a default value for this attribute is outside the scope of
+                          this Recommendation, as it is normally handled through
+                          supplier-operator negotiations. (R, W) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+Alarm
+ Number             Alarm                                  Description
+     0      TU3-LOP             Loss of pointer alarm of TU3
+     1      TU3-AIS             TU3 alarm indication signal
+     2      TU3-LOM             Loss of multiframe indication (H4 mismatch or invalid value)
+     3      TU3-UNEQ            TU3 is unequipped with valid data
+     4      TU3-SLM             TU3 signal label mismatch
+     5      TU3-TIM             Trace indicator in TU3 (J1 mismatch)
+     6      TU3-RDI             VC3 alarm indication signal (G1[b5])
+     7      TU3-REI             VC3 remote error indication (G1[b1-b4])
+     8      VC3-SD              VC3 signal degrade
+     9      VC3-SF              VC3 signal fail
+    10      TU2-LOP             Loss of pointer alarm of TU2
+    11      TU2-AIS             TU2 alarm indication signal
+    12      TU2-UNEQ            TU2 is unequipped with valid data
+    13      TU2-SLM             TU2 signal label mismatch
+    14      TU2-TIM             Trace indicator in TU2 (J2 mismatch)
+    15      TU2-RDI             VC2 alarm indication signal (V5[b8])
+    16      TU2-REI             VC2 remote error indication (V5[b3])
+    17      VC2-SD              VC2 signal degrade
+    18      VC2-SF              VC2 signal fail
+    19      TU12-LOP            Loss of pointer alarm of TU12
+    20      TU12-AIS            TU12 alarm indication signal
+    21      TU12-UNEQ           TU12 is unequipped with valid data
+    22      TU12-SLM            TU12 signal label mismatch
+    23      TU12-TIM            Trace indicator in TU12 (J2 mismatch)
+    24      TU12-RDI            VC12 alarm indication signal (V5[b8])
+    25      TU12-REI            VC12 remote error indication (V5[b3])
+    26      VC12-SD             VC12 signal degrade
+    27      VC12-SF             VC12 signal fail
+    28      TU11-LOP            Loss of pointer alarm of TU11
+    29      TU11-AIS                  TU11 alarm indication signal
+    30      TU11-UNEQ                 TU11 is unequipped with valid data
+    31      TU11-SLM                  TU11 signal label mismatch
+    32      TU11-TIM                  Trace indicator in TU11 (J2 mismatch)
+    33      TU11-RDI                  VC11 alarm indication signal (V5[b8])
+    34      TU11-REI                  VC11 remote error indication (V5[b3])
+    35      VC11-SD                   VC11 signal degrade
+    36      VC11-SF                   VC11 signal fail
+ NOTE – When the received frame BER of VCn becomes ≥10−x, the VCn-SD, VCn-SF state is entered.
+ The threshold X of VCn-SD and VCn-SF reuses the SD, SF threshold of the GEM frame.

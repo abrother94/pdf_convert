@@ -1,0 +1,65 @@
+9.9.21 Physical path termination point ISDN UNI
+This managed entity represents the point at a basic rate ISDN UNI where physical paths terminate
+and physical path level functions (e.g., analogue telephony, facsimile function) are performed.
+The ONT automatically creates an instance of this managed entity per port:
+•        When the ONT has ISDN ports built into its factory configuration.
+•        When a cardholder is provisioned to expect a circuit pack of ISDN type.
+•        When a cardholder provisioned for plug-and-play is equipped with a circuit pack of ISDN
+         type. Note that the installation of a plug-and-play card may indicate the presence of ISDN
+         ports via equipment ID as well as its type, and indeed may cause the ONT to instantiate a
+         port mapping package that specifies ISDN ports.
+The ONT automatically deletes instances of this managed entity when a cardholder is neither
+provisioned to expect an ISDN circuit pack, nor is it equipped with an ISDN circuit pack.
+Relationships
+One or more instances of this managed entity are associated with the ONT-G or a circuit pack
+managed entity classified as ISDN type.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity.
+                           This two-byte number indicates the physical position of the UNI. The
+                           first byte is the slot id (defined in clause 9.1.5). The second byte is the
+                           port ID, with range 1..255. (R) (mandatory) (2 bytes)
+Administrative state:      This attribute locks (1) and unlocks (0) the functions performed by this
+                           managed entity. When the administrative state is set to lock, all user
+                           functions of this UNI are blocked, and alarms, TCAs and AVCs for this
+                           managed entity and all dependent managed entities are no longer
+                           generated. Selection of a default value for this attribute is outside the
+                           scope of this Recommendation. (R, W) (mandatory) (1 byte)
+Interworking pointer:      This attribute points to the instance of the GEM interworking termination
+                           point managed entity to which this instance is connected. The value 0 is
+                           a null pointer. (R, W) (optional) (2 bytes)
+D channel ID:              This attribute contains the channel identifier of the connection
+                           transporting the D channel associated with this ISDN BRI port. (R, W)
+                           (mandatory) (1 byte)
+B1 channel ID:             This attribute contains the channel identifier of the connection
+                           transporting the B1 channel associated with this ISDN BRI port. (R, W)
+                           (mandatory) (1 byte)
+B2 channel ID:             This attribute contains the channel identifier of the connection
+                           transporting the B2 channel associated with this ISDN BRI port. (R, W)
+                           (mandatory) (1 byte)
+ARC:                       See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:              See clause I.1.8. (R, W) (optional) (1 byte)
+ISDN loopback              This attribute controls the loopback configuration of this physical
+configuration:             interface.
+                           0 No loopback.
+                           1 Simultaneous loopback of all channels.
+                           1 Loopback of D channel only [sic].
+                           2 Loopback of B1 channel only.
+                           3 Loopback of B2 channel only.
+                           Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                           (mandatory) (1 byte)
+Actions
+Get, set
+Test:                      Request that the ONT perform one or more MLT tests. See test and test
+                           result message layouts in clauses II.2.27 and II.2.45.
+  Attribute value change
+        Number                   Attribute value change                      Description
+           1..5           N/A
+            6             ARC                                  ARC timer expiration
+           7..8           N/A
+          9..16           Reserved
+ Alarm
+        Number                           Alarm                               Description
+            0             AIS                                 Alarm indication signal
+            1             RDI                                 Remote defect indication
+         2..207           Reserved
+        208..223          Vendor-specific alarms              Not to be standardized

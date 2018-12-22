@@ -1,0 +1,40 @@
+9.3.6   MAC bridge port filter table data
+This managed entity organizes data associated with a bridge port. The ONT automatically creates or
+deletes an instance of this managed entity upon the creation or deletion of a MAC bridge port
+configuration data managed entity.
+NOTE – The OLT should disable learning mode in the MAC bridge service profile before writing to the
+MAC filter table.
+Relationships
+An instance of this managed entity is associated with an instance of a MAC bridge port
+configuration data managed entity.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              Through an identical ID, this managed entity is implicitly linked to an
+                              instance of the MAC bridge port configuration data ME. (R)
+                              (mandatory) (2 bytes)
+MAC filter table:             This attribute lists MAC destination addresses associated with the
+                              bridge port, each with an allow/disallow forwarding indicator for
+                              traffic flowing out of the bridge port. In this way, the upstream traffic
+                              is filtered on the ANI-side bridge ports, and the downstream traffic is
+                              filtered on the UNI-side bridge ports. Each entry contains:
+                              •    The entry number, an index into this attribute list (1 byte).
+                              •    Filter byte (1 byte).
+                              •    MAC address (6 bytes).
+                              The bits of the filter byte are assigned as follows:
+                              Bit           Name               Setting
+                              1 (LSB)       Filter/forward     0: forward
+                                                               1: filter
+                              2..7          Reserved           0
+                              8             Add/remove         0: remove this entry (set operation)
+                                                               1: add this entry
+                              Upon ME instantiation, the ONT sets this attribute to an empty table.
+                              One OMCI set message can convey a maximum of three table entries.
+                              However, OMCI does not provide robust exception handling when
+                              more than one entry is included in a set command, and multiple entries
+                              per set operation are not recommended.
+                              (R, W) (mandatory) (8N bytes, where N is the number of entries in the
+                              list)
+Actions
+Get, get next, set
+Notifications
+None.

@@ -1,0 +1,25 @@
+9.7.9    xDSL subcarrier masking upstream profile
+This managed entity contains the subcarrier masking upstream profile for an xDSL line. An
+instance of this managed entity is created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the physical
+path termination point xDSL UNI.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity.
+                           The value 0 is reserved. (R, Set-by-create) (mandatory) (2 bytes)
+Upstream subcarrier        This attribute is a bit map representing upstream mask values for
+mask:                      subcarriers 1 to 64. The MSB of byte 1 corresponds to subcarrier 1, and
+                           the LSB of byte 8 corresponds to subcarrier 64. Each bit position defines
+                           whether the corresponding downstream subcarrier is masked (1) or not
+                           masked (default value 0).
+                           Subcarrier number 1 is the lowest, and subcarrier number NSCus is the
+                           highest subcarrier that can be transmitted in the upstream direction. For
+                           [ITU-T G.992.3], [ITU-T G.992.4] and [ITU-T G.992.5], it is defined in
+                           the corresponding Recommendation. For Annex A of [ITU-T G.992.1]
+                           and [b-ITU-T G.992.2], NSCus = 32 and for Annex B of
+                           [ITU-T G.992.1], NSCus = 64. (R, W, Set-by-create) (mandatory)
+                           (8 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

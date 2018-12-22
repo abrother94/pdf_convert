@@ -1,0 +1,59 @@
+9.4.3    IP port configuration data
+This managed entity organizes data associated with IP port provisioning. Instances of this managed
+entity are created and deleted by the OLT.
+Relationships
+Any number of instances of this managed entity may be associated with an IP router service profile
+and an ARP service profile. Each IP port instance is associated with zero or one instance of a GEM
+interworking termination point or native LAN (e.g., Ethernet) PPTP.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              (R, Set-by-create) (mandatory) (2 bytes)
+Port num:                     This attribute numbers the port. (R, W, Set-by-create) (mandatory)
+                              (1 byte)
+                      this IP port.
+                      1     PPTP Ethernet UNI.
+                      2     GEM interworking TP.
+                      3     MAC bridge port configuration data.
+                      4     802.1p mapper service profile.
+                      5     Physical path termination point xDSL UNI.
+                      6     Multicast GEM interworking termination point.
+                      7     Physical path termination point MoCA UNI.
+                      8     Physical path termination point 802.11 UNI.
+                      9     Ethernet flow termination point.
+                      (R, W, Set-by-create) (mandatory) (1 byte)
+TP pointer:           This attribute points to the instance of the TP associated with this port.
+                      The type of the associated TP is determined by the TP type attribute.
+                      The value 0xFFFF is a null pointer.
+                      NOTE – When the TP type is xDSL, the two most significant bits may be used
+                      to indicate a bearer channel. (R, W, Set-by-create) (mandatory) (2 bytes)
+Port address:         This attribute specifies the provisioned IP address. The value 0 indicates
+                      that no IP address is assigned to the port. (R, W, Set-by-create)
+                      (mandatory) (4 bytes)
+Port mask:            This attribute specifies the IP address mask associated with the port.
+                      The value 0 indicates that no address mask is assigned to this port.
+                      (R, W, Set-by-create) (mandatory) (4 bytes)
+Unnumbered:           The Boolean value true specifies that this IP port is unnumbered. The
+                      value false specifies that the port has an IP address. (R, W,
+                      Set-by-create) (mandatory) (1 byte)
+Administrative state: This attribute locks (1) and unlocks (0) the functions performed by this
+                      managed entity. When the administrative state is set to lock, all user
+                      functions of this port are blocked, and alarms, TCAs and AVCs for this
+                      port and all dependent managed entities are no longer generated.
+                      Selection of a default value for this attribute is outside the scope of this
+                      Recommendation. (R, W, Set-by-create) (mandatory) (1 byte)
+Port state:           This attribute provides status information on the port. Valid values are
+                      up (0) and down (1). (R) (mandatory) (1 byte)
+Allow remote access:  The Boolean value true specifies that remote access is enabled for this
+                      IP port. The value false disables remote access. (R, W, Set-by-create)
+                      (mandatory) (1 byte)
+Router id pointer:    This attribute points to an instance of the IP router service profile. The
+                      value 0xFFFF indicates that this port is not associated with an IP router.
+                      (R, W, Set-by-create) (mandatory) (2 bytes)
+ARP pointer:          This attribute points to the instance of ARP service profile associated
+                      with the port. (R, W, Set-by-create) (mandatory) (2 bytes)
+Encapsulation method: This attribute is not used. If it is present, its value should be set to 1. (R,
+                      W) (optional) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

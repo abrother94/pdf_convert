@@ -1,0 +1,73 @@
+9.4.12 IP host config data
+The IP host config data configures IP-based services offered on the ONT. The ONT automatically
+creates instances of this managed entity if IP host services are available.
+Relationships
+An instance of this managed entity is associated with the ONT managed entity. Any number of
+TCP/UDP MEs can point to the IP host config data, to model any number of ports and protocols.
+Performance may be monitored through an implicitly linked IP host PM history data ME.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            The ONT creates as many instances as there are independent IP stacks
+                            on the ONT. (R) (mandatory) (2 bytes)
+                         value 1 enables the option while 0 disables it.
+                         0x1           Enable DHCP.
+                         0x2           Respond to pings.
+                         0x4           Respond to traceroute messages.
+                         0x8..0x80 Reserved.
+                         (R, W) (mandatory) (1 byte)
+MAC address:             This attribute indicates the MAC address used by the IP node. (R)
+                         (mandatory) (6 bytes)
+Ont identifier:          A unique ONT identifier string. If set to a non-null value, this string is
+                         used instead of the MAC address in retrieving DHCP parameters. If the
+                         string is shorter than 25 characters, it must be null terminated. Its default
+                         value is 25 null bytes. (R, W) (mandatory) (25 bytes)
+IP address:              The address used for IP host services, this attribute has default value 0
+                         (not set). If this value is set, it overrides any values returned in DHCP.
+                         (R, W) (mandatory) (4 bytes)
+Mask:                    The subnet mask for IP host services, this attribute has default value 0
+                         (not set). If this value is set, it overrides any values returned in DHCP.
+                         (R, W) (mandatory) (4 bytes)
+Gateway:                 The default gateway address used for IP host services, this attribute has
+                         default value 0 (not set). If this value is set, it overrides any values
+                         returned in DHCP. (R, W) (mandatory) (4 bytes)
+Primary DNS:             The address of the primary DNS server, this attribute has default value 0
+                         (not set). If this value is set, it overrides any values returned in DHCP.
+                         (R, W) (mandatory) (4 bytes)
+Secondary DNS:           The address of the secondary DNS server, this attribute has default value
+                         0 (not set). If this value is set, it overrides any values returned in DHCP.
+                         (R, W) (mandatory) (4 bytes)
+Current address:         Current address of the IP host service. The ONT updates this attribute if
+                         DHCP assigns a new address. (R) (optional) (4 bytes)
+Current mask:            Current subnet mask for the IP host service. The ONT updates this
+                         attribute if DHCP assigns a new mask. (R) (optional) (4 bytes)
+Current gateway:         Current default gateway address for the IP host service. The ONT
+                         updates this attribute if DHCP assigns a new gateway. (R) (optional)
+                         (4 bytes)
+Current primary DNS:     Current primary DNS server address. The ONT updates this attribute if
+                         DHCP assigns a new address. (R) (optional) (4 bytes)
+Current secondary DNS: Current secondary DNS server address. The ONT updates this attribute
+                         if DHCP assigns a new address. (R) (optional) (4 bytes)
+Domain name:             If DHCP indicates a domain name, it is presented here. If no domain
+                         name is indicated, this attribute is set to a null string. If the string is
+                         shorter than 25 bytes, it must be null terminated. The default value is
+                         25 null bytes. (R) (mandatory) (25 bytes)
+                            indicated, this attribute is set to a null string. If the string is shorter than
+                            25 bytes, it must be null terminated. The default value is 25 null bytes.
+                            (R) (mandatory) (25 bytes)
+Actions
+Get, set
+Test:                       Invoke an ICMP message from this IP host. The test message can be
+                            configured to generate a ping or traceroute. Appendix II defines the test,
+                            test response and test result messages.
+Notifications
+ Attribute value change
+  Number         Attribute value change                              Description
+     1..8     N/A
+       9      Current address               The new value assigned via DHCP
+      10      Current mask                  The new value assigned via DHCP
+      11      Current gateway               The new value assigned via DHCP
+      12      Current primary DNS           The new value assigned via DHCP
+      13      Current secondary DNS         The new value assigned via DHCP
+      14      Domain name                   The new value assigned via DHCP
+      15      Host name                     The new value assigned via DHCP
+      16      Reserved

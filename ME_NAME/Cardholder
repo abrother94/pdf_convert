@@ -1,0 +1,193 @@
+9.1.5     Cardholder
+The cardholder represents the fixed equipment slot configuration of the ONT. One or more of these
+entities is contained in the ONT. Each cardholder can contain 0 or 1 circuit packs; the circuit pack
+models equipment information that can change over the lifetime of the ONT, e.g., through
+replacement.
+An instance of this managed entity exists for each physical slot in an ONT that has pluggable circuit
+packs. One or more instances of this managed entity may also exist in an integrated ONT, to
+represent virtual slots. Instances of this managed entity are created automatically by the ONT, and
+the status attributes are populated according to data within the ONT itself.
+There is potential for conflict in the semantics of the expected plug-in unit type, the expected port
+count and the expected equipment id, both when the slot is not populated and when a new circuit
+pack is inserted. The expected plug-in unit type and the plug-in type mismatch alarm are
+mandatory, although plug-and-play/unknown (circuit pack type 255) may be used as a way to
+minimize their significance. It is recommended that an ONT deny the provisioning of inconsistent
+combinations of expected equipment attributes.
+When a circuit pack is plugged into a cardholder, or when a cardholder is preprovisioned to expect a
+circuit pack of a given type, it may trigger the ONT to instantiate a number of managed entities and
+update the values of others, depending on the circuit pack type. The ONT may also delete a variety
+of other managed entities when a circuit pack is reprovisioned to expect no circuit pack or a circuit
+pack of a different type. These actions are described in the definitions of the various managed
+entities.
+Expected equipment id and expected port count are alternate ways to trigger the same
+preprovisioning effects. These tools may be useful if an ONT is prepared to accept more than one
+circuit pack of a given type but with different port counts, or if a circuit pack is a hybrid that
+matches none of the types in Table 9.1.5-1, but whose identification (e.g., part number) is known.
+Relationships
+An ONT may contain one or more instances of the cardholder, each of which may contain an
+instance of the circuit pack managed entity. The slot id, real or virtual, is a fundamental
+identification mechanism for managed entities with some relationship to physical location.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity. The
+                          ONT sets the first byte of this two-byte identifier to:
+                          0        if the ONT contains pluggable equipment modules;
+                          1        if the ONT is a single integrated equipment.
+                          The second byte of this identifier is the slot number. In integrated ONTs,
+                          this byte may be used as a virtual slot or set to 0 to indicate a universal
+                          pseudo-slot.
+                          Slot numbering schemes differ among vendors. It is only required that slot
+                          numbers be unique across the ONT. Up to 254 equipment slots are
+                          supported in the range 1..254 (Note 1). The value 0 is reserved to indicate a
+                          universal pseudo-slot. The value 255 is also reserved. (R) (mandatory)
+                          (2 bytes)
+                          NOTE 1 – Some xDSL managed entities use the two most significant bits of the
+                          slot number for other purposes. An ONT that supports these services may have slot
+                          limitations or restrictions.
+Actual plug-in unit   This attribute is equal to the type of the circuit pack in the cardholder or 0 if
+type:                 the cardholder is empty. This attribute is then redundant with the type
+                      attribute of the circuit pack managed entity. Circuit pack types are defined
+                      in Table 9.1.5-1. (R) (mandatory) (1 byte)
+                      The three following attributes permit the OLT to specify its intentions for
+                      future equipage of a slot. Once some or all of these are set, the ONT can
+                      proceed to instantiate circuit pack and PPTP MEs, along with other
+                      predeterminable MEs, and allow the OLT to create related discretionary
+                      MEs, thereby supporting service preprovisioning.
+Expected plug-in unit This attribute provisions the type of circuit pack for the slot. For type
+type:                 coding, see Table 9.1.5-1. The value 0 means that the cardholder is not
+                      provisioned to contain a circuit pack. The value 255 means that the
+                      cardholder is configured for plug-and-play. Upon ME instantiation, the
+                      ONT sets this attribute to 0. For integrated interfaces, this attribute may be
+                      used to represent the type of interface. (R, W) (mandatory) (1 byte)
+Expected port count: This attribute permits the OLT to specify the number of ports it expects in a
+                      circuit pack. Prior to provisioning by the OLT, the ONT initializes this
+                      attribute to 0. (R, W) (optional) (1 byte)
+Expected equipment This attribute provisions the specific type of expected circuit pack. This
+id:                   attribute applies only to ONTs that do not have integrated interfaces. In
+                      North America, this may be the expected equipment CLEI code. Upon ME
+                      instantiation, the ONT sets this attribute to all spaces. (R, W) (optional)
+                      (20 bytes)
+Actual equipment id: This attribute identifies the specific type of circuit pack, once it is installed.
+                      This attribute applies only to ONTs that do not have integrated interfaces. In
+                      North America, this may be the equipment CLEI code. When the slot is
+                      empty or the equipment ID is not known, this attribute should be set to all
+                      spaces. (R) (optional) (20 bytes)
+Protection profile    This attribute indicates an equipment protection profile that may be
+pointer:              associated with the cardholder. Its value is the least significant byte of the
+                      managed entity ID of the equipment protection profile with which it is
+                      associated, or 0 if equipment protection is not used. (R) (optional) (1 byte)
+Invoke protection     The OLT may use this attribute to control equipment protection switching.
+switch:               Code points have the following meaning when set by the OLT:
+                      0        Release protection switch.
+                      1        Operate protection switch, protect cardholder unspecified.
+                      2        Operate protection switch, use first protect cardholder.
+                      3        Operate protection switch, use second protect cardholder.
+                      The ONT should deny attempts to switch to an unequipped, defective or
+                      already active protection cardholder.
+                      Upon the get action from the OLT, this attribute should return the current
+                      value of the actual protection configuration. Code points are as defined
+                      above, except that the value 1 is never returned.
+                      When circuit packs that support a PON IF function are switched, the
+                      response should be returned on the same PON that received the command.
+                      However, the OLT should also be prepared to accept a response on the
+                      redundant PON. (R, W) (optional) (1 byte)
+Get, set
+Notifications
+ Attribute value change
+  Number        Attribute value change                               Description
+      1       Actual type                 Actual type of circuit pack in cardholder
+     2..4     N/A
+      5       Actual equipment id         Actual equipment ID of circuit pack in cardholder
+     6..7     N/A
+    8..16     Reserved
+Alarm:                   If no circuit pack is configured or if the cardholder is configured for
+                         plug-and-play with no expected equipment ID, no alarms are raised. No
+                         alarms are defined for ONTs with integrated interfaces.
+  Number                Alarm                                        Description
+      0       Plug-in LIM missing         Configured circuit pack is not present. If the plug-in LIM
+              alarm                       missing alarm is active, none of the mismatch alarms are
+                                          declared.
+      1       Plug-in type mismatch       Inserted circuit pack is wrong type
+              alarm
+      2       Improper card removal       Circuit pack has been removed without being de-provisioned.
+                                          This is a redundant alarm that helps the OLT distinguish
+                                          between transitions from state S2 to state S1 (Figure 9.1.5-1)
+                                          and transitions from state S4 to state S1. This alarm is sent only
+                                          when a transition occurs from state S2 to state S1.
+      3       Plug in equipment id        Inserted circuit pack has wrong equipment ID
+              mismatch alarm
+      4      Protection switch           An autonomous equipment protection switch has occurred. This
+                                         notification is reported by the protected cardholder.
+   5..207     Reserved
+  208..223    Vendor-specific             Not to be standardized
+Figure 9.1.5-1 is a state diagram that describes insertion and removal of a particular circuit pack
+into/from a cardholder that is provisioned to a specific type or to plug-and-play.
+NOTE 2 – The state diagram is not applicable for ONTs with integrated interfaces.
+                             Figure 9.1.5-1 – Cardholder state diagram
+Some of the following circuit pack types are obsolete in G-PON applications. Their code points and
+definitions are reserved for backward compatibility but, in the interest of brevity, they are not listed.
+                                  Table 9.1.5-1 – Circuit pack types
+  Coding             Content                                       Description
+     0      No LIM                     Default value
+   1..12    See [ITU-T G.983.2]        Various ATM-based UNIs
+    13      C1.5 (DS1)                 1.544 Mbit/s local (T-interface) module
+    14      C2.0 (E1)                  2.048 Mbit/s local (T-interface) module
+    15      C6.3 (J2)                  6.312 Mbit/s local (T-interface) module
+    16      C-DS1/E1                   Configurable DS1/E1 module
+    17      C-DS1/E1/J1                Configurable DS1/E1/J1 module
+    18      C6.3U (J2)                 6.312 Mbit/s remote (U-interface) module
+    19      C192k                      192 kbit/s local (T-interface) module
+    20      C44.7 (DS3)                44.736 Mbit/s local (T-interface) module
+    21      C34.3 (E3)                 34.368 Mbit/s local (T-interface) module
+    22      10BaseT                    10 BaseT Ethernet LAN IF
+    23      100BaseT                   100 BaseT Ethernet LAN IF
+    24      10/100BaseT                10/100 BaseTx Ethernet LAN IF (Note)
+   25..27   See [ITU-T G.983.2]        Various non-Ethernet LAN technologies
+    28      C1.5 (J1)                  1.544 Mbit/s local (T-interface) module
+    29      A150SMF SONET              ATM OC-3 SMF UNI
+    30      A150MMF SONET              ATM OC-3 MMF UNI
+    31      A150UTP SONET              ATM OC-3 UTP UNI
+    32      POTS                       Plain old telephony service
+    33      ISDN-BRI                   ISDN basic rate interface
+    34      Gigabit optical Ethernet   Gigabit Ethernet optical IF (Note)
+    35      xDSL                       xDSL IF
+    36      SHDSL                      SHDSL IF
+    37      VDSL                       VDSL IF ([ITU-T G.993.1])
+    38      Video service              Video module
+    39      LCT                        Local craft terminal interface
+    40      802.11                     [IEEE 802.11] interface
+    41      xDSL/POTS                  Combination xDSL and POTS interfaces
+    42      VDSL/POTS                  Combination VDSL ([ITU-T G.993.1]) and POTS interfaces
+    43      Common equipment           Circuit packs such as removable power supply modules or ONU
+                                       controllers
+    44      Combined video UNI and     Circuit pack that combines both functions
+            PON interface
+    45      Mixed services equipment   Circuit pack with several types of ANI and/or UNI. Suggested for
+                                       use with the port mapping package-G managed entity.
+    46      MoCA                       MoCA
+    47      10/100/1000BaseT           10/100/1000 BaseTx Ethernet LAN IF (Note)
+ 48.. 191   Reserved
+                                     Table 9.1.5-1 – Circuit pack types
+   Coding               Content                                        Description
+  192..223    Vendor-specific               Reserved for vendor use, not to be standardized
+  224..242    Reserved
+     243      GPON1244155                   G-PON interface, 1244 Mbit/s downstream and 155 Mbit/s
+                                            upstream
+     244      GPON1244622                   G-PON interface, 1244 Mbit/s downstream and 622 Mbit/s
+                                            upstream
+     245      GPON12441244                  G-PON interface, 1244 Mbit/s downstream and 1244 Mbit/s
+                                            upstream
+     246      GPON2488155                   G-PON interface, 2488 Mbit/s downstream and 155 Mbit/s
+                                            upstream
+     247      GPON2488622                   G-PON interface, 2488 Mbit/s downstream and 622 Mbit/s
+                                            upstream
+     248      GPON24881244                  G-PON interface, 2488 Mbit/s downstream and 1244 Mbit/s
+                                            upstream
+     249      GPON24882488                  G-PON interface, 2488 Mbit/s downstream and 2488 Mbit/s
+                                            upstream
+  250..254    See [ITU-T G.983.2]           G-PON and B-PON interfaces of diverse rates
+     255      Plug-and-play/unknown         Plug-and-play (for the cardholder managed entity only).
+                                            Unrecognized module (for the circuit pack managed entity only).
+ NOTE – Codepoints 24 and 34 were used by some implementations to represent the 10/100/1000BaseT
+ interface because codepoint 47 was not defined at the time. While codepoint 47 should be adopted for this
+ interface at the earliest opportunity, near-term interoperability may require the flexible recognition of these
+ other codepoints.

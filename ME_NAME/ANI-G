@@ -1,0 +1,109 @@
+9.2.1   ANI-G
+This managed entity organizes data associated with each access network interface supported by the
+ONT. The ONT automatically creates one instance of this managed entity for each PON physical
+port.
+Relationships
+An instance of this managed entity is associated with each instance of a physical PON interface.
+Attributes
+Managed entity id:     This attribute uniquely identifies each instance of this managed entity. Its
+                       value indicates the physical position of the PON IF. The first byte is the slot
+                       id (defined in clause 9.1.5). The second byte is the port ID. (R) (mandatory)
+                       (2 bytes)
+SR indication:         This Boolean attribute indicates the ONT's capability to report queue status
+                       for DBA. The value true means that status reporting is available for all
+                       T-CONTs that are associated with the ANI. (R) (mandatory) (1 byte)
+Total T-CONT           This attribute indicates the total number of T-CONTs that can be supported
+number:                on this ANI. (R) (mandatory) (2 bytes)
+GEM block length:      This attribute specifies the reporting block size for GEM mode, in units of
+                       bytes. The value set by the OLT is used by all T-CONTs on this ANI. Upon
+                       ME instantiation, the ONT sets this attribute to 48. (R, W) (mandatory)
+                       (2 bytes)
+reporting:            capabilities. [ITU-T G.984.3] defines three possible piggyback reporting
+                      modes. For reporting mode 0, the single field is the entire report. For
+                      reporting mode 1, the DBA report is two fields long. For reporting mode 2,
+                      the DBA report is four fields long. Mode 0 is mandatory for ONTs that
+                      utilize the piggyback DBA reporting method; modes 1 and 2 are optional.
+                      The following coding indicates the ONT's piggyback DBA reporting mode
+                      capabilities:
+                      0        Mode 0 only.
+                      1        Modes 0 and 1.
+                      2        Modes 0 and 2.
+                      3        Modes 0, 1 and 2.
+                      4        Piggyback DBA reporting not supported.
+                      (R) (mandatory) (1 byte)
+Whole ONT DBA         This attribute indicates that the ONT supports whole ONT DBA reporting
+reporting:            (1) as specified in [ITU-T G.984.3], or that it does not (0). (R) (mandatory)
+                      (1 byte)
+SF threshold:         This attribute specifies the downstream BER threshold to detect the SFi/SF
+                      alarm. When this value is y, the BER threshold is 10–y. Valid values are 3..8.
+                      Upon ME instantiation, the ONT sets this attribute to 5. (R, W) (mandatory)
+                      (1 byte)
+SD threshold:         This attribute specifies the downstream BER threshold to detect the SDi/SD
+                      alarm. When this value is x, the BER threshold for SDi/SD is 10–x. Valid
+                      values are 4..10. The SD threshold must be lower than the SF threshold; that
+                      is, x > y. Upon ME instantiation, the ONT sets this attribute to 9. (R, W)
+                      (mandatory) (1 byte)
+ARC:                  See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:         See clause I.1.8. (R, W) (optional) (1 byte)
+Optical signal level: This attribute reports the current measurement of total optical signal level at
+                      1490 nm. Its value is a 2s complement integer referred to 1 mW (i.e., dBm),
+                      with 0.002 dB granularity. (R) (optional) (2 bytes)
+Lower optical         This attribute specifies the optical level the ONT uses to declare the
+threshold:            1490 nm low received optical power alarm. Valid values are –127 dBm
+                      (coded as 254) to 0 dBm (coded as 0) in 0.5 dB increments. The default
+                      value 0xFF selects the ONT's internal policy. (R, W) (optional) (1 byte)
+Upper optical         This attribute specifies the optical level the ONT uses to declare the
+threshold:            1490 nm high received optical power alarm. Valid values are –127 dBm
+                      (coded as 254) to 0 dBm (coded as 0) in 0.5 dB increments. The default
+                      value 0xFF selects the ONT's internal policy. (R, W) (optional) (1 byte)
+ONT response time: This attribute indicates actual ONT response time recorded by ONT. The
+                        range of this attribute should be in the range described in
+                        [ITU-T G.984.3], which is 34..36 microseconds. The unit is nanoseconds;
+                        however, the accuracy is likely to be more coarse. Furthermore, the value
+                        may change from one ranging cycle to the next. Valid values are:
+                        0                     null, function not supported.
+                        34000 to 36000        response time in nanoseconds.
+                        All other values reserved.
+                        (R) (optional) (2 bytes)
+Transmit optical        This attribute reports the current measurement of optical transmit power
+level:                  level. Its value is a 2s complement integer referred to 1 mW (i.e., dBm),
+                        with 0.002 dB granularity. (R) (optional) (2 bytes)
+Lower transmit          This attribute specifies the transmit power level the ONT uses to declare the
+power threshold:        low transmit optical power alarm. Its value is a 2s complement integer
+                        referred to 1 mW (i.e., dBm), with 0.5 dB granularity. The default value
+                        –63.5 (0x81) selects the ONT's internal policy. (R, W) (optional) (1 byte)
+Upper transmit          This attribute specifies the transmit power level the ONT uses to declare the
+power threshold:        high transmit optical power alarm. Its value is a 2s complement integer
+                        referred to 1 mW (i.e., dBm), with 0.5 dB granularity. The default value
+                        –63.5 (0x81) selects the ONT's internal policy. (R, W) (optional) (1 byte)
+Actions
+Get, set
+Test:                   Test the ANI-G. The test action can be used to perform optical line
+                        supervision tests; refer to Appendix II.
+Notifications
+ Attribute value change
+  Number       Attribute value change                                Description
+     1..7   N/A
+      8     ARC                           Alarm reporting control cancellation
+    9..12   N/A
+   13..16   Reserved
+ Alarm
+  Number               Alarm                                         Description
+      0     Low received optical power    Received 1490 nm optical power below threshold
+      1     High received optical power   Received 1490 nm optical power above threshold
+      2     SF                            Bit error-based signal fail. Industry practice normally expects
+                                          the BER to improve by at least an order of magnitude before
+                                          clearing the alarm.
+      3     SD                            Bit error-based signal degrade. Industry practice normally
+                                          expects the BER to improve by at least an order of magnitude
+                                          before clearing the alarm.
+      4     Low transmit optical power    Transmit optical power below lower threshold
+ Alarm
+  Number                 Alarm                                         Description
+      5      High transmit optical power     Transmit optical power above upper threshold
+      6      Laser bias current              Laser bias current above threshold determined by vendor; laser
+                                             end of life pending
+   7..207    Reserved
+  208..223 Vendor-specific alarms            Not to be standardized
+Test result:              The ONT may report a test result autonomously if it performs self test
+                          functions autonomously.

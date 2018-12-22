@@ -1,0 +1,56 @@
+9.8.11 TU performance monitoring history data
+This managed entity collects performance monitoring data from SDH TUs. Most of the parameters
+are received from the GEM layer, and may therefore be considered egress PM. For the most part,
+ingress PM is collected at the CES managed entity.
+Instances of this ME are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+One instance of this managed entity may exist for each instance of the TU CTP managed entity.
+Attributes
+Managed entity id:             This attribute uniquely identifies each instance of this managed
+                               entity. Through an identical ID, this managed entity is implicitly
+                               linked to an instance of a TU CTP. (R, Set-by-create) (mandatory)
+                               (2 bytes)
+Interval end time:             This attribute identifies the most recently finished 15-minute interval.
+                               (R) (mandatory) (1 byte)
+Threshold data 1/2 id:         This attribute points to an instance of the threshold data 1 and
+                               2 managed entities that contains PM threshold values. (R, W,
+                               Set-by-create) (mandatory) (2 bytes)
+Positive pointer               This attribute counts pointer increments generated. (R) (mandatory)
+justification:                 (4 bytes)
+Negative pointer               This attribute counts pointer decrements generated. (R) (mandatory)
+justification:                 (4 bytes)
+Near-end block error           This attribute counts near-end block errored seconds. (R)
+seconds:                       (mandatory) (4 bytes)
+Near-end severely block        This attribute counts near-end severely block errored seconds. (R)
+error seconds:                 (mandatory) (4 bytes)
+Remote-end block error         This attribute counts far-end block errored seconds. (R) (mandatory)
+seconds:                       (4 bytes)
+Remote-end severely block This attribute counts far-end severely block errored seconds. (R)
+error seconds:                 (mandatory) (4 bytes)
+Near-end background               This attribute counts near-end background block errors. (R)
+block error:                      (mandatory) (4 bytes)
+Remote-end background             This attribute counts far-end background block errors. (R)
+block error:                      (mandatory) (4 bytes)
+Near-end unavailable              This attribute counts near-end unavailable seconds. (R) (mandatory)
+seconds:                          (4 bytes)
+Remote-end unavailable            This attribute counts far-end unavailable seconds. (R) (mandatory)
+seconds:                          (4 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+   Number                    Threshold crossing alert              Threshold value attribute # (Note)
+       0         Positive pointer justification                                      1
+       1         Negative pointer justification                                      2
+       2         Near-end block error seconds                                        3
+       3         Near-end severely block error seconds                               4
+       4         Remote-end block error seconds                                      5
+       5         Remote-end severely block error seconds                             6
+       6         Near-end background block error                                     7
+       7         Remote-end background block error                                   8
+       8         Near-end unavailable seconds                                        9
+       9         Remote-end unavailable seconds                                     10
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold data 1
+ managed entity.

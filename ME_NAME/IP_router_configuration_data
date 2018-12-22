@@ -1,0 +1,17 @@
+9.4.2    IP router configuration data
+This managed entity records data associated with an IP router configuration. The ONT
+automatically creates or deletes an instance of this managed entity upon creation or deletion of the
+associated IP router service profile.
+Relationships
+An instance of this managed entity is associated with an instance of the IP router service profile.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              Through an identical ID, this managed entity is implicitly linked to an
+                              instance of the IP router service profile. (R) (mandatory) (2 bytes)
+Ip reasm timeout:             This attribute indicates the maximum number of seconds that received
+                              fragments are held while they are awaiting reassembly at this router. (R)
+                              (mandatory) (4 bytes)
+Actions
+Get
+Notifications
+None.

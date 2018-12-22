@@ -1,0 +1,42 @@
+9.9.10 Network dial plan table
+The network dial plan table ME is optional for ONTs providing VoIP service. This ME is used to
+provision dial plans from the OLT. Instances of this managed entity are created and deleted by the
+OLT. If a non-OMCI interface is used to manage SIP for VoIP, this ME is unnecessary. The
+non-OMCI interface supplies the necessary data, which may be read back to the OLT via the SIP
+config portal ME.
+Relationships
+An instance of this managed entity may be associated with one or more instances of the SIP user
+data managed entity.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity.
+                           (R, Set-by-create) (mandatory) (2 bytes)
+Dial plan number:          This attribute indicates the current number of dial plans in the dial plan
+                           table. Default value is 0. (R) (mandatory) (2 bytes)
+Dial plan table max size: This attribute defines the maximum number of dial plans that can be
+                           stored in the dial plan table. (R, Set-by-create) (mandatory) (2 bytes)
+Critical dial timeout:     This attribute defines the critical dial timeout for digit map processing in
+                           milliseconds. The default value is 4000 ms. (R, W, Set-by-create)
+                           (mandatory) (2 bytes)
+Partial dial timeout:      This attribute defines the partial dial timeout for digit map processing in
+                           milliseconds. The default value is 16000 ms. (R, W, Set-by-create)
+                           (mandatory) (2 bytes)
+Dial plan format:          This attribute defines the dial plan format standard that is supported in
+                           the ONT for VoIP. Valid values include:
+                           0    Not defined.
+                           1    H.248 format with specific plan (table entries define the dialling
+                                plan).
+                           2    NSC format.
+                           3    Vendor-specific format.
+                           The default is 1. (R, W, Set-by-create) (mandatory) (1 byte)
+Dial plan table:           The table contains a dial plan used by the VoIP service, along with fields
+                           to manage the table. These table attributes are further described below.
+                           (R, W) (mandatory) (30N bytes, where N is the number of dial plans)
+Action:                    Remove (0) or add (1) this plan (set action). When a dial plan is being
+                           removed, only the dial plan id field is used to identify the dial plan token.
+                           (1 byte)
+Dial plan token:           Token used by the VoIP service to process dial plans. This ASCII string
+                           is typically delimited by ":". (28 bytes)
+Actions
+Create, delete, get, get next, set
+Notifications
+None.

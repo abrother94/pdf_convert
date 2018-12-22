@@ -1,0 +1,109 @@
+9.3.14 Dot1X port extension package
+An instance of this managed entity represents a set of attributes that control a port's
+[b-IEEE 802.1X] operation. It is created and deleted autonomously by the ONT upon creation or
+deletion of a PPTP that supports 802.1X authentication.
+Relationships
+An instance of this managed entity is associated with a physical path termination point that
+performs IEEE 802 authentication (i.e., Ethernet or DSL).
+Attributes
+Managed entity id:          This attribute provides a unique number for each instance of this
+                            managed entity. Its value is the same as that of its associated physical
+                            path termination point (i.e., slot and port number).
+                            NOTE – When the associated port is xDSL, the two most significant bits may
+                            be used to indicate a bearer channel. (R) (mandatory) (2 bytes)
+Dot1x enable:               If set true, this Boolean attribute forces the associated port to
+                            authenticate via [b-IEEE 802.1X] as a precondition of normal service.
+                            The default value false does not impose 802.1X authentication on the
+                            associated port. (R, W) (mandatory) (1 byte)
+Action register:            This attribute defines a set of actions that can be performed on the
+                            associated port. The act of writing to the register causes the specified
+                            action.
+                            1)    Force reauthentication: This opcode initiates an 802.1X
+                                  reauthentication conversation with the associated port. The port
+                                  remains in its currently authorized state until the conversation
+                                  concludes.
+                            2)    Force unauthenticated: This opcode initiates an 802.1X
+                                  authentication conversation whose outcome is predestined to fail,
+                                  thereby disabling normal Ethernet service on the port. The port's
+                                  provisioning is not changed, such that upon reinitialization, a
+                                  new 802.1X conversation may restore service without prejudice.
+                            3)    Force authenticated: This opcode initiates an 802.1X
+                                  authentication conversation whose outcome is predestined to
+                                  succeed, thereby unconditionally enabling normal Ethernet
+                                  service on the port. The port's provisioning is not changed, such
+                                  that upon reinitialization, a new 802.1X conversation is required.
+                            (W) (mandatory) (1 byte)
+Authenticator PAE state: This attribute returns the value of the port's PAE state. States are
+                           further described in [b-IEEE 802.1X]. Values are coded as shown
+                           below:
+                           0     Initialize.
+                           1     Disconnected.
+                           2     Connecting.
+                           3     Authenticating.
+                           4     Authenticated.
+                           5     Aborting.
+                           6     Held.
+                           7     Force auth.
+                           8     Force unauth.
+                           9     Restart.
+                           (R) (optional) (1 byte)
+Backend authentication     This attribute returns the value of the port's back-end authentication
+state:                     state. States are further described in [b-IEEE 802.1X]. Values are
+                           coded as shown below:
+                           0     Request.
+                           1     Response.
+                           2     Success.
+                           3     Fail.
+                           4     Timeout.
+                           5     Idle.
+                           6     Initialize.
+                           7     Ignore.
+                           (R) (optional) (1 byte)
+Admin controlled           This attribute controls the directionality of the port's authentication
+directions:                requirement. The default value 0 indicates that control is imposed in
+                           both directions. The value 1 indicates that control is imposed only on
+                           traffic from the subscriber toward the network. (R, W) (optional)
+                           (1 byte)
+Operational controlled     This attribute indicates the actual directionality of the port's
+directions:                authentication. The value 0 indicates that control is imposed in both
+                           directions. The value 1 indicates that control is imposed only on traffic
+                           from the subscriber toward the network. (R) (optional) (1 byte)
+Authenticator controlled This read-only attribute indicates whether the controlled port is
+port status:               currently authorized (1) or unauthorized (2). (R) (optional) (1 byte)
+Quiet period:              This attribute specifies the interval between EAP request/identity
+                           invitations sent to the peer. Other events such as carrier present or
+                           EAPOL start frames from the peer may trigger an EAP request/identity
+                           frame from the ONT at any time; this attribute controls the ONT's
+                           periodic behaviour in the absence of these other inputs. It is expressed
+                           in seconds. (R, W) (optional) (2 bytes)
+                              the radius server before timing out. Within this maximum interval, the
+                              ONT may initiate several retransmissions with exponentially
+                              increasing delay. Upon timeout, the ONT may try another radius server
+                              if there is one, or invoke the fallback policy, if no alternate radius
+                              servers are available. Server timeout is expressed in seconds, with a
+                              default value of 30 and a maximum value of 65535 seconds. (R, W)
+                              (optional) (2 bytes)
+Reauthentication period: This attribute records the reauthentication interval specified by the
+                              radius authentication server. It is expressed in seconds. The attribute is
+                              only meaningful after a port has been authenticated. (R) (optional)
+                              (2 bytes)
+Reauthentication enabled: This Boolean attribute records whether the radius authentication server
+                              has enabled reauthentication on this service (true) or not (false). The
+                              attribute is only meaningful after a port has been authenticated. (R)
+                              (optional) (1 byte)
+Key transmission enabled: This Boolean attribute indicates whether key transmission is enabled
+                              (true) or not (false). This feature is not required; the parameter is listed
+                              here for completeness vis-à-vis [b-IEEE 802.1X]. (R, W) (optional)
+                              (1 byte)
+Actions
+Get, set
+Notifications
+ Alarm
+  Number                Alarm                                          Description
+      0     Dot1x local authentication –    No radius authentication server was accessible. In accordance
+            allowed                         with local policy, the port was allowed access without
+                                            authentication.
+      1     Dot1x local authentication –    No radius authentication server was accessible. In accordance
+            denied                          with local policy, the port was denied access.
+   2..207   Reserved
+  208..223  Vendor-specific alarms          Not to be standardized

@@ -1,0 +1,29 @@
+9.4.1     IP router service profile
+This managed entity models an IP router as a whole. It organizes data that affects all ports on the
+router. An instance of this managed entity is created and deleted by the OLT.
+Relationships
+One or more instances of this managed entity may be associated with a real or virtual cardholder
+(slot) that supports the router function. Any number of router ports may be associated with the
+router through IP port config data MEs.
+The router itself is configured and monitored through implicitly linked instances of the IP router
+config data, IP route table, IP static routes and IP and ICMP PM history data MEs.
+Attributes
+Managed entity id:                    This attribute uniquely identifies each instance of this managed entity.
+                                      The first byte is the slot id (defined in clause 9.1.5). If the ONT is
+                                      integrated, its value is 0. The second byte is the router group id.
+                                      (R, Set-by-create) (mandatory) (2 bytes)
+Forwarding ind:                       The Boolean value true globally enables forwarding of IP packets
+                                      (packets may still be discarded because of other settings). The value
+                                      false disables IP forwarding. (R, W, Set-by-create) (mandatory) (1 byte)
+Proxy ARP ind:                        The Boolean value true enables proxy ARP. The value false disables
+                                      proxy ARP. (R, W, Set-by-create) (mandatory) (1 byte)
+Directed broadcast ind:               The Boolean value true enables relaying of directed broadcast packets.
+                                      (R, W, Set-by-create) (mandatory) (1 byte)
+Upstream multicast            This attribute specifies whether upstream IP multicast packets are
+filtering:                    forwarded (0) or filtered (1). (R, W, Set-by-create) (mandatory) (1 byte)
+Downstream multicast          This attribute specifies whether downstream IP multicast packets are
+filtering:                    forwarded (0) or filtered (1). (R, W, Set-by-create) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

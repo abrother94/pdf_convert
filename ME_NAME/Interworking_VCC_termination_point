@@ -1,0 +1,65 @@
+9.13.4 Interworking VCC termination point
+An instance of this managed entity represents a point in the ONT where the interworking of a
+service or underlying physical infrastructure (e.g., ADSL) to an ATM layer takes place. At this
+point, ATM cells are generated from a bit stream (e.g., Ethernet) or a bit stream is re-constructed
+from ATM cells.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+One instance of this managed entity exists for each occurrence of transformation of a data stream
+into ATM cells and vice versa.
+Attributes
+Managed entity id:     This attribute uniquely identifies each instance of this managed entity. It
+                       must be unique over all interworking VCC and GEM interworking
+                       termination point MEs. (R, Set-by-create) (mandatory) (2 bytes)
+VCI value:             This attribute identifies the VCI value associated with this interworking
+                       VCC termination point. (R, W, Set-by-create) (mandatory) (2 bytes)
+VP network CTP         This attribute points to the VP network CTP associated with this
+connectivity           interworking VCC termination point. (R, W, Set-by-create) (mandatory)
+pointer:               (2 bytes)
+Interworking           Not used, should be set to 0. (R, W, Set-by-create) (mandatory) (1 byte)
+option:
+Service profile        Not used, should be set to 0. (R, W, Set-by-create) (mandatory) (2 bytes)
+pointer:
+AAL5 profile           This attribute points to an instance of the AAL5 profile. (R, W,
+pointer:               Set-by-create) (mandatory) (2 bytes)
+Interworking           Not used, should be set to 0. (R, W, Set-by-create) (mandatory) (2 bytes)
+termination point
+pointer:
+configuration:           retained for backward compatibility, but some are not expected to be
+                         needed in G-PON applications.
+                         0   No loopback.
+                         1   Loopback 1, loopback of downstream traffic before FEC of AAL 1.
+                         2   Loopback 2, loopback of downstream traffic after FEC of AAL 1.
+                         3   Loopback after AAL, loopback of downstream traffic after any AAL.
+                             Loopback after AAL is depicted in Figure 9.13.4-1.
+                           Figure 9.13.4-1 – AAL loopback configuration
+                         The default value of this attribute is 0. (R, W) (mandatory) (1 byte)
+PPTP counter:            This value is the number of instances of PPTP managed entities associated
+                         with this instance of the interworking VCC termination point. (R)
+                         (optional) (1 byte)
+Operational state:       This attribute indicates whether or not the managed entity is capable of
+                         performing its function. Valid values are enabled (0) and disabled (1). (R)
+                         (optional) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+ Attribute value change
+  Number          Attribute value change                                Description
+     1..8     N/A
+      9       Op state                          Operational state change
+   10..16     Reserved
+ Alarm
+  Number                   Alarm                                        Description
+      0       End-to-end VC AIS LMIR            End-to-end VC-AIS receiving indication (optional)
+      1       End-to-end VC RDI LMIR            End-to-end VC-RDI receiving indication (optional)
+      2       End-to-end VC AIS LMIG            End-to-end VC-AIS generation indication (optional)
+      3       End-to-end VC RDI LMIG            End-to-end VC-RDI generation indication (optional)
+      4       Segment loss of continuity        Loss of continuity detected when the interworking VCC
+                                                termination point is a segment end point (optional)
+ Alarm
+   Number                     Alarm                                       Description
+        5        End-to-end loss of continuity     Loss of continuity detected at the interworking VCC
+                                                   termination point (optional)
+        6        CSA                               Cell starvation alarm
+     7..207      Reserved
+   208..223      Vendor-specific alarms            Not to be standardized

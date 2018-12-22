@@ -1,0 +1,31 @@
+9.13.5 AAL 5 profile
+NOTE – Except for its name, this managed entity is identical to the AAL 5 profileB-PON defined in
+[ITU-T G.983.2].
+This managed entity organizes data that describe the AAL type 5 processing functions of the ONT.
+It is used with the interworking VCC termination point managed entity.
+This managed entity is created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the
+interworking VCC termination point.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity.
+                           (R, Set-by-create) (mandatory) (2 bytes)
+Max CPCS PDU               This attribute specifies the maximum CPCS PDU size to be transmitted
+size:                      over the connection in both upstream and downstream directions. (R,
+                           W, Set-by-create) (mandatory) (2 bytes)
+AAL mode:                  This attribute specifies the AAL mode:
+                           0        Message assured.
+                           1        Message unassured.
+                           2        Streaming assured.
+                           3        Streaming non-assured.
+                           (R, W, Set-by-create) (mandatory) (1 byte)
+SSCS type:                 This attribute specifies the SSCS type for the AAL. Valid values are:
+                           0        Null.
+                           1        Data SSCS based on SSCOP, assured operation.
+                           2        Data SSCS based on SSCOP, non-assured operation.
+                           3        Frame relay SSCS.
+                           (R, W, Set-by-create) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

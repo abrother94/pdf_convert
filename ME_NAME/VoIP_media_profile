@@ -1,0 +1,69 @@
+9.9.5     VoIP media profile
+The VoIP media profile managed entity contains settings that apply to VoIP voice encoding. This
+entity is conditionally required for ONTs that offer VoIP services. If a non-OMCI interface is used
+to manage VoIP signalling, this ME is unnecessary. The non-OMCI interface supplies the necessary
+data, which may be read back to the OLT via the SIP config portal ME or the MGC config
+portal ME.
+An instance of this managed entity is created and deleted by the OLT. A VoIP media profile is
+needed for each unique set of profile attributes.
+Relationships
+An instance of this managed entity may be associated with one or more VoIP voice CTP managed
+entities.
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. (R, Set-by-create) (mandatory) (2 bytes)
+Fax mode:                     Selects the fax mode; values are:
+                              0 Passthru.
+                              1 T.38.
+                              The default value is 0. (R, W, Set-by-create) (mandatory) (1 byte)
+Voice service profile         Pointer to a voice service profile. This ME defines jitter, echo
+pointer:                      cancellation and PSTN data. (R, W, Set-by-create) (mandatory)
+                              (2 bytes)
+Codec selection (1st order): This attribute specifies codec selection as              defined    by
+                              [IETF RFC 3551]. The default value is 0, PCMU.
+                       Value         Encoding name          Clock rate (Hz)
+                          0       PCMU                            8,000
+                          1       Reserved
+                          2       Reserved
+                          3       GSM                             8,000
+                          4       G723                            8,000
+                          5       DVI4                            8,000
+                          6       DVI4                           16,000
+                          7       LPC                             8,000
+                          8       PCMA                            8,000
+                          9       G722                            8,000
+                         10       L16, 2 channels                44,100
+                         11       L16, 1 channel                 44,100
+                         12       QCELP                           8,000
+                         13       CN                              8,000
+                         14       MPA                            90,000
+                         15       G728                            8,000
+                         16       DVI4                           11,025
+                         17       DVI4                           22,050
+                         18       G729                            8,000
+                               (R, W, Set-by-create) (mandatory) (1 byte)
+Packet period selection       This attribute specifies the packet period selection interval in
+(1st order):                  milliseconds. The default value is 10. Valid values are 10..30 ms.
+                              (R, W, Set-by-create) (mandatory) (1 byte)
+Silence suppression           This attribute specifies whether silence suppression is on or off.
+(1st order):                  Valid values are 0 = off and 1 = on. (R, W, Set-by-create)
+                              (mandatory) (1 byte)
+Codec selection (2nd order):              (R, W, Set-by-create) (mandatory) (1 byte)
+Packet period selection (2nd order): (R, W, Set-by-create) (mandatory) (1 byte)
+Silence suppression (2nd order):          (R, W, Set-by-create) (mandatory) (1 byte)
+Codec selection (3rd order):              (R, W, Set-by-create) (mandatory) (1 byte)
+Packet period selection (3rd order): (R, W, Set-by-create) (mandatory) (1 byte)
+Silence suppression (3rd order):          (R, W, Set-by-create) (mandatory) (1 byte)
+Codec selection (4th order):              (R, W, Set-by-create) (mandatory) (1 byte)
+Packet period selection (4th order): (R, W, Set-by-create) (mandatory) (1 byte)
+Silence suppression (4th order):          (R, W, Set-by-create) (mandatory) (1 byte)
+OOB DTMF:                                 This attribute specifies out-of-band DMTF carriage. When
+                                          enabled (1), DTMF signals are carried out of band via RTP
+                                          or the associated signalling protocol. When disabled,
+                                          DTMF tones are carried in the PCM stream. (R, W,
+                                          Set-by-create) (mandatory) (1 byte)
+RTP profile pointer:                      This attribute points to the associated RTP profile data ME.
+                                          (R, W, Set-by-create) (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

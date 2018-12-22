@@ -1,0 +1,68 @@
+9.13.7 Video return path service profile
+This managed entity models an RF video return path. The ONT creates an instance autonomously if
+it supports this function.
+Further description of the video return path (VRP) feature appears in Appendix IV, that defines
+transport methods required to support the video return path function. This includes a brief
+description of the relevant aspects of the two return path specifications supported. It also includes
+formatting for carriage of VRP data over the PON data path.
+Relationships
+One instance of this managed entity may exist for each ONT.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          There is one instance, number 0. (R) (mandatory) (2 bytes)
+Administrative            This attribute locks (1) and unlocks (0) the functions performed by this
+state:                    managed entity. When the administrative state is set to lock, all user
+                          functions are blocked, and alarms, TCAs and AVCs for this managed
+                          entity and all dependent managed entities are no longer generated.
+                          Selection of a default value for this attribute is outside the scope of this
+                          Recommendation. (R, W) (mandatory) (1 byte)
+Operational state:        This attribute reports whether the managed entity is currently capable of
+                          performing its function. Valid values are enabled (0) and disabled (1). (R)
+                          (optional) (1 byte)
+ARC:                      See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:             See clause I.1.8. (R, W) (optional) (1 byte)
+VRP mode:                This attribute specifies the format to be used for the VRP service:
+                         0        Mode 1, SCTE 55-1 (256 kbit/s data rate, 62 byte PDUs, preceded
+                                  by the unique word 0xCC CC CC 00). (mandatory)
+                         1        Mode 2, SCTE 55-2 (256 kbit/s data rate, 59 byte PDUs, preceded
+                                  by the unique word 0xCC CC CC 0D). (optional)
+                         2        Mode 2, SCTE 55-2 (1.544 Mbit/s data rate, 59 byte PDUs,
+                                  preceded by the unique word 0xCC CC CC 0D). (mandatory)
+                         3        Mode 2, SCTE 55-2 (3.088 Mbit/s data rate, 59 byte PDUs,
+                                  preceded by the unique word 0xCC CC CC 0D). (optional)
+                         4..255 Reserved.
+                         (R, W) (mandatory) (1 byte)
+VRP frequency            This attribute reports the VRP tuning range lower bound, in units of Hertz.
+lower bound:             (R) (mandatory) (4 bytes)
+VRP frequency            This attribute reports the VRP tuning range upper bound, in units of Hertz.
+upper bound:             (R) (mandatory) (4 bytes)
+VRP frequency            This attribute specifies the VRP tuner frequency to use, in units of Hertz.
+used:                    (R, W) (mandatory) (4 bytes)
+Mode 1 physical          This attribute controls the physical layer configuration to be used in
+layer configuration      mode 1. The attribute is bit mapped, as follows:
+mode:                    Bit 16 (MSB)     DQPSK mode; 0 = default mode, 1 = alternate mode.
+                         Bit 15..9        Reserved.
+                         Bit 8            Randomizer stage 6 preload.
+                         Bit 7            Randomizer stage 7 preload.
+                         Bit 6            Randomizer stage 8 preload.
+                         Bit 5            Randomizer stage 9 preload.
+                         Bit 4            Randomizer stage 10 preload.
+                         Bit 3            Randomizer stage 11 preload.
+                         Bit 2            Randomizer stage 12 preload.
+                         Bit 1            Randomizer stage 13 preload.
+                         (R, W) (mandatory) (2 bytes)
+Actions
+Get, set
+Notifications
+ Attribute value change
+    Number               Attribute value change                             Description
+        1         N/A
+        2         Op state                                Operational state change
+        3         ARC                                     ARC timer expiration
+       4..9       N/A
+     10..16       Reserved
+   Number               Event                                        Description
+       0        Frequency mismatch       Frequency set by OLT is outside the capabilities of this ONT, or
+                                         a frequency that is not on the standardized frequency plan
+    1..207      Reserved
+   208..223     Vendor-specific alarms   Not to be standardized

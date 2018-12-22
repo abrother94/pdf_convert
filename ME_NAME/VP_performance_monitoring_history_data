@@ -1,0 +1,67 @@
+9.13.10 VP performance monitoring history data
+This managed entity collects performance monitoring data associated with a VP network CTP-G.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity is associated with an instance of the VP network CTP-G
+managed entity. The performance of upstream ATM flows is reported.
+Attributes
+Managed entity id:              This attribute uniquely identifies each instance of this managed
+                                entity. Through an identical ID, this managed entity is implicitly
+                                linked to an instance of the VP network CTP-G. (R, Set-by-create)
+                                (mandatory) (2 bytes)
+Interval end time:              This attribute identifies the most recently finished 15-minute
+                                interval. (R) (mandatory) (1 byte)
+Threshold data 1/2 id:          This attribute points to an instance of the threshold data 1 managed
+                                entity that contains PM threshold values. Since no threshold value
+                                attribute number exceeds 7, a threshold data 2 ME is optional.
+                                (R, W, Set-by-create) (mandatory) (2 bytes)
+Lost C = 0 + 1 cells:           This attribute counts background cell loss. It cannot distinguish
+                                between cells lost because of header bit errors, ATM-level header
+                                errors, cell policing, or buffer overflows. It records only loss of
+                                information, independent of the priority of the cell. (R) (mandatory)
+                                (2 bytes)
+                               between cells lost because of header bit errors, ATM-level header
+                               errors, cell policing or buffer overflows. It records only loss of high
+                               priority cells. (R) (mandatory) (2 bytes)
+Misinserted cells:             This attribute counts cells that are misrouted to a monitored VP. (R)
+                               (mandatory) (2 bytes)
+Transmitted C = 0 + 1          This attribute counts cells originated by the transmitting end point
+cells:                         (i.e., backward reporting is assumed). (R) (mandatory) (5 bytes)
+Transmitted C = 0 cells:       This attribute counts high priority cells originated by the transmitting
+                               end point (i.e., backward reporting is assumed). (R) (mandatory)
+                               (5 bytes)
+Impaired blocks:               This severely errored cell block counter is incremented whenever
+                               one of the following events takes place: the number of misinserted
+                               cells reaches its threshold, the number of bipolar violations reaches
+                               its threshold, or the number of lost cells reaches its threshold.
+                               Threshold values are based on vendor-operator negotiation. (R)
+                               (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+       Number                 Threshold crossing alert             Threshold value attribute # (Note)
+          0          Lost CLP = 0 + 1 cells                                         1
+          1          Lost CLP = 0 cells                                             2
+          2          Misinserted cells                                              3
+          3          Impaired blocks                                                4
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold
+ data 1 managed entity.
+10       ONT management and control channel (OMCC)
+A GEM connection shall be provisioned for the OMCC (the use of ATM mode is deprecated).
+[ITU-T G.984.3] specifies a PLOAM message that activates a PortID between the OLT and ONT
+processors. The PortID value for the management channel of each ONT is programmed by the OLT
+using this message. A grant flow must be allocated by the MAC layer of the OLT for upstream
+OMCC traffic of each ONT.
+The following performance requirements related to the OMCC are considered with input from
+operators:
+a)       The upstream traffic on each OMCC should not exceed x bandwidth, where x is based on
+         the operator's requirement.
+b)       An upstream OMCC packet should always be put in the high priority queue; the constraints
+         on the downstream OMCC packets are out of the scope of this Recommendation, as this is
+         completely under control of the OLT.
+c)        Message response time: The system should support response times that do not exceed
+          one second for high priority protocol handling messages and three seconds for low priority
+          protocol handling messages.
+11        ONT management and control protocol

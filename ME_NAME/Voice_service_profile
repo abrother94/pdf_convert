@@ -1,0 +1,34 @@
+9.9.6    Voice service profile
+NOTE – Except for the change of name, this managed entity is substantially identical to the voice service
+profile AAL managed entity defined in [ITU-T G.983.2].
+This managed entity organizes data that describes the voice service functions of the ONT. Instances
+of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of a VoIP voice
+CTP by way of a VoIP media profile.
+Attributes
+Managed entity id:             This attribute uniquely identifies each instance of this managed
+                               entity. (R, Set-by-create) (mandatory) (2 bytes)
+Announcement type:             This attribute specifies the treatment when a subscriber goes off hook
+                               but does not attempt a call. Valid values include:
+                               0x01      Silence.
+                               0x02      Reorder tone.
+                               0x03      Fast busy.
+                               0x04      Voice announcement.
+                               0xFF      N/A.
+                               (R, W, Set-by-create) (mandatory) (1 byte)
+Jitter target:                   This attribute specifies the target value of the jitter buffer in
+                                 milliseconds. The system tries to maintain the jitter buffer at the
+                                 target value. (R, W, Set-by-create) (optional) (2 bytes)
+Jitter buffer max:               This attribute specifies the maximum depth of the jitter buffer
+                                 associated with this service in milliseconds. (R, W, Set-by-create)
+                                 (optional) (2 bytes)
+Echo cancel ind:                 The Boolean value true specifies that echo cancellation is on; false
+                                 specifies off. (R, W, Set-by-create) (mandatory) (1 byte)
+PSTN protocol variant:           This attribute controls which variant of POTS signalling is used on
+                                 the associated UNIs. Its value is equal to the E.164 country code.
+                                 (R, W, Set-by-create) (optional) (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

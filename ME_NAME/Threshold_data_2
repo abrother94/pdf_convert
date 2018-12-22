@@ -1,0 +1,25 @@
+9.12.7 Threshold data 2
+Together with an instance of the threshold data 1 ME, an instance of this managed entity contains
+threshold values for the performance monitoring parameters maintained in one or more instances of
+history data managed entities.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+Refer to the relationships of the threshold data 1 ME.
+Managed entity id:       This attribute uniquely identifies each instance of this managed entity. Its
+                         value is the same as that of the paired threshold data 1 instance. (R,
+                         Set-by-create) (mandatory) (2 bytes)
+                         The following seven attributes specify threshold values for seven thresholded counters in associated
+                         PM history data MEs. The definition of each PM history ME includes a table that links each
+                         thresholded counter to one of these threshold value attributes.
+Threshold value 8:       (R, W, Set-by-create) (mandatory) (4 bytes)
+Threshold value 9:       (R, W, Set-by-create) (mandatory) (4 bytes)
+Threshold value 10:      (R, W, Set-by-create) (mandatory) (4 bytes)
+Threshold value 11:      (R, W, Set-by-create) (mandatory) (4 bytes)
+Threshold value 12:      (R, W, Set-by-create) (mandatory) (4 bytes)
+Threshold value 13:      (R, W, Set-by-create) (mandatory) (4 bytes)
+Threshold value 14:      (R, W, Set-by-create) (mandatory) (4 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

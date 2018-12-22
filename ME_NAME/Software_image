@@ -1,0 +1,82 @@
+9.1.4   Software image
+This managed entity models an executable software image stored in the ONT.
+The ONT automatically creates two instances of this managed entity upon the creation of each
+managed entity that contains independently-manageable software, either the ONT itself or an
+individual circuit pack. The ME attributes are populated according to data within the ONT or the
+circuit pack.
+Some pluggable equipments may contain no software. Others may contain software that is
+intrinsically bound to the ONT's own software image. No software image ME need exist for such
+equipments, though it may be convenient for the ONT to create them to support software version
+audit from the OLT. In this case, the dependent MEs would support only the get action.
+A slot may contain various equipments over its lifetime, and if software image MEs exist, the ONT
+must automatically create and delete them as the equipage changes.
+When controller packs are duplicated, each can be expected to contain two software image MEs,
+managed through reference to the individual controller packs themselves. When this occurs, the
+activate, commit) directed to instance 0 would be ambiguous.
+Relationships
+Two instances of the software image managed entity are associated with each instance of the ONT
+or circuit pack whose software is independently managed.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity. The
+                           two-byte value indicates the physical location of the software image. The
+                           first byte identifies the ME instance (ONT (0) or slot (1..254)) containing
+                           the associated software image ME. The second byte distinguishes between
+                           the two software image ME instances (0..1). (R) (mandatory) (2 bytes)
+Version:                   This attribute identifies the version of the software. (R) (mandatory)
+                           (14 bytes)
+Is committed:              This attribute indicates whether the associated software image is committed
+                           (1) or uncommitted (0). By definition, the committed software image is
+                           loaded and executed upon reboot of the ONT and/or circuit pack. During
+                           normal operation, one software image is always committed, while the other
+                           is uncommitted. Under no circumstances are both software images allowed
+                           to be committed at the same time. On the other hand, both software images
+                           could be uncommitted at the same time if both were invalid. Upon ME
+                           instantiation, instance 0 is initialized to committed, while instance 1 is
+                           initialized to uncommitted (that is, the ONT ships from the factory with
+                           image 0 committed). (R) (mandatory) (1 byte)
+Is active:                 This attribute indicates whether the associated software image is active (1)
+                           or inactive (0). By definition, the active software image is one that is
+                           currently loaded and executing in the ONT or circuit pack. Under normal
+                           operation, one software image is always active while the other is inactive.
+                           Under no circumstances are both software images allowed to be active at the
+                           same time. On the other hand, both software images could be inactive at the
+                           same time if both were invalid. (R) (mandatory) (1 byte)
+Is valid:                  This attribute indicates whether the associated software image is valid (1) or
+                           invalid (0). By definition, a software image is valid if it has been verified to
+                           be an executable code image. The verification mechanism is not subject to
+                           standardization; however, at a minimum it must include a data integrity
+                           (CRC) check of the entire code image. Upon ME instantiation, the ONT
+                           validates the associated code image and sets this attribute according to the
+                           result. (R) (mandatory) (1 byte)
+Actions
+Get
+NOTE – Figure 9.1.4-1 illustrates the life cycle of software images under the following actions. State S0 is a
+conceptual initialization state when neither of the software images is valid (i.e., executable). During S0, the
+OMCC is not functional.
+All of the following actions are mandatory for ONTs with remotely manageable software.
+Start download:        Initiate a software download sequence. This action is valid only for a
+                       software image that is currently inactive and uncommitted (i.e., not selected
+                       as the boot image).
+Download section:      Download a section of a software image. This action is valid only for a
+                       software image that is currently being downloaded (image 1 in state S2,
+                       image 0 in state S2').
+End download:          Signal the completion of a download sequence, providing both CRC and
+                       version information for final verification of a downloaded software image.
+                       This action is valid only for a software image that is currently being
+                       downloaded (image 1 in state S2, image 0 in state S2').
+Activate image:        Load/execute a valid software image. When this action is applied to a
+                       software image that is currently inactive, execution of the current code
+                       image is suspended, the associated software image is loaded from
+                       non-volatile memory, and execution of this new code image is initiated (that
+                       is, the associated entity re-boots on the previously inactive image). When
+                       this action is applied to a software image that is already active, a soft restart
+                       is performed. The software image is not reloaded from non-volatile
+                       memory; the current volatile code image is simply restarted. This action is
+                       only valid for a valid software image.
+Commit image:          Select a valid software image to be the default image to be loaded and
+                       executed by the boot code upon start-up (i.e., set the is committed attribute
+                       value to 1 for the associated software image ME and set the is committed
+                       attribute value to 0 for the other software image). This action is only valid
+                       for a valid software image.
+Notifications
+None.

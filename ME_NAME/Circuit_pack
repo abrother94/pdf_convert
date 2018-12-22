@@ -1,0 +1,137 @@
+9.1.6    Circuit pack
+This managed entity models a circuit pack that is equipped in an ONT slot. For ONTs with
+integrated interfaces, this managed entity may be used to distinguish available types of interfaces
+(the port mapping package is another way).
+For ONTs with integrated interfaces, the ONT automatically creates an instance of this managed
+entity for each instance of the virtual cardholder managed entity. The ONT also creates an instance
+of this managed entity when the OLT provisions the cardholder to expect a circuit pack (i.e., when
+the OLT sets the expected plug-in unit type or equipment ID of the cardholder to a circuit pack
+type, as defined in clause 9.1.5). The ONT also creates an instance of this managed entity when a
+circuit pack is installed in a cardholder whose expected plug-in unit type is 255 = plug-and-play,
+and whose equipment ID is not provisioned. Finally, when the cardholder is provisioned for
+plug-and-play, an instance of this managed entity can be created at the request of the OLT.
+The ONT deletes an instance of this managed entity when the OLT de-provisions the circuit pack
+(i.e., when the OLT sets the expected plug-in unit type or equipment ID of the cardholder to 0 = no
+LIM). The ONT also deletes an instance of this managed entity on request of the OLT if the
+expected plug-in unit type attribute of the corresponding cardholder is equal to 255, plug-and-play,
+and the expected equipment ID is blank (a string of all spaces). ONTs with integrated interfaces do
+not delete circuit pack instances.
+NOTE – Creation and deletion by the OLT is retained for backward compatibility.
+Relationships
+An instance of this managed entity is contained by an instance of the cardholder managed entity.
+Attributes
+Managed entity id:     This attribute uniquely identifies each instance of this managed entity. Its
+                       value is the same as that of the cardholder managed entity containing this
+                       circuit pack instance. (R, Set-by-create (if applicable)) (mandatory)
+                       (22 bytes)
+Type:                  This attribute identifies the circuit pack type. This attribute is a code as
+                       defined in Table 9.1.5-1. The value 255 means unknown or undefined, i.e.,
+                       the inserted circuit pack is not recognized by the ONT or is not mapped to
+                       an entry in Table 9.1.5-1. In the latter case, the equipment ID attribute may
+                       contain inventory information. Upon autonomous ME instantiation, the
+                       ONT sets this attribute to 0 or to the type of the circuit pack that is
+                       physically present. (R, Set-by-create (if applicable)) (mandatory) (1 byte)
+Number of ports:       This attribute is the number of access ports on the circuit pack. If the port
+                       mapping package-G is supported for this circuit pack, this attribute should
+                       be set to the total number of ports of all types. (R) (optional) (1 byte)
+Serial number:         The serial number is unique for each circuit pack. Note that the serial
+                       number may contain the vendor ID and/or version number. For integrated
+                       ONTs, this value is identical to the value of the serial number attribute of
+                       the ONT-G managed entity. Upon creation in the absence of a physical
+                       circuit pack, this attribute comprises all spaces. (R) (mandatory) (8 bytes)
+Version:               This attribute is a string that identifies the version of the circuit pack as
+                       defined by the vendor. The value 0 indicates that version information is not
+                       available or applicable. For integrated ONTs, this value is identical to the
+                       value of the version attribute of the ONT-G managed entity. Upon creation
+                       in the absence of a physical circuit pack, this attribute comprises all spaces.
+                       (R) (mandatory) (14 bytes)
+Vendor id:             This attribute identifies the vendor of the circuit pack. For ONTs with
+                       integrated interfaces, this value is identical to the value of the vendor ID
+                       attribute of the ONT-G managed entity. Upon creation in the absence of a
+                       physical circuit pack, this attribute comprises all spaces. (R) (optional)
+                       (4 bytes)
+Administrative state: This attribute locks (1) and unlocks (0) the functions performed by the
+                       circuit pack. When the administrative state is set to lock, all user functions
+                       of this circuit pack are blocked, and alarms, TCAs and AVCs for this
+                       managed entity and all dependent managed entities are no longer generated.
+                       Selection of a default value for this attribute is outside the scope of this
+                       Recommendation. (R, W, Set-by-create (if applicable)) (mandatory) (1 byte)
+Operational state:     This attribute indicates whether or not the circuit pack is capable of
+                       performing its function. Valid values are enabled (0), disabled (1) and
+                       unknown (2). Pending completion of initialization and self test on an
+                       installed circuit pack, the ONT sets this attribute to 2. (R) (optional) (1 byte)
+                     from an IP router function.
+                     0        Bridged.
+                     1        IP router.
+                     2        Both bridged and IP router functions.
+                     (R, W) (optional, only applicable for circuit packs with Ethernet interfaces)
+                     (1 byte)
+Equipment id:        This attribute may be used to identify the vendor's specific type of circuit
+                     pack. In North America, this may be the CLEI code. Upon ME instantiation,
+                     the ONT sets this attribute to all spaces or to the equipment ID of the circuit
+                     pack that is physically present. (R) (optional) (20 bytes)
+Card configuration: This attribute selects the appropriate configuration on configurable circuit
+                     packs (e.g., T1/E1). Table 9.1.5-1 specifies three configurable card types:
+                     A45/34 (code 9), C-DS1/E1 (code 16), and C-DS1/E1/J1 (code 17). Values
+                     are indicated below for the allowed card types and configurations.
+                     Card type            Configuration                Value
+                     A45/34            ATM 44.736 Mbit/s                  0
+                                       ATM 34.368 Mbit/s                  1
+                     C-DS1/E1               DS1                           0
+                                             E1                           1
+                     C-DS1/E1/J1            DS1                           0
+                                             E1                           1
+                                             J1                           2
+                     Upon autonomous instantiation, this attribute is set to 0. (R, W,
+                     Set-by-create (if applicable)) (mandatory for configurable circuit packs)
+                     (1 byte)
+Total T-CONT buffer This attribute reports the total number of T-CONT buffers associated with
+number:              the circuit pack. Upon ME instantiation, the ONT sets this attribute to 0 or
+                     to the value supported by the physical circuit pack. (R) (mandatory for
+                     circuit packs that provide a traffic scheduler function) (1 byte)
+Total priority queue This value reports the total number of priority queues associated with the
+number:              circuit pack. Upon ME instantiation, the ONT sets the attribute to 0 or to the
+                     value supported by the physical circuit pack. (R) (mandatory for circuit
+                     packs that provide a traffic scheduler function) (1 byte)
+Total traffic        This value reports the total number of traffic schedulers associated with the
+scheduler number:    circuit pack. The ONT supports null function, HOL (head of line)
+                     scheduling and WRR (weighted round robin) from the priority control and
+                     guarantee of minimum rate control points of view, respectively. If the
+                     circuit pack has no traffic scheduler, this attribute should be 0. Upon ME
+                     instantiation, the ONT sets the attribute to 0 or to the value supported by the
+                     physical circuit pack. (R) (mandatory for circuit packs that provide a traffic
+                     scheduler function) (1 byte)
+                            defined in clause 9.1.7. It is a bit mask that takes port 1 as the MSB; a bit
+                            value of 1 marks the corresponding port to override the power shed timer.
+                            For hardware that cannot shed power per port, this attribute is a slot override
+                            rather than a port override, with any non-zero port value causing the entire
+                            circuit pack to override power shedding. (R, W) (optional) (4 bytes)
+Actions
+Get, set
+Create, delete:             Optional, only when plug-and-play is supported.
+Reboot:                     Reboot the circuit pack.
+Test:                       Test the circuit pack (optional). The test action may be used either to
+                            perform equipment diagnostics or to measure parameters such as received
+                            optical power, video output level, battery voltage, etc. Extensions to the test
+                            and test response messages are defined for these purposes; refer to
+                            Appendix II.
+Notifications
+ Attribute value change
+  Number           Attribute value change                                  Description
+      1..6     N/A
+       7       Op state                         Operational state change
+     8..14     N/A
+    15..16     Reserved
+ Alarm
+  Number                     Alarm                                         Description
+       0       Equipment alarm                  A failure on an internal interface or failed self test
+       1       Powering alarm                   Fuse failure or failure of DC/DC converter
+       2       Self test failure                Failure of circuit pack autonomous self test
+       3       Laser end of life                Failure of transmit laser imminent
+       4       Temperature yellow               No service shutdown at present, but the circuit pack is
+                                                operating beyond its recommended range
+       5       Temperature red                  Service has been shut down to avoid equipment damage. The
+                                                operational state of the affected PPTPs indicates the affected
+                                                services
+    6..207     Reserved
+  208..223     Vendor-specific alarms           Not to be standardized

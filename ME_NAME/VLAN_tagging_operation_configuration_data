@@ -1,0 +1,65 @@
+9.3.12 VLAN tagging operation configuration data
+This managed entity organizes data associated with VLAN tagging. Instances of this managed
+entity are created and deleted by the OLT.
+Relationships
+Zero or one instance of this managed entity may exist for an instance of any managed entity that can
+terminate or modify an Ethernet stream. By definition, tagging operation occurs farther away from
+the MAC bridge than filtering.
+Attributes
+Managed entity id:      This attribute uniquely identifies each instance of this managed entity.
+                        When the optional association type attribute is 0 or undefined, this
+                        attribute's value is the same as the id of the managed entity with which
+                        this VLAN tagging operation configuration data instance is associated,
+                        which may be either a PPTP Ethernet UNI or an IP host config data
+                        ME. Otherwise, the value of the ME ID is unconstrained except by the
+                        need to be unique. (R, Set-by-create) (mandatory) (2 bytes)
+                        Upstream VLAN tagging This attribute controls upstream VLAN tagging. Valid values are:
+operation mode:         0     Upstream frame is sent as is, regardless of tag.
+                        1     The upstream frame is tagged, whether or not the received frame
+                              was tagged. The frame's TCI, consisting of VID, CFI and user
+                              priority, is attached or overwritten with the upstream VLAN tag
+                              TCI value.
+                        2     The upstream frame is prepended with a tag, whether or not the
+                              received frame was tagged. If the received frame is tagged, a
+                              second tag (Q-in-Q) is added to the frame. If the received frame is
+                              not tagged, a tag is attached to the frame. The added tag is defined
+                              by the upstream VLAN tag TCI value attribute.
+                        (R, W, Set-by-create) (mandatory) (1 byte)
+                        Upstream VLAN tag TCI This attribute specifies the TCI for upstream VLAN tagging. It is used
+value:                  when the upstream VLAN tagging operation mode is 1 or 2. (R, W,
+                        Set-by-create) (mandatory) (2 bytes)
+Downstream VLAN         This attribute controls downstream VLAN tagging. Valid values are:
+tagging operation mode: 0     Downstream frame is sent as is, regardless of tag.
+                        1     If the received frame is tagged, the outer tag is stripped. An
+                              untagged frame is forwarded unchanged.
+                        (R, W, Set-by-create) (mandatory) (1 byte)
+Association type:       This attribute specifies the type of the ME that is associated with this
+                        VLAN tagging operation configuration data ME. Values are assigned
+                        in accordance with the following list:
+                        0     (Default) Physical path termination point Ethernet UNI (for
+                              backward compatibility, may also be an IP host config data ME;
+                              they must not have the same ME ID). The associated ME instance
+                              is implicit; its identifier is the same as that of this VLAN tagging
+                              operation configuration data.
+                        1     IP host config data.
+                        2     802.1p mapper service profile.
+                        3     MAC bridge port configuration data.
+                        4     Physical path termination point xDSL UNI.
+                        5     GEM interworking termination point.
+                        6     Multicast GEM interworking termination point.
+                        7     Physical path termination point MoCA UNI.
+                        8     Physical path termination point 802.11 UNI.
+                        9     Ethernet flow termination point.
+                        10 Physical path termination point Ethernet UNI.
+                        The associated ME instance is identified by the associated ME pointer.
+                        (R, W, Set-by-create) (optional) (1 byte)
+                             the ME with which this VLAN tagging operation configuration data
+                             ME is associated. Otherwise, this attribute is undefined, and the
+                             association is implicit.
+                             NOTE – When the association type is xDSL, the two most significant bits
+                             may be used to indicate a bearer channel.
+                             (R, W, Set-by-create) (optional) (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

@@ -1,0 +1,33 @@
+9.3.8    MAC bridge port bridge table data
+This managed entity reports status data associated with a bridge port. The ONT automatically
+creates or deletes an instance of this managed entity upon the creation or deletion of a MAC bridge
+port configuration data.
+Relationships
+An instance of this managed entity is associated with an instance of a MAC bridge port
+configuration data managed entity.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              Through an identical ID, this managed entity is implicitly linked to an
+                              instance of the MAC bridge port configuration data ME. (R)
+                              (mandatory) (2 bytes)
+Bridge table:                 This attribute lists known MAC destination addresses, whether they are
+                              learned or statically assigned, whether packets having them as
+                              destination addresses are filtered or forwarded, and their ages. Each
+                              entry contains:
+                              •   Information (2 bytes).
+                              •   MAC address (6 bytes).
+                            The information bits are assigned as described below.
+                            Bit           Name             Setting
+                            1 (LSB)       Filter/forward   0: forward
+                                                           1: filter
+                            2             Reserved         0
+                            3             Dynamic/static 0: this entry is statically assigned
+                                                           1: this entry is dynamically learned
+                            4             Reserved         0
+                            16..5         Age              Age in seconds (1..4095)
+                            Upon ME instantiation, this attribute is an empty list. (R) (mandatory)
+                            (8M bytes, where M is the number of entries in the list)
+Actions
+Get, get next
+Notifications
+None.

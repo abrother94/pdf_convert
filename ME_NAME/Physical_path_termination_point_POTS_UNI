@@ -1,0 +1,90 @@
+9.9.1   Physical path termination point POTS UNI
+This managed entity represents the point at a POTS UNI in the ONT where a physical path
+terminates and physical path level functions (analogue telephony) are performed.
+The ONT automatically creates an instance of this managed entity per port:
+•       When the ONT has POTS ports built into its factory configuration.
+•       When a cardholder is provisioned to expect a circuit pack of POTS type.
+•       When a cardholder provisioned for plug-and-play is equipped with a circuit pack of POTS
+        type. Note that the installation of a plug-and-play card may indicate the presence of POTS
+        ports via equipment ID as well as type, and indeed may cause the ONT to instantiate a port
+        mapping package that specifies POTS ports.
+The ONT automatically deletes instances of this managed entity when a cardholder is neither
+provisioned to expect a POTS circuit pack, nor is it equipped with a POTS circuit pack.
+Relationships
+An instance of this managed entity is associated with each real or preprovisioned POTS port. SIP
+and VoIP voice CTPs may link to the POTS UNI, which in turn points to a GEM interworking TP.
+Status is available from a VoIP line status ME, and RTP and call control PM may be collected on
+this point.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. This two-byte number indicates the physical position of the
+                              UNI. The first byte is the slot id (defined in clause 9.1.5). If the UNI
+                              is integrated, this value is 0. The second byte is the port ID, with
+                              range 1..255. (R) (mandatory) (2 bytes)
+Administrative state:         This attribute locks (1) and unlocks (0) the functions performed by
+                              this managed entity. When the administrative state is set to lock, all
+                              user functions of this UNI are blocked, and alarms, TCAs and AVCs
+                              for this managed entity and all dependent managed entities are no
+                              longer generated. Selection of a default value for this attribute is
+                              outside the scope of this Recommendation. (R, W) (mandatory)
+                              (1 byte)
+Interworking TP pointer:      This attribute points to the associated instance of the GEM
+                              interworking termination point managed entity. The value 0 is a null
+                              pointer. (R, W) (optional) (2 bytes)
+ARC:                          See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:                 See clause I.1.8. (R, W) (optional) (1 byte)
+Impedance:                    This attribute specifies the impedance for the POTS UNI. Valid
+                              values include:
+                              0   600 Ohms.
+                              1   900 Ohms.
+                              The following parameter sets from Annex C of [ETSI TS 101 270-1]
+                              are also defined:
+                              2   C1=150 nF, R1=750 Ohm, R2=270 Ohm.
+                              3   C1=115 nF, R1=820 Ohm, R2=220 Ohm.
+                              4   C1=230 nF, R1=1050 Ohm, R2=320 Ohm.
+                              Where C1, R1, and R2 are related as shown in Figure 9.9.1-1. Upon
+                              ME instantiation, the ONT sets this attribute to 0. (R, W) (optional)
+                              (1 byte)
+                                            C1
+                                                           R2
+                                            R1
+                        Figure 9.9.1-1 – Impedance model for POTS UNI
+Transmission path:            This attribute allows setting the POTS UNI either to full-time
+                              on-hook transmission (0) or part-time on-hook transmission (1).
+                              Upon ME instantiation, the ONT sets this attribute to 0. (R, W)
+                              (optional) (1 byte)
+Rx gain:                      This attribute specifies a gain value for the received signal in the
+                              form of a 2s complement number. Valid values are –120 (–12.0 dB)
+                              to 60 (+6.0 dB). Upon ME instantiation, the ONT sets this attribute to
+                              0. (R, W) (optional) (1 byte)
+Tx gain:                      This attribute specifies a gain value for the transmit signal in the form
+                              of a 2s complement number. Valid values are –120 (–12.0 dB) to 60
+                              (+6.0 dB). Upon ME instantiation, the ONT sets this attribute to 0.
+                              (R, W) (optional) (1 byte)
+Operational state:            This attribute indicates whether or not the managed entity is capable
+                              of performing its function. Valid values are enabled (0) and disabled
+                              (1). (R) (optional) (1 byte)
+Hook state:                   This attribute indicates the current state of the subscriber line: 0 = on
+                              hook, 1 = off hook. (R) (Optional) (1 byte)
+POTS holdover time:           This attribute determines the time during which POTS loop voltage is
+                              held up when the ONT is not ranged on the PON. After the specified
+                              time elapses, the ONT drops loop voltage, and may thereby cause
+                              premises intrusion alarm circuits to go active. When the ONT ranges
+                              successfully on the PON, it restores POTS loop voltage immediately
+                              and resets the timer to zero. The attribute is expressed in seconds.
+                              The default value 0 selects the vendor's factory policy. (R, W)
+                              (optional) (2 bytes)
+Actions
+Get, set
+Test:                         Request that the ONT perform one or more MLT tests or a dial tone
+                              make/break test. Vendor-specific tests are also supported by the test
+                              and test result message layouts in clauses II.2.27 and II.2.45.
+Notifications
+ Attribute value change
+        Number                   Attribute value change                        Description
+           1..2         N/A
+            3           ARC                                        ARC timer expiration
+           4..8         N/A
+            9           Op state                                   Operational state
+         10..11         N/A
+         12..16         Reserved

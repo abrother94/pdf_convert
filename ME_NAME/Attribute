@@ -1,0 +1,64 @@
+9.12.10 Attribute
+This managed entity describes a particular attribute type that is supported by the ONT. This ME is
+not included in MIB upload.
+Relationships
+One or more attribute entities are related to each ME entity. More than one ME entity can refer to a
+given attribute entity.
+Attributes
+Managed entity id:      This attribute uniquely identifies each instance of this managed entity.
+                        This number is the same that appears in the attributes table in the managed
+                        entity ME. Only one instance of each unique attribute need be created. The
+                        ONT can assign attribute numbering as it pleases, out of the pool of 64K
+                        ids; however, it is suggested that the numbering follow a rational scheme
+                        to aid human readability. (R) (mandatory) (2 bytes)
+Name:                   This attribute contains a 25-byte mnemonic tag for the attribute. Strings
+                        shorter than 25 bytes are padded with null characters. (R) (mandatory)
+                        (25 bytes)
+Size:                   This attribute contains the size of the attribute, in bytes. The value 0
+                        indicates that the attribute can have a variable/unknown size. (R)
+                        (mandatory) (2 bytes)
+Access:                 This attribute represents the OMCI access characteristics of the attribute.
+                        The following code points are defined:
+                        1    Read.
+                        2    Write.
+                        3    Read, write.
+                        5    Read, Set-by-create.
+                        6    Write, Set-by-create.
+                        7    Read, write, Set-by-create.
+                        (R) (mandatory) (1 byte)
+Format:                 This attribute represents the format of the attribute. The following code
+                        points are defined:
+                        1    Pointer.
+                        2    Bit field.
+                        3    Signed integer.
+                        4    Unsigned integer.
+                        5    String.
+                        6    Enumeration (that is, a set of defined code points).
+                        7    Table.
+                        (R) (mandatory) (1 byte)
+                            types (pointer, signed integer, unsigned integer) only. For attributes
+                            smaller than 4 bytes, the desired numeric value is expressed in 4-byte
+                            representation (e.g., the signed one-byte integer 0xFE is expressed as
+                            0xFFFF FFFE; the unsigned one-byte integer 0xFE is expressed as
+                            0x0000 00FE). (R) (mandatory) (4 bytes)
+Upper limit:                This attribute provides the highest value for the attribute. It has the same
+                            validity and format as the lower limit attribute. (R) (mandatory) (4 bytes)
+Bit field:                  This attribute is a mask of the supported bits in a bit field attribute. Valid
+                            for bit field type only. A 1 in any position signifies that its code point is
+                            supported, while 0 indicates not supported. For bit fields smaller than
+                            4 bytes, the attribute is aligned at the least significant end of the mask. (R)
+                            (mandatory) (4 bytes)
+Code points table:          This attribute lists the code points supported by an enumerated attribute.
+                            (R) (mandatory) (2Q bytes, where Q is the number of entries in the table)
+Support:                    This attribute represents the level of support of the attribute (same notation
+                            as the attribute of the same name in the ME). The following code points
+                            are defined:
+                            1   Fully supported (supported as defined in this object).
+                            2   Unsupported (OMCI returns an error code if accessed).
+                            3   Partially supported (some aspects of attribute supported).
+                            4   Ignored (OMCI supported, but underlying function is not).
+                            (R) (mandatory) (1 byte)
+Actions
+Get, get next
+Notifications
+None.

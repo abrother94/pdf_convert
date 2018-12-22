@@ -1,0 +1,90 @@
+9.9.3    SIP agent config data
+The SIP agent config data managed entity models a SIP signalling agent. It defines the
+configuration necessary to establish communication for signalling between the SIP user agent and a
+SIP server.
+NOTE – If a non-OMCI interface is used to manage SIP for VoIP, this ME is unnecessary. The non-OMCI
+interface supplies the necessary data, which may be read back to the OLT via the SIP config portal ME.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity serves one or more SIP user data managed entities and points to
+a TCP/UDP config data that carries signalling messages. Other pointers establish additional agent
+parameters such as proxy servers.
+Attributes
+Managed entity id:                This attribute uniquely identifies each instance of this managed
+                                  entity. (R, Set-by-create) (mandatory) (2 bytes)
+Proxy server address              This attribute points to a large string ME that contains the name
+pointer:                          (IP address or URI) of the SIP proxy server for SIP signalling
+                                  messages. (R, W, Set-by-create) (mandatory) (2 bytes)
+Outbound proxy address     This attribute points to a large string ME that contains the name (IP
+pointer:                   address or URI) of the outbound proxy server for SIP signalling
+                           messages. An outbound SIP proxy may or may not be required within
+                           a given network. If an outbound SIP proxy is used, the outbound
+                           proxy address pointer attribute must be set to point to a valid large
+                           string ME. If an outbound SIP proxy is not used, the outbound proxy
+                           address pointer attribute must be set to a null pointer. (R, W,
+                           Set-by-create) (mandatory) (2 bytes)
+Primary SIP DNS:           This attribute specifies the primary SIP DNS IP address. If this value
+                           is 0, no primary SIP DNS is defined. The default value is 0. (R, W,
+                           Set-by-create) (mandatory) (4 bytes)
+Secondary SIP DNS:         This attribute specifies the secondary SIP DNS IP address. If this
+                           value is 0, no secondary SIP DNS is defined. The default value is 0.
+                           (R, W, Set-by-create) (mandatory) (4 bytes)
+TCP/UDP pointer:           This pointer associates the SIP agent with the TCP/UDP config data
+                           ME to be used for communication with the SIP server. The default
+                           value is 0xFFFF. (R, W) (mandatory) (2 bytes)
+SIP reg exp time:          This attribute specifies the SIP registration expiration time in
+                           seconds. If its value is 0, the SIP agent does not add an expiration
+                           time to the registration requests and does not perform re-registration.
+                           The default value is 3600 seconds. (R, W) (mandatory) (4 bytes)
+SIP rereg head start time: This attribute specifies the time in seconds prior to timeout that
+                           causes the SIP agent to start the re-registration process. The default
+                           value is 360 seconds. (R, W) (mandatory) (4 bytes)
+Host part URI:             This attribute points to a large string ME that contains the host or
+                           domain part of the SIP address of record for users connected to this
+                           ONT. The default value 0xFFFF indicates that the current address in
+                           the IP host config ME is used. (R, W, Set-by-create) (mandatory)
+                           (2 bytes)
+SIP status:                This attribute shows the current status of the SIP agent. Values are as
+                           follows:
+                           0     Ok/initial.
+                           1     Connected.
+                           2     Failed – ICMP error.
+                           3     Failed – Malformed response.
+                           4     Failed – Inadequate info response.
+                           5     Failed – Timeout.
+                           (R) (mandatory) (1 byte)
+SIP registrar:             This attribute points to a network address ME that contains the name
+                           (IP address or resolved name) of the registrar server for SIP
+                           signalling messages. Examples: "10.10.10.10" and "proxy.voip.net".
+                           The default value is 0xFFFF. (R, W, Set-by-create) (mandatory)
+                           (2 bytes)
+Softswitch:                This attribute identifies the SIP gateway softswitch vendor. The
+                           format is four ASCII coded alphabetic characters [A..Z] as defined in
+                           [ATIS-0322000]. A value of four null characters indicates no
+                           particular vendor. (R, W, Set-by-create) (mandatory) (4 bytes)
+Actions
+Create, delete, get, set
+Notifications
+ Attribute value change
+     Number               Attribute value change                                Description
+         1..8       N/A
+          9         SIP status                               Status change
+       10..11       N/A
+       12..16       Reserved
+ Alarm
+     Number                    Alarm                                       Description
+          0         SIPUA register name             Failed to resolve the registration server name
+          1         SIPUA register reach            Cannot reach registration server (the port cannot be
+                                                    reached, ICMP errors)
+          2         SIPUA register connect          Cannot connect to registration server (due to bad
+                                                    credentials or other fault after the port responded)
+          3         SIPUA register validate         Cannot validate registration server
+      4 (Note)      SIPUA register auth             Cannot authenticate registration session (e.g., missing
+                                                    credentials)
+      5 (Note)      SIPUA register timeout          Timeout waiting for response from registration server
+      6 (Note)      SIPUA register fail             Failure response received from registration server
+       7..207       Reserved
+     208..223       Vendor-specific alarms          Not to be standardized
+ NOTE – These alarms are deprecated, and retained for backward compatibility. It is recommended that the
+ SIP agent config data not declare these alarms, but that they be declared by the SIP user data ME instead.
+ In any event, only one ME should declare the alarm, not both.

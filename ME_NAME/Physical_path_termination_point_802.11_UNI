@@ -1,0 +1,57 @@
+9.6.1     Physical path termination point 802.11 UNI
+This managed entity models an 802.11 UNI, where physical paths terminate and physical path level
+functions are performed.
+The ONT automatically creates an instance of this managed entity per port:
+•         When the ONT has 802.11 ports built into its factory configuration.
+•         When a cardholder is provisioned to expect a circuit pack of 802.11 type.
+•         When a cardholder provisioned for plug-and-play is equipped with a circuit pack of 802.11
+          type. Note that the installation of a plug-and-play card may indicate the presence of 802.11
+          ports via equipment ID as well as type, and indeed may cause the ONT to instantiate a port
+          mapping package that specifies 802.11 ports.
+The ONT automatically deletes instances of this managed entity when a cardholder is neither
+provisioned to expect an 802.11 circuit pack, nor is it equipped with an 802.11 circuit pack.
+Relationships
+An instance of this managed entity is associated with each instance of an [IEEE 802.11] interface.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          This two-byte number indicates the physical position of the UNI. The first
+                          byte is the slot id (defined in clause 9.1.5). If the UNI is integrated, this
+                          value is 0. The second byte is the port ID, with range 1..255. (R)
+                          (mandatory) (2 bytes)
+Administrative state:     This attribute locks (1) and unlocks (0) the functions performed by this
+                          managed entity. When the administrative state is set to lock, all user
+                          functions of this UNI are blocked, and alarms, TCAs and AVCs for this
+                          managed entity and all dependent managed entities are no longer
+                          generated. Selection of a default value for this attribute is outside the
+                          scope of this Recommendation. (R, W) (mandatory) (1 byte)
+Operational state:        This attribute indicates whether or not the managed entity is capable of
+                          performing its function. Valid values are enabled (0) and disabled (1). (R)
+                          (optional) (1 byte)
+dot11 supported data      This attribute specifies the set of data rates (maximum 8) at which the
+rates tx:                 station is capable of transmitting data. Each octet contains a value
+                          representing a rate. Each rate lies within the range 2..127, corresponding
+                          to data rates in increments of 500 kbit/s from 1 Mbit/s to 63.5 Mbit/s. If
+                          fewer than 8 data rates are specified, each of the unused bytes is set to 0.
+                          (R) (mandatory) (8 bytes)
+dot11 supported data      This attribute specifies the set of data rates (maximum 8) at which the
+rates rx:                 station is capable of receiving data. Each octet contains a value
+                          representing a rate. Each rate lies within the range 2..127, corresponding
+                          to data rates in increments of 500 kbit/s from 1 Mbit/s to 63.5 Mbit/s. If
+                          fewer than 8 data rates are specified, each of the unused bytes is set to 0.
+                          (R) (mandatory) (8 bytes)
+dot11 Tx power levels: This attribute specifies the set of transmit power levels (maximum 8) that
+                          the station is capable of using. Each 16-bit word contains a power setting,
+                          in units of mW. If fewer than 8 power levels are specified, each of the
+                          unused words is set to 0. (R) (mandatory) (16 bytes)
+ARC:                      See clause I.1.8. (R, W) (optional) (1 byte)
+ARC interval:             See clause I.1.8. (R, W) (optional) (1 byte)
+Actions
+Get, set
+       Attribute value change
+        Number       Attribute value change                        Description
+            1     N/A
+            2     Op state                     Operational state change
+           3..5   N/A
+            6     ARC                          ARC timer expiration
+            7     N/A
+          8..16   Reserved

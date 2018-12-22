@@ -1,0 +1,85 @@
+9.7.21 xDSL xTU-C performance monitoring history data
+This managed entity collects performance monitoring data on the xTU-C to xTU-R path as seen
+from the xTU-C. Instances of this managed entity are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+An instance of this managed entity is associated with an instance of a physical path termination
+point xDSL UNI.
+Attributes
+Managed entity id:             This attribute uniquely identifies each instance of this managed
+                               entity. Through an identical ID, this managed entity is implicitly
+                               linked to an instance of the physical path termination point xDSL
+                               UNI. (R, Set-by-create) (mandatory) (2 bytes)
+Interval end time:             This attribute identifies the most recently finished 15-minute interval.
+                               (R) (mandatory) (1 byte)
+Threshold data 1/2 id:         This attribute points to an instance of the threshold data 1 and 2
+                               managed entities that contains PM threshold values. (R, W,
+                               Set-by-create) (mandatory) (2 bytes)
+Loss of frame seconds:         (R) (mandatory) (2 bytes)
+Loss of signal seconds:        (R) (mandatory) (2 bytes)
+Loss of link seconds:          (R) (mandatory) (2 bytes)
+Loss of power seconds:         (R) (mandatory) (2 bytes)
+Errored seconds:               This attribute counts one-second intervals with one or more CRC-8
+                               anomalies summed over all received bearer channels, or one or more
+                               LOS defects, or one or more SEF defects, or one or more LPR
+                               defects. (R) (mandatory) (2 bytes)
+Severely errored seconds:      This attribute counts severely errored seconds (SES-L). An SES is
+                               declared if, during a one-second interval, there were 18 or more
+                               CRC-8 anomalies in one or more of the received bearer channels, or
+                               one or more LOS defects, or one or more SEF defects, or one or
+                               more LPR defects.
+                               If the relevant Recommendation ([ITU-T G.992.3], [ITU-T G.992.5],
+                               [ITU-T G.993.2]) supports a one-second normalized CRC-8 anomaly
+                               counter increment, the one-second SES counter follows this value
+                               instead of counting CRC-8 anomalies directly.
+                               If a common CRC is applied over multiple bearer channels, then each
+                               related CRC-8 anomaly is counted only once for the whole set of
+                               bearer channels over which the CRC is applied.
+                               (R) (mandatory) (2 bytes)
+Line initializations:          This attribute counts the total number of full initializations attempted
+                               on the line, both successful and failed. (R) (mandatory) (2 bytes)
+                                  during the accumulation period. A failed full initialization occurs
+                                  when showtime is not reached at the end of the full initialization
+                                  procedure. (R) (mandatory) (2 bytes)
+Short initializations:            This attribute counts the total number of fast retrains or short
+                                  initializations attempted on the line, successful and failed. Fast
+                                  retrain is defined in [b-ITU-T G.992.2]. Short initialization is defined
+                                  in [ITU-T G.992.3] and [ITU-T G.992.4]. (R) (optional) (2 bytes)
+Failed short initializations: This attribute counts the total number of failed fast retrains or short
+                                  initializations during the accumulation period, e.g., when:
+                                  – A CRC error is detected.
+                                  – A timeout occurs.
+                                  – A fast retrain profile is unknown.
+                                  (R) (optional) (2 bytes)
+FEC seconds:                      This attribute counts seconds during which there was a forward error
+                                  correction anomaly. (R) (mandatory) (2 bytes)
+Unavailable seconds:              This attribute counts one-second intervals during which the xDSL
+                                  line is unavailable. The line becomes unavailable at the onset of
+                                  10 contiguous SES-Ls. The 10 SES-Ls are included in unavailable
+                                  time. Once unavailable, the line becomes available at the onset of
+                                  10 contiguous seconds that are not severely errored. The 10 seconds
+                                  with no SES-Ls are excluded from unavailable time. Some attribute
+                                  counts are inhibited during unavailability – see clause 7.2.7.13 of
+                                  [ITU-T G.997.1]. (R) (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+    Number                Threshold crossing alert                Threshold value attribute # (Note)
+        0          Loss of frame seconds                                          1
+        1          Loss of signal seconds                                         2
+        2          Loss of link seconds                                           3
+        3          Loss of power seconds                                          4
+        4          Errored seconds                                                5
+        5          Severely errored seconds                                       6
+        6          Line initializations                                           7
+        7          Failed line initializations                                    8
+        8          Short initializations                                          9
+        9          Failed short initializations                                  10
+       10          FEC seconds                                                   11
+       11          Unavailable seconds                                           12
+ Threshold crossing alert
+     Number             Threshold crossing alert              Threshold value attribute # (Note)
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold data
+ 1/2 managed entities.

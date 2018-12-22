@@ -1,0 +1,58 @@
+9.9.16 MGC config data
+The MGC config data ME defines the media gateway controller configuration associated with an
+MG subscriber. It is conditionally required for ONTs that support H.248 VoIP service. If a
+non-OMCI interface is used to manage VoIP signalling, this ME is unnecessary. The non-OMCI
+interface supplies the necessary data, which may be read back to the OLT via the MGC config
+portal ME.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with one or more VoIP voice CTP managed
+entities.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          (R, Set-by-create) (mandatory) (2 bytes)
+Primary MGC:              This attribute points to a network address ME that contains the name (IP
+                          address or resolved name) of the primary MGC that controls the
+                          signalling messages. The port is optional and defaults to 2944 for text
+                          message formats and 2955 for binary message formats. (R, W,
+                          Set-by-create) (mandatory) (2 bytes)
+Secondary MGC:            This attribute points to a network address ME that contains the name (IP
+                          address or resolved name) of the secondary or backup MGC that controls
+                          the signalling messages. The port is optional and defaults to 2944 for text
+                          message formats and 2955 for binary message formats. (R, W,
+                          Set-by-create) (mandatory) (2 bytes)
+TCP/UDP pointer:          This attribute points to the TCP/UDP config data ME to be used for
+                          communication with the MGC. The default value 0 is a null pointer.
+                          (R, W, Set-by-create) (mandatory) (2 bytes)
+Version:                  This integer attribute reports the version of the Megaco protocol in use.
+                          (R, W, Set-by-create) (mandatory) (1 byte)
+Message format:           This attribute defines the message format. Valid values are:
+                          0   Text long
+                          1   Text short
+                          2   Binary
+                          The default value is 0. (R, W, Set-by-create) (mandatory) (1 byte)
+Maximum retry time:       This attribute specifies the maximum retry time for MGC transactions, in
+                          seconds. The default value 0 specifies vendor-specific implementation
+                          (R, W) (optional) (2 bytes)
+Maximum retry             This attribute specifies the maximum number of times a message is
+attempts:                 retransmitted to the MGC. The default value 0 specifies vendor-specific
+                          implementation. (R, W, Set-by-create) (optional) (2 bytes)
+Service change delay:     The attribute specifies the service status delay time for changes in line
+                          service status. This attribute is specified in seconds. The default value 0
+                          specifies no delay. (R, W) (optional) (2 bytes)
+Termination ID base:      The attribute specifies the base string for the H.248 physical termination
+                          id(s) for this ONT. This string is intended to uniquely identify an ONT.
+                          Vendor-specific termination identifiers (i.e., port IDs) are optionally
+                          added to this string to uniquely identify a termination on a specific ONT.
+                          (R, W) (optional) (25 bytes)
+Softswitch:               This attribute identifies the gateway softswitch vendor. The format is
+                          four ASCII coded alphabetic characters [A..Z] as defined in
+                          [ATIS-0322000]. A value of four null characters indicates no particular
+                          vendor. (R, W, Set-by-create) (mandatory) (4 bytes)
+Actions
+Create, delete, get, set
+ Alarm
+     Number                     Alarm                                      Description
+         0         Timeout                             Timeout of association with MG
+      1..207       Reserved
+     208..223      Vendor-specific alarms              Not to be standardized

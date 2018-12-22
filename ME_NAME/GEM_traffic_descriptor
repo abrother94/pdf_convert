@@ -1,0 +1,17 @@
+9.11.3 GEM traffic descriptor
+This traffic descriptor set is applied to traffic regulation for upstream flows identified by GEM
+port-ID or MAC bridge port. If these flows are not regulated, this set is not used.
+Relationships
+This ME is associated with a GEM port network CTP. Upstream traffic flow identified by GEM
+port-ID or MAC bridge port is characterized by this ME.
+Attributes
+Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
+                          (R, Set-by-create) (mandatory) (2 bytes)
+CIR                       This attribute specifies the committed information rate, specified in byte/s.
+                          (R, W, Set-by-create) (optional) (4 bytes)
+PIR:                      This attribute specifies peak information rate, specified in byte/s. (R, W,
+                          Set-by-create) (optional) (4 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

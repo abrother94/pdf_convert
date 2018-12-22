@@ -1,0 +1,44 @@
+9.9.7    RTP profile data
+This managed entity configures RTP. It is conditionally required for ONTs that offer VoIP service.
+If a non-OMCI interface is used to manage VoIP, this ME is unnecessary. The non-OMCI interface
+supplies the necessary data, which may be read back to the OLT via the SIP config portal or the
+MGC config portal ME.
+An instance of this managed entity is created and deleted by the OLT. An RTP profile is needed for
+each unique set of attributes.
+Relationships
+An instance of this managed entity may be associated with one or more VoIP media profile
+managed entities.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            (R, Set-by-create) (mandatory) (2 bytes)
+Local port min:             This attribute defines the base RTP port that should be used for voice
+                            traffic. The default is 50000. (R, W, Set-by-create) (mandatory) (2 bytes)
+Local port max:             This attribute defines the highest RTP port used for voice traffic. The
+                            default must be greater than local port min but is determined by vendor
+                            application. (R, W, Set-by-create) (optional) (2 bytes)
+DSCP mark:                  Diffserv code point to be used for outgoing RTP packets for this profile.
+                            The default value is expedited forwarding (EF) = 0x2E. (R, W,
+                            Set-by-create) (mandatory) (1 byte)
+Piggyback events:           Enables or disables RTP piggyback events.
+                            0     Disabled (default).
+                            1     Enabled.
+                            (R, W, Set-by-create) (mandatory) (1 byte)
+                           [IETF RFC 4733] (see also [IETF RFC 4734]).
+                           0    Disabled (default).
+                           1    Enabled.
+                           (R, W, Set-by-create) (mandatory) (1 byte)
+DTMF events:               Enables or disables handling of DTMF via RTP DTMF events per
+                           [IETF RFC 4733] (see also [IETF RFC 4734]). This attribute is ignored
+                           unless the OOB DTMF attribute in the VoIP media profile is enabled.
+                           0    Disabled (default).
+                           1    Enabled.
+                           (R, W, Set-by-create) (mandatory) (1 byte)
+CAS events:                Enables or disables handling of CAS via RTP CAS events per
+                           [IETF RFC 4733] (see also [IETF RFC 4734]).
+                           0    Disabled (default).
+                           1    Enabled.
+                           (R, W, Set-by-create) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

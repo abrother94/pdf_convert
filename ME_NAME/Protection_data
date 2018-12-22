@@ -1,0 +1,35 @@
+9.1.10 Protection data
+This managed entity models the capability and parameters of PON protection. An ONT that
+supports PON protection automatically creates an instance of this managed entity.
+NOTE – Equipment protection is modelled with the equipment protection profile and cardholder managed
+entities.
+Relationships
+One instance of this managed entity is associated with two instances of the ANI-G. One of the
+ANI-G managed entities represents the working side; the other represents the protection side.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            This ME is numbered in ascending order from 0. (R) (mandatory)
+                            (2 bytes)
+Working ANI-G               This attribute points to the ANI-G managed entity that represents the
+pointer:                    working side of PON protection. (R) (mandatory) (2 bytes)
+Protection ANI-G            This attribute points to the ANI-G managed entity that represents the
+pointer:                    protection side of PON protection. (R) (mandatory) (2 bytes)
+Protection type:            This attribute indicates the type of PON protection. Valid values are:
+                            0        1+1 protection.
+                            1        1:1 protection without extra traffic.
+                            2        1:1 protection with ability to support extra traffic.
+                            (R) (mandatory) (1 byte)
+Revertive ind:              This attribute indicates whether protection is revertive (1) or
+                            non-revertive (0). (R) (mandatory) (1 byte)
+Wait to restore time:       This attribute specifies the time, in seconds, to wait after a fault clear
+                            before switching back to the working side. Upon ME instantiation, the
+                            ONT sets this attribute to 3 seconds. (R, W) (mandatory) (2 bytes)
+Switching guard time:       This attribute specifies the time, in milliseconds, to wait after the
+                            detection of a fault before performing a protection switch. Selection of a
+                            default value for this attribute is outside the scope of this
+                            Recommendation, as it is normally handled through supplier-operator
+                            negotiations. (R, W) (optional) (2 bytes)
+Actions
+Get, set
+Notifications
+None.

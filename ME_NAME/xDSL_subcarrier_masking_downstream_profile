@@ -1,0 +1,47 @@
+9.7.8   xDSL subcarrier masking downstream profile
+This managed entity contains the subcarrier masking downstream profile for an xDSL line.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the physical
+path termination point xDSL UNI.
+Attributes
+Managed entity id:         This attribute uniquely identifies each instance of this managed entity.
+                           The value 0 is reserved. (R, Set-by-create) (mandatory) (2 bytes)
+                           The four following attributes are bit maps that represent downstream
+                           mask values for subcarriers 1..128 (mask 1) through 385..512 (mask 4).
+                           The MSB of the first byte corresponds to the lowest numbered
+                           subcarrier, and the LSB of the last byte corresponds to the highest. Each
+                           bit position defines whether the corresponding downstream subcarrier is
+                           masked (1) or not masked (default value 0).
+                           NSCds is the highest numbered subcarrier that can be transmitted in the
+                           downstream direction. For [ITU-T G.992.3], [ITU-T G.992.4], and
+                           [ITU-T G.992.5], it is defined in the corresponding Recommendation.
+                           For [ITU-T G.992.1], NSCds = 256 and for [b-ITU-T G.992.2],
+                           NSCds = 128.
+                           Downstream subcarrier (R, W, Set-by-create) (mandatory) (16 bytes)
+mask 1:
+                           Downstream subcarrier Subcarriers 129 to 256. (R, W) (mandatory for modems that support
+mask 2:                    NSCds > 128) (16 bytes)
+                           Downstream subcarrier Subcarriers 257 to 384. (R, W) (mandatory for modems that support
+mask 3:                    NSCds > 256) (16 bytes)
+                           Downstream subcarrier Subcarriers 385 to 512. (R, W) (mandatory for modems that support
+mask 4:                    NSCds > 384) (16 bytes)
+Mask valid:                This Boolean attribute controls and reports the operational status of the
+                           downstream subcarrier mask attributes.
+                           If this attribute is true (1), the downstream subcarrier mask represented
+                           in this ME has been impressed on the DSL equipment.
+                           If this attribute is false (0), the downstream subcarrier mask represented
+                           in this ME has not been impressed on the DSL equipment. The default
+                           value is false.
+                           The value of this attribute can be modified by the ONT and OLT, as
+                           follows:
+                           •         If the OLT changes any of the four mask attributes or sets mask
+                                     valid false, then mask valid is false.
+                             •       If mask valid is false and the OLT sets mask valid true, the ONT
+                                     impresses the downstream subcarrier mask data onto the DSL
+                                     equipment.
+                                     (R, W) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

@@ -1,0 +1,18 @@
+9.2.7    GAL Ethernet profile
+This managed entity organizes data that describes the GTC adaptation layer processing functions of
+the ONT for Ethernet services. It is used with the GEM interworking termination point managed
+entity.
+Instances of this managed entity are created and deleted on request of the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the GEM
+interworking termination point managed entity.
+Attributes
+Managed entity id:           This attribute uniquely identifies each instance of this managed entity.
+                             (R, Set-by-create) (mandatory) (2 bytes)
+                             Maximum GEM payload This attribute defines the maximum payload size generated in the
+size:                        associated GEM interworking termination point managed entity.
+                             (R, W, Set-by-create) (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

@@ -1,0 +1,55 @@
+9.3.16 Dot1X performance monitoring history data
+This managed entity collects performance statistics on an ONT's IEEE 802.1X operation. Instances
+of this managed entity are created and deleted by the ONT on request of the OLT.
+Relationships
+An instance of this managed entity may be associated with each UNI that can perform IEEE 802
+authentication.
+Managed entity id:           This attribute uniquely identifies each instance of this managed
+                             entity. Through an identical ID, this managed entity is implicitly
+                             linked to an instance of a physical path termination point.
+                             (R, Set-by-create) (mandatory) (2 bytes)
+Interval end time:           This attribute identifies the most recently finished 15-minute
+                             interval. (R) (mandatory) (1 byte)
+Threshold data 1/2 id:       This attribute points to an instance of the threshold data 1 and 2
+                             managed entities that contains PM threshold values. (R, W,
+                             Set-by-create) (mandatory) (2 bytes)
+EAPOL frames received:       This attribute counts received valid EAPOL frames of any type.
+                             (R) (mandatory) (4 bytes)
+EAPOL frames transmitted:    This attribute counts transmitted EAPOL frames of any type. (R)
+                             (mandatory) (4 bytes)
+EAPOL start frames received: This attribute counts received EAPOL start frames. (R)
+                             (mandatory) (4 bytes)
+EAPOL logoff frames          This attribute counts received EAPOL logoff frames. (R)
+received:                    (mandatory) (4 bytes)
+Invalid EAPOL frames         This attribute counts received EAPOL frames in which the frame
+received:                    type was not recognized. (R) (mandatory) (4 bytes)
+EAP resp/id frames received: This attribute counts received EAP response frames containing an
+                             identifier type field. (R) (mandatory) (4 bytes)
+EAP response frames          This attribute counts received EAP response frames, other than
+received:                    resp/id frames. (R) (mandatory) (4 bytes)
+EAP initial request frames   This attribute counts transmitted request frames containing an
+transmitted:                 identifier type field. In [b-IEEE 802.1X], this is also called ReqId.
+                             (R) (mandatory) (4 bytes)
+EAP request frames           This attribute counts transmitted request frames, other than
+transmitted:                 request/id frames. (R) (mandatory) (4 bytes)
+EAP length error frames      This attribute counts received EAPOL frames whose packet body
+received:                    length field was invalid. (R) (mandatory) (4 bytes)
+EAP success frames generated This attribute counts EAPOL success frames generated according
+autonomously:                to local fallback policy because no radius server was available.
+                             (R) (mandatory) (4 bytes)
+EAP failure frames generated This attribute counts EAPOL failure frames generated according
+autonomously:                to local fallback policy because no radius server was available.
+                             (R) (mandatory) (4 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+ Threshold crossing alert
+     Number                 Threshold crossing alert               Threshold value attribute # (Note)
+        0..3      Reserved
+         4        Invalid EAPOL frames received                                      5
+        5..8      Reserved
+         9        EAP length error frames received                                  10
+      10..207     Reserved
+     208..223     Vendor-specific alarms
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold data 1
+ managed entity.

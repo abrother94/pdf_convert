@@ -1,0 +1,29 @@
+9.8.3    CES service profile-G
+NOTE – Except for its name, this managed entity is substantially identical to the CES service profileB-PON
+defined in [ITU-T G.983.2].
+An instance of this managed entity organizes data that describe the CES service functions of the
+ONT. Instances of this managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of an
+interworking termination point.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. (R, Set-by-create) (mandatory) (2 bytes)
+CES buffered CDV              This attribute represents the duration of user data that must be
+tolerance:                    buffered by the CES interworking entity to offset packet delay
+                              variation. It is expressed in 10 microsecond increments. The default
+                              value for DS1 CES is 750 μs; for DS3 CES, it is 1000 μs. (R, W,
+                              Set-by-create) (mandatory) (2 bytes)
+Channel associated            This attribute selects the signalling format. It applies to structured
+signalling:                   interfaces only. For unstructured interfaces, this value, if present,
+                              must be set to the default 0. Valid values are:
+                              0    Basic.
+                              1    E1 CAS.
+                              2    SF CAS.
+                              3    DS1 ESF CAS.
+                              4    J2 CAS.
+                              (R, W, Set-by-create) (optional) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

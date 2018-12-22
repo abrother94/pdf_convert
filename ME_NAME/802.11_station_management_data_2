@@ -1,0 +1,83 @@
+9.6.3    802.11 station management data 2
+This managed entity organizes some of the data associated with an 802.11 station. The ONT
+automatically creates an instance of this entity whenever it creates a PPTP 802.11 UNI instance.
+Relationships
+An instance of this managed entity is associated with an instance of an [IEEE 802.11] interface.
+Attributes
+Managed entity id:                  This attribute uniquely identifies each instance of this managed
+                                    entity. Through an identical ID, this managed entity is implicitly
+                                    linked to an instance of the physical path termination point
+                                    802.11 UNI. (R) (mandatory) (2 bytes)
+dot11 disassociate reason:          This attribute records the reason code in the most recently
+                                    transmitted disassociation frame. If no disassociation frame has
+                                    been transmitted, the value of this attribute is 0. (R)
+                                    (mandatory) (2 bytes)
+dot11 disassociate station:         This attribute records the MAC address from the address 1 field
+                                    of the most recently transmitted disassociation frame. If no
+                                    disassociation frame has been transmitted, the value of this
+                                    attribute is 0. (R) (mandatory) (6 bytes)
+dot11 deauthenticate reason:        This attribute records the reason code in the most recently
+                                    transmitted deauthentication frame. If no deauthentication frame
+                                    has been transmitted, the value of this attribute is 0. (R)
+                                    (mandatory) (2 bytes)
+dot11 deauthenticate station:       This attribute records the MAC address from the address 1 field
+                                    of the most recently transmitted deauthentication frame. If no
+                                    deauthentication frame has been transmitted, the value of this
+                                    attribute is 0. (R) (mandatory) (6 bytes)
+                                  transmitted failed authentication frame. If no failed
+                                  authentication frame has been transmitted, the value of this
+                                  attribute is 0. (R) (mandatory) (2 bytes)
+dot11 authenticate fail station:  This attribute records the MAC address from the address 1 field
+                                  of the most recently transmitted failed authentication frame. If
+                                  no failed authentication frame has been transmitted, the value of
+                                  this attribute is 0. (R) (mandatory) (6 bytes)
+                                  The four following attributes contain WEP default keys 1..4,
+                                  respectively. For security, WEP default secret keys are write-
+                                  only. The default value of each WEP default key is 0.
+dot11 WEP default key value1:     (W) (mandatory) (5 bytes)
+dot11 WEP default key value2:     (W) (mandatory) (5 bytes)
+dot11 WEP default key value3:     (W) (mandatory) (5 bytes)
+dot11 WEP default key value4:     (W) (mandatory) (5 bytes)
+dot11 privacy invoked and dot11 This attribute specifies two truth values. It is coded
+exclude unencrypted:              0b0000 00yx, where x indicates the dot11 privacy invoked
+                                  value, and y indicates the dot11 exclude unencrypted value.
+                                  When dot11 privacy invoked is true, [IEEE 802.11] WEP is
+                                  used for transmitting data frames. The default value of this
+                                  attribute is false.
+                                  When dot11 exclude unencrypted is true, the STA does not
+                                  indicate received MSDUs whose WEP subfield of the frame
+                                  control field is 0 at the MAC service interface. When this value
+                                  is false, the STA may accept MSDUs whose WEP subfield of
+                                  the frame control field is 0. The default value of this attribute is
+                                  false.
+                                  (R, W) (mandatory) (1 byte)
+dot11 WEP default key ID:         When set to values of 0..3, this attribute specifies use of WEP
+                                  default key 1..4, respectively. The default value is 0. (R, W)
+                                  (mandatory) (1 byte)
+dot11 WEP key mapping length: The maximum number of tuples that dot11 WEP key mappings
+                                  can hold. Dot11 WEP key mappings are contained in the 802.11
+                                  general purpose object ME, object type 0. (R, W) (mandatory)
+                                  (4 bytes)
+dot11 WEP ICV error count:        This counter increments when a frame is received whose frame
+                                  control field, WEP subfield, is 1, and whose received ICV does
+                                  not match the ICV value calculated for the frame's contents. (R)
+                                  (mandatory) (4 bytes)
+dot11 WEP excluded count:         This counter increments when a frame is received whose WEP
+                                  subfield of the frame control field is 0, and the value of dot11
+                                  exclude unencrypted causes that frame to be discarded. (R)
+                                  (mandatory) (4 bytes)
+Actions
+Get, set
+ Attribute value change
+    Number        Attribute value change                                Description
+       1       N/A
+       2       dot11 disassociate station      MAC address from the address 1 field of the most recently
+                                               transmitted disassociation frame
+       3       N/A
+       4       dot11 deauthenticate station    MAC address from the address 1 field of the most recently
+                                               transmitted deauthentication frame
+       5       N/A
+       6       dot11 authenticate fail station MAC address from the address 1 field of the most recently
+                                               transmitted failed authentication frame
+     7..12     N/A
+     13..16    Reserved

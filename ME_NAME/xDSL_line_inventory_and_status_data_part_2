@@ -1,0 +1,150 @@
+9.7.13 xDSL line inventory and status data part 2
+This managed entity contains part 2 of the line inventory and status data for an xDSL line. The
+ONT automatically creates or deletes an instance of this managed entity upon the creation or
+deletion of a physical path termination point xDSL UNI part 1.
+NOTE 1 – [ITU-T G.997.1] specifies that bit rate attributes have granularity of 1000 bit/s. If G.997.1
+compliance is required, the ONT should only report values with this granularity.
+Relationships
+An instance of this managed entity is associated with an instance of a physical path termination
+point xDSL UNI part 1.
+Attributes
+Managed entity id:               This attribute uniquely identifies each instance of this managed
+                                 entity. Through an identical ID, this managed entity is implicitly
+                                 linked to an instance of the physical path termination point xDSL
+                                 UNI. (R) (mandatory) (2 bytes)
+xDSL transmission system: This parameter defines the transmission system in use. It is a bit map,
+                                 defined in Table 9.7.12-1. (R) (mandatory) (7 bytes)
+                                 NOTE 2 – An additional byte identifying VDSL2 capabilities in use is
+                                 defined in the VDSL2 line inventory and status data part 1 managed entity.
+                                 (R) (mandatory) (7 bytes)
+Line power management            The line has four possible power management states:
+state:                           0      L0: Synchronized – This line state occurs when the line has full
+                                        transmission (i.e., showtime).
+                                 1      L1: Power down data transmission – This line state occurs when
+                                        there is transmission on the line but the net data rate is reduced
+                                        (e.g., only for OAM and higher layer connection and session
+                                        control). This state applies to [b-ITU-T G.992.2] only.
+                                 2      L2: Power down data transmission – This line state occurs when
+                                        there is transmission on the line but the net data rate is reduced
+                                        (e.g., only for OAM and higher layer connection and session
+                                        control). This state applies to [ITU-T G.992.3] and
+                                        [ITU-T G.992.4] only.
+                                 3      L3: No power – This line state occurs when no power is
+                                        transmitted on the line at all.
+                                 (R) (mandatory) (1 byte)
+Downstream line              The LATNds attribute is the measured difference in the total power
+attenuation:                 transmitted by the xTU-C and the total power received by the xTU-R
+                             over all subcarriers during diagnostics mode and initialization. The
+                             attribute value ranges from 0 (0.0 dB) to 1270 (127.0 dB) dB. The
+                             special value 0xFFFF indicates that line attenuation is out of range.
+                             NOTE 3 – [ITU-T G.993.2] specifies a per-band array to represent this
+                             attribute. The array is defined in the VDSL2 line inventory and status data
+                             part 3 managed entity. In a G.993.2 context, the downstream line
+                             attenuation attribute should be set to 0 here, and populated in the VDSL2
+                             line inventory and status data part 3 ME instead.
+                             (R) (mandatory) (2 bytes)
+Upstream line attenuation: The LATNus attribute is the measured difference in the total power
+                             transmitted by the xTU-R and the total power received by the xTU-C
+                             over all subcarriers during diagnostics mode and initialization. The
+                             attribute value ranges from 0 (0.0 dB) to 1270 (127.0 dB). The
+                             special value 0xFFFF indicates that line attenuation is out of range.
+                             NOTE 4 – [ITU-T G.993.2] specifies a per-band array to represent this
+                             attribute. The array is defined in the VDSL2 line inventory and status data
+                             part 3 managed entity. In a G.993.2 context, the upstream line attenuation
+                             attribute should be set to 0 here, and populated in the VDSL2 line inventory
+                             and status data part 3 ME instead. (R) (mandatory) (2 bytes)
+Downstream signal            The SATNds attribute is the measured difference in the total power
+attenuation:                 transmitted by the xTU-C and the total power received by the xTU-R
+                             over all subcarriers during showtime. The attribute value ranges from
+                             0 (0.0 dB) to 1270 (127.0 dB). The special value 0xFFFF indicates
+                             that signal attenuation is out of range.
+                             NOTE 5 – [ITU-T G.993.2] specifies a per-band array to represent this
+                             attribute. The array is defined in the VDSL2 line inventory and status data
+                             part 3 managed entity. In a [ITU-T G.993.2] context, the downstream signal
+                             attenuation attribute should be set to 0 here, and populated in the VDSL2
+                             line inventory and status data part 3 ME instead. (R) (mandatory) (2 bytes)
+Upstream signal              The SATNus attribute is the measured difference in the total power
+attenuation:                 transmitted by the xTU-R and the total power received by the xTU-C
+                             over all subcarriers during showtime. The attribute value ranges from
+                             0 (0.0 dB) to 1270 (127.0 dB). The special value 0xFFFF indicates
+                             that signal attenuation is out of range.
+                             NOTE 6 – [ITU-T G.993.2] specifies a per-band array to represent this
+                             attribute. The array is defined in the VDSL2 line inventory and status data
+                             part 3 managed entity. In a [ITU-T G.993.2] context, the upstream signal
+                             attenuation attribute should be set to 0 here, and populated in the VDSL2
+                             line inventory and status data part 3 ME instead. (R) (mandatory) (2 bytes)
+Downstream signal-to-noise The downstream signal-to-noise ratio margin SNRMds is the
+ratio margin:                maximum increase of noise power received at the xTU-R, such that
+                             the BER requirements can still be met for all downstream bearer
+                             channels. The attribute value ranges from 0 (–64.0 dB) to 1270
+                             (+63.0 dB). The special value 0xFFFF indicates that the attribute is
+                             out of range. (R) (mandatory) (2 bytes)
+Upstream signal-to-noise    The upstream signal-to-noise ratio margin SNRMus is the maximum
+ratio margin:               increase of noise power received at the xTU-C, such that the BER
+                            requirements can still be met for all upstream bearer channels. The
+                            attribute value ranges from 0 (–64.0 dB) to 1270 (+63.0 dB). The
+                            special value 0xFFFF indicates that the attribute is out of range. (R)
+                            (mandatory) (2 bytes)
+Downstream maximum          This parameter indicates the maximum downstream net data rate
+attainable data rate:       currently attainable. The rate is coded in bit/s. (R) (mandatory)
+                            (4 bytes)
+Upstream maximum            This parameter indicates the maximum upstream net data rate
+attainable data rate:       currently attainable. The rate is coded in bit/s. (R) (mandatory)
+                            (4 bytes)
+Downstream actual power     This parameter is the average downstream transmit power spectrum
+spectrum density:           density over the subcarriers in use (subcarriers to which downstream
+                            user data are allocated) delivered by the xTU-C at the U-C reference
+                            point, at the instant of measurement. The attribute value ranges from
+                            0 (–90.0 dBm/Hz) to 900 (0.0 dBm/Hz). The special value 0xFFFF
+                            indicates that the parameter is out of range. (R) (mandatory) (2 bytes)
+Upstream actual power       The ACTPSDus attribute is the average upstream transmit power
+spectrum density:           spectrum density over the subcarriers in use (subcarriers to which
+                            upstream user data are allocated) delivered by the xTU-R at the U-R
+                            reference point, at the instant of measurement. The attribute value
+                            ranges from 0 (–90.0 dBm/Hz) to 900 (0.0 dBm/Hz). The special
+                            value 0xFFFF indicates that the attribute is out of range. (R)
+                            (mandatory) (2 bytes)
+Downstream actual           This parameter is the total amount of transmit power delivered by the
+aggregate transmit power: xTU-C at the U-C reference point, at the instant of measurement. The
+                            attribute value ranges from 0 (–31.0 dBm ) to 620 (+31.0 dBm). The
+                            special value 0xFFFF indicates that the parameter is out of range.
+                            NOTE 7 – The downstream nominal aggregate transmit power may be
+                            taken as a best estimate of the parameter.
+                            (R) (mandatory) (2 bytes)
+Upstream actual aggregate This parameter is the total amount of transmit power delivered by the
+transmit power:             xTU-R at the U-R reference point, at the instant of measurement. The
+                            attribute value ranges from 0 (–31.0 dBm ) to 620 (+31.0 dBm). The
+                            special value 0xFFFF indicates that the parameter is out of range.
+                            NOTE 8 – The upstream nominal aggregate transmit power may be taken
+                            as a best estimate of the parameter.
+                            (R) (mandatory) (2 bytes)
+Initialization – last state This parameter represents the last successful transmitted initialization
+transmitted downstream:     state in the downstream direction in the last full initialization
+                            performed on the line. Initialization states are defined in the
+                            individual xDSL Recommendations and are counted from 0 (if
+                            [ITU-T G.994.1] is used) or 1 (if [ITU-T G.994.1] is not used) up to
+                            showtime. This parameter must be interpreted along with the xDSL
+                            transmission system capabilities.
+                                This parameter is available only when, after a failed full
+                                initialization, line diagnostic procedures are activated on the line.
+                                Line diagnostic procedures can be activated by the operator of the
+                                system (through the line state forced line configuration parameter) or
+                                autonomously by the xTU-C or xTU-R.
+                                (R) (mandatory) (1 byte)
+Initialization – last state     This parameter represents the last successful transmitted initialization
+transmitted upstream:           state in the upstream direction in the last full initialization performed
+                                on the line. Initialization states are defined in the individual xDSL
+                                Recommendations and are counted from 0 (if [ITU-T G.994.1] is
+                                used) or 1 (if [ITU-T G.994.1] is not used) up to showtime. This
+                                parameter must be interpreted along with the xDSL transmission
+                                system capabilities.
+                                This parameter is available only when, after a failed full
+                                initialization, line diagnostic procedures are activated on the line.
+                                Line diagnostic procedures can be activated by the operator of the
+                                system (through the line state forced line configuration parameter) or
+                                autonomously by the xTU-C or xTU-R.
+                                (R) (mandatory) (1 byte)
+Actions
+Get
+Notifications
+None.

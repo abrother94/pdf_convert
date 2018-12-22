@@ -1,0 +1,66 @@
+9.3.26 Dot1ag chassis-management info
+This managed entity represents the system-level chassis ID and/or management address for
+[b-IEEE 802.1ag] CFM messages, and potentially for other 802-based functions. Although
+[b-IEEE 802.1AB] allows for several management addresses (synonyms in different formats, or
+with granularity to the component level), [b-IEEE 802.1ag] does not provide for more than one. Nor
+provides for only one.
+According to sender ID permission attributes in several dot1ag managed entities, transmitted
+[b-IEEE 802.1ag] CFM messages may include either or both of the chassis ID or management
+address fields. [b-IEEE 802.1ag] requires that CCMs not exceed 128 bytes, of which 74 are
+separately allocated to other purposes; the sender ID TLV, if present, must accommodate this
+requirement. The chassis info and management info must fit, with a minimum of 4 additional
+overhead bytes, into the remaining 54 bytes. This limit is exploited in defining the maximum size of
+the managed entity's attributes.
+Relationships
+If an ONT supports [b-IEEE 802.1ag] functionality, it automatically creates an instance of this
+managed entity.
+Attributes
+Managed entity id:             This attribute uniquely identifies this managed entity. There is at most
+                               one instance, whose value is 0. (R) (mandatory) (2 bytes)
+Chassis ID length:             The length of the chassis ID attribute (not including the chassis ID
+                               subtype attribute), default value 0. (R, W) (mandatory) (1 byte)
+Chassis ID subtype:            The format of the chassis ID attribute, default value 7, as defined in
+                               [b-IEEE 802.1AB]:
+   1    Chassis           A particular instance of the entPhysicalAlias object (defined in
+        component         [b-IETF RFC 2737]) for a chassis component.
+   2    Interface alias   A particular instance of the ifAlias object (defined in [b-IETF RFC 2863]) for an
+                          interface on the containing chassis.
+   3    Port component    A particular instance of the entPhysicalAlias object (defined in
+                          [b-IETF RFC 2737]) for a port or backplane component within the containing
+                          chassis.
+   4    MAC address       A particular unicast source address (encoded in network byte order and
+                          [b-IEEE 802.3] canonical bit order), of a port on the containing chassis as
+                          defined in [b-IEEE 802].
+   5    Network address   A particular network address, encoded in network byte order, associated with
+                          one or more ports on the containing chassis. The first octet contains the IANA
+                          address family numbers enumeration value for the specific address type, and
+                          octets 2 through N contain the network address value in network byte order.
+   6    Interface name    A particular instance of the ifName object (defined in [b-IETF RFC 2863]) for
+                          an interface on the containing chassis.
+   7    Local             Locally assigned chassis ID.
+                               (R, W) (mandatory) (1 byte)
+Chassis ID part 1, Chassis These two attributes may be regarded as an octet string of up to
+ID part 2:                     50 bytes whose length is given by the chassis ID length attribute and
+                               whose value is the left-justified chassis ID. (R, W) (mandatory)
+                               (25 bytes * 2 attributes)
+Management address             The length of the management address domain attribute, default
+domain length:                 value 0. If this attribute has the value 0, all of the other management
+                               address attributes are undefined. (R, W) (mandatory) (1 byte)
+domain 1, Management         50 bytes whose length is given by the management address domain
+address domain 2:            length attribute and whose value is the left-justified management
+                             address domain. The attribute is coded as an object identifier (OID) per
+                             [b-ITU-T X.690], referring to a TDomain as defined in
+                             [b-IETF RFC 2579]. Typical values include snmpUDPDomain (from
+                             SNMPv2-TM, [b-IETF RFC 3417]) and snmpIeee802Domain (from
+                             SNMP-IEEE802-TM-MIB, [b-IETF RFC 4789]). (R, W) (mandatory)
+                             (25 bytes * 2 attributes)
+Management address           The length of the management address attribute, default value 0.
+length:                      (R, W) (mandatory) (1 byte)
+Management address 1,        These two attributes may be regarded as an octet string of up to
+Management address 2:        50 bytes whose length is given by the management address length
+                             attribute and whose value is the left-justified management address.
+                             (R, W) (mandatory) (25 bytes * 2 attributes)
+Actions
+Get, set
+Notifications
+None.

@@ -1,0 +1,43 @@
+9.1.8     Port mapping package-G
+This managed entity provides a way to map a heterogeneous set of physical path termination points
+(ports) to a parent equipment, which may be a cardholder or the ONT itself. It could be useful, for
+example, if a single plug-in circuit pack contained a PON ANI as port 1, a video UNI as port 2, and
+a craft UNI as port 3. It also provides an option for an integrated ONT to represent its ports without
+the use of virtual cardholders and virtual circuit packs.
+If the port mapping package-G is supported for the ONT as a whole, it is automatically created by
+the ONT. If the port mapping package-G is supported for plug-in circuit packs, it is created and
+destroyed by the ONT when the corresponding circuit pack is installed or preprovisioned in a
+cardholder.
+The port list attributes specify ports 1..64 sequentially. Each port list contains a sequence of ME
+types, as defined in Table 11-2. These ME type codes define what kind of PPTP or ANI
+corresponds to the specific port number. For example, for a circuit pack with 4 POTS ports,
+2 VDSL ports, and 1 video port, numbered sequentially in that order, the attributes would be coded:
+Max ports:       7
+Port list 1:      53, 53, 53, 53, 117, 117, 82, 0
+Port list 2..8:   All zero
+Relationships
+A port mapping package-G may be contained by an ONT-G or a cardholder.
+Managed entity id:       This attribute uniquely identifies each instance of this managed entity.
+                         Through an identical ID, this managed entity is implicitly linked to an
+                         instance of the ONT-G or cardholder. (R) (mandatory) (2 bytes)
+Max ports:               This attribute indicates the largest port number contained in the port list
+                         attributes. Ports are numbered from 1 to this maximum, possibly with
+                         embedded 0 entries, but no port may exist beyond the maximum. (R)
+                         (mandatory) (1 byte)
+                         Each of the following attributes is a list of 8 ports, in increasing port number
+                         sequence. Each list entry is a two-byte field containing the managed entity
+                         type of the UNI or ANI corresponding to the port number. Managed entity
+                         types are defined in Table 11-2. Placeholders for unused port numbers are
+                         indicated with the value 0.
+Port list 1:             (R) (mandatory) (16 bytes)
+Port list 2:             (R) (optional) (16 bytes)
+Port list 3:             (R) (optional) (16 bytes)
+Port list 4:             (R) (optional) (16 bytes)
+Port list 5:             (R) (optional) (16 bytes)
+Port list 6:             (R) (optional) (16 bytes)
+Port list 7:             (R) (optional) (16 bytes)
+Port list 8:             (R) (optional) (16 bytes)
+Actions
+Get
+Notifications
+None.

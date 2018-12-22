@@ -1,0 +1,112 @@
+9.7.18 VDSL2 line inventory and status data part 3
+This managed entity extends the other xDSL line inventory and status data MEs with attributes
+specific to VDSL2. This ME contains per-band attributes for both directions. These same attributes
+are defined in the xDSL line inventory and status data part 2 managed entity, but only for a single
+band. [ITU-T G.993.2] allows for VDSL2 to have as many as five bands upstream and as many as
+five bands downstream.
+This is one of the status data MEs pointed to by a physical path termination point xDSL managed
+entity. It is required only if VDSL2 is supported by the PPTP. The ONT automatically creates or
+deletes an instance of this managed entity upon creation or deletion of a physical path termination
+point xDSL that supports these attributes.
+Attributes
+Managed entity id:              This attribute uniquely identifies each instance of this managed
+                                entity. Through an identical ID, this managed entity is implicitly
+                                linked to an instance of the physical path termination point xDSL
+                                managed entity. (R) (mandatory) (2 bytes)
+Upstream bands count:           This attribute reports the number of upstream bands. It can be used to
+                                filter the upstream attributes. All upstream attributes are arrays of
+                                per-band entries, of which the first upstream bands count are
+                                populated. The content of the arrays for unused frequency bands is
+                                unspecified. The original attributes were allocated for as many as
+                                four upstream bands, US0, 1, 2, 3; optional extended attributes have
+                                been added to accommodate the possibility that five upstream bands
+                                may be needed. (R) (mandatory) (1 byte)
+Downstream bands count:         This attribute reports the number of downstream bands. It can be
+                                used to filter the downstream attributes. All downstream attributes
+                                are arrays of per-band entries, of which the first downstream bands
+                                count are populated. The content of the arrays for unused frequency
+                                bands is unspecified. The original attributes were allocated for as
+                                many as three upstream bands, DS1, 2, 3; optional extended
+                                attributes have been added to accommodate the possibility that five
+                                downstream bands may be needed. (R) (mandatory) (1 byte)
+Downstream line                 The LATNds attribute is defined per usable band. It is the measured
+attenuation per band:           difference in the total power transmitted in this band by the xTU-C
+                                and the total power received in this band by the xTU-R over all
+                                subcarriers of this band during loop diagnostic mode and
+                                initialization. The upstream line attenuation per band ranges from 0
+                                (0.0 dB) to 1270 (+127.0 dB). The special value 0xFFFF indicates
+                                the line attenuation per band is out of range to be represented. (R)
+                                (mandatory) (3 bands * 2 bytes = 6 bytes)
+Upstream line attenuation       The LATNus attribute is defined per usable band. It is the measured
+per band:                       difference in the total power transmitted in this band by the xTU-R
+                                and the total power received in this band by the xTU-C over all
+                                subcarriers of this band during loop diagnostic mode and
+                                initialization. The upstream line attenuation per band ranges from 0
+                                (0.0 dB) to 1270 (+127.0 dB). The special value 0xFFFF indicates
+                                that line attenuation per band is out of range to be represented. (R)
+                                (mandatory) (4 bands * 2 bytes = 8 bytes)
+Downstream signal               The SATNds attribute is defined per usable band. It is the measured
+attenuation per band:           difference in the total power transmitted in this band by the xTU-C
+                                and the total power received in this band by the xTU-R over all
+                                subcarriers of this band during showtime. The downstream signal
+                                attenuation per band ranges from 0 (0.0 dB) to 1270 (+127.0 dB).
+                                The special value 0xFFFF indicates that signal attenuation per band
+                                is out of range to be represented.
+                            transmitted by the xTU-C, as compared to loop diagnostic mode and
+                            initialization. Therefore, the downstream signal attenuation may be
+                            significantly lower than the downstream line attenuation.
+                            (R) (mandatory) (3 bands * 2 bytes = 6 bytes)
+Upstream signal attenuation The SATNus attribute is defined per usable band. It is the measured
+per band:                   difference in the total power transmitted in this band by the xTU-R
+                            and the total power received in this band by the xTU-C over all
+                            subcarriers of this band during showtime. The upstream signal
+                            attenuation per band ranges from 0 (0.0 dB) to 1270 (+127.0 dB).
+                            The special value 0xFFFF indicates the signal attenuation per band is
+                            out of range to be represented.
+                            NOTE 2 – During showtime, only a subset of the subcarriers may be
+                            transmitted by the xTU-R, as compared to loop diagnostic mode and
+                            initialization. Therefore, the upstream signal attenuation may be
+                            significantly lower than the upstream line attenuation.
+                            (R) (mandatory) (4 bands * 2 bytes = 8 bytes)
+Downstream signal-to-noise The SNRMpbds attribute is defined per usable band. The
+ratio margin per band:      downstream signal to noise ratio margin per band is the maximum
+                            increase of noise power received at the xTU-R, such that the BER
+                            requirements are met for all downstream bearer channels. Each array
+                            value ranges from 0 (–64.0 dB) to 1270 (+63.0 dB). The special
+                            value 0xFFFF indicates that the attribute is out of range to be
+                            represented. (R) (mandatory) (3 bands * 2 bytes = 6 bytes)
+Upstream signal-to-noise    The SNRMpbus attribute is defined per usable band. The upstream
+ratio margin per band:      signal to noise ratio margin per band is the maximum increase of
+                            noise power received at the xTU-C, such that the BER requirements
+                            are met for all upstream bearer channels. Each array value ranges
+                            from 0 (–64.0 dB) to 1270 (+63.0 dB). The special value 0xFFFF
+                            indicates that the attribute is out of range to be represented. (R)
+                            (mandatory) (4 bands * 2 bytes = 8 bytes)
+Downstream line             This attribute extends LATNds when more than three downstream
+attenuation extension:      bands are used. It is defined in the same way as the downstream line
+                            attenuation per band attribute. (R) (optional) (2 bands * 2 bytes =
+                            4 bytes)
+Upstream line attenuation   This attribute extends LATNus when more than four upstream bands
+extension:                  are used. It is defined in the same way as the upstream line
+                            attenuation per band attribute. (R) (optional) (1 band * 2 bytes =
+                            2 bytes)
+Downstream signal           This attribute extends SATNds when more than three downstream
+attenuation extension:      bands are used. It is defined in the same way as the downstream
+                            signal attenuation per band attribute. (R) (optional) (2 bands *
+                            2 bytes = 4 bytes)
+Upstream signal attenuation This attribute extends SATNus when more than four upstream bands
+extension:                  are used. It is defined in the same way as the upstream signal
+                            attenuation per band attribute. (R) (optional) (1 band * 2 bytes =
+                            2 bytes)
+Downstream signal-to-noise This attribute extends SNRMpbds when more than three downstream
+ratio margin extension:         bands are used. It is defined in the same way as the downstream
+                                signal-to-noise ratio margin per band attribute. (R) (optional)
+                                (2 bands * 2 bytes = 4 bytes)
+Upstream signal-to-noise        This attribute extends SNRMpbus when more than four upstream
+ratio margin extension:         bands are used. It is defined in the same way as the upstream
+                                signal-to-noise ratio margin per band attribute. (R) (optional) (1 band
+                                * 2 bytes = 2 bytes)
+Actions
+Get
+Notifications
+None.

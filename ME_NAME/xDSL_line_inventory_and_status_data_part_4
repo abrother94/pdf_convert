@@ -1,0 +1,70 @@
+9.7.15 xDSL line inventory and status data part 4
+This managed entity extends the attributes defined in the xDSL line inventory and status data
+parts 1, 2 and 3. This ME reports upstream attributes.
+Relationships
+This is one of the status data MEs pointed to by a physical path termination point xDSL managed
+entity. The ONT automatically creates or deletes an instance of this managed entity upon creation or
+deletion of a physical path termination point xDSL that supports these attributes.
+Attributes
+Managed entity id:  This attribute uniquely identifies each instance of this managed
+                   entity. Through an identical ID, this managed entity is implicitly
+                   linked to an instance of the physical path termination point xDSL
+                   managed entity. (R) (mandatory) (2 bytes)
+TSSpsus table:     This attribute contains the upstream transmit spectrum shaping
+                   attributes, expressed as the set of breakpoints exchanged during
+                   [ITU-T G.994.1]. Each breakpoint consists of a two-byte subcarrier
+                   index and the associated shaping attribute. The shaping attribute is
+                   one byte, a value in the range 0..126, representing a multiple of
+                   –0.5 dB. The special value 127 indicates that the subcarrier is not
+                   transmitted. (R) (mandatory) (3N bytes, where N is the number of
+                   breakpoints)
+HLINSCus:          This attribute is a 16-bit unsigned integer, the scale factor to be
+                   applied to the upstream Hlin(f) values. It is only available after a
+                   loop diagnostic procedure. (R) (mandatory) (2 bytes)
+HLINpsus table:    This attribute is an array of complex upstream Hlin(f) values in linear
+                   scale. It is coded in the same way as the related downstream attribute
+                   HLINpsds (see xDSL line inventory and status data part 3). This
+                   attribute is only available after a loop diagnostic procedure. (R)
+                   (mandatory) (4N bytes, where N is the number of subcarrier groups)
+HLOGMTus:          After a loop diagnostic procedure, this attribute contains the number
+                   of symbols used to measure the upstream Hlog(f) values. Its value
+                   corresponds to the value specified in the corresponding
+                   Recommendation (e.g., the number of symbols in a 1-second interval
+                   for [ITU-T G.992.3]). (R) (mandatory) (2 bytes)
+HLOGpsus table:    This attribute is an array of real upstream Hlog(f) values. It is coded
+                   in the same way as the related downstream attribute HLOGpsds (see
+                   xDSL line inventory and status data part 3). (R) (mandatory)
+                   (2N bytes, where N is the number of subcarrier groups)
+QLNMTus:           After a loop diagnostic procedure, the quiet line noise PSD
+                   measurement attribute contains the number of symbols used to
+                   measure the upstream QLN(f) values. Its value corresponds to the
+                   value specified in the Recommendation (e.g., the number of symbols
+                   in a 1-second interval for [ITU-T G.992.3]). (R) (mandatory)
+                   (2 bytes)
+QLNpsus table:     The quiet line noise attribute represents an array of real upstream
+                   QLN(f) values. It is coded in the same way as the related
+                   downstream attribute QLNpsds (see xDSL line inventory and status
+                   data part 3). (R) (mandatory) (N bytes, where N is the number of
+                   subcarrier groups)
+SNRMTus:           After a loop diagnostic procedure, the SNR measurement time
+                   attribute reports the number of symbols used to measure the upstream
+                   SNR(f) values. Its value corresponds to the value specified in the
+                   Recommendation (e.g., the number of symbols in a 1-second interval
+                   for [ITU-T G.992.3]). (R) (mandatory) (2 bytes)
+SNRpsus table:                  This attribute is an array of real upstream SNR(f) values. It is coded
+                                in the same way as the related downstream attribute SNRpsds (see
+                                xDSL line inventory and status data part 3). (R) (mandatory)
+                                (N bytes, where N is the number of subcarrier groups)
+BITSpsus table:                 This attribute contains the upstream bits allocation table per
+                                subcarrier. It is an array in the range 0..15 for subcarriers 0..NSus.
+                                Entries for subcarriers out of the upstream medley set are set to 0. (R)
+                                (mandatory) (N bytes, where N is the number of subcarriers)
+GAINSpsus table:                This attribute contains the upstream gains allocation table per
+                                subcarrier. It is an array in the range 0..4093 for subcarriers 0..NSus.
+                                The gain is represented as a multiple of 1/512 on a linear scale.
+                                Entries for subcarriers out of the upstream medley set are set to 0. (R)
+                                (mandatory) (2N bytes, where N is the number of subcarriers)
+Actions
+Get, get next
+Notifications
+None.

@@ -1,0 +1,23 @@
+9.2.9    GAL TDM profile
+This managed entity organizes data that describes the GTC adaptation layer processing functions of
+the ONT for TDM services. [ITU-T G.984.3] explains that the GEM adaptation layer generates a
+125 μs GEM frame that accommodates TDM traffic. The length of the TDM partition in the GEM
+frame depends on the TDM UNI bit rate. The clock recovery function and structured data transfer
+function are not necessary because the GEM is terminated in the PON section.
+The receiver of the GEM adaptation layer should check for loss of GEM frame once every 125 μs.
+This managed entity is created and deleted on request of the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the GEM
+interworking termination point managed entity.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed entity.
+                              (R, Set-by-create) (mandatory) (2 bytes)
+GEM frame loss                This attribute is the GEM frame loss integration period in milliseconds.
+integration period:           If GEM frame loss persists for this period, the GEM interworking
+                              termination point managed entity associated with this entity generates a
+                              GEM frame starvation alarm. (R, W, Set-by-create) (mandatory)
+                              (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None

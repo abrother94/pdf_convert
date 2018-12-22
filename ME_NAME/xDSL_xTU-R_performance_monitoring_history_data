@@ -1,0 +1,65 @@
+9.7.22 xDSL xTU-R performance monitoring history data
+This managed entity collects performance monitoring data of the xTU-C to xTU-R path as seen
+from the xTU-R. Instances of this managed entity are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+An instance of this managed entity is associated with an instance of a physical path termination
+point xDSL UNI.
+Attributes
+Managed entity id:            This attribute uniquely identifies each instance of this managed
+                              entity. Through an identical ID, this managed entity is implicitly
+                              linked to an instance of the physical path termination point xDSL
+                              UNI. (R, Set-by-create) (mandatory) (2 bytes)
+Interval end time:            This attribute identifies the most recently finished 15-minute interval.
+                              (R) (mandatory) (1 byte)
+Threshold data 1/2 id:        This attribute points to an instance of the threshold data 1 managed
+                              entity that contains PM threshold values. Since no threshold value
+                              attribute number exceeds 7, a threshold data 2 ME is optional. (R, W,
+                              Set-by-create) (mandatory) (2 bytes)
+Loss of frame seconds:        (R) (mandatory) (2 bytes)
+Loss of signal seconds:       (R) (mandatory) (2 bytes)
+Loss of power seconds:        (R) (mandatory) (2 bytes)
+Errored seconds:              This attribute counts one-second intervals with one or more FEBE
+                              anomalies summed over all transmitted bearer channels, or one or
+                              more LOS-FE defects, or one or more RDI defects, or one or more
+                              LPR-FE defects. (R) (mandatory) (2 bytes)
+Severely errored seconds:     This attribute counts severely errored seconds (SES-LFE). An SES is
+                              declared if, during a one-second interval, 18 or more FEBE
+                              anomalies were reported across the totality of bearer channels, or
+                              there were one or more far-end LOS defects, or one or more RDI
+                              defects, or one or more LPR-FE defects.
+                              If the relevant Recommendation ([ITU-T G.992.3], [ITU-T G.992.5],
+                              [ITU-T G.993.2]) supports a one-second normalized CRC-8 anomaly
+                              counter increment, the one-second SES counter follows this value
+                              instead of counting FEBE anomalies directly.
+                                If a CRC is applied for multiple bearer channels, then each related
+                                FEBE anomaly is counted only once for the whole set of related
+                                bearer channels.
+                                (R) (mandatory) (2 bytes)
+FEC seconds:                    This attribute counts seconds during which there was a forward error
+                                correction anomaly. (R) (mandatory) (2 bytes)
+Unavailable seconds:            This attribute counts one-second intervals during which the far-end
+                                xDSL line is unavailable.
+                                The far-end xDSL line becomes unavailable at the onset of
+                                10 contiguous SES-LFEs. The 10 SES-LFEs are included in
+                                unavailable time. Once unavailable, the far-end line becomes
+                                available at the onset of 10 contiguous seconds with no SES-LFEs.
+                                The 10 seconds with no SES-LFEs are excluded from unavailable
+                                time. Some attribute counts are inhibited during unavailability – see
+                                clause 7.2.7.13 of [ITU-T G.997.1].
+                                (R) (mandatory) (2 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+    Number                 Threshold crossing alert              Threshold value attribute # (Note)
+        0        Loss of frame seconds                                              1
+        1        Loss of signal seconds                                             2
+        2        Loss of power seconds                                              3
+        3        Errored seconds                                                    4
+        4        Severely errored seconds                                           5
+        5        FEC seconds                                                        6
+        6        Unavailable seconds                                                7
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold
+ data 1 managed entity.

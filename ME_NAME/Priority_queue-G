@@ -1,0 +1,86 @@
+9.11.1 Priority queue-G
+This managed entity specifies the priority queue used by a GEM port network CTP. In the upstream
+direction, a priority queue-G ME is also related to a T-CONT ME.
+If N priority queues reside in the ONT and its circuit packs, the ONT creates N instances of the
+priority queue-G management entity following the creation of the circuit pack or T-CONT MEs.
+After the ONT creates T-CONT MEs, it autonomously creates instances of the priority queue-G
+ME.
+The OLT can find all the queues by reading the priority queue-G managed entity instances. If the
+OLT tries to retrieve a non-existent priority queue, the ONT denies the get action with an error
+indication.
+See also Appendix III.
+Upstream priority queues can be added to the ONT. Moreover, priority queues can exist in the ONT
+core and circuit packs serving both UNI and ANI functions.
+The weight attribute permits configuring an optional traffic scheduler. Several attributes support
+back pressure operation, whereby a back pressure signal is sent backward and causes the attached
+terminal to temporarily suspend sending data.
+Relationships
+One or more instances of this managed entity are associated with the ONT-G managed entity to
+model the upstream priority queues if the traffic management option attribute in the ONT-G ME
+is 0.
+One or more instances of this managed entity are associated with a circuit pack managed entity
+serving UNI functions as downstream priority queues.
+For an ONT that has one or more fixed user interfaces, one or more instances are associated with
+the ONT-G managed entity for the downstream priority queues.
+Attributes
+Managed entity id:           This attribute uniquely identifies each instance of this managed entity.
+                             The most significant bit represents the direction (1: upstream,
+                             0: downstream). The 15 least significant bits represent a queue id. The
+                             queue id is numbered in ascending order by the ONT itself. It is
+                             strongly encouraged that the queue id be formulated to simplify finding
+                             related queues. One way to do this is to number the queues such that the
+                             related port attributes are in ascending order (for the downstream and
+                             upstream queues separately). The range of downstream queue ids is 0 to
+                             0x7FFF and the range of upstream queue ids is 0x8000 to 0xFFFF. (R)
+                             (mandatory) (2 bytes)
+Queue configuration   This attribute identifies the buffer partitioning policy. The value 1
+option:               means that several queues share one buffer size of maximum queue
+                      size, while the value 0 means that each queue has an individual buffer
+                      of maximum queue size. (R) (mandatory) (1 byte)
+Maximum queue size:   This attribute specifies the maximum size of the queue. Units are GEM
+                      block lengths. (R) (mandatory) (2 bytes)
+Allocated queue size: This attribute identifies the allocated size of this queue. Units are GEM
+                      block lengths. (R, W) (mandatory) (2 bytes)
+Discard-block counter This attribute represents the interval in milliseconds at which the
+reset interval:       counter resets itself. (R, W) (optional) (2 bytes)
+Threshold value for   The threshold for the number of GEM block lengths discarded on this
+discarded blocks due  queue due to buffer overflow. (R, W) (optional) (2 bytes)
+to buffer overflow:
+Related port:         This attribute represents the slot, port/T-CONT and priority information
+                      associated with the instance of priority queue-G ME. This attribute
+                      comprises four bytes.
+                      In the upstream direction, the first two bytes are the ME ID of the
+                      associated T-CONT. In the downstream direction, the first byte is the
+                      slot number and the second byte is the port number of the queue's
+                      destination port.
+                      The last two bytes represent the priority of this queue. The range of
+                      priority is 0 to 0x0FFF. The value 0 indicates the highest priority and
+                      0x0FFF indicates the lowest priority. (R) (mandatory) (4 bytes)
+Traffic scheduler-G   This attribute points to the traffic scheduler-G ME instance that is
+pointer:              associated with this priority queue. This pointer is used when this
+                      priority queue is connected with a traffic scheduler. The default value is
+                      null (0). (R, W) (mandatory) (2 bytes)
+Weight:               This attribute represents weight for WRR. This weight is used by the
+                      traffic scheduler or T-CONT (whose policy is WRR) indicated by the
+                      traffic scheduler-G pointer attribute or related port attribute. Upon ME
+                      instantiation, the ONT sets this attribute to 1. (R, W) (mandatory)
+                      (1 byte)
+Back pressure         This attribute enables (0) or disables (1) back pressure operation. Its
+operation:            default value is 0. (R, W) (mandatory) (2 bytes)
+Back pressure time:   This attribute indicates the time for which the customer terminal
+                      temporarily suspends sending data. This attribute presents the duration
+                      in microseconds. This attribute can be used as a pause time for an
+                      Ethernet UNI. Values: 0 to 0xFFFF FFFF. Upon ME instantiation, the
+                      ONT sets this attribute to 0. (R, W) (mandatory) (4 bytes)
+Back pressure occur   This attribute identifies the threshold size of this queue to start sending
+queue threshold:      a back pressure signal. (R, W) (mandatory) (2 bytes)
+Back pressure clear   This attribute identifies the threshold size of this queue to stop sending a
+queue threshold:      back pressure signal. (R, W) (mandatory) (2 bytes)
+Actions
+Get, set
+  Alarm
+   Number              Alarm                                         Description
+       0      Block loss                  Content loss in excess of threshold. The alarm is cleared when
+                                          the discard block counter reset interval next expires.
+    1..207    Reserved
+   208..223   Vendor-specific alarms      Not to be standardized

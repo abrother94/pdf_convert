@@ -1,0 +1,203 @@
+9.7.12 xDSL line inventory and status data part 1
+This managed entity contains part 1 of the line inventory and status data for an xDSL line. The
+ONT automatically creates or deletes an instance of this managed entity upon the creation or
+deletion of a physical path termination point xDSL UNI part 1.
+Relationships
+An instance of this managed entity is associated with an instance of a physical path termination
+point xDSL UNI part 1.
+Attributes
+Managed entity id:              This attribute uniquely identifies each instance of this managed
+                                entity. Through an identical ID, this managed entity is implicitly
+                                linked to an instance of the physical path termination point xDSL
+                                UNI. (R) (mandatory) (2 bytes)
+xTU-C G.994.1 vendor ID: This is the vendor ID as inserted by the xTU-C in the G.994.1 CL
+                                message. It comprises 8 octets, including a country code followed by
+                                a (regionally allocated) provider code, as defined in [ITU-T T.35].
+                                (R) (mandatory) (8 bytes)
+xTU-R G.994.1 vendor ID: This is the vendor ID as inserted by the xTU-R in the G.994.1 CLR
+                                message. It comprises 8 binary octets, with the same format as the
+                                xTU-C G.994.1 vendor ID. (R) (mandatory) (8 bytes)
+xTU-C system vendor ID:         This is the vendor ID as inserted by the xTU-C in the overhead
+                                messages of [ITU-T G.992.3] and [ITU-T G.992.4]. It comprises
+                                8 binary octets, with the same format as the xTU-C G.994.1 vendor
+                                ID. (R) (mandatory) (8 bytes)
+xTU-R system vendor ID:   This is the vendor ID as inserted by the xTU-R in the embedded
+                          operations channel and overhead messages of [ITU-T G.992.3] and
+                          [ITU-T G.992.4]. It comprises 8 binary octets, with the same format
+                          as the xTU-C G.994.1 vendor ID. (R) (mandatory) (8 bytes)
+xTU-C version number:     This is the vendor-specific version number as inserted by the xTU-C
+                          in the overhead messages of [ITU-T G.992.3] and [ITU-T G.992.4].
+                          It comprises up to 16 binary octets. (R) (mandatory) (16 bytes)
+xTU-R version number:     This is the vendor-specific version number as inserted by the xTU-R
+                          in the embedded operations channel or overhead messages of
+                          [ITU-T G.992.3] and [ITU-T G.992.4]. It comprises up to 16 binary
+                          octets. (R) (mandatory) (16 bytes)
+xTU-C serial number       The vendor-specific serial number inserted by the xTU-C in the
+part 1:                   overhead messages of [ITU-T G.992.3] and [ITU-T G.992.4]
+                          comprises up to 32 ASCII characters. This attribute contains the first
+                          16 characters. (R) (mandatory) (16 bytes)
+xTU-C serial number       The vendor-specific serial number inserted by the xTU-C in the
+part 2:                   overhead messages of [ITU-T G.992.3] and [ITU-T G.992.4]
+                          comprises up to 32 ASCII characters. This attribute contains the
+                          second 16 characters. (R) (mandatory) (16 bytes)
+xTU-R serial number       The vendor-specific serial number inserted by the xTU-R in the
+part 1:                   embedded operations channel or overhead messages of
+                          [ITU-T G.992.3] and [ITU-T G.992.4] comprises up to 32 ASCII
+                          characters. This attribute contains the first 16 characters. (R)
+                          (mandatory) (16 bytes)
+xTU-R serial number       The vendor-specific serial number inserted by the xTU-R in the
+part 2:                   embedded operations channel or overhead messages of
+                          [ITU-T G.992.3] and [ITU-T G.992.4] comprises up to 32 ASCII
+                          characters. This attribute contains the second 16 characters. (R)
+                          (mandatory) (16 bytes)
+xTU-C self test results:  This parameter reports the xTU-C self test result. It is coded as a
+                          32-bit integer. The most significant octet is 0 if the self test passed
+                          and 1 if it failed. The content of the other octets is
+                          vendor-discretionary and can be interpreted in combination with
+                          [ITU-T G.994.1] and the system vendor ID. (R) (mandatory)
+                          (4 bytes)
+xTU-R self test results:  This parameter defines the xTU-R self test result. It is coded as a
+                          32-bit integer. The most significant octet is 0 if the self test passed
+                          and 1 if it failed. The content of the other octets is
+                          vendor-discretionary and can be interpreted in combination with
+                          [ITU-T G.994.1] and the system vendor ID. (R) (mandatory)
+                          (4 bytes)
+xTU-C transmission system This attribute lists xTU-C transmission system capabilities. It is a bit
+capability:               map, defined in Table 9.7.12-1.
+                          NOTE 1 – An additional byte identifying VDSL2 capabilities is defined in
+                          the VDSL2 line inventory and status data part 1 managed entity.
+                          (R) (mandatory) (7 bytes)
+xTU-R transmission system This attribute lists xTU-R transmission system capabilities. It is a bit
+capability:                        map, defined in Table 9.7.12-1.
+                                   NOTE 2 – An additional byte identifying VDSL2 capabilities is defined in
+                                   the VDSL2 line inventory and status data part 2 managed entity.
+                                   (R) (mandatory) (7 bytes)
+Initialization success/failure This parameter represents the success or failure cause of the last full
+cause:                             initialization performed on the line. It is coded as follows:
+                                   0    Successful
+                                   1    Configuration error
+                                        This error occurs with inconsistencies in configuration
+                                        parameters, e.g., when the line is initialized in an xDSL
+                                        transmission system whose xTU does not support the configured
+                                        maximum delay or the configured minimum or maximum data
+                                        rate for one or more bearer channels.
+                                   2 Configuration not feasible on the line
+                                        This error occurs if the minimum data rate cannot be achieved on
+                                        the line with the minimum noise margin, maximum PSD level,
+                                        maximum delay and maximum bit error ratio for one or more
+                                        bearer channels.
+                                   3 Communication problem
+                                        This error occurs, e.g., due to corrupted messages, bad syntax
+                                        messages, if no common mode can be selected in the G.994.1
+                                        handshake procedure, or due to a timeout.
+                                   4 No peer xTU detected
+                                        This error occurs if the peer xTU is not powered or not connected
+                                        or if the line is too long to allow detection of a peer xTU.
+                                   5 Any other or unknown initialization failure cause
+                                   (R) (mandatory) (1 byte)
+Actions
+Get
+Notifications
+None.
+Table 9.7.12-1 describes the xTU transmission system capability attributes in xDSL status managed
+entities. It is a bit map (0 if not allowed, 1 if allowed) with the following definition.
+                            Table 9.7.12-1 – xTU transmission system table
+    Bit                                                 Representation
+ Octet 1
+     1        [ANSI T1.PP.413]
+     2        Annex C of [ETSI TS 101 388]
+     3        G.992.1 operation over POTS non-overlapped spectrum (Annex A of [ITU-T G.992.1])
+     4        G.992.1 operation over POTS overlapped spectrum (Annex A of [ITU-T G.992.1])
+     5        G.992.1 operation over ISDN non-overlapped spectrum (Annex B of [ITU-T G.992.1])
+     6        G.992.1 operation over ISDN overlapped spectrum (Annex B of [ITU-T G.992.1])
+                       Table 9.7.12-1 – xTU transmission system table
+  Bit                                          Representation
+   7    G.992.1 operation in conjunction with TCM-ISDN non-overlapped spectrum (Annex C of
+        [ITU-T G.992.1])
+   8    G.992.1 operation in conjunction with TCM-ISDN overlapped spectrum (Annex C of
+        [ITU-T G.992.1])
+Octet 2
+   9    G.992.2 operation over POTS non-overlapped spectrum (Annex A of [ITU-T G.992.2])
+  10    G.992.2 operation over POTS overlapped spectrum (Annex B of [ITU-T G.992.2])
+  11    G.992.2 operation in conjunction with TCM-ISDN non-overlapped spectrum (Annex C of
+        [ITU-T G.992.2])
+  12    G.992.2 operation in conjunction with TCM-ISDN overlapped spectrum (Annex C of
+        [b-ITU-T G.992.2])
+  13    Reserved
+  14    Reserved
+  15    Reserved
+  16    Reserved
+Octet 3
+  17    Reserved
+  18    Reserved
+  19    G.992.3 operation over POTS non-overlapped spectrum (Annex A of [ITU-T G.992.3])
+  20    G.992.3 operation over POTS overlapped spectrum (Annex A of [ITU-T G.992.3])
+  21    G.992.3 operation over ISDN non-overlapped spectrum (Annex B of [ITU-T G.992.3])
+  22    G.992.3 operation over ISDN overlapped spectrum (Annex B of [ITU-T G.992.3])
+  23    Reserved
+  24    Reserved
+Octet 4
+  25    G.992.4 operation over POTS non-overlapped spectrum (Annex A of [ITU-T G.992.4])
+  26    G.992.4 operation over POTS overlapped spectrum (Annex A of [ITU-T G.992.4])
+  27    Reserved
+  28    Reserved
+  29    G.992.3 All digital mode operation with non-overlapped spectrum (Annex I of
+        [ITU-T G.992.3])
+  30    G.992.3 All digital mode operation with overlapped spectrum (Annex I of [ITU-T G.992.3])
+  31    G.992.3 All digital mode operation with non-overlapped spectrum (Annex J of
+        [ITU-T G.992.3])
+  32    G.992.3 All digital mode operation with overlapped spectrum (Annex J of [ITU-T G.992.3])
+Octet 5
+  33    G.992.4 All digital mode operation with non-overlapped spectrum (Annex I of
+        [ITU-T G.992.4])
+  34    G.992.4 All digital mode operation with overlapped spectrum (Annex I of [ITU-T G.992.4])
+  35    G.992.3 Reach extended operation over POTS, Mode 1 (non-overlapped, wide upstream)
+        (Annex L of [ITU-T G.992.3])
+                         Table 9.7.12-1 – xTU transmission system table
+    Bit                                          Representation
+    36    G.992.3 Reach extended operation over POTS, Mode 2 (non-overlapped, narrow upstream)
+          (Annex L of [ITU-T G.992.3])
+    37    G.992.3 Reach extended operation over POTS, Mode 3 (overlapped, wide upstream)
+          (Annex L of [ITU-T G.992.3])
+    38    G.992.3 Reach extended operation over POTS, Mode 4 (overlapped, narrow upstream)
+          (Annex L of [ITU-T G.992.3])
+    39    G.992.3 Extended upstream operation over POTS non-overlapped spectrum (Annex M of
+          [ITU-T G.992.3])
+    40    G.992.3 Extended upstream operation over POTS overlapped spectrum (Annex M of
+          [ITU-T G.992.3])
+ Octet 6
+    41    G.992.5 operation over POTS non-overlapped spectrum (Annex A of [ITU-T G.992.5])
+    42    G.992.5 operation over POTS overlapped spectrum (Annex A of [ITU-T G.992.5])
+    43    G.992.5 operation over ISDN non-overlapped spectrum (Annex B of [ITU-T G.992.5])
+    44    G.992.5 operation over ISDN overlapped spectrum (Annex B of [ITU-T G.992.5])
+    45    Reserved
+    46    Reserved
+    47    G.992.5 All digital mode operation with non-overlapped spectrum (Annex I of
+          [ITU-T G.992.5])
+    48    G.992.5 All digital mode operation with overlapped spectrum (Annex I of [ITU-T G.992.5])
+ Octet 7
+    49    G.992.5 All digital mode operation with non-overlapped spectrum (Annex J of
+          [ITU-T G.992.5])
+    50    G.992.5 All digital mode operation with overlapped spectrum (Annex J of [ITU-T G.992.5])
+    51    G.992.5 Extended upstream operation over POTS non-overlapped spectrum (Annex M of
+          [ITU-T G.992.5])
+    52    G.992.5 Extended upstream operation over POTS overlapped spectrum (Annex M of
+          [ITU-T G.992.5])
+    53    Reserved
+    54    Reserved
+    55    Reserved
+    56    Reserved
+ Octet 8
+ (Note)
+    57    G.993.2 region A (North America) (Annex A of [ITU-T G.993.2])
+    58    G.993.2 region B (Europe) (Annex B of [ITU-T G.993.2])
+    59    G.993.2 region C (Japan) (Annex C of [ITU-T G.993.2])
+    60    Reserved
+    61    Reserved
+    62    Reserved
+    63    Reserved
+                           Table 9.7.12-1 – xTU transmission system table
+    Bit                                              Representation
+     64      Reserved
+ NOTE – For backward compatibility reasons, the eighth octet of this table is represented as a separate
+ attribute in separate managed entities.

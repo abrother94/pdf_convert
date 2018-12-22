@@ -1,0 +1,28 @@
+9.9.9     VoIP feature access codes
+The VoIP feature access codes managed entity defines administrable feature access codes for the
+VoIP subscriber. It is optional for ONTs that support VoIP service. If a non-OMCI interface is used
+to manage VoIP signalling, this ME is unnecessary. The non-OMCI interface supplies the necessary
+data, which may be read back to the OLT via the SIP config portal ME.
+Instances of the managed entity are created and deleted by the OLT. A VoIP feature access codes
+managed object is needed for each unique set of feature access code attributes.
+Relationships
+An instance of this managed entity may be associated with one or more SIP user data managed
+entities.
+Attributes
+Managed entity id:           This attribute uniquely identifies each instance of this managed entity.
+                             (R) (mandatory) (2 bytes)
+                             The remaining attributes are access codes for the features mentioned in their names. Each attribute
+                             is a string of characters from the set {0..9, *, #}, with trailing nulls in any unused bytes.
+Cancel call waiting:                  (R, W) (optional) (5 bytes)
+Call hold:                            (R, W) (optional) (5 bytes)
+Call park:                            (R, W) (optional) (5 bytes)
+Caller ID activate:                   (R, W) (optional) (5 bytes)
+Caller ID deactivate:                 (R, W) (optional) (5 bytes)
+Do not disturb deactivation:        (R, W) (optional) (5 bytes)
+Do not disturb PIN change:          (R, W) (optional) (5 bytes)
+Emergency service number:           (R, W) (optional) (5 bytes)
+Intercom service:                   (R, W) (optional) (5 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.

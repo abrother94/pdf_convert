@@ -1,0 +1,47 @@
+9.2.6    GEM port performance monitoring history data
+This managed entity collects performance monitoring data associated with a GEM port network
+CTP. Instances of this managed entity are created and deleted by the OLT.
+For a complete discussion of generic PM architecture, refer to clause I.1.9.
+Relationships
+An instance of this managed entity is associated with an instance of the GEM port network CTP
+managed entity.
+Attributes
+Managed entity id:           This attribute uniquely identifies each instance of this managed entity.
+                             Through an identical ID, this managed entity is implicitly linked to an
+                             instance of the GEM port network CTP. (R, Set-by-create) (mandatory)
+                             (2 bytes)
+Interval end time:           This attribute identifies the most recently finished 15-minute interval.
+                             (R) (mandatory) (1 byte)
+Threshold data 1/2 id:       This attribute points to an instance of the threshold data 1 managed
+                             entity that contains PM threshold values. Since no threshold value
+                             attribute number exceeds 7, a threshold data 2 ME is optional. (R, W,
+                             Set-by-create) (mandatory) (2 bytes)
+Lost packets:                This attribute counts background GEM frame loss. It does not
+                             distinguish between packets lost because of header bit errors or buffer
+                             overflows; it records only loss of information. (R) (mandatory)
+                             (4 bytes)
+Misinserted packets:         This attribute counts GEM frames misrouted to this GEM port. (R)
+                             (mandatory) (4 bytes)
+Received packets:            This attribute counts GEM frames that were received correctly at the
+                             monitored GEM port. (R) (mandatory) (5 bytes)
+Received blocks:             This attribute counts GEM blocks that were received correctly at the
+                             monitored GEM port. (R) (mandatory) (5 bytes)
+Transmitted blocks:          This attribute counts GEM blocks originated by the transmitting end
+                             point (i.e., backward reporting is assumed). (R) (mandatory) (5 bytes)
+Impaired blocks:             This severely errored data block counter is incremented whenever one
+                             of the following events takes place: the number of misinserted packets
+                             reaches its threshold, the number of bipolar violations reaches its
+                             threshold, or the number of lost packets reaches its threshold.
+                             Threshold values are based on vendor-operator negotiation. (R)
+                             (mandatory) (4 bytes)
+Actions
+Create, delete, get, set
+Get current data (optional)
+Notifications
+ Threshold crossing alert
+      Number               Threshold crossing alert               Threshold value attribute # (Note)
+         0         Lost packets                                                     1
+         1         Misinserted packets                                              2
+         2         Impaired blocks                                                  3
+ NOTE – This number associates the TCA with the specified threshold value attribute of the threshold data 1
+ managed entity.

@@ -1,0 +1,48 @@
+9.7.11 xDSL downstream RFI bands profile
+This managed entity contains the downstream RFI bands profile for an xDSL line. Instances of this
+managed entity are created and deleted by the OLT.
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the physical
+path termination point xDSL UNI.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity.
+                            The value 0 is reserved. (R, Set-by-create) (mandatory) (2 bytes)
+                            Downstream RFI bands The RFIBANDS attribute is a table where each entry comprises:
+table:                      •        An entry number field. (1 byte, first entry numbered 1)
+                            •        Subcarrier index 1 field. (2 bytes)
+                            •        Subcarrier index 2 field. (2 bytes)
+                            For [ITU-T G.992.5], this configuration attribute defines the subset of
+                            downstream PSD mask breakpoints, as specified in the downstream PSD
+                            mask, to be used to notch an RFI band. This subset consists of couples
+                            of consecutive subcarrier indices belonging to breakpoints: [ti; ti+1],
+                            corresponding to the low level of the notch. Interpolation around these
+                            points is defined in [ITU-T G.992.5].
+                            For [ITU-T G.993.2], this attribute defines the bands where the PSD is
+                            to be reduced as specified in clause 7.2.1.2 of [ITU-T G.993.2]. Each
+                            band is represented by start and stop subcarrier indices with a subcarrier
+                            spacing of 4.3125 kHz. Up to 16 bands may be specified. This attribute
+                            defines the RFI bands for both upstream and downstream directions.
+                            Entries have default value 0 for both subcarrier index 1 and subcarrier
+                            index 2. Table entries for this attribute are added or modified using the
+                            set action. Setting an entry with a non-zero subcarrier index 1 and
+                            subcarrier index 2 implies insertion into the table or replacement of an
+                            existing entry. Setting an entry's subcarrier index 1 and subcarrier
+                            index 2 to 0 implies deletion from the table, if present.
+                            (R, W) (mandatory) (5N bytes where N is the number of RFI bands)
+Bands valid:                This Boolean attribute controls and reports the operational status of the
+                            downstream RFI bands table.
+                            If this attribute is true (1), the downstream RFI bands table has been
+                            impressed on the DSL equipment.
+                            If this attribute is false (0), the downstream RFI bands table has not been
+                            impressed on the DSL equipment. The default value is false.
+                            This attribute can be modified by the ONT and OLT, as follows:
+                            •         If the OLT changes any of the RFI bands table entries or sets
+                                      bands valid false, then bands valid is false.
+                            •         If bands valid is false and OLT sets bands valid true, the ONT
+                                      impresses the downstream RFI bands data onto the DSL
+                                      equipment.
+                                      (R, W) (mandatory) (1 byte)
+Actions
+Create, delete, get, get next, set
+Notifications
+None.

@@ -1,0 +1,73 @@
+9.7.5    xDSL line configuration profile part 3
+The overall xDSL line configuration profile is modelled in several parts, all of which are associated
+together through a common managed entity id (the client physical path termination point xDSL UNI
+part 1 has a single pointer, which refers to the entire set of line configuration profile parts).
+Relationships
+An instance of this managed entity may be associated with zero or more instances of the physical
+path termination point xDSL UNI part 1.
+Attributes
+Managed entity id:                This attribute uniquely identifies each instance of this managed
+                                  entity. All xDSL and VDSL2 line configuration profiles that
+                                  pertain to a given physical path termination point xDSL must
+                                  share a common managed entity id. (R, Set-by-create)
+                                  (mandatory) (2 bytes)
+                                  Loop diagnostics mode forced This configuration parameter forces the line into loop diagnostic
+(LDSF):                           mode via the xTU-C. It is only valid for [ITU-T G.992.3],
+                                  [ITU-T G.992.4] and [ITU-T G.992.5]. It is defined as follows:
+                                  0    Inhibits the xTU-C from performing loop diagnostic mode
+                                       procedures on the line. Loop diagnostic mode procedures may
+                                       still be initiated by the xTU-R.
+                                  1    Forces the xTU-C to perform the loop diagnostics procedures.
+                                  Only while the line power management state is L3 can the line be
+                                  forced into loop diagnostic mode. When loop diagnostic
+                                  procedures complete successfully, the ONT resets this attribute to
+                                  0. The line remains in L3 idle state. The loop diagnostics data are
+                                  available at least until the line is forced to the L0 state. As long as
+                                  loop diagnostic procedures have not completed successfully,
+                                  attempts are made to do so, until the loop diagnostic mode is no
+                                  longer forced on the line through this configuration parameter. If
+                                  loop diagnostic procedures cannot be completed successfully after
+                                  a vendor-discretionary number of retries and/or within a
+                                  vendor-discretionary timeout, then an initialization failure occurs.
+                                  (R, W, Set-by-create) (mandatory) (1 byte)
+Automode cold start forced:       This attribute is defined to improve testing of the performance of
+                                  xTUs supporting automode. Valid values are 0 and 1. A change in
+                                  value of this attribute indicates a change in loop conditions applied
+                                  to the devices under test. The xTUs reset any historical
+                                  information used for automode, for shortening G.994.1 handshake,
+                                  or for shortening the initialization procedure.
+                                  are enabled in xTSE Table 9.7.12-1 and where the selection of the
+                                  operation mode to be used for transmission depends, not only on
+                                  the common capabilities of both xTUs (as exchanged in
+                                  [ITU-T G.994.1]), but also on achievable data rates under given
+                                  loop conditions. (R, W, Set-by-create) (mandatory if automode
+                                  supported) (1 byte)
+L2-ATPR:                          This parameter specifies the maximum aggregate transmit power
+                                  reduction that can be performed in the L2 request (i.e., at the
+                                  transition of L0 to L2 state) or through a single power trim in the
+                                  L2 state. It is only valid for [ITU-T G.992.3], [ITU-T G.992.4]
+                                  and [ITU-T G.992.5]. This attribute ranges from 0 (0 dB) dB to 31
+                                  (31 dB). (R, W, Set-by-create) (mandatory) (1 byte)
+L2-ATPRT:                         This parameter specifies the total maximum aggregate transmit
+                                  power reduction (in dB) that can be performed in an L2 state. This
+                                  is the sum of all reductions of L2 requests (i.e., at transitions from
+                                  L0 to L2 state) and power trims. This attribute ranges from 0 (0
+                                  dB) dB to 31 (31 dB). (R, W, Set-by-create) (mandatory) (1 byte)
+Force INP downstream:             When set to 1, this attribute forces the framer settings of all
+                                  downstream bearer channels to be selected such that the impulse
+                                  noise protection computed according to the formula specified in
+                                  the relevant Recommendation is greater than or equal to the
+                                  minimal impulse noise protection requirement. The default value 0
+                                  disables this function. (R, W) (mandatory for [ITU-T G.993.2])
+                                  (1 byte)
+Force INP upstream:               When set to 1, this attribute forces the framer settings of all
+                                  upstream bearer channels to be selected such that the impulse
+                                  noise protection computed according to the formula specified in
+                                  the relevant Recommendation is greater than or equal to the
+                                  minimal impulse noise protection requirement. The default value 0
+                                  disables this function. (R, W) (mandatory for [ITU-T G.993.2])
+                                  (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+None.

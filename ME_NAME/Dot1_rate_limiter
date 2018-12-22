@@ -1,0 +1,34 @@
+9.3.18 Dot1 rate limiter
+This managed entity allows rate limits to be defined for various types of upstream traffic that are
+processed by 802.1 bridges or related structures.
+Relationships
+An instance of this managed entity may be linked to an instance of the MAC bridge service profile,
+an 802.1p mapper or other managed entities.
+Attributes
+Managed entity id:             This attribute uniquely identifies each instance of this managed entity.
+                               (R, Set-by-create) (mandatory) (2 bytes)
+Parent ME pointer:             This attribute points to an instance of a managed entity. The type of
+                               managed entity is determined by the TP type attribute. (R, W,
+                               Set-by-create) (mandatory) (2 bytes)
+TP type:                       This attribute identifies the type of termination point associated with
+                               this dot1 rate limiter. Valid values are:
+                               1   MAC bridge configuration data.
+                               2   802.1p mapper service profile.
+                               (R, W, Set-by-create) (mandatory) (1 byte)
+Upstream unicast flood         This attribute points to an instance of the GEM traffic descriptor that
+rate pointer:                  specifies the maximum rate of upstream unicast packets whose
+                               destination address is unknown to the bridge. A null pointer specifies
+                               that no administrative limit is to be imposed. (R, W, Set-by-create)
+                               (optional) (2 bytes)
+Upstream broadcast rate        This attribute points to an instance of the GEM traffic descriptor that
+pointer:                       specifies the maximum rate of upstream broadcast packets. A null
+                               pointer specifies that no administrative limit is to be imposed. (R, W,
+                               Set-by-create) (optional) (2 bytes)
+Upstream multicast             This attribute points to an instance of the GEM traffic descriptor that
+payload rate pointer:          specifies the maximum rate of upstream multicast payload packets. A
+                               null pointer specifies that no administrative limit is to be imposed.
+                               (R, W, Set-by-create) (optional) (2 bytes)
+Actions
+Create, delete, get, set
+Notifications
+None.
