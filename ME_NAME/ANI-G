@@ -45,7 +45,7 @@ SD threshold:         This attribute specifies the downstream BER threshold to d
                       (mandatory) (1 byte)
 ARC:                  See clause I.1.8. (R, W) (optional) (1 byte)
 ARC interval:         See clause I.1.8. (R, W) (optional) (1 byte)
-Optical signal level: This attribute reports the current measurement of total optical signal level at
+Optical signal level:  This attribute reports the current measurement of total optical signal level at
                       1490 nm. Its value is a 2s complement integer referred to 1 mW (i.e., dBm),
                       with 0.002 dB granularity. (R) (optional) (2 bytes)
 Lower optical         This attribute specifies the optical level the ONT uses to declare the
@@ -56,7 +56,7 @@ Upper optical         This attribute specifies the optical level the ONT uses to
 threshold:            1490 nm high received optical power alarm. Valid values are –127 dBm
                       (coded as 254) to 0 dBm (coded as 0) in 0.5 dB increments. The default
                       value 0xFF selects the ONT's internal policy. (R, W) (optional) (1 byte)
-ONT response time: This attribute indicates actual ONT response time recorded by ONT. The
+ONT response time:    This attribute indicates actual ONT response time recorded by ONT. The
                         range of this attribute should be in the range described in
                         [ITU-T G.984.3], which is 34..36 microseconds. The unit is nanoseconds;
                         however, the accuracy is likely to be more coarse. Furthermore, the value

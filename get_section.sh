@@ -148,22 +148,18 @@ get_me_attributes_num()
     echo "[$count] attributes"
 }
 
+
 get_first_attribute_name()
 {
     local name="$1"
-    First_Attribute=`cat "$name" | tr '\n' ' ' | sed -e 's/ \+/ /g' |  sed '0,/Attributes/ s/^.*Attributes/Attributes/' |sed -n '/Attributes /,/:/p' | cut -d ":" -f1 | sed 's/Attributes //g' | sed 's/ /_/g'` 
-    echo "$First_Attribute"
-}
-
-get_first_attribute_name_()
-{
-    local name="$1"
+    local param_num="$2"
     start_line=`cat "$name" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
     #echo start_line[$start_line]
     content=`tail -n +$start_line "$name"` 
     #echo content[$content]
-    First_Attribute=`echo "$content" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " "  | sed -e 's/Attributes //g' | awk -F":" '{print $2}' | sed -e 's/^ *//g' | sed -e 's/ /_/g'`
-    echo "$First_Attribute"
+    PARAM="$2"
+    Attribute_num=`echo "$content" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " "  | sed -e 's/Attributes //g' | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g' | sed -e 's/ /_/g'`
+    echo "$Attribute_num"
 }
 
 #collect_g988_me_content_section_line_index
@@ -171,7 +167,7 @@ get_first_attribute_name_()
 #collect_me_content_section_line_index
 #dump_all_me_1
 #get_me_attributes_num "$SECTION"
-get_first_attribute_name_ "$SECTION"
+get_first_attribute_name "$SECTION" "$2"
 
 exit
 

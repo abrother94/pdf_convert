@@ -1,0 +1,8 @@
+#!/bin/bash
+RELPACE=`cat AAAA | sed -n 's/.*\([A-Za-z]: [A-Za-z]\).*/\1/p'`
+RES=`echo $RELPACE | sed -e 's/ /  /g'`
+ORG="M: T"
+echo "RES[$RES]"
+AA=`cat AAAA | sed -re "s/M: T/M:  t/g"`
+
+echo $AA

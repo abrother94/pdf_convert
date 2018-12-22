@@ -50,7 +50,7 @@ Vendor id:             This attribute identifies the vendor of the circuit pack.
                        attribute of the ONT-G managed entity. Upon creation in the absence of a
                        physical circuit pack, this attribute comprises all spaces. (R) (optional)
                        (4 bytes)
-Administrative state: This attribute locks (1) and unlocks (0) the functions performed by the
+Administrative state:  This attribute locks (1) and unlocks (0) the functions performed by the
                        circuit pack. When the administrative state is set to lock, all user functions
                        of this circuit pack are blocked, and alarms, TCAs and AVCs for this
                        managed entity and all dependent managed entities are no longer generated.
@@ -70,7 +70,7 @@ Equipment id:        This attribute may be used to identify the vendor's specifi
                      pack. In North America, this may be the CLEI code. Upon ME instantiation,
                      the ONT sets this attribute to all spaces or to the equipment ID of the circuit
                      pack that is physically present. (R) (optional) (20 bytes)
-Card configuration: This attribute selects the appropriate configuration on configurable circuit
+Card configuration:  This attribute selects the appropriate configuration on configurable circuit
                      packs (e.g., T1/E1). Table 9.1.5-1 specifies three configurable card types:
                      A45/34 (code 9), C-DS1/E1 (code 16), and C-DS1/E1/J1 (code 17). Values
                      are indicated below for the allowed card types and configurations.
@@ -85,11 +85,11 @@ Card configuration: This attribute selects the appropriate configuration on conf
                      Upon autonomous instantiation, this attribute is set to 0. (R, W,
                      Set-by-create (if applicable)) (mandatory for configurable circuit packs)
                      (1 byte)
-Total T-CONT buffer This attribute reports the total number of T-CONT buffers associated with
+Total T-CONT buffer  This attribute reports the total number of T-CONT buffers associated with
 number:              the circuit pack. Upon ME instantiation, the ONT sets this attribute to 0 or
                      to the value supported by the physical circuit pack. (R) (mandatory for
                      circuit packs that provide a traffic scheduler function) (1 byte)
-Total priority queue This value reports the total number of priority queues associated with the
+Total priority queue  This value reports the total number of priority queues associated with the
 number:              circuit pack. Upon ME instantiation, the ONT sets the attribute to 0 or to the
                      value supported by the physical circuit pack. (R) (mandatory for circuit
                      packs that provide a traffic scheduler function) (1 byte)

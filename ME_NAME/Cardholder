@@ -52,21 +52,21 @@ type:                 the cardholder is empty. This attribute is then redundant 
                       proceed to instantiate circuit pack and PPTP MEs, along with other
                       predeterminable MEs, and allow the OLT to create related discretionary
                       MEs, thereby supporting service preprovisioning.
-Expected plug-in unit This attribute provisions the type of circuit pack for the slot. For type
+Expected plug-in unit  This attribute provisions the type of circuit pack for the slot. For type
 type:                 coding, see Table 9.1.5-1. The value 0 means that the cardholder is not
                       provisioned to contain a circuit pack. The value 255 means that the
                       cardholder is configured for plug-and-play. Upon ME instantiation, the
                       ONT sets this attribute to 0. For integrated interfaces, this attribute may be
                       used to represent the type of interface. (R, W) (mandatory) (1 byte)
-Expected port count: This attribute permits the OLT to specify the number of ports it expects in a
+Expected port count:  This attribute permits the OLT to specify the number of ports it expects in a
                       circuit pack. Prior to provisioning by the OLT, the ONT initializes this
                       attribute to 0. (R, W) (optional) (1 byte)
-Expected equipment This attribute provisions the specific type of expected circuit pack. This
+Expected equipment    This attribute provisions the specific type of expected circuit pack. This
 id:                   attribute applies only to ONTs that do not have integrated interfaces. In
                       North America, this may be the expected equipment CLEI code. Upon ME
                       instantiation, the ONT sets this attribute to all spaces. (R, W) (optional)
                       (20 bytes)
-Actual equipment id: This attribute identifies the specific type of circuit pack, once it is installed.
+Actual equipment id:  This attribute identifies the specific type of circuit pack, once it is installed.
                       This attribute applies only to ONTs that do not have integrated interfaces. In
                       North America, this may be the equipment CLEI code. When the slot is
                       empty or the equipment ID is not known, this attribute should be set to all

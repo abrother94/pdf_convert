@@ -37,7 +37,7 @@ Interwork TP pointer for P-bit priority 4:     (R, W, Set-by-create) (mandatory)
 Interwork TP pointer for P-bit priority 5:     (R, W, Set-by-create) (mandatory) (2 bytes)
 Interwork TP pointer for P-bit priority 6:     (R, W, Set-by-create) (mandatory) (2 bytes)
 Interwork TP pointer for P-bit priority 7:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Unmarked frame option: This attribute specifies how the ONT should handle untagged Ethernet
+Unmarked frame option:    This attribute specifies how the ONT should handle untagged Ethernet
                           frames received across the associated interface. Valid values include:
                           0   Convert from DSCP to 802.1p.
                           1   Tag frame to a certain value.
