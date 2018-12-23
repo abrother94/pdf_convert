@@ -43,7 +43,7 @@ dot11 max transmit MSDU The max transmit MSDU lifetime is the elapsed time in TU
 lifetime:                   initial transmission of an MSDU until further attempts to transmit it
                             are terminated. The default value of this attribute is 512. (R, W)
                             (mandatory) (4 bytes)
-dot11 max receive lifetime: The max receive lifetime is the elapsed time in TU, from the initial
+dot11 max receive lifetime:  The max receive lifetime is the elapsed time in TU, from the initial
                             reception of a fragmented MMPDU or MSDU until further attempts
                             to reassemble the MMPDU or MSDU are terminated. The default
                             value is 512. (R, W) (mandatory) (4 bytes)

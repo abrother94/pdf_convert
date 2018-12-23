@@ -24,7 +24,7 @@ Interworking option:        This attribute identifies the type of non-GEM functi
                             4        Video return path.
                             5        802.1p mapper.
                             (R, W, Set-by-create) (mandatory) (1 byte)
-                            Service profile pointer: This attribute points to an instance of a service profile, such as:
+                            Service profile pointer:  This attribute points to an instance of a service profile, such as:
                             CES service profile-G                 if interworking option = 0
                             MAC bridge service profile            if interworking option = 1
                             IP router service profile             if interworking option = 3

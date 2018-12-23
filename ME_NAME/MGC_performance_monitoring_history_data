@@ -51,10 +51,10 @@ Last detected event:      This attribute reports the last event detected on this
                                failover processing.
                           255 Other event – The last event does not match any in the list.
                           (R) (mandatory) (1 byte)
-Last detected event time: This attribute reports the time in seconds since the last event on this
+Last detected event time:  This attribute reports the time in seconds since the last event on this
                           association was detected, as defined by [ITU-T H.341]. (R) (mandatory)
                           (4 bytes)
-Last detected reset time: This attribute reports the time in seconds since these statistics were last
+Last detected reset time:  This attribute reports the time in seconds since these statistics were last
                           reset, as defined by [ITU-T H.341]. Under normal circumstances, a get
                           action on this attribute would return 900 seconds to indicate a completed
                           15-minute interval. (R) (mandatory) (4 bytes)

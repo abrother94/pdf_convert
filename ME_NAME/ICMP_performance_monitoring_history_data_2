@@ -14,10 +14,10 @@ Interval end time:       This attribute identifies the most recently finished 15
 Threshold data 1/2 id:   This attribute points to an instance of the threshold data 1 and 2 managed
                          entities that contains PM threshold values. (R, W, Set-by-create)
                          (mandatory) (2 bytes)
-Icmp out msgs counter: This attribute counts ICMP messages that this router attempted to send. It
+Icmp out msgs counter:  This attribute counts ICMP messages that this router attempted to send. It
                          includes those also counted by icmp out errors counter. (R) (mandatory)
                          (4 bytes)
-Icmp out errors counter: This attribute counts ICMP messages that this router did not send due to
+Icmp out errors counter:  This attribute counts ICMP messages that this router did not send due to
                          problems within ICMP, such as a lack of buffers. This value should not
                          include errors outside the ICMP layer such as the inability of IP to route
                          the resultant packet. In some implementations, there may be no types of
@@ -32,7 +32,7 @@ Icmp out src quenchs     This attribute counts transmitted ICMP source quench me
 counter:                 (mandatory) (4 bytes)
 Icmp out redirects       This attribute counts transmitted ICMP redirect messages. (R)
 counter:                 (mandatory) (4 bytes)
-Icmp out echos counter: This attribute counts transmitted ICMP echo (request) messages. (R)
+Icmp out echos counter:  This attribute counts transmitted ICMP echo (request) messages. (R)
                          (mandatory) (4 bytes)
 Icmp out echo reps       This attribute counts transmitted ICMP echo reply messages. (R)
 counter:                 (mandatory) (4 bytes)

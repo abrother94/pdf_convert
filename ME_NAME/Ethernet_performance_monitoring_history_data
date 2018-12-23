@@ -48,7 +48,7 @@ error counter:            MAC sublayer transmit error. (R) (mandatory) (4 bytes)
 Carrier sense error       This attribute counts the number of times that carrier sense was lost or
 counter:                  never asserted when attempting to transmit a frame. (R) (mandatory)
                           (4 bytes)
-Alignment error counter: This attribute counts received frames that were not an integral number of
+Alignment error counter:  This attribute counts received frames that were not an integral number of
                           octets in length and did not pass the FCS check. (R) (mandatory)
                           (4 bytes)
 Internal MAC receive      This attribute counts frames whose reception failed due to an internal

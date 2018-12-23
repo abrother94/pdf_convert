@@ -21,7 +21,7 @@ Threshold data           This attribute points to an instance of the threshold d
                          (mandatory) (2 bytes)
 Sum of invalid CS        This attribute counts the sum of invalid convergence sublayer (CS) field
 field errors:            errors. For AAL type 5, this attribute is a single count of the number of CS
-                         PDUs discarded due to one of the following error conditions: invalid
+                         PDUs discarded due to one of the following error conditions:  invalid
                          common part indicator (CPI), oversized received SDU, or length violation.
                          (R) (mandatory) (4 bytes)
 CRC violations:          This attribute counts CRC violations detected on incoming SAR PDUs.

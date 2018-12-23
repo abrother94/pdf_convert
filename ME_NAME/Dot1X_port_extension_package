@@ -18,22 +18,22 @@ Dot1x enable:               If set true, this Boolean attribute forces the assoc
 Action register:            This attribute defines a set of actions that can be performed on the
                             associated port. The act of writing to the register causes the specified
                             action.
-                            1)    Force reauthentication: This opcode initiates an 802.1X
+                            1)    Force reauthentication:  This opcode initiates an 802.1X
                                   reauthentication conversation with the associated port. The port
                                   remains in its currently authorized state until the conversation
                                   concludes.
-                            2)    Force unauthenticated: This opcode initiates an 802.1X
+                            2)    Force unauthenticated:  This opcode initiates an 802.1X
                                   authentication conversation whose outcome is predestined to fail,
                                   thereby disabling normal Ethernet service on the port. The port's
                                   provisioning is not changed, such that upon reinitialization, a
                                   new 802.1X conversation may restore service without prejudice.
-                            3)    Force authenticated: This opcode initiates an 802.1X
+                            3)    Force authenticated:  This opcode initiates an 802.1X
                                   authentication conversation whose outcome is predestined to
                                   succeed, thereby unconditionally enabling normal Ethernet
                                   service on the port. The port's provisioning is not changed, such
                                   that upon reinitialization, a new 802.1X conversation is required.
                             (W) (mandatory) (1 byte)
-Authenticator PAE state: This attribute returns the value of the port's PAE state. States are
+Authenticator PAE state:  This attribute returns the value of the port's PAE state. States are
                            further described in [b-IEEE 802.1X]. Values are coded as shown
                            below:
                            0     Initialize.
@@ -83,15 +83,15 @@ Quiet period:              This attribute specifies the interval between EAP req
                               servers are available. Server timeout is expressed in seconds, with a
                               default value of 30 and a maximum value of 65535 seconds. (R, W)
                               (optional) (2 bytes)
-Reauthentication period: This attribute records the reauthentication interval specified by the
+Reauthentication period:  This attribute records the reauthentication interval specified by the
                               radius authentication server. It is expressed in seconds. The attribute is
                               only meaningful after a port has been authenticated. (R) (optional)
                               (2 bytes)
-Reauthentication enabled: This Boolean attribute records whether the radius authentication server
+Reauthentication enabled:  This Boolean attribute records whether the radius authentication server
                               has enabled reauthentication on this service (true) or not (false). The
                               attribute is only meaningful after a port has been authenticated. (R)
                               (optional) (1 byte)
-Key transmission enabled: This Boolean attribute indicates whether key transmission is enabled
+Key transmission enabled:  This Boolean attribute indicates whether key transmission is enabled
                               (true) or not (false). This feature is not required; the parameter is listed
                               here for completeness vis-à-vis [b-IEEE 802.1X]. (R, W) (optional)
                               (1 byte)

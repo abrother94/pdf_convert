@@ -48,12 +48,12 @@ Downstream mode:         Regardless of its association, the extended VLAN taggin
                          1     No operation is performed in the downstream direction.
                          All other values are reserved. (R, W) (mandatory) (1 byte)
 Received frame VLAN      This attribute is a table that filters and tags upstream frames. Each
-tagging operation table: entry represents a tagging rule, comprising a filtering part (the first
+tagging operation table:  entry represents a tagging rule, comprising a filtering part (the first
                          7 fields) and a treatment part (the last 7 fields). Each incoming
                          upstream packet is matched against each rule in list order. The first rule
                          that matches the packet is selected as the active rule, and the packet is
                          then treated according to that rule.
-                         There are three categories of rules: zero-tag, single-tag, and double-tag
+                         There are three categories of rules:  zero-tag, single-tag, and double-tag
                          rules. Logically, these categories are separate, and apply to their
                          respective incoming frame types. In other words, a single-tag rule
                          should not apply to a double-tagged frame, even though the single-tag
@@ -116,11 +116,11 @@ Filter outer priority:               (4 bits)
                                      14     This is the default filter when no other two-tag rule applies.
                                      15     This entry is not a double-tag rule; ignore all other outer tag filter
                                             fields.
-                                     Other values: Reserved
+                                     Other values:  Reserved
 Filter outer VID:         (13 bits)
                           0..4094 Filter received frames on this outer VID value.
                           4096       Do not filter on the outer VID.
-                          Other values: Reserved
+                          Other values:  Reserved
 Filter outer TPID/DE:     (3 bits)
                           000 Do not filter on outer TPID field.
                           100 Outer TPID = 8100.
@@ -134,11 +134,11 @@ Filter inner priority:    (4 bits)
                           8     Do not filter on inner priority.
                           14    This is the default filter when no other one-tag rule applies.
                           15    This entry is a no-tag rule; ignore all other filter fields.
-                          Other values: Reserved
+                          Other values:  Reserved
 Filter inner VID:         (13 bits)
                           0..4094 Filter received frames on this inner VID value.
                           4096       Do not filter on the inner VID.
-                          Other values: Reserved
+                          Other values:  Reserved
 Filter inner TPID/DE:     (3 bits)
                           000   Do not filter on inner TPID field.
                           100   Inner TPID = 8100.
@@ -154,7 +154,7 @@ Filter Ethertype:         (4 bits) The Ethertype value on which to filter receiv
                           1     Ethertype = 0x0800 (filter IPoE frames).
                           2     Ethertype = 0x8863 or 0x8864 (filter PPPoE frames).
                           3     Ethertype = 0x0806 (filter ARP frames).
-                          Other values: Reserved
+                          Other values:  Reserved
 Treatment tags to remove: (2 bits)
                           0..2 Remove 0, 1 or 2 tags, respectively. If one tag is specified, then
                                 the outer tag is stripped from double-tagged frames.
@@ -168,14 +168,14 @@ Treatment outer priority: (4 bits)
                           9     Add an outer tag, and copy the outer priority from the outer
                                 priority of the received frame.
                           15 Do not add an outer tag.
-                          Other values: Reserved
+                          Other values:  Reserved
 Treatment outer VID:      (13 bits)
                           000..4094     Use this value as the VID in the outer VLAN tag.
                           4096          Copy the outer VID from the inner VID of the received
                                         frame.
                           4097          Copy the outer VID from the outer VID of the received
                                         frame.
-                          Other values: Reserved
+                          Other values:  Reserved
 Treatment outer           (3 bits)
 TPID/DE:                  000           Copy TPID (and DE, if present) from inner tag of received
                                         frame.
@@ -198,13 +198,13 @@ Treatment inner priority: (4 bits)
                           9             Add an inner tag, and copy the inner priority from the
                                         outer priority of the received frame.
                           15            Do not add an inner tag.
-                          Other values: Reserved
+                          Other values:  Reserved
                              000..4094          Use this value as the VID in the inner VLAN tag.
                              4096               Copy the inner VID from the inner VID of the received
                                                 frame.
                              4097               Copy the inner VID from the outer VID of the received
                                                 frame.
-                             Other values: Reserved
+                             Other values:  Reserved
 Treatment inner              (3 bits)
 TPID/DE:                     000                Copy TPID (and DE, if present) from inner tag of received
                                                 frame.

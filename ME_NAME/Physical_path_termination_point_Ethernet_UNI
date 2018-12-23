@@ -56,7 +56,7 @@ Note that normal bridge behaviour may defeat the loopback signal, unless broadca
 addresses are used. Upon ME instantiation, the ONT sets this attribute to 0. (R, W) (mandatory)
 (1 byte)
                        Figure 9.5.1-1 – Ethernet loopback configuration
-Administrative state: This attribute locks (1) and unlocks (0) the functions performed by this
+Administrative state:  This attribute locks (1) and unlocks (0) the functions performed by this
                       managed entity. When the administrative state is set to lock, all user
                       functions of this UNI are blocked, and alarms, TCAs and AVCs for this
                       managed entity and all dependent managed entities are no longer

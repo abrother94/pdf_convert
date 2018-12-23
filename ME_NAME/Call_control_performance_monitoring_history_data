@@ -23,7 +23,7 @@ Call setup timer:         This attribute is a high water mark that records the l
                           subscriber until the time at which a response was provided to the
                           subscriber in the form of busy tone, audible ring tone, etc. (R)
                           (mandatory) (4 bytes)
-Call terminate failures: This attribute counts the number of calls that were terminated with cause.
+Call terminate failures:  This attribute counts the number of calls that were terminated with cause.
                           (R) (mandatory) (4 bytes)
 Analog port releases:     This attribute counts the number of analogue port releases without
                           dialling detected (abandoned calls). (R) (mandatory) (4 bytes)

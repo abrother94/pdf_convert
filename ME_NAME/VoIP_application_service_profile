@@ -29,7 +29,7 @@ Call waiting features:    This attribute contains a bit map of call waiting feat
                           0x02               Caller ID announcement
                           0x04..0x80         Not used
                           The default value is disabled. (R, W, Set-by-create) (mandatory) (1 byte)
-Call progress or transfer This attribute is a bit map of call processing features. The value 0
+                          Call progress or transfer This attribute is a bit map of call processing features. The value 0
 features:                 disables the feature; 1 enables it.
                           0x0001             3way
                           0x0002             Call transfer
@@ -54,7 +54,7 @@ features:                 disables the feature; 1 enables it.
                           0x0010..0x8000     Not used
                           The default value is disabled. (R, W, Set-by-create) (mandatory)
                           (2 bytes)
-Direct connect feature: This attribute is a bit map of characteristics associated with the direct
+Direct connect feature:  This attribute is a bit map of characteristics associated with the direct
                              connect feature. The value 0 disables the feature; 1 enables it.
                              0x01                Direct connect feature enabled
                              0x02                Dial tone feature delay option
@@ -63,11 +63,11 @@ Direct connect URI           If this attribute is set to its default value 0xFFF
 pointer:                     Otherwise, this attribute points to a network address managed entity that
                              specifies the URI of the direct connect. (R, W, Set-by-create)
                              (mandatory) (2 bytes)
-Bridged line agent URI If this attribute is set to its default value 0xFFFF, no URI is defined.
+Bridged line agent URI       If this attribute is set to its default value 0xFFFF, no URI is defined.
 pointer:                     Otherwise, this attribute points to a network address managed entity that
                              specifies the URI of the bridged line agent. (R, W, Set-by-create)
                              (mandatory) (2 bytes)
-Conference factory URI If this attribute is set to its default value 0xFFFF, no URI is defined.
+Conference factory URI       If this attribute is set to its default value 0xFFFF, no URI is defined.
 pointer:                     Otherwise, this attribute points to a network address managed entity that
                              specifies the URI of the conference factory. (R, W, Set-by-create)
                              (mandatory) (2 bytes)

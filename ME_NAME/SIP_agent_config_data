@@ -36,7 +36,7 @@ SIP reg exp time:          This attribute specifies the SIP registration expirat
                            seconds. If its value is 0, the SIP agent does not add an expiration
                            time to the registration requests and does not perform re-registration.
                            The default value is 3600 seconds. (R, W) (mandatory) (4 bytes)
-SIP rereg head start time: This attribute specifies the time in seconds prior to timeout that
+SIP rereg head start time:  This attribute specifies the time in seconds prior to timeout that
                            causes the SIP agent to start the re-registration process. The default
                            value is 360 seconds. (R, W) (mandatory) (4 bytes)
 Host part URI:             This attribute points to a large string ME that contains the host or

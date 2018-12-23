@@ -16,14 +16,14 @@ Jitter buffer maximum            This attribute specifies the desired maximum de
 depth:                           buffer in the PSN to TDM direction. The value is expressed as a
                                  multiple of the 125 μs frame rate. The default value 0 selects the
                                  ONT's internal policy. (R, W, Set-by-create) (optional) (2 bytes)
-Jitter buffer desired depth: This attribute specifies the desired nominal fill depth of the playout
+Jitter buffer desired depth:  This attribute specifies the desired nominal fill depth of the playout
                                  buffer in the PSN to TDM direction. The value is expressed as a
                                  multiple of the 125 μs frame rate. The default value 0 selects the
                                  ONT's internal policy. (R, W, Set-by-create) (optional) (2 bytes)
 Fill policy:                     This attribute defines the payload bit pattern to be applied toward the
                                  TDM service if no payload packet is available to play out. The
                                  default value 0 specifies that the ONT apply its internal policy.
-                                 0          ONT default, vendor-specific (recommended: AIS for
+                                 0          ONT default, vendor-specific (recommended:  AIS for
                                             unstructured service, all 1s for structured service).
                                  1          Play out AIS according to the service definition
                                             (for example, DS3 AIS).
@@ -62,7 +62,7 @@ R-bit transmit set policy:    This attribute defines the number of consecutive l
                               causes the transmitted R-bit to be set in the TDM to PSN direction,
                               indicating lost packets to the far end. The default value 0 selects the
                               ONT's internal policy. (R, W, Set-by-create) (optional) (1 byte)
-R-bit transmit clear policy: This attribute defines the number of consecutive valid packets that
+R-bit transmit clear policy:  This attribute defines the number of consecutive valid packets that
                               causes the transmitted R-bit to be cleared in the TDM to PSN
                               direction, removing the remote failure indication to the far end. The
                               default value 0 selects the ONT's internal policy. (R, W,
@@ -124,7 +124,7 @@ Transmitted packets:              This attribute counts the total number of pack
 Missing packets:                  This attribute counts the number of lost packets, as indicated by gaps
                                   in the control word numbering sequence. Both payload and signalling
                                   packets, if any, contribute to this count. (R) (mandatory) (4 bytes)
-Misordered packets, usable: This attribute counts the number of packets received out of order, but
+Misordered packets, usable:  This attribute counts the number of packets received out of order, but
                                   which were able to be successfully re-ordered and played out. Both
                                   payload and signalling packets, if any, contribute to this count. (R)
                                   (mandatory) (4 bytes)

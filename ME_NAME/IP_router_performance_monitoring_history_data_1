@@ -29,16 +29,16 @@ counter:                  addresses were not valid for this router. This include
 Ip in unknown protos         This attribute counts packets that were locally destined and received
 counter:                     successfully but discarded because of an unknown or unsupported
                              protocol. (R) (mandatory) (4 bytes)
-Ip in discards counter: This attribute counts input packets for which no problems were
+Ip in discards counter:  This attribute counts input packets for which no problems were
                              encountered to prevent their continued processing, but which were
                              nevertheless discarded, e.g., for lack of buffer space. It does not include
                              packets discarded while awaiting re-assembly. (R) (mandatory) (4 bytes)
 Ip in delivers counter:      This attribute counts input packets successfully delivered to local IP
                              application protocols, including ICMP. (R) (mandatory) (4 bytes)
-Ip out requests counter: This attribute counts packets originated by local IP application protocols,
+Ip out requests counter:  This attribute counts packets originated by local IP application protocols,
                              including ICMP. This does not include packets counted in ip forw packets
                              counter. (R) (mandatory) (4 bytes)
-Ip out discards counter: This attribute counts output packets for which no problem was
+Ip out discards counter:  This attribute counts output packets for which no problem was
                              encountered to prevent transmission to their destination, but which were
                              nevertheless discarded, e.g., for lack of buffer space. It includes packets
                              counted in ip forw packets counter if any such packets met this discard

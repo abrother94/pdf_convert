@@ -39,7 +39,7 @@ rates rx:                 station is capable of receiving data. Each octet conta
                           to data rates in increments of 500 kbit/s from 1 Mbit/s to 63.5 Mbit/s. If
                           fewer than 8 data rates are specified, each of the unused bytes is set to 0.
                           (R) (mandatory) (8 bytes)
-dot11 Tx power levels: This attribute specifies the set of transmit power levels (maximum 8) that
+dot11 Tx power levels:  This attribute specifies the set of transmit power levels (maximum 8) that
                           the station is capable of using. Each 16-bit word contains a power setting,
                           in units of mW. If fewer than 8 power levels are specified, each of the
                           unused words is set to 0. (R) (mandatory) (16 bytes)

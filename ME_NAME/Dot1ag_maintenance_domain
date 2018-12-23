@@ -1,6 +1,6 @@
 9.3.19 Dot1ag maintenance domain
 A maintenance domain (MD) is a context within which CFM connectivity verification can occur.
-Individual services (maintenance associations: MAs) exist within an MD. A maintenance domain is
+Individual services (maintenance associations:  MAs) exist within an MD. A maintenance domain is
 created and deleted by the OLT. The MD managed entity is specified by [b-IEEE 802.1ag] in such a
 way that the same provisioning can be used for all associated systems in a network; the OMCI
 definition accordingly avoids ONT-specific information such as pointers.
@@ -46,7 +46,7 @@ MHF creation:            This attribute determines whether an associated bridge 
                          values:
                          1    None, the default value.
                          2    Default. The bridge can create MHFs on an associated VID on any
-                              port through which the VID can pass, where: i) there are no lower
+                              port through which the VID can pass, where:  i) there are no lower
                               active MD levels or ii) there is a MEP at the next lower active MD
                               level on the port.
                          3    Explicit. The bridge can create MHFs on an associated VID on any
@@ -58,15 +58,15 @@ Sender ID permission:    This attribute determines the content of the sender ID 
                          MD. Chassis ID and management address information is available
                          from the dot1ag chassis-management info managed entity. The
                          attribute is an enumeration with the following values:
-                         1    None: The sender ID TLV is not to be sent, default.
-                         2    Chassis: The chassis ID length, chassis ID subtype, and chassis ID
+                         1    None:  The sender ID TLV is not to be sent, default.
+                         2    Chassis:  The chassis ID length, chassis ID subtype, and chassis ID
                               fields of the sender ID TLV are to be sent, but not the management
                               address fields.
-                         3    Manage: The management address fields of the sender ID TLV are
+                         3    Manage:  The management address fields of the sender ID TLV are
                               to be sent, but the chassis ID length is to be transmitted with a
                               0 value, and the chassis ID subtype, and chassis ID fields are not to
                               be sent.
-                         4    ChassisManage: All chassis ID and management address fields are
+                         4    ChassisManage:  All chassis ID and management address fields are
                               to be sent.
                          (R, W, Set-by-create) (mandatory) (1 byte)
 Actions
@@ -144,21 +144,21 @@ MHF creation:         This attribute determines whether the bridge creates an MH
                       4   Defer. This value causes the ONT to use the setting of the parent
                           MD. This is recommended to be the default value.
                       (R, W, Set-by-create) (mandatory) (1 byte)
-Sender ID permission: This attribute determines the content of the sender ID TLV included in
+Sender ID permission:  This attribute determines the content of the sender ID TLV included in
                       CFM messages transmitted by maintenance points controlled by this
                       MA. This attribute is the same as that defined in the description of the
                       dot1ag maintenance domain managed entity, with the addition of code
                       point 5.
-                      1   None: The sender ID TLV is not to be sent, default.
-                      2   Chassis: The chassis ID length, chassis ID subtype, and chassis ID
+                      1   None:  The sender ID TLV is not to be sent, default.
+                      2   Chassis:  The chassis ID length, chassis ID subtype, and chassis ID
                           fields of the sender ID TLV are to be sent, but not the management
                           address fields.
                                   to be sent, but the chassis ID length is to be transmitted with a 0
                                   value, and the chassis ID subtype, and chassis ID fields are not to
                                   be sent.
-                              4   ChassisManage: All chassis ID and management address fields are
+                              4   ChassisManage:  All chassis ID and management address fields are
                                   to be sent.
-                              5   Defer: The content of the sender ID TLV is determined by the
+                              5   Defer:  The content of the sender ID TLV is determined by the
                                   corresponding maintenance domain attribute. This is recommended
                                   to be the default value.
                               (R, W, Set-by-create) (mandatory) (1 byte)

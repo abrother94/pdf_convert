@@ -12,7 +12,7 @@ Managed entity id:               This attribute uniquely identifies each instanc
                                  entity. Through an identical ID, this managed entity is implicitly
                                  linked to an instance of the physical path termination point xDSL
                                  UNI. (R) (mandatory) (2 bytes)
-xDSL transmission system: This parameter defines the transmission system in use. It is a bit map,
+xDSL transmission system:  This parameter defines the transmission system in use. It is a bit map,
                                  defined in Table 9.7.12-1. (R) (mandatory) (7 bytes)
                                  NOTE 2 – An additional byte identifying VDSL2 capabilities in use is
                                  defined in the VDSL2 line inventory and status data part 1 managed entity.
@@ -43,7 +43,7 @@ attenuation:                 transmitted by the xTU-C and the total power receiv
                              attenuation attribute should be set to 0 here, and populated in the VDSL2
                              line inventory and status data part 3 ME instead.
                              (R) (mandatory) (2 bytes)
-Upstream line attenuation: The LATNus attribute is the measured difference in the total power
+Upstream line attenuation:  The LATNus attribute is the measured difference in the total power
                              transmitted by the xTU-R and the total power received by the xTU-C
                              over all subcarriers during diagnostics mode and initialization. The
                              attribute value ranges from 0 (0.0 dB) to 1270 (127.0 dB). The
@@ -105,7 +105,7 @@ spectrum density:           spectrum density over the subcarriers in use (subcar
                             value 0xFFFF indicates that the attribute is out of range. (R)
                             (mandatory) (2 bytes)
 Downstream actual           This parameter is the total amount of transmit power delivered by the
-aggregate transmit power: xTU-C at the U-C reference point, at the instant of measurement. The
+aggregate transmit power:  xTU-C at the U-C reference point, at the instant of measurement. The
                             attribute value ranges from 0 (–31.0 dBm ) to 620 (+31.0 dBm). The
                             special value 0xFFFF indicates that the parameter is out of range.
                             NOTE 7 – The downstream nominal aggregate transmit power may be

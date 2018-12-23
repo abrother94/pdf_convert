@@ -26,24 +26,24 @@ MP status table:             This attribute is a list of entries, each entry rep
                              this table attribute; a port that has no current maintenance functions is
                              not represented in the table (so the table may be empty). Each entry is
                              defined as follows:
-                             Port id: The ME ID of the bridge port config data whose information
+                             Port id:  The ME ID of the bridge port config data whose information
                              is reported in this entry. If the layer 2 parent is an 802.1p mapper, a
                              null pointer. (2 bytes)
-                             Level: The level at which the reported maintenance function exists,
+                             Level:  The level at which the reported maintenance function exists,
                              0..7. (1 byte)
-                             Direction: The value 1 (down) or 2 (up). (1 byte)
-                             VLAN ID: If this table entry reports a maintenance function associated
+                             Direction:  The value 1 (down) or 2 (up). (1 byte)
+                             VLAN ID:  If this table entry reports a maintenance function associated
                              with a VLAN, this field contains the value of the primary VLAN ID. If
                              no VLAN is associated with this entry, this field contains the value 0.
                              (2 bytes)
-                             MD: A pointer to the associated dot1ag maintenance domain ME. If no
+                             MD:  A pointer to the associated dot1ag maintenance domain ME. If no
                              MD is associated with this entry, a null pointer. (2 bytes)
-                             MA: A pointer to the associated dot1ag maintenance association ME.
+                             MA:  A pointer to the associated dot1ag maintenance association ME.
                              If no MA is associated with this entry, a null pointer. (2 bytes)
-                             MEP ID: If this table entry reports a MEP, this field contains the value
+                             MEP ID:  If this table entry reports a MEP, this field contains the value
                              of its MEP ID (range 1..8191). If this table entry reports an MHF, this
                              field contains the value 0. (2 bytes)
-                             MAC address: The MAC address of the maintenance point. (6 bytes)
+                             MAC address:  The MAC address of the maintenance point. (6 bytes)
                              (R) (mandatory) (18N bytes)
 Configuration error list     This attribute is based on the [b-IEEE 802.1ag] configuration error list.
 table:                       It is a list of entries, each entry reporting a VLAN and a bridge port
@@ -52,10 +52,10 @@ table:                       It is a list of entries, each entry reporting a VLA
                                 with a VLAN, this field contains the value of the VLAN ID in error. If
                                 no VLAN is associated with this entry, this field contains the value 0.
                                 (2 bytes)
-                                Port id: A pointer to the bridge port config data whose information is
+                                Port id:  A pointer to the bridge port config data whose information is
                                 reported in this entry. If the layer 2 parent is an 802.1p mapper, a null
                                 pointer. (2 bytes)
-                                Detected configuration error: A bit mask with the following
+                                Detected configuration error:  A bit mask with the following
                                 meanings. A list entry exists if and only if at least one of these bits is
                                 set. Definitions appear in clause 22.2.4 of [b-IEEE 802.1ag] (1 byte):
                                 0x01     CFM leak. MA x is associated with a specific VID list, one or

@@ -95,7 +95,7 @@ protection 8 kHz:      the bearer channel if it is transported over DMT symbols 
 Maximum delay          The DVMAX attribute specifies the maximum value for delay variation
 variation:             allowed in an OLR procedure. Its value ranges from 1 (0.1 ms) to 254
                        (25.4 ms). The special value 255 specifies that no delay variation bound
-                       is imposed. (R, W) (optional: used by [ITU-T G.993.2]) (1 byte)
+                       is imposed. (R, W) (optional:  used by [ITU-T G.993.2]) (1 byte)
 Channel initialization The CIPOLICY attribute specifies the policy to determine transceiver
 policy selection:      configuration at initialization. Valid values are 0..1, as defined in the
                        Recommendations that use this attribute. (R, W) (optional) (1 byte)

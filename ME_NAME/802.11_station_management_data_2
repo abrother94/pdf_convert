@@ -54,7 +54,7 @@ exclude unencrypted:              0b0000 00yx, where x indicates the dot11 priva
 dot11 WEP default key ID:         When set to values of 0..3, this attribute specifies use of WEP
                                   default key 1..4, respectively. The default value is 0. (R, W)
                                   (mandatory) (1 byte)
-dot11 WEP key mapping length: The maximum number of tuples that dot11 WEP key mappings
+dot11 WEP key mapping length:  The maximum number of tuples that dot11 WEP key mappings
                                   can hold. Dot11 WEP key mappings are contained in the 802.11
                                   general purpose object ME, object type 0. (R, W) (mandatory)
                                   (4 bytes)

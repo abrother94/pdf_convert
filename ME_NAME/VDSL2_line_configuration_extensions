@@ -25,9 +25,9 @@ enabling:            by the xTU-C. It is coded in a bit map representation (0 if
                      7           G.993.2 profile 17a.
                      8           G.993.2 profile 30a.
                      (R, W, Set-by-create) (mandatory) (1 byte)
-VDSL2 PSD mask class To reduce the number of configuration possibilities, the limit PSD masks
+                     VDSL2 PSD mask class To reduce the number of configuration possibilities, the limit PSD masks
 selection            are grouped in the following PSD mask classes:
-(CLASSMASK):         •     Class 998 Annex A: D-32, D-48, D-64, D-128.
+(CLASSMASK):          •     Class 998 Annex A:  D-32, D-48, D-64, D-128.
                      •     Class 997-M1c Annex B: 997-M1c-A-7.
                      •     Class 997-M1x Annex B: 997-M1x-M-8, 997-M1x-M.
                      •     Class 997-M2x Annex B: 997-M2x-M-8, 997-M2x-A, 997-M2x-M,
@@ -41,11 +41,11 @@ selection            are grouped in the following PSD mask classes:
                            998-M2x-B,            998-M2x-NUS0,               998ADE17-M2x-A,
                            998ADE17-M2x-B,                            998ADE17-M2x-NUS0-M,
                            998ADE30-M2x-NUS0-A, 998ADE30-M2x-NUS0-M.
-                     •     Class 998-B Annex C: POTS-138b, POTS-276b (clause C.2.1.1 of
+                     •     Class 998-B Annex C:  POTS-138b, POTS-276b (clause C.2.1.1 of
                            [ITU-T G.993.2]), TCM-ISDN (clause C.2.1.2 of [ITU-T G.993.2]).
-                     •     Class 998-CO Annex C: POTS-138co, POTS-276co (clause C.2.1.1
+                     •     Class 998-CO Annex C:  POTS-138co, POTS-276co (clause C.2.1.1
                            of [ITU-T G.993.2]).
-                     •     Class HPE-M1 Annex B: HPE17-M1-NUS0, HPE30-M1-NUS0.
+                     •     Class HPE-M1 Annex B:  HPE17-M1-NUS0, HPE30-M1-NUS0.
                      Each class is designed such that the PSD levels of each limit PSD mask
                      of a specific class are equal in their respective passbands above 552 kHz.
                      The CLASSMASK attribute is defined per annex enabled in the xTSE
@@ -83,7 +83,7 @@ VDSL2 US0 disabling:   The US0DISABLE attribute specifies whether channel US0 is
                        the value 1 specifies that US0 is disabled for the associated limit mask.
                        The bit map has the same structure as the LIMITMASK attribute. (R, W,
                        Set-by-create) (mandatory) (8 bytes)
-VDSL2 US0 PSD masks: The US0MASK attribute contains the US0 PSD masks to be allowed by
+VDSL2 US0 PSD masks:  The US0MASK attribute contains the US0 PSD masks to be allowed by
                        the xTU-C. This attribute is only defined for Annex A of
                        [ITU-T G.993.2]. It is represented as a bit map (0 if not allowed, 1 if
                        allowed) with the definitions of Table 9.7.6-2. (R, W, Set-by-create)
@@ -101,8 +101,8 @@ table:                 determine the set of subcarriers allowed for transmission
                For profiles using 8.625 kHz tone spacing, the odd subcarrier indices
                i4.3125 in VDSL2-CARMASK can be transformed into actual subcarrier
                indices i8.625 using the following rule:
-               –         For the start frequency of each band: i8.625 = (i4.3125 + 1)/2.
-               –         For the stop frequency of each band: i8.625 = (i4.3125 – 1)/2.
+               –         For the start frequency of each band:  i8.625 = (i4.3125 + 1)/2.
+               –         For the stop frequency of each band:  i8.625 = (i4.3125 – 1)/2.
                The VDSL2-CARMASK attribute is a table where each entry comprises:
                –         An entry number field (1 byte, first entry numbered 1).
                –         Band start subcarrier index (2 bytes).
@@ -119,7 +119,7 @@ table:                 determine the set of subcarriers allowed for transmission
                The maximum number of breakpoints is 32, so the maximum size of the
                table is 160 bytes. (R, W) (mandatory) (5N bytes, where N is the number
                of bands)
-CARMASK valid: This attribute controls and reports the status of the VDSL2-CARMASK
+CARMASK valid:  This attribute controls and reports the status of the VDSL2-CARMASK
                table. If CARMASK valid = 1, then the VDSL2-CARMASK has been
                effectuated on the xDSL equipment. If CARMASK valid = 0 (default),
                then the VDSL2-CARMASK table is under construction and has not
@@ -170,7 +170,7 @@ UPBOSHAPED:              Upstream power back-off (UPBO) is specified in [ITU-T G
 Cyclic extension:        The CEFLAG attribute enables (1) the optional cyclic extension values.
                          If set to 0, the cyclic extension is forced to the mandatory length 5N/32.
                          (R, W) (mandatory) (1 byte)
-Downstream SNR mode:The SNRMODEds attribute controls transmitter referred virtual noise in
+Downstream SNR mode:   The SNRMODEds attribute controls transmitter referred virtual noise in
                          the downstream direction. If set to 1, virtual noise is disabled. If set to 2,
                          virtual noise is enabled. (R, W) (mandatory) (1 byte)
 Upstream SNR mode:     The SNRMODEus attribute controls transmitter referred virtual noise in
@@ -196,7 +196,7 @@ downstream table:      Each breakpoint comprises a subcarrier index t, with a su
                        are not recommended.
                        (R, W) (optional) (3N bytes, where N is the number of breakpoints)
 Transmitter referred   The TXREFVNus attribute defines the upstream transmitter referred
-virtual noise upstream virtual noise. TXREFVNus is specified through a set of breakpoints.
+virtual noise upstream  virtual noise. TXREFVNus is specified through a set of breakpoints.
 table:                 Each breakpoint comprises a subcarrier index t, with a subcarrier spacing
                        of 4.3125 kHz, and a noise PSD level at that subcarrier. The set of
                        breakpoints can then be represented as [(t1, PSD1), (t2, PSD2), … ,

@@ -52,7 +52,7 @@ margin:                        achieve, relative to the BER requirement for each
                                downstream bearer channels, to successfully complete
                                initialization. Its value ranges from 0 (0.0 dB) to 310 (31.0 dB).
                                (R, W, Set-by-create) (mandatory) (2 bytes)
-Upstream target noise margin: This attribute specifies the noise margin the xTU-C receiver must
+Upstream target noise margin:  This attribute specifies the noise margin the xTU-C receiver must
                                achieve, relative to the BER requirement for each of the upstream
                                bearer channels, to successfully complete initialization. Its value
                                ranges from 0 (0.0 dB) to 310 (31.0 dB). (R, W, Set-by-create)
@@ -188,7 +188,7 @@ margin:                      margin and remains there for more than the time spe
                              attempts to increase the upstream net data rate. This attribute
                              ranges from 0 (0.0 dB) to 310 (31.0 dB). (R, W, Set-by-create)
                              (optional) (2 bytes)
-Upstream PSD mask selection: This attribute enables one of several upstream PSD masks. It is
+Upstream PSD mask selection:  This attribute enables one of several upstream PSD masks. It is
                              used only for Annexes J and M of [ITU-T G.992.3] and
                              [ITU-T G.992.5]. The same mask selection applies to all relevant
                              modes enabled in the xTSE line configuration parameter

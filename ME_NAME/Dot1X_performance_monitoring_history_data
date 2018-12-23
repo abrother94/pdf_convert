@@ -17,13 +17,13 @@ EAPOL frames received:       This attribute counts received valid EAPOL frames o
                              (R) (mandatory) (4 bytes)
 EAPOL frames transmitted:    This attribute counts transmitted EAPOL frames of any type. (R)
                              (mandatory) (4 bytes)
-EAPOL start frames received: This attribute counts received EAPOL start frames. (R)
+EAPOL start frames received:  This attribute counts received EAPOL start frames. (R)
                              (mandatory) (4 bytes)
 EAPOL logoff frames          This attribute counts received EAPOL logoff frames. (R)
 received:                    (mandatory) (4 bytes)
 Invalid EAPOL frames         This attribute counts received EAPOL frames in which the frame
 received:                    type was not recognized. (R) (mandatory) (4 bytes)
-EAP resp/id frames received: This attribute counts received EAP response frames containing an
+EAP resp/id frames received:  This attribute counts received EAP response frames containing an
                              identifier type field. (R) (mandatory) (4 bytes)
 EAP response frames          This attribute counts received EAP response frames, other than
 received:                    resp/id frames. (R) (mandatory) (4 bytes)

@@ -16,8 +16,8 @@ Threshold data 1/2 id:        This attribute points to an instance of the thresh
                               (mandatory) (2 bytes)
 Icmp in msgs counter:         This attribute counts received ICMP messages. It includes those also
                               counted by icmp in errors counter. (R) (mandatory) (4 bytes)
-Icmp in errors counter: This attribute counts ICMP messages that were received but had
-                              ICMP-specific errors: bad ICMP checksums, bad length, etc. (R)
+Icmp in errors counter:  This attribute counts ICMP messages that were received but had
+                              ICMP-specific errors:  bad ICMP checksums, bad length, etc. (R)
                               (mandatory) (4 bytes)
 Icmp in dest unreachs         This attribute counts received ICMP destination unreachable messages.
 counter:                      (R) (mandatory) (4 bytes)

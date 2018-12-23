@@ -29,7 +29,7 @@ Code violations:                This attribute counts FEBE anomalies reported in
                                 bearer channel. If the CRC is applied over multiple bearer channels,
                                 then each related FEBE anomaly increments each of the counters
                                 related to the individual bearer channels. (R) (mandatory) (2 bytes)
-Forward error corrections: This attribute counts FFEC anomalies reported in the downstream
+Forward error corrections:  This attribute counts FFEC anomalies reported in the downstream
                                 bearer channel. If FEC is applied over multiple bearer channels, each
                                 related FFEC anomaly increments each of the counters related to the
                                 individual bearer channels. (R) (mandatory) (2 bytes)

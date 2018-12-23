@@ -10,7 +10,7 @@ One instance of this managed entity is associated with the ONT.
 Attributes
 Managed entity ID:           This attribute uniquely identifies each instance of this managed entity.
                              There is one instance, number 0. (R) (mandatory) (2 bytes)
-Configuration text table: This attribute is used to pass a textual representation of the VoIP
+Configuration text table:  This attribute is used to pass a textual representation of the VoIP
                              configuration back to the OLT. The contents are vendor-specific. The
                              get, get next sequence must be used with this attribute since its size is
                              unspecified. Upon ME instantiation, the ONT sets this attribute to 0. (R)

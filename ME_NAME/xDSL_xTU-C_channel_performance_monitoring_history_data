@@ -27,7 +27,7 @@ Received blocks:               This attribute counts encoded blocks received on 
                                (mandatory) (4 bytes)
 Code violations:               This attribute counts CRC-8 anomalies in the bearer channel. (R)
                                (mandatory) (2 bytes)
-Forward error corrections: This attribute counts FEC anomalies in the bearer channel. (R)
+Forward error corrections:  This attribute counts FEC anomalies in the bearer channel. (R)
                                (mandatory) (2 bytes)
 Actions
 Create, delete, get, set

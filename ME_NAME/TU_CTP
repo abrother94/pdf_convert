@@ -14,7 +14,7 @@ TU type:                      This attribute identifies the TU type. (R, Set-by-
                               2    TU-12.
                               3    TU-2.
                               4    TU-3.
-GEM frame loss integration This attribute specifies the GEM frame loss integration period in
+GEM frame loss integration    This attribute specifies the GEM frame loss integration period in
 period:                       milliseconds. If GEM frame loss persists for this period, the
                               associated GEM interworking termination point generates a GEM
                               frame starvation alarm. (R, W, Set-by-create) (mandatory) (2 bytes)

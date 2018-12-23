@@ -68,7 +68,7 @@ delay:                pseudowire packet. Valid only if service type = structured
                              0        Network timing (default).
                              1        Differential timing.
                              2        Adaptive timing.
-                             3        Loop timing: local TDM transmit clock derived from local
+                             3        Loop timing:  local TDM transmit clock derived from local
                                       TDM receive stream.
                              (R, W) (mandatory) (1 byte)
 Transmit circuit ID:         This attribute is a pair of ECID (Ethernet circuit ID) values that the

@@ -12,7 +12,7 @@ Managed entity id:         This attribute uniquely identifies each instance of t
                            (R, Set-by-create) (mandatory) (2 bytes)
 Dial plan number:          This attribute indicates the current number of dial plans in the dial plan
                            table. Default value is 0. (R) (mandatory) (2 bytes)
-Dial plan table max size: This attribute defines the maximum number of dial plans that can be
+Dial plan table max size:  This attribute defines the maximum number of dial plans that can be
                            stored in the dial plan table. (R, Set-by-create) (mandatory) (2 bytes)
 Critical dial timeout:     This attribute defines the critical dial timeout for digit map processing in
                            milliseconds. The default value is 4000 ms. (R, W, Set-by-create)

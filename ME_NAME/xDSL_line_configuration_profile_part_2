@@ -43,7 +43,7 @@ interval for downshift rate noise margin must remain below the upstream downshif
 adaptation:                 margin before the xTU-C attempts to decrease the upstream net
                             data rate. Its value ranges from 0 to 16383 seconds. (R, W,
                             Set-by-create) (optional) (2 bytes)
-xTU impedance state forced: This parameter forces the impedance state of the xTU-C. It applies
+xTU impedance state forced:  This parameter forces the impedance state of the xTU-C. It applies
                             only to the T/S interface, and is deprecated in OMCI, which stands
                             proxy for the Q interface. It is only valid for Annex A of
                             [ITU-T G.992.3], Annex A of [ITU-T G.992.4] and Annex A of

@@ -54,18 +54,18 @@ CCM:                         contributed to a defErrorCCM fault. If no such CCM 
                              received, this attribute is null. The format of the CCM is defined in
                              clause 21.6 of [b-IEEE 802.1ag]. (R) (mandatory) (N bytes, not to
                              exceed 128)
-Last received xcon CCM: This attribute contains the most recently received CCM that
+Last received xcon CCM:  This attribute contains the most recently received CCM that
                              contributed to a defXconCCM fault. If no such CCM has been
                              received, this attribute is null. (R) (mandatory) (N bytes, not to exceed
                              128)
 Out of sequence CCMs         This attribute records the number of out of sequence CCMs received.
 count:                       When the counter is full, it rolls over to 0. (R) (optional) (4 bytes)
-CCMs transmitted count: This attribute records the number of CCMs transmitted. It may be used
+CCMs transmitted count:  This attribute records the number of CCMs transmitted. It may be used
                              as the sequence number of transmitted CCMs. When the counter is full,
                              it rolls over to 0. (R) (mandatory) (4 bytes)
-Unexpected LTRs count: This attribute records the number of unexpected LTRs received. When
+Unexpected LTRs count:  This attribute records the number of unexpected LTRs received. When
                              the counter is full, it rolls over to 0. (R) (mandatory) (4 bytes)
-LBRs transmitted count: This attribute records the number of LBRs transmitted. When the
+LBRs transmitted count:  This attribute records the number of LBRs transmitted. When the
                              counter is full, it rolls over to 0. (R) (mandatory) (4 bytes)
 Next loopback transaction This attribute is the value of the transaction number sent in the next
 identifier:                  LBM to be transmitted. It is not required to persist over ONT

@@ -39,7 +39,7 @@ option:               means that several queues share one buffer size of maximum
                       of maximum queue size. (R) (mandatory) (1 byte)
 Maximum queue size:   This attribute specifies the maximum size of the queue. Units are GEM
                       block lengths. (R) (mandatory) (2 bytes)
-Allocated queue size: This attribute identifies the allocated size of this queue. Units are GEM
+Allocated queue size:  This attribute identifies the allocated size of this queue. Units are GEM
                       block lengths. (R, W) (mandatory) (2 bytes)
 Discard-block counter This attribute represents the interval in milliseconds at which the
 reset interval:       counter resets itself. (R, W) (optional) (2 bytes)

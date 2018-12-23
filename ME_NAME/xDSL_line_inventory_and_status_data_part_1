@@ -10,11 +10,11 @@ Managed entity id:              This attribute uniquely identifies each instance
                                 entity. Through an identical ID, this managed entity is implicitly
                                 linked to an instance of the physical path termination point xDSL
                                 UNI. (R) (mandatory) (2 bytes)
-xTU-C G.994.1 vendor ID: This is the vendor ID as inserted by the xTU-C in the G.994.1 CL
+xTU-C G.994.1 vendor ID:  This is the vendor ID as inserted by the xTU-C in the G.994.1 CL
                                 message. It comprises 8 octets, including a country code followed by
                                 a (regionally allocated) provider code, as defined in [ITU-T T.35].
                                 (R) (mandatory) (8 bytes)
-xTU-R G.994.1 vendor ID: This is the vendor ID as inserted by the xTU-R in the G.994.1 CLR
+xTU-R G.994.1 vendor ID:  This is the vendor ID as inserted by the xTU-R in the G.994.1 CLR
                                 message. It comprises 8 binary octets, with the same format as the
                                 xTU-C G.994.1 vendor ID. (R) (mandatory) (8 bytes)
 xTU-C system vendor ID:         This is the vendor ID as inserted by the xTU-C in the overhead

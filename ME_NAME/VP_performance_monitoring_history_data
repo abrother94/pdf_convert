@@ -31,7 +31,7 @@ Transmitted C = 0 cells:       This attribute counts high priority cells origina
                                end point (i.e., backward reporting is assumed). (R) (mandatory)
                                (5 bytes)
 Impaired blocks:               This severely errored cell block counter is incremented whenever
-                               one of the following events takes place: the number of misinserted
+                               one of the following events takes place:  the number of misinserted
                                cells reaches its threshold, the number of bipolar violations reaches
                                its threshold, or the number of lost cells reaches its threshold.
                                Threshold values are based on vendor-operator negotiation. (R)
@@ -61,7 +61,7 @@ a)       The upstream traffic on each OMCC should not exceed x bandwidth, where 
 b)       An upstream OMCC packet should always be put in the high priority queue; the constraints
          on the downstream OMCC packets are out of the scope of this Recommendation, as this is
          completely under control of the OLT.
-c)        Message response time: The system should support response times that do not exceed
+c)        Message response time:  The system should support response times that do not exceed
           one second for high priority protocol handling messages and three seconds for low priority
           protocol handling messages.
 11        ONT management and control protocol

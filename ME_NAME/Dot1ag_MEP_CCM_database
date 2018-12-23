@@ -49,7 +49,7 @@ Administrative state:       This attribute locks (1) and unlocks (0) the functio
                             generated. Because spurious alarms may be generated during the
                             process of configuring CFM across a network, the default value for this
                             attribute is locked. (R, W, Set-by-create) (mandatory) (1 byte)
-CCM and LTM priority: By default, CCM and LTM frames are transmitted with the highest
+CCM and LTM priority:  By default, CCM and LTM frames are transmitted with the highest
                             Ethernet priority available. Ranging from 0..7, this attribute permits
                             these frames to be explicitly prioritized, which may be needed if flows
                             are separated, e.g., by 802.1p priority. The priority specified in this
@@ -82,13 +82,13 @@ Fault alarm threshold:         This attribute specifies the lowest priority alar
                                generate a fault alarm. It is defined as follows:
                                1     All defects generate alarms after suitable soaking, including AIS
                                      and RDICCM.
-                               2     Alarm generated only by one of: MACstatus, RemoteCCM,
+                               2     Alarm generated only by one of:  MACstatus, RemoteCCM,
                                      ErrorCCM, XconCCM. This value is recommended as the default
                                      in [b-IEEE 802.1ag].
-                               3     Alarm generated only by one of: RemoteCCM, ErrorCCM,
+                               3     Alarm generated only by one of:  RemoteCCM, ErrorCCM,
                                      XconCCM.
-                               4     Alarm generated only by one of: ErrorCCM, XconCCM.
-                               5     Alarm generated only by: XconCCM.
+                               4     Alarm generated only by one of:  ErrorCCM, XconCCM.
+                               5     Alarm generated only by:  XconCCM.
                                6     No alarms are to be reported. This setting may be useful during
                                      configuration of services across the network when spurious alarms
                                      could otherwise be generated.
@@ -109,8 +109,8 @@ The link trace test returns its results in a general purpose buffer ME, which mu
 in advance by the OLT. Upon completion of the linktrace operation, the general purpose buffer
 contains a sequence of LTR entries in the order they were received:
             Length field, 2 bytes                                      Length bytes
-              Length of LTR1                  LTR: link trace reply 1 (clause 21.9 of [b-IEEE 802.1ag])
-              Length of LTR2                  LTR: link trace reply 2
+              Length of LTR1                  LTR:  link trace reply 1 (clause 21.9 of [b-IEEE 802.1ag])
+              Length of LTR2                  LTR:  link trace reply 2
                     Etc.
 [b-IEEE 802.1ag] defines the data structure for the linktrace database in detail, but the definition is
 essentially the same as the LTR PDU itself. OMCI simply records the messages for parsing and

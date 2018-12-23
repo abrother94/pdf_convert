@@ -25,7 +25,7 @@ Username/password:            This attribute points to an authentication securit
                               contains the SIP user name and password used for authentication.
                               0xFFFF indicates no username/password. (R, W, Set-by-create)
                               (mandatory) (2 bytes)
-Voicemail server SIP URI: This attribute points to a network address ME that contains the name
+Voicemail server SIP URI:  This attribute points to a network address ME that contains the name
                               (IP address or URI) of the SIP voicemail server for SIP signalling
                               messages. The default value 0xFFFF is a null pointer. (R, W,
                               Set-by-create) (mandatory) (2 bytes)
@@ -33,7 +33,7 @@ Voicemail subscription        This attribute defines the voicemail subscription 
 expiration time:              seconds. If this value is 0, the SIP agent uses an
                               implementation-specific value. The default value of this attribute is
                               3600 seconds. (R, W, Set-by-create) (mandatory) (4 bytes)
-Network dial plan pointer: This attribute points to a network dial plan table. The default value
+Network dial plan pointer:  This attribute points to a network dial plan table. The default value
                               0xFFFF is a null pointer. (R, W, Set-by-create) (mandatory) (2 bytes)
 Application services profile This attribute points to a VoIP application services profile. The
 pointer:                      default value 0xFFFF is a null pointer. (R, W, Set-by-create)

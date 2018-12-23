@@ -45,7 +45,7 @@ Current gateway:         Current default gateway address for the IP host service
                          (4 bytes)
 Current primary DNS:     Current primary DNS server address. The ONT updates this attribute if
                          DHCP assigns a new address. (R) (optional) (4 bytes)
-Current secondary DNS: Current secondary DNS server address. The ONT updates this attribute
+Current secondary DNS:  Current secondary DNS server address. The ONT updates this attribute
                          if DHCP assigns a new address. (R) (optional) (4 bytes)
 Domain name:             If DHCP indicates a domain name, it is presented here. If no domain
                          name is indicated, this attribute is set to a null string. If the string is

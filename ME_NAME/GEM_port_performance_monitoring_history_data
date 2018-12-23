@@ -29,7 +29,7 @@ Received blocks:             This attribute counts GEM blocks that were received
 Transmitted blocks:          This attribute counts GEM blocks originated by the transmitting end
                              point (i.e., backward reporting is assumed). (R) (mandatory) (5 bytes)
 Impaired blocks:             This severely errored data block counter is incremented whenever one
-                             of the following events takes place: the number of misinserted packets
+                             of the following events takes place:  the number of misinserted packets
                              reaches its threshold, the number of bipolar violations reaches its
                              threshold, or the number of lost packets reaches its threshold.
                              Threshold values are based on vendor-operator negotiation. (R)

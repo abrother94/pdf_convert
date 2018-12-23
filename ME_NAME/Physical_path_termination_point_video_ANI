@@ -60,7 +60,7 @@ Signal capability:     This attribute indicates the capability of the ONT to mea
                       7        Total optical power level and broadband RF power level.
                       8..255 Reserved.
                       (R) (mandatory) (1 byte)
-Optical signal level: This attribute is an unsigned integer that returns the current measurement
+Optical signal level:  This attribute is an unsigned integer that returns the current measurement
                       of the total optical signal level. The unit of this attribute is dBµW optical.
                       •        If signal capability = 0, 2, 4 or 6, this attribute is undefined.
                       •        If signal capability =1, 3, 5 or 7, this attribute describes the total

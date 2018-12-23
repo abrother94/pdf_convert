@@ -20,11 +20,11 @@ ME type:                      This attribute indicates the type of the ME implic
                               (R, W, Set-by-create) (mandatory) (1 byte)
 Multicast operations          This attribute points to an instance of the multicast operations profile.
 profile pointer:              (R, W, Set-by-create) (mandatory) (2 bytes)
-Max simultaneous groups: This attribute specifies the maximum number of dynamic multicast
+Max simultaneous groups:  This attribute specifies the maximum number of dynamic multicast
                               groups that may be replicated to the client port at any one time. The
                               default value 0 specifies that no administrative limit is to be imposed.
                               (R, W, Set-by-create) (optional) (2 bytes)
-Max multicast bandwidth: This attribute specifies the maximum imputed dynamic bandwidth, in
+Max multicast bandwidth:  This attribute specifies the maximum imputed dynamic bandwidth, in
                               bytes per second, that may be delivered to the client port at any one
                               time. The default value 0 specifies that no administrative limit is to be
                               imposed. (R, W, Set-by-create) (optional) (4 bytes)

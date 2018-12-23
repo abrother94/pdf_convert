@@ -14,8 +14,8 @@ Interval end time:          This attribute identifies the most recently finished
 Threshold data 1/2 id:      This attribute points to an instance of the threshold data 1 and 2 managed
                             entities that contains PM threshold values. (R, W, Set-by-create)
                             (mandatory) (2 bytes)
-Incoming PM refers to upstream traffic received on the UNI; outgoing PM refers to downstream
-traffic transmitted on the UNI.
+                            Incoming PM refers to upstream traffic received on the UNI; outgoing PM refers to downstream
+                            traffic transmitted on the UNI.
 Incoming unicast packets:           (R) (optional) (4 bytes)
 Incoming discarded packets:         (R) (optional) (4 bytes)
 Incoming errored packets:           (R) (optional) (4 bytes)

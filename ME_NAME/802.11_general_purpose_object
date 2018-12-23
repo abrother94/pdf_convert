@@ -47,13 +47,13 @@ value:                           domain. This attribute list describes the regul
                                  0x40    MKK (Japan).
                                  (R) (mandatory) (1 byte)
 Attributes valid only if object type = 3, antennas list:
-dot11 supported tx antenna: When true, this Boolean attribute indicates that the antenna
+dot11 supported tx antenna:  When true, this Boolean attribute indicates that the antenna
                                  represented by the associated PPTP can be used as a transmit
                                  antenna. (R) (mandatory) (1 byte)
-dot11 supported rx antenna: When true, this Boolean attribute indicates that the antenna
+dot11 supported rx antenna:  When true, this Boolean attribute indicates that the antenna
                                  represented by the associated PPTP can be used as a receive antenna.
                                  (R) (mandatory) (1 byte)
-dot11 diversity selection rx: When true, this Boolean attribute indicates that the antenna
+dot11 diversity selection rx:  When true, this Boolean attribute indicates that the antenna
                                  represented by the associated PPTP can be used for receive diversity.
                                  This attribute can only be true if the antenna can be used as a receive
                                  antenna, as indicated by dot11 supported rx antenna. (R, W)

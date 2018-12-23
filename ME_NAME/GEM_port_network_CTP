@@ -29,7 +29,7 @@ Direction:               This attribute specifies whether the GEM port is used f
                          ANI-to-UNI (2), or bidirectional (3) connection. (R, W, Set-by-create)
                          (mandatory) (1 byte)
 Traffic management If the traffic management option attribute in the ONT-G ME is 0 (priority
-pointer for upstream: controlled), this pointer specifies the priority queue-G ME serving this
+pointer for upstream:  controlled), this pointer specifies the priority queue-G ME serving this
                          GEM port network CTP. If the traffic management option attribute is 1
                          (rate controlled), this attribute redundantly points to the T-CONT serving
                          this GEM port network CTP. (R, W, Set-by-create) (mandatory) (2 bytes)

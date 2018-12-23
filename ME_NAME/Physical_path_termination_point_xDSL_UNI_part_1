@@ -70,7 +70,7 @@ Modem type:                    This attribute specifies the modem type. If the h
                                1   ATM (default).
                                2   PTM (Ethernet).
                                (R, W) (optional) (1 byte)
-Upstream PSD mask profile: This attribute points to an instance of the xDSL PSD mask profile
+Upstream PSD mask profile:  This attribute points to an instance of the xDSL PSD mask profile
                                that defines upstream parameters. Upon ME instantiation, the ONT
                                sets this attribute to 0, a null pointer. (R, W) (optional) (2 bytes)
 Actions

@@ -39,8 +39,8 @@ Chassis ID subtype:            The format of the chassis ID attribute, default v
                           an interface on the containing chassis.
    7    Local             Locally assigned chassis ID.
                                (R, W) (mandatory) (1 byte)
-Chassis ID part 1, Chassis These two attributes may be regarded as an octet string of up to
-ID part 2:                     50 bytes whose length is given by the chassis ID length attribute and
+Chassis ID part 1:        These two attributes may be regarded as an octet string of up to
+Chassis ID part 2:                     50 bytes whose length is given by the chassis ID length attribute and
                                whose value is the left-justified chassis ID. (R, W) (mandatory)
                                (25 bytes * 2 attributes)
 Management address             The length of the management address domain attribute, default

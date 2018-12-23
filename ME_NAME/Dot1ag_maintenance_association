@@ -41,7 +41,7 @@ permission:             CFM messages transmitted by maintenance points when no m
                         specific match is found. This attribute is identical to that defined in the
                         description of the dot1ag maintenance domain managed entity (i.e.,
                         excluding codepoint 5, defer). (R, W) (mandatory) (1 byte)
-Default MD level table: Each entry is a vector of fields, indexed by primary VLAN ID.
+Default MD level table:  Each entry is a vector of fields, indexed by primary VLAN ID.
 Primary VLAN ID         (2 bytes)
 Table control:          This field controls the meaning of a set operation. The one-byte size of
                         this field is included in get/get-next operations, but its value is
@@ -74,17 +74,17 @@ MHF creation:           This attribute determines whether the bridge creates an 
 Sender ID permission:       This attribute determines the content of the sender ID TLV included in
                             CFM messages transmitted by maintenance points controlled by this
                             MA. (1 byte)
-                            1   None: The sender ID TLV is not to be sent, default.
-                            2   Chassis: The chassis ID length, chassis ID subtype, and chassis ID
+                            1   None:  The sender ID TLV is not to be sent, default.
+                            2   Chassis:  The chassis ID length, chassis ID subtype, and chassis ID
                                 fields of the sender ID TLV are to be sent, but not the management
                                 address fields.
-                            3   Manage: The management address fields of the sender ID TLV are
+                            3   Manage:  The management address fields of the sender ID TLV are
                                 to be sent, but the chassis ID length is to be transmitted with a 0
                                 value, and the chassis ID subtype, and chassis ID fields are not to
                                 be sent.
-                            4   ChassisManage: All chassis ID and management address fields are
+                            4   ChassisManage:  All chassis ID and management address fields are
                                 to be sent.
-                            5   Defer: The content of the sender ID TLV is determined by the
+                            5   Defer:  The content of the sender ID TLV is determined by the
                                 catchall sender ID permission attribute.
 Associated VLANs list:      This field comprises a list of up to 11 additional VLAN IDs associated
                             with the primary VLAN, 2 bytes each. Unused placeholders, possibly

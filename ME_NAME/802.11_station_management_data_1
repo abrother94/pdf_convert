@@ -38,14 +38,14 @@ management mode:           active (0), the station is not in power save mode. Po
 dot11 desired SSID2:    This attribute contains the second half of the service set ID used in the
                         desired SSID parameter of the most recent MLME_Scan request. (R, W)
                         (mandatory) (16 bytes)
-dot11 desired BSS type: This attribute specifies the type of BSS the station accepts when scanning
+dot11 desired BSS type:  This attribute specifies the type of BSS the station accepts when scanning
                         for a BSS with which to synchronize. The station filters probe response
                         frames and beacons on the basis of this attribute.
-                        0 Infrastructure: The station only synchronizes with a BSS whose
+                        0 Infrastructure:  The station only synchronizes with a BSS whose
                              capability information field has the ESS subfield set to 1.
-                        1 Independent: The station only synchronizes with a BSS whose
+                        1 Independent:  The station only synchronizes with a BSS whose
                              capability information field has the IBSS subfield set to 1.
-                        2 Any: The station may synchronize to either type of BSS.
+                        2 Any:  The station may synchronize to either type of BSS.
                         (R, W) (mandatory) (1 byte)
 dot11 operational rate This attribute specifies the set of data rates (maximum 8) at which the
 set:                    station may transmit data. Each octet contains a value representing a rate.

@@ -43,7 +43,7 @@ Forward operation:            When a frame is received, it is processed accordin
        0x13        Action (h) (TCI investigation)                            Action (a)
        0x14        Action (h) (TCI investigation)                            Action (e)
        0x15        Action (b) (Unconditional forwarding)                     Action (e)
-This table and the actions are discussed in detail below.
+       This table and the actions are discussed in detail below.
 Number of entries:             This attribute specifies the number of valid entries in the VLAN filter
                                list. (R, W, Set-by-create) (mandatory) (1 byte)
 Actions
@@ -85,7 +85,7 @@ g)   Negative filtering by TCI:        If some or all of the fields in the TCI o
                                        Figure 9.3.11-4.
                        Figure 9.3.11-4 – Negative filtering by TCI operation
 h)   Positive filtering by TCI       If some or all of the fields in the TCI of the received frame are
-     and dropping for no match: included in the VLAN filter list, it is forwarded according to
+     and dropping for no match:  included in the VLAN filter list, it is forwarded according to
                                      action a) as shown in Figure 9.3.11-5. If its TCI is not accepted
                                      by any port on the bridge, the frame is discarded.
            Figure 9.3.11-5 – Positive filtering by TCI operation, dropping for no match

@@ -22,7 +22,7 @@ HLINSCds:       This attribute is the scale factor to be applied to the downstre
                 Hlin(f) values. It is coded as a 16-bit unsigned integer. This attribute
                 is only available after a loop diagnostic procedure. (R) (mandatory)
                 (2 bytes)
-HLINpsds table: This attribute is an array of complex coefficients {a, b} that represent
+HLINpsds table:  This attribute is an array of complex coefficients {a, b} that represent
                 the downstream transfer function Hlin(f) in linear form. Each array
                 entry represents Hlin(f ) = i*HLINGds*Δf for a particular subcarrier
                 group index i, ranging from 0 to min(NSds, 511). Hlin(f) may be
@@ -40,7 +40,7 @@ HLOGMTds:       After a loop diagnostic procedure, this attribute contains the n
                 16-bit unsigned value that corresponds to the value specified in the
                 corresponding Recommendation (e.g., the number of symbols in a
                 one-second interval for [ITU-T G.992.3]). (R) (mandatory) (2 bytes)
-HLOGpsds table: The HLOGpsds attribute contains an array of numbers m(i), where i
+HLOGpsds table:  The HLOGpsds attribute contains an array of numbers m(i), where i
                 is a particular subcarrier group index, ranging from 0 to min(NSds,
                 511), and m lies in the range 0..1022, with a granularity of 0.1 dB.
                 The downstream transfer function Hlog(f) can be reconstructed by

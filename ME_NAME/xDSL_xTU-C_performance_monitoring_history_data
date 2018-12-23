@@ -45,7 +45,7 @@ Short initializations:            This attribute counts the total number of fast
                                   initializations attempted on the line, successful and failed. Fast
                                   retrain is defined in [b-ITU-T G.992.2]. Short initialization is defined
                                   in [ITU-T G.992.3] and [ITU-T G.992.4]. (R) (optional) (2 bytes)
-Failed short initializations: This attribute counts the total number of failed fast retrains or short
+Failed short initializations:  This attribute counts the total number of failed fast retrains or short
                                   initializations during the accumulation period, e.g., when:
                                   – A CRC error is detected.
                                   – A timeout occurs.

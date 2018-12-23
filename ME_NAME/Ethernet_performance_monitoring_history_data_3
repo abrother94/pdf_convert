@@ -62,10 +62,10 @@ Packets 128 to 255 octets:   The total number of packets (including bad packets)
 Packets 256 to 511 octets:   The total number of packets (including bad packets) received that
                              were 256..511 octets long, excluding framing bits but including FCS.
                              (R) (mandatory) (4 bytes)
-Packets 512 to 1023 octets: The total number of packets (including bad packets) received that
+Packets 512 to 1023 octets:  The total number of packets (including bad packets) received that
                              were 512..1023 octets long, excluding framing bits but including FCS.
                              (R) (mandatory) (4 bytes)
-Packets 1024 to 1518 octets: The total number of packets (including bad packets) received that
+Packets 1024 to 1518 octets:  The total number of packets (including bad packets) received that
                              were 1024..1518 octets long, excluding framing bits but including
                              FCS. (R) (mandatory) (4 bytes)
 Actions

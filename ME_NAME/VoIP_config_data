@@ -16,7 +16,7 @@ protocols:                supported in the ONT. Valid values are any combination
                           2             H.248.
                           4             MGCP.
                           (R) (mandatory) (1 byte)
-Signalling protocol used: This attribute specifies the VoIP signalling protocol to use. Only one
+Signalling protocol used:  This attribute specifies the VoIP signalling protocol to use. Only one
                           type of protocol is allowed at a time. Valid values are:
                           0             None.
                           1             SIP.
@@ -25,7 +25,7 @@ Signalling protocol used: This attribute specifies the VoIP signalling protocol 
                           0xFF          Selected by non-OMCI management interface.
                           (R, W) (mandatory) (1 byte)
 Available VoIP            This attribute is a bit map that indicates the capabilities of the ONT with
-configuration methods: regard to VoIP service configuration:
+configuration methods:  regard to VoIP service configuration:
                           1             ONT capable of using OMCI to configure its VoIP services.
                           2             ONT capable of working with configuration file retrieval to
                                         configure its VoIP services.
@@ -55,10 +55,10 @@ address pointer:          network address managed entity, which indicates the ad
                               using a well-known URI schema. (The default value is 0xFFFF.) (R, W)
                               (mandatory) (2 bytes)
 VoIP configuration            Indicates the status of the ONT VoIP service.
-state:                        0             Inactive: Configuration retrieval has not been attempted.
-                              1             Active: Configuration was retrieved.
-                              2             Initializing: Configuration is now being retrieved.
-                              3             Fault: Configuration retrieval process failed.
+state:                         0             Inactive:  Configuration retrieval has not been attempted.
+                              1             Active:  Configuration was retrieved.
+                              2             Initializing:  Configuration is now being retrieved.
+                              3             Fault:  Configuration retrieval process failed.
                               Other values are reserved. At ME instantiation, the ONT sets this
                               attribute to 0. (R) (mandatory) (1 byte)
 Retrieve profile:             This attribute provides a means by which the ONT may be notified that a

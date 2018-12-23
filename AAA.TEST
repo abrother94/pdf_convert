@@ -1,8 +1,7 @@
 #!/bin/bash
-RELPACE=`cat AAAA | sed -n 's/.*\([A-Za-z]: [A-Za-z]\).*/\1/p'`
-RES=`echo $RELPACE | sed -e 's/ /  /g'`
-ORG="M: T"
-echo "RES[$RES]"
-AA=`cat AAAA | sed -re "s/M: T/M:  t/g"`
+`cat xDSL_line_inventory_and_status_data_part_3 | sed -e '/.*\([A-Za-z]: [A-Za-z]\).*/ s/: /:  /g'`
+#RES=`echo $RELPACE | sed -e 's/ /  /g'`
+#echo "RES[$RES]"
+#AA=`cat xDSL_line_inventory_and_status_data_part_3 | sed  "s/$RELPACE/$RES/g"`
 
-echo $AA
+#echo "$AA"

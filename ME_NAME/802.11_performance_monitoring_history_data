@@ -16,11 +16,11 @@ Threshold data 1/2 id:      This attribute points to an instance of the threshol
                             entity that contains PM threshold values. Since no threshold value
                             attribute number exceeds 7, a threshold data 2 ME is optional. (R, W,
                             Set-by-create) (mandatory) (2 bytes)
-dot11 transmitted fragment This attribute counts acknowledged MPDUs with an individual
+dot11 transmitted fragment  This attribute counts acknowledged MPDUs with an individual
 count:                      address in the address 1 field and MPDUs of type data or
                             management with a multicast address in the address 1 field. (R)
                             (mandatory) (4 bytes)
-dot11 multicast transmitted This attribute counts successfully transmitted MSDUs with the
+dot11 multicast transmitted  This attribute counts successfully transmitted MSDUs with the
 frame count:                multicast bit set in the destination MAC address. When operating as
                             a STA in an ESS, where these frames are directed to the AP, this
                             implies having received an acknowledgment to all associated
@@ -33,7 +33,7 @@ dot11 failed count:         This attribute counts MSDUs that were not transmitte
                             (4 bytes)
 dot11 retry count:          This attribute counts MSDUs transmitted successfully after one or
                             more retransmissions. (R) (mandatory) (4 bytes)
-dot11 multiple retry count: This attribute counts MSDUs transmitted successfully after more
+dot11 multiple retry count:  This attribute counts MSDUs transmitted successfully after more
                             than one retransmission. (R) (mandatory) (4 bytes)
 dot11 frame duplicate       This attribute counts duplicate received frames according to their
 count:                      sequence control fields. (R) (mandatory) (4 bytes)

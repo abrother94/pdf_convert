@@ -21,7 +21,7 @@ User protocol pointer:          This attribute points to signalling protocol dat
 PPTP pointer:                   This attribute points to the PPTP POTS UNI managed entity that
                                 serves the analogue telephone port. (R, W, Set-by-create)
                                 (mandatory) (2 bytes)
-VoIP media profile pointer: This attribute points to an associated VoIP media profile. (R, W,
+VoIP media profile pointer:  This attribute points to an associated VoIP media profile. (R, W,
                                 Set-by-create) (mandatory) (2 bytes)
 Signalling code:                This attribute specifies the POTS-side signalling:
                                 1 Loop start.

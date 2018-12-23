@@ -24,35 +24,35 @@ rate:                        ONT MoCA interface to all the nodes in bit/s. (R) (
 Node table:                This attribute lists current nodes in the node table. The table contains
                            MAC addresses and statistics for those nodes. These table attributes are
                            further described below.
-                              MAC address: A unique identifier of a node within the table.
+                              MAC address:  A unique identifier of a node within the table.
                               (6 bytes)
-                              PHY tx rate: MoCA PHY unicast transmit rate from the ONT
+                              PHY tx rate:  MoCA PHY unicast transmit rate from the ONT
                               MoCA interface to the node identified by the MAC address, in bit/s.
                               (4 bytes)
-                              Tx power control reduction: The reduction in transmitter level due
+                              Tx power control reduction:  The reduction in transmitter level due
                               to power control, in dB. Valid values range from 0 (full power) to 60.
                               (1 byte)
-                              PHY rx rate: MoCA PHY unicast receive rate to the ONT MoCA
+                              PHY rx rate:  MoCA PHY unicast receive rate to the ONT MoCA
                               interface from the node identified by the MAC address, in bit/s.
                               (optional) (4 bytes)
-                              Rx power level: The power level received at the ONT MoCA
+                              Rx power level:  The power level received at the ONT MoCA
                               interface from the node identified by the MAC address, in dBm,
                               represented as a 2s complement integer. Valid values range from +10
                               (0x0A) to –80 (0xB0). (1 byte)
-                              PHY rx broadcast rate: MoCA PHY broadcast receive rate to the
+                              PHY rx broadcast rate:  MoCA PHY broadcast receive rate to the
                               ONT MoCA interface from the node identified by MAC address, in
                               bits/s. (optional) (4 bytes)
-                              Rx broadcast power level: The power level received at the ONT
+                              Rx broadcast power level:  The power level received at the ONT
                               MoCA interface from the node identified by the MAC address, in
                               dBm, represented as a 2s complement integer. Valid values range
                               from +10 (0x0A) to –80 (0xB0). (1 byte)
-                              Tx packet: Number of packets transmitted to node. (4 bytes)
-                              Rx packet: Number of packets received from node. (4 bytes)
-                              Rx errored and missed: Number of errored and missed packets
+                              Tx packet:  Number of packets transmitted to node. (4 bytes)
+                              Rx packet:  Number of packets received from node. (4 bytes)
+                              Rx errored and missed:  Number of errored and missed packets
                               received from node. The sum of this field across all entries in the
                               node table contributes to the rx errored and missed TCA. This field is
                               reset to 0 on 15-minute boundaries. (4 bytes)
-                              Rx errored: Number of errored packets received from node. The
+                              Rx errored:  Number of errored packets received from node. The
                               sum of this field across all entries in the node table contributes to the
                               rx errored TCA. This field is reset to 0 on 15-minute boundaries.
                               (optional) (4 bytes)

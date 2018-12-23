@@ -20,7 +20,7 @@ OMCC version:          This attribute identifies the version of the OMCC protoco
                        0x83     G.984.4 Amd.3 (12/06).
                        0x84     G.984.4 (02/08).
                        (R) (mandatory) (1 byte)
-Vendor product code: This attribute provides a vendor-specific product code for the ONT. (R)
+Vendor product code:  This attribute provides a vendor-specific product code for the ONT. (R)
                        (optional) (2 bytes)
 Security capability:   This attribute advertises the security capabilities of the ONT. The following
                        codepoints are defined:

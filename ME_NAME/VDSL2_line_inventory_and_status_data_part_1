@@ -15,7 +15,7 @@ Managed entity id:              This attribute uniquely identifies each instance
 capability xTU-C:               attribute of the xDSL line inventory and status data part 1 to include
                                 xTU-C VDSL2 capabilities. It is defined by bits 57..64 of
                                 Table 9.7.12-1. (R) (mandatory) (1 byte)
-VDSL2 transmission system: This attribute reports the transmission system in use. It extends the
+VDSL2 transmission system:  This attribute reports the transmission system in use. It extends the
                                 xDSL transmission system attribute of the xDSL line inventory and
                                 status data part 2 managed entity with a byte that includes VDSL2
                                 capabilities currently in use. It is defined by bits 57..64 of

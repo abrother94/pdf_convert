@@ -35,7 +35,7 @@ Port mask:            This attribute specifies the IP address mask associated wi
 Unnumbered:           The Boolean value true specifies that this IP port is unnumbered. The
                       value false specifies that the port has an IP address. (R, W,
                       Set-by-create) (mandatory) (1 byte)
-Administrative state: This attribute locks (1) and unlocks (0) the functions performed by this
+Administrative state:  This attribute locks (1) and unlocks (0) the functions performed by this
                       managed entity. When the administrative state is set to lock, all user
                       functions of this port are blocked, and alarms, TCAs and AVCs for this
                       port and all dependent managed entities are no longer generated.
@@ -51,7 +51,7 @@ Router id pointer:    This attribute points to an instance of the IP router serv
                       (R, W, Set-by-create) (mandatory) (2 bytes)
 ARP pointer:          This attribute points to the instance of ARP service profile associated
                       with the port. (R, W, Set-by-create) (mandatory) (2 bytes)
-Encapsulation method: This attribute is not used. If it is present, its value should be set to 1. (R,
+Encapsulation method:  This attribute is not used. If it is present, its value should be set to 1. (R,
                       W) (optional) (1 byte)
 Actions
 Create, delete, get, set

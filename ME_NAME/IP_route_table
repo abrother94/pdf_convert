@@ -9,7 +9,7 @@ Managed entity id:          This attribute uniquely identifies each instance of 
                             instance of the IP router service profile. (R) (mandatory) (2 bytes)
 Ip route number:            This attribute indicates the number of current routes in the route table. Its
                             initial value is 0. (R) (mandatory) (2 bytes)
-Ip route table max size: This attribute indicates the maximum number of routes that can be stored
+Ip route table max size:  This attribute indicates the maximum number of routes that can be stored
                             in the route table. Its value is determined by the ONT implementation. (R)
                             (mandatory) (2 bytes)
 Ip route table:             This attribute lists current routes in the route table. An entry contains the
