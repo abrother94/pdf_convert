@@ -12,8 +12,7 @@ Managed entity id:            This attribute uniquely identifies each instance o
 CES buffered CDV              This attribute represents the duration of user data that must be
 tolerance:                    buffered by the CES interworking entity to offset packet delay
                               variation. It is expressed in 10 microsecond increments. The default
-                              value for DS1 CES is 750 μs; for DS3 CES, it is 1000 μs. (R, W,
-                              Set-by-create) (mandatory) (2 bytes)
+                              value for DS1 CES is 750 μs; for DS3 CES, it is 1000 μs. (R, W, Set-by-create) (mandatory) (2 bytes)
 Channel associated            This attribute selects the signalling format. It applies to structured
 signalling:                   interfaces only. For unstructured interfaces, this value, if present,
                               must be set to the default 0. Valid values are:

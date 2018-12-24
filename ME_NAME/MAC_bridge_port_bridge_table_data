@@ -14,8 +14,8 @@ Bridge table:                 This attribute lists known MAC destination address
                               learned or statically assigned, whether packets having them as
                               destination addresses are filtered or forwarded, and their ages. Each
                               entry contains:
-                              •   Information (2 bytes).
-                              •   MAC address (6 bytes).
+                              Information (2 bytes).
+                              MAC address (6 bytes).
                             The information bits are assigned as described below.
                             Bit           Name             Setting
                             1 (LSB)       Filter/forward   0: forward

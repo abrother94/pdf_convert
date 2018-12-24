@@ -17,8 +17,7 @@ mask:                      subcarriers 1 to 64. The MSB of byte 1 corresponds to
                            [ITU-T G.992.3], [ITU-T G.992.4] and [ITU-T G.992.5], it is defined in
                            the corresponding Recommendation. For Annex A of [ITU-T G.992.1]
                            and [b-ITU-T G.992.2], NSCus = 32 and for Annex B of
-                           [ITU-T G.992.1], NSCus = 64. (R, W, Set-by-create) (mandatory)
-                           (8 bytes)
+                           [ITU-T G.992.1], NSCus = 64. (R, W, Set-by-create) (mandatory) (8 bytes)
 Actions
 Create, delete, get, set
 Notifications

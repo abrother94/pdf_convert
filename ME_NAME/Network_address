@@ -13,8 +13,7 @@ Attributes
 Managed entity id:       This attribute uniquely identifies each instance of this managed entity.
                          Instances of this managed entity created autonomously by the ONT have
                          IDs in the range 0..0x7FFF. Instances created by the OLT have IDs in the
-                         range 0x8000..0xFFFE. The value 0xFFFF is not valid. (R,
-                         Set-by-create) (mandatory) (2 bytes)
+                         range 0x8000..0xFFFE. The value 0xFFFF is not valid. (R, Set-by-create) (mandatory) (2 bytes)
 Security pointer:        If this attribute is set to its default value 0xFFFF, security attributes are not
                          defined for this network address. If this attribute is set to any other value, it
                          points to an authentication security method managed entity. The
@@ -22,8 +21,8 @@ Security pointer:        If this attribute is set to its default value 0xFFFF, s
                          used when retrieving the network address indicated by this ME. (R, W,
                          Set-by-create) (mandatory) (2 bytes)
                          address. It may contain a fully qualified domain name, URI or IP address.
-                         The URI may also contain an optional port identifier (e.g.,
-                         "x.y.z.com:5060"). The default value 0xFFFF indicates that no network
+                         The URI may also contain an optional port identifier (e.g., "x.y.z.com:5060"). 
+			 The default value 0xFFFF indicates that no network
                          address is defined. (R, W, Set-by-create) (mandatory) (2 bytes).
 Actions
 Create, delete, get, set

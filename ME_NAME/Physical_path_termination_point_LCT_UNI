@@ -22,8 +22,7 @@ Managed entity id:        This attribute uniquely identifies each instance of th
 Administrative            This attribute locks (1) and unlocks (0) the functions performed by this
 state:                    managed entity. When the administrative state is set to lock, all user
                           functions of this UNI are blocked. Selection of a default value for this
-                          attribute is outside the scope of this Recommendation. (R, W) (mandatory)
-                          (1 byte)
+                          attribute is outside the scope of this Recommendation. (R, W) (mandatory) (1 byte)
 Actions
 Get, set
 Notifications

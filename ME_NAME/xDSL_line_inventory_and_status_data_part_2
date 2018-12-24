@@ -16,7 +16,6 @@ xDSL transmission system:  This parameter defines the transmission system in use
                                  defined in Table 9.7.12-1. (R) (mandatory) (7 bytes)
                                  NOTE 2 – An additional byte identifying VDSL2 capabilities in use is
                                  defined in the VDSL2 line inventory and status data part 1 managed entity.
-                                 (R) (mandatory) (7 bytes)
 Line power management            The line has four possible power management states:
 state:                           0      L0: Synchronized – This line state occurs when the line has full
                                         transmission (i.e., showtime).

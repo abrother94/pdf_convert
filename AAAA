@@ -1,2 +1,0 @@
-Last received xcon CCM: This attribute contains the most recently received CCM that
-count:                       When the counter is full, it rolls over to 0. (R) (optional) (4 bytes)

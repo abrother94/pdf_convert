@@ -1,7 +1,0 @@
-#!/bin/bash
-`cat xDSL_line_inventory_and_status_data_part_3 | sed -e '/.*\([A-Za-z]: [A-Za-z]\).*/ s/: /:  /g'`
-#RES=`echo $RELPACE | sed -e 's/ /  /g'`
-#echo "RES[$RES]"
-#AA=`cat xDSL_line_inventory_and_status_data_part_3 | sed  "s/$RELPACE/$RES/g"`
-
-#echo "$AA"

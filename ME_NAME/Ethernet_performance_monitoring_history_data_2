@@ -14,8 +14,7 @@ Interval end time:            This attribute identifies the most recently finish
                               (R) (mandatory) (1 byte)
 Threshold data 1/2 id:        This attribute points to an instance of the threshold data 1 managed
                               entity that contains PM threshold values. Since no threshold value
-                              attribute number exceeds 7, a threshold data 2 ME is optional. (R, W,
-                              Set-by-create) (mandatory) (2 bytes)
+                              attribute number exceeds 7, a threshold data 2 ME is optional. (R, W, Set-by-create) (mandatory) (2 bytes)
 PPPoE filtered frame          This attribute counts the number of frames discarded due to PPPoE
 counter:                      filtering. (R) (mandatory) (4 bytes)
 Actions

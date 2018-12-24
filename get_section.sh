@@ -140,7 +140,6 @@ find_me_class_id()
     done
 }
 
-
 get_me_attributes_num()
 {
     local name=$1
@@ -148,18 +147,24 @@ get_me_attributes_num()
     echo "[$count] attributes"
 }
 
-
-get_first_attribute_name()
+get_attribute_name()
 {
     local name="$1"
-    local param_num="$2"
-    start_line=`cat "$name" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
+    # Legnecy method
+    #start_line=`cat "$name" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
+    #start_line=`echo  "$start_to_action_content" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
+    # Get from content start to "Action" patten and quit and pipeline#
+    # Print "Managed entity id:" line number
+    # start_line=`sed '/Action/q' "$name" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
     #echo start_line[$start_line]
-    content=`tail -n +$start_line "$name"` 
+    # Get rid of content before "Managed entiry id: to file end" 
+    # content=`tail -n +$start_line "$name"` 
     #echo content[$content]
     PARAM="$2"
-    Attribute_num=`echo "$content" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " "  | sed -e 's/Attributes //g' | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g' | sed -e 's/ /_/g'`
-    echo "$Attribute_num"
+
+    #Latest method
+    Attribute_Name=` sed -n '/Managed entity id:/,/Action/p; /Action/q' "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " "  | sed -e 's/Attributes //g' | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
+    echo "$Attribute_Name"
 }
 
 #collect_g988_me_content_section_line_index
@@ -167,7 +172,7 @@ get_first_attribute_name()
 #collect_me_content_section_line_index
 #dump_all_me_1
 #get_me_attributes_num "$SECTION"
-get_first_attribute_name "$SECTION" "$2"
+get_attribute_name "$SECTION" "$2"
 
 exit
 

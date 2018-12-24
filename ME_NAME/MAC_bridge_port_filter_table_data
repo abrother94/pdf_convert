@@ -17,9 +17,9 @@ MAC filter table:             This attribute lists MAC destination addresses ass
                               traffic flowing out of the bridge port. In this way, the upstream traffic
                               is filtered on the ANI-side bridge ports, and the downstream traffic is
                               filtered on the UNI-side bridge ports. Each entry contains:
-                              •    The entry number, an index into this attribute list (1 byte).
-                              •    Filter byte (1 byte).
-                              •    MAC address (6 bytes).
+                              The entry number, an index into this attribute list (1 byte).
+                              Filter byte (1 byte).
+                              MAC address (6 bytes).
                               The bits of the filter byte are assigned as follows:
                               Bit           Name               Setting
                               1 (LSB)       Filter/forward     0: forward

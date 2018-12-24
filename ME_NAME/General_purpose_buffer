@@ -21,12 +21,10 @@ Maximum size:            The ONT determines the actual size of the buffer table 
                          ONT implementations will impose their own limits. The ONT will not
                          create a buffer table larger than this value. If the ONT cannot allocate
                          enough memory to accommodate this size, it should deny the ME creation
-                         action or a write operation that attempts to expand an existing ME. (R, W,
-                         Set-by-create) (optional) (4 bytes)
+                         action or a write operation that attempts to expand an existing ME. (R, W, Set-by-create) (optional) (4 bytes)
 Buffer table:            This attribute is an octet string that contains the result of some operation
                          performed on the ONT. The exact content depends on the operation, and is
-                         documented with the definition of each operation. (R) (mandatory)
-                         (N bytes)
+                         documented with the definition of each operation. (R) (mandatory) (N bytes)
 Actions
 Create, delete, get, get next
  Attribute value change
