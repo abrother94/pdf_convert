@@ -167,12 +167,26 @@ get_attribute_name()
     echo "$Attribute_Name"
 }
 
+get_attribute_mode()
+{
+    local name="$1"
+    PARAM="$2"
+
+    #Latest method
+    Attribute_Name=` sed -n '/Managed entity id:/,/Action/p; /Action/q' "$name" | egrep "((^ {1,30})|(^[A-Za-z].* [^A-Za-z\(\)]))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))" `
+    echo "$Attribute_Name"
+}
+
+
+#((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))
+
+
 #collect_g988_me_content_section_line_index
 #collect_all_content_section_line_index
 #collect_me_content_section_line_index
 #dump_all_me_1
 #get_me_attributes_num "$SECTION"
-get_attribute_name "$SECTION" "$2"
+get_attribute_mode "$SECTION" "$2"
 
 exit
 
