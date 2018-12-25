@@ -1,0 +1,26 @@
+{
+    "Class": 62,
+	"C_ID": 1234,
+	"Name": "ONT-G",
+	"Create_by": "OLT",
+	"Need_MIB_Upload": true,
+	"Latest_Create_Time":201812130815,
+	"Attrs_info": [
+	{
+	    "Id": 1,
+	    "Name": "Attri1",
+	    "Size": 1,
+	    "Access": "R",
+	    "Format": "Pointer",
+	    "Value": "0x0"
+	},
+	{
+	    "Id": 2,
+	    "Name": "Attri2",
+	    "Size": 1,
+	    "Access": "W",
+	    "Format": "Pointer",
+	    "Value": "0x0"
+	}
+	]
+}
