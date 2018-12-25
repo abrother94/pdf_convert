@@ -9,8 +9,7 @@ An instance of this managed entity may be associated with zero or more instances
 subscriber config info ME.
 Attributes
 Managed entity id:           This attribute uniquely identifies each instance of this managed entity.
-                             The values 0 and 0xffff are reserved. (R, Set-by-create) (mandatory)
-                             (2 bytes)
+                             The values 0 and 0xffff are reserved. (R, Set-by-create) (mandatory) (2 bytes)
 IGMP version:                This attribute specifies the version of IGMP to be supported. Support of
                              a given version implies compatible support of previous versions. If the
                              ONT cannot support the version requested, it should deny an attempt to
@@ -83,9 +82,8 @@ list table:                   ranges. The ONT is expected to silently discard IG
                               –     Reserved, set to 0. (2 bytes)
                               A single multicast group may be specified by setting start and end
                               destination IP addresses to the same value.
-                              (R, W) (mandatory) (24N bytes, where N is the number of entries in the
-                              table)
-Discussion of table size:     While theoretically, this table could contain 16,384 entries, real-world
+                              (R, W) (mandatory) (24N bytes, where N is the number of entries in the table)
+  Discussion of table size    While theoretically, this table could contain 16,384 entries, real-world
                               applications are not expected to require large tables. It is instead
                               anticipated that the table will list a moderate number of contiguous
                               ranges, each of which shares a common GEM port, VLAN, IP source
@@ -97,8 +95,7 @@ table:                        ranges. Groups defined in this list are multicast 
                               multicast bandwidth measurement maintained by the multicast
                               subscriber monitor managed entity. If a join message is always
                               expected, this table may be empty. Table entries have the same format
-                              as those in the dynamic access control list table. (R, W) (mandatory)
-                              (24N bytes, where N is the number of entries in the table)
+                              as those in the dynamic access control list table. (R, W) (mandatory) (24N bytes, where N is the number of entries in the table)
 Lost groups list table:       This attribute is a list of groups from the dynamic access control list
                               table for which there is an active join, but no downstream flow is
                               present, possibly because of source failure, but also possibly because of
@@ -115,19 +112,17 @@ Robustness:                   This attribute allows tuning for possible packet l
                               upstream. (R, W, Set-by-create) (optional) (1 byte)
 Querier IP address:           This attribute specifies the IP address to be used by a proxy querier.
                               Although it is not a legitimate IP address, the default value 0.0.0.0 is
-                              legal in this case (see [b-IETF RFC 4541]). (R, W, Set-by-create)
-                              (optional) (4 bytes)
+                              legal in this case (see [b-IETF RFC 4541]). (R, W, Set-by-create) (optional) (4 bytes)
 Query interval:               This attribute specifies the interval between general queries in seconds.
                               The default is 125 seconds. (R, W, Set-by-create) (optional) (4 bytes)
-Query max response time:  This attribute is the max response time added by the proxy into general
+Query max response time:      This attribute is the max response time added by the proxy into general
                               query messages directed to UNIs. It is expressed in tenths of seconds,
-                              with a default of 100 (10 seconds). (R, W, Set-by-create) (optional)
-                              (4 bytes)
+                              with a default of 100 (10 seconds). (R, W, Set-by-create) (optional) (4 bytes)
 Last member query             This attribute specifies the max response time inserted into
 interval:                     group-specific queries sent to UNIs in response to group leave
                               messages. It is also the repetition rate of [robustness] transmissions of
-                              the query. It is specified in tenths of seconds, with a default of 10 (1
-                              second). (R, W) (optional) (4 bytes)
+                              the query. It is specified in tenths of seconds, with a default of 10 (1 second). 
+			      (R, W) (optional) (4 bytes)
 Actions
 Create, delete, get, get next, set
 Notifications

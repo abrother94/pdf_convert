@@ -8,10 +8,10 @@
 	"Attrs_info": [
 	{
 	    "Id": 1,
-	    "Name": "Attri1",
+	    "Name": "Managed_entity_id",
 	    "Size": 1,
 	    "Access": "R",
-	    "Format": "Pointer",
+	    "Format": "Unsigned integer",
 	    "Value": "0x0"
 	},
 	{
