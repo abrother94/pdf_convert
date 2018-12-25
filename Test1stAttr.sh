@@ -29,7 +29,8 @@ do
 	echo "[$param_num] over 17 parameters"
     fi
     STR=`./get_section.sh "ME_NAME/$filename" "$PARAM"`
-    STR_LEN=${#STR}
+    echo $STR
+    #STR_LEN=${#STR}
     #if (( $STR_LEN > 70 ));then
     # 	echo "[ME_NAME/$filename] STR[$STR] LEN[$STR_LEN]"
     #exit

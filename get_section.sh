@@ -150,6 +150,8 @@ get_me_attributes_num()
 get_attribute_name()
 {
     local name="$1"
+    local SS='Managed entity id:'
+    local ES='Action'
     # Legnecy method
     #start_line=`cat "$name" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
     #start_line=`echo  "$start_to_action_content" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
@@ -161,22 +163,20 @@ get_attribute_name()
     # content=`tail -n +$start_line "$name"` 
     #echo content[$content]
     PARAM="$2"
-
     #Latest method
-    Attribute_Name=` sed -n '/Managed entity id:/,/Action/p; /Action/q' "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " "  | sed -e 's/Attributes //g' | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
+    Attribute_Name=`sed -n "/$SS/,/$SE/p; /$SE/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
     echo "$Attribute_Name"
 }
 
 get_attribute_mode()
 {
     local name="$1"
-    PARAM="$2"
-
+    local SS='Managed entity id:'
+    local ES='Action'
     #Latest method
-    Attribute_Name=` sed -n '/Managed entity id:/,/Action/p; /Action/q' "$name" | egrep "((^ {1,30})|(^[A-Za-z].* [^A-Za-z\(\)]))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))" `
+    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].* [^A-Za-z\(\)]))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))" `
     echo "$Attribute_Name"
 }
-
 
 #((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))
 
@@ -186,6 +186,7 @@ get_attribute_mode()
 #collect_me_content_section_line_index
 #dump_all_me_1
 #get_me_attributes_num "$SECTION"
+#get_attribute_name "$SECTION" "$2"
 get_attribute_mode "$SECTION" "$2"
 
 exit
@@ -226,7 +227,7 @@ echo [$START][$ENDPAGE]
 #(R, W)
 #(W, Set-by-create) 
 #(R, W, Set-by-create)
-
+# echo "(R) (mandatory) (2 bytes)" | egrep -o "(\([1-9nN]{1,2} (byte|bytes)\)|\([A-Za-z]*\))"
 #sed -n '/Managed entity id/,/Notifications/p' FI
 
 
