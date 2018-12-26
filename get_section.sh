@@ -3,6 +3,7 @@ SECTION="$1"
 #echo SECTION[$SECTION]
 ITEM="$2"
 PARAM="$3"
+PARAM1="$4"
 
 LINE_TMP="chapter_line_me_tmp"
 G988_TXT="g988.txt"
@@ -16,6 +17,11 @@ matrix_all_chapter_line_count=0
 
 declare -A matrix_chapter_line_me_content
 matrix_chapter_line_me_content_count=0
+
+declare -A matrix_attributes_mode
+matrix_attributes_mode_count=0
+
+
 
 collect_g988_me_content_section_line_index()
 {
@@ -147,23 +153,42 @@ get_attribute_name()
     # Get rid of content before "Managed entiry id: to file end" 
     # content=`tail -n +$start_line "$name"` 
     #echo content[$content]
-    local PARAM="$2"
+    local L_PARAM="$2"
     #Latest method
-    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
+    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v L_PARAM="$L_PARAM" -F":" '{print $L_PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
     echo "$Attribute_Name"
 }
 
 get_attribute_mode()
 {
     local name="$1"
+    local ATTRI1="$2"
+    local TYPE="$3"
     local SS='Managed entity id:'
     local ES='Action'
     local RWP='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\)) *(\(mandatory\)|\(optional\)) *(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
-    #Latest method
-    #Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].* [^A-Za-z\(\)]))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))" `
     Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].* [^A-Za-z\(\)]))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" `
-    #Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].* [^A-Za-z\(\)]))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " `
-    echo "$Attribute_Name"
+
+    while IFS=' ' read -r RW SET_GET SIZE;do
+	matrix_attributes_mode_count=$((matrix_attributes_mode_count+1))
+	#echo "[$RW] [$SET_GET] [$SIZE]"
+	matrix_attributes_mode[$matrix_attributes_mode_count,"RW"]="$RW"
+	matrix_attributes_mode[$matrix_attributes_mode_count,"SET_GET"]="$SET_GET"
+	matrix_attributes_mode[$matrix_attributes_mode_count,"SIZE"]="$SIZE"
+	#echo [$matrix_attributes_mode_count]
+    done <<< "$Attribute_Name"
+
+    case "${TYPE}" in
+	"RW")  
+	    echo "${matrix_attributes_mode[$ATTRI1,"RW"]}"
+	    ;;
+	"SET_GET")  
+	    echo "${matrix_attributes_mode[$ATTRI1,"SET_GET"]}"
+	    ;;
+	"SIZE")  
+	    echo "${matrix_attributes_mode[$ATTRI1,"SIZE"]}"
+	    ;;
+    esac
 }
 
 #((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))
@@ -176,9 +201,13 @@ get_attribute_mode()
 #get_me_attributes_num "$SECTION"
 #get_attribute_name "$SECTION" "$2"
 
+ITEM="$2"
+PARAM="$3"
+PARAM1="$4"
+
 show_help()
 {
-    echo "./get_section.sh ME_NAME attribute_mode [1-16]"
+    echo "./get_section.sh ME_NAME attribute_mode [1-16] [RW,SET_GET,SIZE]"
     echo "./get_section.sh ME_NAME attribute_name [1-16]"
     echo "./get_section.sh ME_NAME me_class"
 }
@@ -190,7 +219,7 @@ fi
 
 case "${ITEM}" in
     "attribute_mode")  
-	echo $(get_attribute_mode "$SECTION" "$PARAM")
+	echo $(get_attribute_mode "$SECTION" "$PARAM" "$PARAM1")
 	;;
     "attribute_name")  
 	echo $(get_attribute_name  "$SECTION" "$PARAM")
@@ -198,7 +227,6 @@ case "${ITEM}" in
     "me_class")  
 	collect_g988_me_content_section_line_index
 	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g" | sed -e "s/ /_/g"`
-	#echo "NAME[$ME_NAME]"
 	echo $(find_me_class_id  "$ME_NAME")
 	;;
 esac
