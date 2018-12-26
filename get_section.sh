@@ -1,22 +1,8 @@
 #!/bin/bash
-
 SECTION="$1"
-#echo "SECTION[$SECTION]"
-
-#IS_FORMATED=`echo $SECTION |  egrep "^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}"` 
-
-#if [ "$IS_FORMATED" = "" ];then
-#    echo "Need enter  xx.xx.xx ME section number"
-#    exit
-#fi
-#cmp_decimal()
-#{
-#    D1=$1
-#    D1="${D1//./}"
-#    D2=$2
-#    D2="${D2//./}"
-#    echo $D1 $D2
-#}
+#echo SECTION[$SECTION]
+ITEM="$2"
+PARAM="$3"
 
 LINE_TMP="chapter_line_me_tmp"
 G988_TXT="g988.txt"
@@ -31,25 +17,16 @@ matrix_all_chapter_line_count=0
 declare -A matrix_chapter_line_me_content
 matrix_chapter_line_me_content_count=0
 
-volt_me()
-{
-    local volt_me_name=("" "")
-
-
-
-}
-
-
 collect_g988_me_content_section_line_index()
 {
     # 8,9 section refert to ME attribe
     G988_ME_TYPE_NAME=`cat g988.txt | grep "Index" -A200 | egrep '[9]\.[0-9]{1,2}\.[0-9]{1,2}'`
 
     while IFS=$'\n' read -r one_line ;do
-	echo "one_line[$one_line]"
+	#echo "one_line[$one_line]"
 	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $1}' | sed -e 's/ *$//g'| sed -e 's/ /_/g'`
 	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}' | sed -e 's/ //g'`
-	echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
+	#echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
 	matrix_all_g988_chapter_line_count=$((matrix_all_g988_chapter_line_count+1))
     done <<< "$G988_ME_TYPE_NAME"
     #echo "matrix_all_g988_chapter_line_count[$matrix_all_g988_chapter_line_count]"
@@ -134,7 +111,7 @@ dump_all_me()
 find_me_class_id()
 {
     local me_name="$1"
-    echo "dump name[$me_name]"
+    #echo "dump name[$me_name]"
     local c=0
 
     for (( c=0; c < "${matrix_all_g988_chapter_line_count}"; c++ ))
@@ -170,9 +147,9 @@ get_attribute_name()
     # Get rid of content before "Managed entiry id: to file end" 
     # content=`tail -n +$start_line "$name"` 
     #echo content[$content]
-    PARAM="$2"
+    local PARAM="$2"
     #Latest method
-    Attribute_Name=`sed -n "/$SS/,/$SE/p; /$SE/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
+    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v PARAM="$PARAM" -F":" '{print $PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
     echo "$Attribute_Name"
 }
 
@@ -198,7 +175,34 @@ get_attribute_mode()
 #dump_all_me_1
 #get_me_attributes_num "$SECTION"
 #get_attribute_name "$SECTION" "$2"
-get_attribute_mode "$SECTION" "$2"
+
+show_help()
+{
+    echo "./get_section.sh ME_NAME attribute_mode [1-16]"
+    echo "./get_section.sh ME_NAME attribute_name [1-16]"
+    echo "./get_section.sh ME_NAME me_class"
+}
+
+if (( $# == 0 ));then 
+    show_help 
+    exit
+fi
+
+case "${ITEM}" in
+    "attribute_mode")  
+	echo $(get_attribute_mode "$SECTION" "$PARAM")
+	;;
+    "attribute_name")  
+	echo $(get_attribute_name  "$SECTION" "$PARAM")
+	;;
+    "me_class")  
+	collect_g988_me_content_section_line_index
+	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g" | sed -e "s/ /_/g"`
+	#echo "NAME[$ME_NAME]"
+	echo $(find_me_class_id  "$ME_NAME")
+	;;
+esac
+
 
 exit
 
