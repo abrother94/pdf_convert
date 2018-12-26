@@ -21,8 +21,6 @@ matrix_chapter_line_me_content_count=0
 declare -A matrix_attributes_mode
 matrix_attributes_mode_count=0
 
-
-
 collect_g988_me_content_section_line_index()
 {
     # 8,9 section refert to ME attribe
@@ -30,9 +28,9 @@ collect_g988_me_content_section_line_index()
 
     while IFS=$'\n' read -r one_line ;do
 	#echo "one_line[$one_line]"
-	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $1}' | sed -e 's/ *$//g'| sed -e 's/ /_/g'`
-	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}' | sed -e 's/ //g'`
-	#echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},0]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},1]}]"
+	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},"NAME"]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $1}' | sed -e 's/ *$//g'| sed -e 's/ /_/g'`
+	matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},"ID"]=`echo $one_line | awk -F"[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}' | sed -e 's/ //g'`
+	#echo "[${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},"NAME"]}][${matrix_g988_chapter_line_me[${matrix_all_g988_chapter_line_count},"ID"]}]"
 	matrix_all_g988_chapter_line_count=$((matrix_all_g988_chapter_line_count+1))
     done <<< "$G988_ME_TYPE_NAME"
     #echo "matrix_all_g988_chapter_line_count[$matrix_all_g988_chapter_line_count]"
@@ -96,7 +94,7 @@ dump_all_me_1()
     echo "dump_all_me count[$matrix_all_g988_chapter_line_count]"
     for (( c=0; c < "${matrix_all_g988_chapter_line_count}"; c++ ))
     do
-	NAME=${matrix_g988_chapter_line_me["$c",0]}
+	NAME=${matrix_g988_chapter_line_me["$c","NAME"]}
 	echo "dump_all_me name[$NAME]"
         dump_me_setciotn "${NAME}"
     done
@@ -122,10 +120,10 @@ find_me_class_id()
 
     for (( c=0; c < "${matrix_all_g988_chapter_line_count}"; c++ ))
     do
-	SA="${matrix_g988_chapter_line_me[$c,0]}"
+	SA="${matrix_g988_chapter_line_me[$c,"NAME"]}"
 	DA="${me_name}"
 	if [ "${SA}" == "${DA}" ] ;then
-	    echo "${matrix_g988_chapter_line_me[$c,1]}"
+	    echo "${matrix_g988_chapter_line_me[$c,"ID"]}"
 	    break
 	fi
     done
