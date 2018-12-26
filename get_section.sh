@@ -208,6 +208,7 @@ show_help()
     echo "./get_section.sh ME_NAME attribute_mode [1-16] [RW,SET_GET,SIZE]"
     echo "./get_section.sh ME_NAME attribute_name [1-16]"
     echo "./get_section.sh ME_NAME me_class"
+    echo "./get_section.sh ME_NAME me_name"
 }
 
 if (( $# == 0 ));then 
@@ -227,6 +228,11 @@ case "${ITEM}" in
 	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g" | sed -e "s/ /_/g"`
 	echo $(find_me_class_id  "$ME_NAME")
 	;;
+    "me_name")  
+	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g" | sed -e "s/ /_/g"`
+	echo "$ME_NAME"
+	;;
+
 esac
 
 
