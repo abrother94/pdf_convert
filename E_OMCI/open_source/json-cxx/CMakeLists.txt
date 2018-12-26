@@ -46,10 +46,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-include_directories(SYSTEM
-	${SAFESTRING_INCLUDE_DIRS}
-)
-
 add_subdirectory(src)
 # TODO - the unit test doesn't currently work
 add_subdirectory(tests)
