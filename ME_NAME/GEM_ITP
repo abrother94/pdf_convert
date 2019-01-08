@@ -10,8 +10,7 @@ packets and vice versa.
 Attributes
 Managed entity id:          This attribute uniquely identifies each instance of this managed entity. It
                             must be unique over all interworking VCC termination point and GEM
-                            interworking termination point MEs. (R, Set-by-create) (mandatory)
-                            (2 bytes)
+                            interworking termination point MEs. (R, Set-by-create) (mandatory) (2 bytes)
 GEM port network            This attribute points to an instance of the GEM port network CTP. (R, W,
 CTP connectivity            Set-by-create) (mandatory) (2 bytes)
 pointer:
@@ -24,7 +23,7 @@ Interworking option:        This attribute identifies the type of non-GEM functi
                             4        Video return path.
                             5        802.1p mapper.
                             (R, W, Set-by-create) (mandatory) (1 byte)
-                            Service profile pointer:  This attribute points to an instance of a service profile, such as:
+Service profile pointer:  This attribute points to an instance of a service profile, such as:
                             CES service profile-G                 if interworking option = 0
                             MAC bridge service profile            if interworking option = 1
                             IP router service profile             if interworking option = 3

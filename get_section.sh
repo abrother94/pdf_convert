@@ -165,14 +165,18 @@ get_attribute_mode()
     local SS='Managed entity id:'
     local ES='Action'
     local RWP='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\)) *(\(mandatory\)|\(optional\)) *(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
-    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].* [^A-Za-z\(\)]))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" `
+    local RWPATTERN='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\))'
+    local MANPATTERN='(\(mandatory\)|\(optional\))'
+    local BYTEPATTERN='(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
+    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].*(\ {10}[^A-Za-z0-9\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" `
 
-    while IFS=' ' read -r RW SET_GET SIZE;do
+    #while IFS=' ' read -r RW SET_GET SIZE;do
+    while read -r ALL;do
 	matrix_attributes_mode_count=$((matrix_attributes_mode_count+1))
 	#echo "[$RW] [$SET_GET] [$SIZE]"
-	matrix_attributes_mode[$matrix_attributes_mode_count,"RW"]="$RW"
-	matrix_attributes_mode[$matrix_attributes_mode_count,"SET_GET"]="$SET_GET"
-	matrix_attributes_mode[$matrix_attributes_mode_count,"SIZE"]="$SIZE"
+	matrix_attributes_mode[$matrix_attributes_mode_count,"RW"]=`echo $ALL |  egrep -o "$RWPATTERN"` 
+	matrix_attributes_mode[$matrix_attributes_mode_count,"SET_GET"]=`echo $ALL | egrep -o "$MANPATTERN"`
+	matrix_attributes_mode[$matrix_attributes_mode_count,"SIZE"]=`echo $ALL | egrep -o "$BYTEPATTERN"`
 	#echo [$matrix_attributes_mode_count]
     done <<< "$Attribute_Name"
 
@@ -189,7 +193,7 @@ get_attribute_mode()
     esac
 }
 
-#((\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\)) (\(mandatory\)|\(optional\)) (\([1-9nN]{1,2} (byte|bytes)\)))
+#sed -n "/Managed entity id:/,/Action/p; /Action/q" ME_NAME/GEM_ITP | egrep "((^ {1,30})|(^[A-Za-z].*(\ {10}[^A-Za-z\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g'
 
 
 #collect_g988_me_content_section_line_index
