@@ -129,12 +129,7 @@ find_me_class_id()
     done
 }
 
-get_me_attributes_num()
-{
-    local name=$1
-    count=`cat "$name" | egrep '(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, W, Set-by-create\))' | wc -l`
-    echo "[$count] attributes"
-}
+
 
 get_attribute_name()
 {
@@ -155,6 +150,16 @@ get_attribute_name()
     #Latest method
     Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v L_PARAM="$L_PARAM" -F":" '{print $L_PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
     echo "$Attribute_Name"
+}
+
+get_action()
+{
+    local name="$1"
+    local SS='Actions'
+    local ES='Notifications'
+    #Action_mode=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e "s/$SS//g" | sed -e "s/$ES//g"`
+    Action_mode=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | sed -e "s/$SS//g" | sed -e "s/$ES//g" `
+    echo "$Action_mode"
 }
 
 get_attribute_mode()
@@ -193,6 +198,22 @@ get_attribute_mode()
     esac
 }
 
+
+get_me_attributes_num()
+{
+    local name="$1"
+    local SS='Managed entity id:'
+    local ES='Action'
+    local RWP='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\)) *(\(mandatory\)|\(optional\)) *(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
+    local RWPATTERN='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\))'
+    local MANPATTERN='(\(mandatory\)|\(optional\))'
+    local BYTEPATTERN='(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
+    local count=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].*(\ {10}[^A-Za-z0-9\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" | wc -l`
+
+    echo "$count"
+}
+
+
 #sed -n "/Managed entity id:/,/Action/p; /Action/q" ME_NAME/GEM_ITP | egrep "((^ {1,30})|(^[A-Za-z].*(\ {10}[^A-Za-z\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g'
 
 
@@ -202,6 +223,7 @@ get_attribute_mode()
 #dump_all_me_1
 #get_me_attributes_num "$SECTION"
 #get_attribute_name "$SECTION" "$2"
+#exit
 
 ITEM="$2"
 PARAM="$3"
@@ -213,6 +235,8 @@ show_help()
     echo "./get_section.sh ME_NAME attribute_name [1-16]"
     echo "./get_section.sh ME_NAME me_class"
     echo "./get_section.sh ME_NAME me_name"
+    echo "./get_section.sh ME_NAME action"
+    echo "./get_section.sh ME_NAME attribute_num"
 }
 
 if (( $# == 0 ));then 
@@ -236,7 +260,12 @@ case "${ITEM}" in
 	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g" | sed -e "s/ /_/g"`
 	echo "$ME_NAME"
 	;;
-
+    "action")  		
+	echo $(get_action "$SECTION")
+	;;
+    "attribute_num")  		
+	echo $(get_me_attributes_num "$SECTION")
+	;;
 esac
 
 

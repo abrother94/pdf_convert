@@ -7,10 +7,9 @@ port-ID or MAC bridge port is characterized by this ME.
 Attributes
 Managed entity id:        This attribute uniquely identifies each instance of this managed entity.
                           (R, Set-by-create) (mandatory) (2 bytes)
-CIR                       This attribute specifies the committed information rate, specified in byte/s.
+CIR:                      This attribute specifies the committed information rate, specified in byte/s.
                           (R, W, Set-by-create) (optional) (4 bytes)
-PIR:                      This attribute specifies peak information rate, specified in byte/s. (R, W,
-                          Set-by-create) (optional) (4 bytes)
+PIR:                      This attribute specifies peak information rate, specified in byte/s. (R, W, Set-by-create) (optional) (4 bytes)
 Actions
 Create, delete, get, set
 Notifications
