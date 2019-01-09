@@ -37,7 +37,6 @@ J_A_START()
 J_A_END()
 {
     echo "]" >> ${OUTPUT_FILE}
-
 }
 
 BASIC_SET()
@@ -74,7 +73,9 @@ ATTRIB_SET()
 }
 
 #Create file from here#
-`rm ${OUTPUT_FILE}`
+if [ -f ${OUTPUT_FILE} ];then
+    `rm ${OUTPUT_FILE}`
+fi
 
 J_B_START
 
@@ -91,7 +92,7 @@ do
     ATT_MODE_T_MAND=`./get_section.sh "$SECTION" attribute_mode "$c" "SET_GET"`
     ATTRIB_SET "$c" "$ATT_NAME_T" "$ATT_MODE_T_SIZE" "$ATT_MODE_T_RW" "$ATT_MODE_T_MAND" 
     if (( $c != "$(($ATTRIB_NUM))" ));then
-	echo "[$c] [$(($ATTRIB_NUM))]"
+	#echo "[$c] [$(($ATTRIB_NUM))]"
 	J_COMMA
     fi
 done

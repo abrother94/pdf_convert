@@ -246,7 +246,8 @@ fi
 
 case "${ITEM}" in
     "attribute_mode")  
-	echo $(get_attribute_mode "$SECTION" "$PARAM" "$PARAM1")
+	RE=`echo $(get_attribute_mode "$SECTION" "$PARAM" "$PARAM1") | awk -F"[()]" '{print $2}'`
+	echo "$RE"
 	;;
     "attribute_name")  
 	echo $(get_attribute_name  "$SECTION" "$PARAM")
