@@ -15,6 +15,7 @@ using namespace std;
 static constexpr const char DEFAULT_SUBSCRIPTION_FILE_PATH[] = "./";
 
 std::map<int, Json::Value> M_OMCI_S;
+std::map<std::pair<int,int>, Json::Value> M_OMCI_G;
 
 void get_omci_s()
 {
@@ -61,10 +62,13 @@ void get_omci_s()
             {
                 printf("Get omci_s ok \r\n");
                 printf("Class id:%d\r\n", omci_s["Class"].asInt());
-                int at =  omci_s["Class"].asInt();
-                printf("insert at :%d\r\n", at);
-                M_OMCI_S[at]=omci_s; 
-                printf("vecotr size is %d\r\n", M_OMCI_S.size());
+                int Class =  omci_s["Class"].asInt();
+                int Id =  omci_s["Id"].asInt();
+                printf("insert at :%d\r\n", Class);
+                M_OMCI_S[Class]=omci_s; 
+                M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
+                printf("s vecotr size is %d\r\n", M_OMCI_S.size());
+                printf("g vecotr size is %d\r\n", M_OMCI_G.size());
             }
             else
                 printf("Get omci_s ng\r\n");
