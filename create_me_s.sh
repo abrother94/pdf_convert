@@ -49,7 +49,7 @@ BASIC_SET()
     \"Name\"        : \"$ME_NAME\" ,
     \"Action\"      : \"$ACTION\", 
     \"Created_by\"  : \"OLT\" ,
-    \"Create_Time\" : 0x0 
+    \"Create_Time\" : 0 
     " >> ${OUTPUT_FILE}
 }
 
@@ -65,8 +65,8 @@ ATTRIB_SET()
     \"Id\"       : $ID ,
     \"Name\"     : \"$ATT_NAME\" ,
     \"Size\"     : \"$SIZE\" ,
-    \"Access\"   : \"$ACCESS\"
-    \"Value\"    : 0x0
+    \"Access\"   : \"$ACCESS\",
+    \"Value\"    : 0,
     \"Mandtary\" : \"$MAND\"
     " >> ${OUTPUT_FILE}
     J_B_END

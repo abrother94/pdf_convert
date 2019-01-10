@@ -4,7 +4,7 @@
     "Name"        : "GEM_interworking_termination_point" ,
     "Action"      : "Create, delete, get, set", 
     "Created_by"  : "OLT" ,
-    "Create_Time" : 0x0 
+    "Create_Time" : 0 
     
 ,
 "Attrs_info":[
@@ -13,8 +13,8 @@
     "Id"       : 1 ,
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2 bytes" ,
-    "Access"   : "R, Set-by-create"
-    "Value"    : 0x0
+    "Access"   : "R, Set-by-create",
+    "Value"    : 0,
     "Mandtary" : "mandatory"
     
 }
@@ -24,8 +24,8 @@
     "Id"       : 2 ,
     "Name"     : "GEM_port_network_CTP_connectivity_pointer" ,
     "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create"
-    "Value"    : 0x0
+    "Access"   : "R, W, Set-by-create",
+    "Value"    : 0,
     "Mandtary" : "mandatory"
     
 }
@@ -35,8 +35,8 @@
     "Id"       : 3 ,
     "Name"     : "Interworking_option" ,
     "Size"     : "1 byte" ,
-    "Access"   : "R, W, Set-by-create"
-    "Value"    : 0x0
+    "Access"   : "R, W, Set-by-create",
+    "Value"    : 0,
     "Mandtary" : "mandatory"
     
 }
@@ -46,8 +46,8 @@
     "Id"       : 4 ,
     "Name"     : "Service_profile_pointer" ,
     "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create"
-    "Value"    : 0x0
+    "Access"   : "R, W, Set-by-create",
+    "Value"    : 0,
     "Mandtary" : "mandatory"
     
 }
@@ -57,8 +57,8 @@
     "Id"       : 5 ,
     "Name"     : "termination_point_pointer" ,
     "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create"
-    "Value"    : 0x0
+    "Access"   : "R, W, Set-by-create",
+    "Value"    : 0,
     "Mandtary" : "mandatory"
     
 }
@@ -68,8 +68,8 @@
     "Id"       : 6 ,
     "Name"     : "PPTP_counter" ,
     "Size"     : "1 byte" ,
-    "Access"   : "R"
-    "Value"    : 0x0
+    "Access"   : "R",
+    "Value"    : 0,
     "Mandtary" : "optional"
     
 }
@@ -79,8 +79,8 @@
     "Id"       : 7 ,
     "Name"     : "Operational_state" ,
     "Size"     : "1 byte" ,
-    "Access"   : "R"
-    "Value"    : 0x0
+    "Access"   : "R",
+    "Value"    : 0,
     "Mandtary" : "optional"
     
 }
@@ -90,8 +90,8 @@
     "Id"       : 8 ,
     "Name"     : "GAL_profile_pointer" ,
     "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create"
-    "Value"    : 0x0
+    "Access"   : "R, W, Set-by-create",
+    "Value"    : 0,
     "Mandtary" : "mandatory"
     
 }
@@ -101,8 +101,8 @@
     "Id"       : 9 ,
     "Name"     : "GAL_loopback_configuration" ,
     "Size"     : "1 byte" ,
-    "Access"   : "R, W"
-    "Value"    : 0x0
+    "Access"   : "R, W",
+    "Value"    : 0,
     "Mandtary" : "mandatory"
     
 }

@@ -1,0 +1,99 @@
+{
+    "Class"       : 256 ,
+    "Id"          : 0 ,
+    "Name"        : "ONT-G" ,
+    "Action"      : "Get, set Reboot: Test: Synchronize time:", 
+    "Created_by"  : "OLT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2 bytes" ,
+    "Access"   : "R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "Vendor_id" ,
+    "Size"     : "4 bytes" ,
+    "Access"   : "R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "Version" ,
+    "Size"     : "14 bytes" ,
+    "Access"   : "R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "Serial_number" ,
+    "Size"     : "8 bytes" ,
+    "Access"   : "R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 5 ,
+    "Name"     : "management_option" ,
+    "Size"     : "1 byte" ,
+    "Access"   : "R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 6 ,
+    "Name"     : "VP_VC_cross-connection_function_option" ,
+    "Size"     : "1 byte" ,
+    "Access"   : "R, W",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 7 ,
+    "Name"     : "Battery_backup" ,
+    "Size"     : "1 byte" ,
+    "Access"   : "R, W",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 8 ,
+    "Name"     : "Administrative_state" ,
+    "Size"     : "1 byte" ,
+    "Access"   : "R",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+]
+}
