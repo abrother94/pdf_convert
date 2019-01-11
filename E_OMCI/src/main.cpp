@@ -17,6 +17,28 @@ static constexpr const char DEFAULT_SUBSCRIPTION_FILE_PATH[] = "./";
 std::map<int, Json::Value> M_OMCI_S;
 std::map<std::pair<int,int>, Json::Value> M_OMCI_G;
 
+class Base 
+{
+    public:
+        int m_1;
+};
+
+class B_1 : public Base
+{
+    public:
+        int m_2;
+};
+
+class B_2 : public Base
+{
+    public:
+        int m_3;
+};
+
+
+std::map<std::pair<int,int>, Base* > M_OMCI_P;
+
+
 void get_omci_s()
 {
     std::string ME_S_DIR="S_ME/";
@@ -69,6 +91,21 @@ void get_omci_s()
                 M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
                 printf("s vecotr size is %d\r\n", M_OMCI_S.size());
                 printf("g vecotr size is %d\r\n", M_OMCI_G.size());
+
+                if( Class == 256 )
+                {
+                    B_1 *A = new B_1();
+                    A->m_2 = 2;
+                    M_OMCI_P[std::make_pair(Class,Id)]=A;
+                }
+                else if( Class == 266 )
+                {
+                    B_2 *A = new B_2();
+                    A->m_3 = 3;
+                    M_OMCI_P[std::make_pair(Class,Id)]=A;
+                }
+
+                printf("p vecotr size is %d\r\n", M_OMCI_P.size());
             }
             else
                 printf("Get omci_s ng\r\n");
@@ -78,6 +115,19 @@ void get_omci_s()
             printf("Open file ng\r\n");
         }
     }
+
+    Base *BB = M_OMCI_P[std::make_pair(256, 0)]; 
+    B_1 *BBC;
+    BBC = static_cast<B_1*>(BB);
+    printf("B 1 m_2=%d\r\n", BBC->m_2);
+
+    BB = M_OMCI_P[std::make_pair(266,0)]; 
+    B_2 *BBC2;
+    BBC2 = static_cast<B_2*>(BB);
+    printf("B 2 m_3=%d\r\n", BBC2->m_3);
+
+
+
 
     closedir(dir);
 }
