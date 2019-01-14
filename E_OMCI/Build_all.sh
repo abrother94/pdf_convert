@@ -4,7 +4,9 @@ if [ "$1" == "C" ];then
 else
     mkdir build
     cd build/
-    cmake ../
+    cmake -DCMAKE_BUILD_TYPE=Debug ../
     make
+    cd ../
+    cp build/e_omci src/
 fi
 
