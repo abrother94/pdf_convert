@@ -17,7 +17,7 @@ static constexpr const char DEFAULT_SUBSCRIPTION_FILE_PATH[] = "./";
 
 
 std::map<std::pair<int,int>, ME_S * > M_OMCI_P;
-std::map<int, Json::Value> M_OMCI_S;
+//std::map<int, Json::Value> M_OMCI_S;
 std::map<std::pair<int,int>, Json::Value> M_OMCI_G;
 
 
@@ -35,39 +35,50 @@ void release_all_me_obj()
     M_OMCI_P.clear();
 }
 
-void * get_me_obj(int class_id, int instance_id)
-{
-}
-
-void create_me_obj(int class_id, int instance_id)
+ME_S * get_me_obj(int class_id, int instance_id)
 {
     ME_S *BB = NULL;
-    BB = M_OMCI_P[std::make_pair(class_id, instance_id)];
-    if (BB == NULL)
+    BB =  M_OMCI_P[std::make_pair(class_id, instance_id)]; 
+    if(!BB)
+        return NULL;
+    else
+        return BB;
+}
+
+// ------------------------------------------------------------------
+// 1. Add SWITCHCASE( XXX_CID, instance_id, XXX_ME_NAME) after you 
+//    use create_me_cpp.sh to create a new ME. 
+// ------------------------------------------------------------------
+
+bool create_me_obj(int class_id, int instance_id, Json::Value me_s)
+{
+    ME_S *pME = NULL;
+
+    pME = M_OMCI_P[std::make_pair(class_id, instance_id)];
+    if (pME == NULL)
     {
         switch(class_id)
         {
-            case 256:
-                {
-                    ONT_G *A = new ONT_G(class_id,instance_id);
-                    M_OMCI_P[std::make_pair(class_id,instance_id)]=A;
-                    break;
-                }
-            case 266:
-                {
-                    GEM_interworking_termination_point *A = new GEM_interworking_termination_point(class_id, instance_id);
-                    M_OMCI_P[std::make_pair(class_id,instance_id)]=A;
-                    break;
-                }
+            SWITCHCASE(256 , instance_id, ONT_G, me_s);
+            SWITCHCASE(266, instance_id,  GEM_interworking_termination_point, me_s);
             default:
                 break;
         }
+        return true;
     }
     else
+    {
         printf("Already exist class_id [%d] instance_id[%d]!!\r\n", class_id, instance_id);
+        return false;
+    }
 }
 
-void get_omci_s()
+
+// ------------------------------------------------------------------
+// 1. Collect supported ME info in S_ME/
+// ------------------------------------------------------------------
+
+bool get_omci_s()
 {
     std::string ME_S_DIR="S_ME/";
     struct dirent *entry;
@@ -77,7 +88,7 @@ void get_omci_s()
     if (dir == NULL) 
     {
         printf("no such path exist!!\r\n");
-        return;
+        return false;
     }
 
     while ((entry = readdir(dir)) != NULL) 
@@ -114,60 +125,44 @@ void get_omci_s()
                 printf("Class id:%d\r\n", omci_s["Class"].asInt());
                 int Class =  omci_s["Class"].asInt();
                 int Id =  omci_s["Id"].asInt();
-                printf("insert at :%d\r\n", Class);
-                M_OMCI_S[Class]=omci_s; 
+                printf("insert Class at :%d\r\n", Class);
+                printf("insert Id at :%d\r\n", Id);
+                //M_OMCI_S[Class]=omci_s; 
                 M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
-                printf("s vecotr size is %d\r\n", M_OMCI_S.size());
+                //printf("s vecotr size is %d\r\n", M_OMCI_S.size());
                 printf("g vecotr size is %d\r\n", M_OMCI_G.size());
-
-                create_me_obj(Class, Id);
+                //TEST add into me map 
+                create_me_obj(Class, Id, omci_s);
 
                 printf("p vecotr size is %d\r\n", M_OMCI_P.size());
             }
             else
+            {
                 printf("Get omci_s ng\r\n");
+                return false;
+            }
         }
         else
         {
             printf("Open file ng\r\n");
+            return false;
         }
     }
 
     closedir(dir);
+    return true;
 }
 
 int main(int argc, char *argv[])
 {
-    get_omci_s();
+    if(!get_omci_s())
+        printf("###### SUPPORTED ME FILE ERROR #######!!!!\r\n");
 
-    int class_id = 256, instance_id = 0;
-    {
-        try 
-        {
-            switch(class_id)
-            {
-                case 256:
-                    {
-                        ME_S *BB =  M_OMCI_P[std::make_pair(class_id, instance_id)]; 
-                        BB->get_method();
-                        break;
-                    }
-                case 266:
-                    {
-                        ME_S *BB =  M_OMCI_P[std::make_pair(class_id, instance_id)]; 
-                        BB->get_method();
-                        break;
-                    }
-                default:
-                    return NULL;
-            }
-        }
-        catch(bad_cast) 
-        {
-            printf("ERROR-1 class_id[%d]\r\n", class_id);
-            return NULL;
-        }
-    }
+    ME_S * BB = get_me_obj(256, 0);
+    if(BB)
+        BB->get_method();
+    else
+        printf("##### CAN'T GET ME OBJ #####!!!!\r\n");
     release_all_me_obj();
     return 0;
 }
