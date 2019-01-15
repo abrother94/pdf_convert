@@ -148,7 +148,7 @@ get_attribute_name()
     #echo content[$content]
     local L_PARAM="$2"
     #Latest method
-    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v L_PARAM="$L_PARAM" -F":" '{print $L_PARAM}' | sed -e 's/^ *//g ; s/ /_/g'`
+    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | awk -v L_PARAM="$L_PARAM" -F":" '{print $L_PARAM}' | sed -e 's/^ *//g ; s/ /_/g ; s/-/_/g' `
     echo "$Attribute_Name"
 }
 
@@ -254,11 +254,11 @@ case "${ITEM}" in
 	;;
     "me_class")  
 	collect_g988_me_content_section_line_index
-	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g" | sed -e "s/ /_/g"`
+	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g ; s/ /_/g;"`
 	echo $(find_me_class_id  "$ME_NAME")
 	;;
     "me_name")  
-	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g" | sed -e "s/ /_/g"`
+	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g ; s/ /_/g ; s/-/_/g"`
 	echo "$ME_NAME"
 	;;
     "action")  		

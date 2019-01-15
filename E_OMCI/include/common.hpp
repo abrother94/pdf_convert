@@ -1,10 +1,6 @@
 #if !defined(COMMON_HPP_INCLUDED)
 #define COMMON_HPP_INCLUDED
 
-std::map<int, Json::Value> M_OMCI_S;
-std::map<std::pair<int,int>, Json::Value> M_OMCI_G;
-
-
 class ME_S
 {
     public:

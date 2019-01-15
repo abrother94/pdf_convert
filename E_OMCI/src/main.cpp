@@ -4,39 +4,21 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <string.h>
+#include <typeinfo>
+
 #include <json/json.hpp>
 #include <json/json.h>
 #include <common.hpp>
-#include <typeinfo>
+#include <all_me.hpp>
 
 using namespace std;
 
 static constexpr const char DEFAULT_SUBSCRIPTION_FILE_PATH[] = "./";
 
-class B_1 : public ME_S 
-{
-    public:
-        B_1(int class_id,int instance_id):ME_S(class_id, instance_id){};
-        ~B_1(){printf("~B_1\r\n");};
-        int m_2;
-        char m_strin[256]={};
-        void get_method(){ printf("B_1 get_method\r\n"); };
-};
-
-class B_2 : public ME_S 
-{
-    public:
-        B_2(int class_id,int instance_id):ME_S(class_id, instance_id){};
-        ~B_2(){printf("~B_2\r\n");};
-        int m_3;
-        char m_strin[256]={};
-        void get_method(){ printf("B_2 get_method\r\n"); };
-};
-
-static B_1 * p_B_1 = NULL;
-static B_2 * p_B_2 = NULL;
 
 std::map<std::pair<int,int>, ME_S * > M_OMCI_P;
+std::map<int, Json::Value> M_OMCI_S;
+std::map<std::pair<int,int>, Json::Value> M_OMCI_G;
 
 
 void release_all_me_obj()
@@ -67,13 +49,13 @@ void create_me_obj(int class_id, int instance_id)
         {
             case 256:
                 {
-                    B_1 *A = new B_1(class_id,instance_id);
+                    ONT_G *A = new ONT_G(class_id,instance_id);
                     M_OMCI_P[std::make_pair(class_id,instance_id)]=A;
                     break;
                 }
             case 266:
                 {
-                    B_2 *A = new B_2(class_id, instance_id);
+                    GEM_interworking_termination_point *A = new GEM_interworking_termination_point(class_id, instance_id);
                     M_OMCI_P[std::make_pair(class_id,instance_id)]=A;
                     break;
                 }
@@ -167,31 +149,13 @@ int main(int argc, char *argv[])
                 case 256:
                     {
                         ME_S *BB =  M_OMCI_P[std::make_pair(class_id, instance_id)]; 
-
                         BB->get_method();
-
-                        /*
-                        if(BB)
-                        {
-                            p_B_1 = dynamic_cast<B_1 *>(BB);
-                            p_B_1->get_method();
-                        }
-                        */
                         break;
                     }
                 case 266:
                     {
                         ME_S *BB =  M_OMCI_P[std::make_pair(class_id, instance_id)]; 
-
                         BB->get_method();
-
-                        /*
-                        if(BB)
-                        {
-                            p_B_2 = dynamic_cast<B_2 *>(BB);
-                            p_B_2->get_method();
-                        }
-                        */
                         break;
                     }
                 default:
