@@ -12,8 +12,8 @@
 
     "Id"       : 1 ,
     "Name"     : "Managed_entity_id" ,
-    "Size"     : "2 bytes" ,
-    "Access"   : "R",
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -23,8 +23,8 @@
 
     "Id"       : 2 ,
     "Name"     : "Vendor_id" ,
-    "Size"     : "4 bytes" ,
-    "Access"   : "R",
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -34,8 +34,8 @@
 
     "Id"       : 3 ,
     "Name"     : "Version" ,
-    "Size"     : "14 bytes" ,
-    "Access"   : "R",
+    "Size"     : "14" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -45,8 +45,8 @@
 
     "Id"       : 4 ,
     "Name"     : "Serial_number" ,
-    "Size"     : "8 bytes" ,
-    "Access"   : "R",
+    "Size"     : "8" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -56,8 +56,8 @@
 
     "Id"       : 5 ,
     "Name"     : "management_option" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -67,10 +67,10 @@
 
     "Id"       : 6 ,
     "Name"     : "VP_VC_cross_connection_function_option" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R, W",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
-    "Mandtary" : "mandatory"
+    "Mandtary" : "optional"
     
 }
 ,
@@ -78,8 +78,8 @@
 
     "Id"       : 7 ,
     "Name"     : "Battery_backup" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R, W",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -89,8 +89,19 @@
 
     "Id"       : 8 ,
     "Name"     : "Administrative_state" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 9 ,
+    "Name"     : "Operational_state" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "optional"
     

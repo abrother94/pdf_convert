@@ -62,6 +62,12 @@ HEAD_TEMP()
 {
     local me_name="$1"
     local att_num="$2"
+    local sec="$3"
+    BN=`basename "$sec"`
+    echo "/*"
+    ME_INF=`cat ./ME_NAME/$BN`
+    echo "$ME_INF"
+    echo "*/"
     HEAD_TOP "$me_name" "$att_num"
     HEAD_ATT "$me_name" "$att_num"
     HEAD_BOT "$me_name" "$att_num"

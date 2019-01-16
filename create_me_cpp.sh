@@ -30,7 +30,7 @@ fi
 echo "ME_NAME[$ME_NAME]"
 
 # Auto create hpp cpp file #
-HEAD_TEMP "$ME_NAME" "$ATTRIB_NUM" >> "$INC_OUTPUT_FILE" 
+HEAD_TEMP "$ME_NAME" "$ATTRIB_NUM" "$SECTION"  >> "$INC_OUTPUT_FILE" 
 CPP_TEMP  "$ME_NAME" "$ATTRIB_NUM" >> "$CPP_OUTPUT_FILE" 
 
 echo "Create [$INC_OUTPUT_FILE] !"

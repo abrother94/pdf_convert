@@ -241,3 +241,29 @@ bool ONT_G::attribute_8_method(Action in_Action, UI32_T *value, void *arg)
     return true;
 }
 
+
+	
+bool ONT_G::attribute_9_method(Action in_Action, UI32_T *value, void *arg)
+{
+    switch(in_Action)
+    {
+        case MSG_TYPE_GET:
+            {
+                // Default action for value == 4bytes
+		arg = (void *)&m_Attributes[8].Value;
+                break;
+            }
+        case MSG_TYPE_SET:
+            {
+                // Default action for value == 4bytes
+                m_Attributes[8].Value = *value;
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+    return true;
+}
+

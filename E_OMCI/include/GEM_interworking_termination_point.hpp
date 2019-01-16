@@ -1,3 +1,83 @@
+/*
+9.2.4     GEM interworking termination point
+An instance of this managed entity represents a point in the ONT where the interworking of a
+service (e.g., CES, IP) or underlying physical infrastructure (e.g., n x DS0, DS1, DS3, E3, Ethernet)
+to GEM layer takes place. At this point, GEM packets are generated from a bit stream
+(e.g., Ethernet) or a bit stream is reconstructed from GEM packets.
+Instances of this managed entity are created and deleted by the OLT.
+Relationships
+One instance of this managed entity exists for each transformation of a data stream into GEM
+packets and vice versa.
+Attributes
+Managed entity id:          This attribute uniquely identifies each instance of this managed entity. It
+                            must be unique over all interworking VCC termination point and GEM
+                            interworking termination point MEs. (R, Set-by-create) (mandatory) (2 bytes)
+GEM port network            This attribute points to an instance of the GEM port network CTP. (R, W,
+CTP connectivity            Set-by-create) (mandatory) (2 bytes)
+pointer:
+Interworking option:        This attribute identifies the type of non-GEM function that is being
+                            interworked. The options are:
+                            0        Unstructured TDM.
+                            1        MAC bridge LAN.
+                            2        Reserved for future use.
+                            3        IP data service.
+                            4        Video return path.
+                            5        802.1p mapper.
+                            (R, W, Set-by-create) (mandatory) (1 byte)
+Service profile pointer:  This attribute points to an instance of a service profile, such as:
+                            CES service profile-G                 if interworking option = 0
+                            MAC bridge service profile            if interworking option = 1
+                            IP router service profile             if interworking option = 3
+                            Video return path service profile     if interworking option = 4
+                            802.1p mapper service profile         if interworking option = 5
+                            (R, W, Set-by-create) (mandatory) (2 bytes)
+termination point        service without a MAC bridge. Depending on the service provided, it
+pointer:                 points to the associated instance of the following managed entities:
+                         •        Physical path termination point CES UNI.
+                         •        Logical N × 64 kbit/s sub-port connection termination point.
+                         •        Physical path termination point Ethernet UNI.
+                         •        TU CTP.
+                         In all other GEM services, the relationship between the related service
+                         termination point and this GEM interworking termination point is derived
+                         from other managed entity relations; this attribute is set to 0 and not used.
+                         (R, W, Set-by-create) (mandatory) (2 bytes)
+PPTP counter:            This value reports the number of PPTP managed entity instances
+                         associated with this GEM interworking termination point. (R) (optional)
+                         (1 byte)
+Operational state:       This attribute indicates whether or not the managed entity is capable of
+                         performing its function. Valid values are enabled (0) and disabled (1). (R)
+                         (optional) (1 byte)
+GAL profile pointer:     This attribute points to an instance of the GAL profile. The relationship
+                         between the interworking option and the related GAL profile is:
+                                   Interworking option                       GAL profile type
+                                             0                     GAL TDM profile
+                                             1                     GAL Ethernet profile
+                                             2                     Reserved for future use
+                                             3                     GAL Ethernet profile for data service
+                                             4                     GAL Ethernet profile for video return
+                                                                   path
+                                             5                     GAL Ethernet profile for 802.1p
+                                                                   mapper
+                         (R, W, Set-by-create) (mandatory) (2 bytes)
+GAL loopback             This attribute sets the loopback configuration when using GEM mode:
+configuration:           0        No loopback.
+                         1        Loopback of downstream traffic after GAL.
+                         The default value of this attribute is 0. (R, W) (mandatory) (1 byte)
+Actions
+Create, delete, get, set
+Notifications
+ Attribute value change
+  Number       Attribute value change                              Description
+     1..5    N/A
+       6     Op state                    Operational state change
+     7..8    N/A
+    9..16    Reserved
+ Alarm
+  Number               Alarm                                       Description
+       0     GFSA                        GEM frame starvation alarm
+    1..207   Reserved
+  208..223   Vendor-specific alarms      Not to be standardized
+*/
 
 // ------------------------------------------------------------------
 //  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically

@@ -12,8 +12,8 @@
 
     "Id"       : 1 ,
     "Name"     : "Managed_entity_id" ,
-    "Size"     : "2 bytes" ,
-    "Access"   : "R, Set-by-create",
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R_SC",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -23,8 +23,8 @@
 
     "Id"       : 2 ,
     "Name"     : "GEM_port_network_CTP_connectivity_pointer" ,
-    "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create",
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -34,8 +34,8 @@
 
     "Id"       : 3 ,
     "Name"     : "Interworking_option" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R, W, Set-by-create",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -45,8 +45,8 @@
 
     "Id"       : 4 ,
     "Name"     : "Service_profile_pointer" ,
-    "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create",
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -56,8 +56,8 @@
 
     "Id"       : 5 ,
     "Name"     : "termination_point_pointer" ,
-    "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create",
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -67,8 +67,8 @@
 
     "Id"       : 6 ,
     "Name"     : "PPTP_counter" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "optional"
     
@@ -78,8 +78,8 @@
 
     "Id"       : 7 ,
     "Name"     : "Operational_state" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
     "Mandtary" : "optional"
     
@@ -89,8 +89,8 @@
 
     "Id"       : 8 ,
     "Name"     : "GAL_profile_pointer" ,
-    "Size"     : "2 bytes" ,
-    "Access"   : "R, W, Set-by-create",
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     
@@ -100,8 +100,8 @@
 
     "Id"       : 9 ,
     "Name"     : "GAL_loopback_configuration" ,
-    "Size"     : "1 byte" ,
-    "Access"   : "R, W",
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     

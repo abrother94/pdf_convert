@@ -20,19 +20,20 @@ Serial number:          The serial number is unique for each ONT. It is defined 
                         second four bytes are a binary encoded serial number, under the control of
                         the ONT vendor. (R) (mandatory) (8 bytes)
 management             implemented in the ONT. There are two options:
-option:                0     Priority controlled and flexibly scheduled upstream traffic. The traffic
-                             scheduler and priority queue mechanism are used for upstream traffic.
-                       1     Rate controlled upstream traffic. The maximum upstream traffic of
-                             each individual connection is guaranteed.
+option:                0 Priority controlled and flexibly scheduled upstream traffic. The traffic
+                       scheduler and priority queue mechanism are used for upstream traffic.
+                       1 Rate controlled upstream traffic. The maximum upstream traffic of
+                       each individual connection is guaranteed.
                        For clarification, see Appendix III.
                        Downstream priority queues are managed via the GEM port network
                        CTP ME.
                        Upon ME instantiation, the ONT sets this attribute to the value that
                        describes its implementation. The OLT must adapt its model to conform to
                        the ONT's selection. (R) (mandatory) (1 byte)
-VP/VC                  This attribute is not used. If it is present, it should be set to 0. (R)
-cross-connection       (optional) (1 byte)
+VP/VC                  This attribute is not used. If it is present, it should be set to 0. (R)(optional) (1 byte)
+cross-connection       
 function option:
+
 Battery backup:        This Boolean attribute specifies whether the ONT/NT supports backup
                        battery monitoring. False disables battery alarm monitoring; true enables
                        battery alarm monitoring. (R, W) (mandatory) (1 byte)

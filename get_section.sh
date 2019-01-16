@@ -187,13 +187,28 @@ get_attribute_mode()
 
     case "${TYPE}" in
 	"RW")  
-	    echo "${matrix_attributes_mode[$ATTRI1,"RW"]}"
+	    #echo "${matrix_attributes_mode[$ATTRI1,"RW"]}"
+	    CT="${matrix_attributes_mode[$ATTRI1,"RW"]}"
+	    if [ "$CT" == "(R)" ];then
+		echo "ATTR_ACCESS_R"
+	    elif [ "$CT" == "(W)" ];then
+		echo "ATTR_ACCESS_W"
+	    elif [ "$CT" == "(R, W)" ];then
+		echo "ATTR_ACCESS_RW"
+	    elif [ "$CT" == "(W, Set-by-create)" ];then
+		echo "ATTR_ACCESS_W_SC"
+	    elif [ "$CT" == "(R, Set-by-create)" ];then
+		echo "ATTR_ACCESS_R_SC"
+	    elif [ "$CT" == "(R, W, Set-by-create)" ];then
+		echo "ATTR_ACCESS_RW_SC"
+	    fi
+
 	    ;;
 	"SET_GET")  
-	    echo "${matrix_attributes_mode[$ATTRI1,"SET_GET"]}"
+	    echo "${matrix_attributes_mode[$ATTRI1,"SET_GET"]}" | awk -F"[()]" '{print $2}' 
 	    ;;
 	"SIZE")  
-	    echo "${matrix_attributes_mode[$ATTRI1,"SIZE"]}"
+	    echo "${matrix_attributes_mode[$ATTRI1,"SIZE"]}" | awk -F"[()]" '{print $2}' | sed -e 's/ byte[s]*//g'
 	    ;;
     esac
 }
@@ -246,7 +261,8 @@ fi
 
 case "${ITEM}" in
     "attribute_mode")  
-	RE=`echo $(get_attribute_mode "$SECTION" "$PARAM" "$PARAM1") | awk -F"[()]" '{print $2}'`
+	#RE=`echo $(get_attribute_mode "$SECTION" "$PARAM" "$PARAM1") | awk -F"[()]" '{print $2}'`
+	RE=`echo $(get_attribute_mode "$SECTION" "$PARAM" "$PARAM1")`
 	echo "$RE"
 	;;
     "attribute_name")  

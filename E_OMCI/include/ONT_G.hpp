@@ -1,3 +1,99 @@
+/*
+9.1.1     ONT-G
+This managed entity represents the ONT as equipment. The ONT automatically creates an instance
+of this managed entity. It assigns values to read-only attributes according to data within the ONT
+itself.
+Relationships
+All other managed entities in this Recommendation are related directly or indirectly to the ONT-G
+entity.
+Attributes
+Managed entity id:      This attribute uniquely identifies each instance of this managed entity.
+                        There is only one instance, number 0. (R) (mandatory) (2 bytes)
+Vendor id:              This attribute identifies the vendor of the ONT. It is the same as the four
+                        most significant bytes of the ONT serial number as specified in
+                        [ITU-T G.984.3]. (R) (mandatory) (4 bytes)
+Version:                This attribute identifies the version of the ONT as defined by the vendor.
+                        The character value "0" indicates that version information is not available
+                        or applicable. (R) (mandatory) (14 bytes)
+Serial number:          The serial number is unique for each ONT. It is defined in
+                        [ITU-T G.984.3] and contains the vendor ID and version number. The first
+                        four bytes are an ASCII-encoded vendor ID four letter mnemonic. The
+                        second four bytes are a binary encoded serial number, under the control of
+                        the ONT vendor. (R) (mandatory) (8 bytes)
+management             implemented in the ONT. There are two options:
+option:                0 Priority controlled and flexibly scheduled upstream traffic. The traffic
+                       scheduler and priority queue mechanism are used for upstream traffic.
+                       1 Rate controlled upstream traffic. The maximum upstream traffic of
+                       each individual connection is guaranteed.
+                       For clarification, see Appendix III.
+                       Downstream priority queues are managed via the GEM port network
+                       CTP ME.
+                       Upon ME instantiation, the ONT sets this attribute to the value that
+                       describes its implementation. The OLT must adapt its model to conform to
+                       the ONT's selection. (R) (mandatory) (1 byte)
+VP/VC                  This attribute is not used. If it is present, it should be set to 0. (R)(optional) (1 byte)
+cross-connection       
+function option:
+
+Battery backup:        This Boolean attribute specifies whether the ONT/NT supports backup
+                       battery monitoring. False disables battery alarm monitoring; true enables
+                       battery alarm monitoring. (R, W) (mandatory) (1 byte)
+Administrative         This attribute locks (1) and unlocks (0) the functions performed by this
+state:                 managed entity. When the administrative state is set to lock, all user
+                       functions are blocked, and alarms, TCAs and AVCs for this managed
+                       entity and all dependent managed entities are no longer generated.
+                       Selection of a default value for this attribute is outside the scope of this
+                       Recommendation. (R, W) (mandatory) (1 byte)
+Operational state:     This attribute reports whether the managed entity is currently capable of
+                       performing its function. Valid values are enabled (0) and disabled (1). (R) (optional) (1 byte)
+Actions
+Get, set
+Reboot:                Reboot the ONT.
+Test:                  Test the ONT. The test action can be used either to perform equipment
+                       diagnostics or to measure parameters such as received optical power, video
+                       output level, battery voltage, etc. Extensions to the test and test response
+                       messages are defined for these purposes; refer to Appendix II.
+Synchronize time:      This action synchronizes the start time of all performance monitoring
+                       managed entities of the ONT with the reference time of the OLT. All
+                       counters of all monitoring managed entities are cleared to 0 and restarted.
+                       Also, the value of the interval end time attribute of the monitoring managed
+                       entities is set to 0 and restarted. See clause I.1.9 for further discussion
+                       of PM.
+Notifications
+Test result:           Test results are reported via a test result message if the test is invoked by a
+                       test command from the OLT.
+  Number     Attribute value change                                Description
+       1    Vendor id                Vendor identification
+       2    Version                  Version of ONT as defined by vendor
+       3    Serial number            Serial number of ONT
+     4..7   N/A
+       8    Op state                 Operational state change
+    9..16   Reserved
+ Alarm
+  Number              Alarm                                        Description
+       0    Equipment alarm          Functional failure on an internal interface
+       1    Powering alarm           Loss of external power
+       2    Battery missing          Battery is provisioned but missing
+       3    Battery failure          Battery is provisioned and present but cannot recharge
+       4    Battery low              Battery is provisioned and present but its voltage is too low
+       5    Physical intrusion       Applies if the ONT supports detection such as door or box open
+       6    ONT self test failure    ONT has failed autonomous self test
+       7    Dying gasp               ONT is powering off imminently
+       8    Temperature yellow       No service shutdown at present, but the circuit pack is operating
+                                     beyond its recommended range
+       9    Temperature red          Some services have been shut down to avoid equipment damage.
+                                     The operational state of the affected PPTPs indicates the affected
+                                     services
+      10    Voltage yellow           No service shutdown at present, but the line power voltage is below
+                                     its recommended minimum. Service restrictions may be in effect,
+                                     such as permitting no more than N lines off-hook or ringing at one
+                                     time
+      11    Voltage red              Some services have been shut down to avoid power collapse. The
+                                     operational state of the affected PPTPs indicates the affected
+                                     services
+   12..207  Reserved
+  208..223 Vendor-specific alarms    Not to be standardized
+*/
 
 // ------------------------------------------------------------------
 //  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
@@ -46,6 +142,9 @@ class ONT_G : public ME_S
 
 
         bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_9_method(Action in_Action, unsigned *value, void *arg);
 
 
 };
