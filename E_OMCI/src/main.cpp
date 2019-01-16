@@ -130,11 +130,11 @@ bool get_omci_s()
                 //M_OMCI_S[Class]=omci_s; 
                 M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
                 //printf("s vecotr size is %d\r\n", M_OMCI_S.size());
-                printf("g vecotr size is %d\r\n", M_OMCI_G.size());
+                printf("g vecotr size is %zu\r\n", M_OMCI_G.size());
                 //TEST add into me map 
                 create_me_obj(Class, Id, omci_s);
 
-                printf("p vecotr size is %d\r\n", M_OMCI_P.size());
+                printf("p vecotr size is %zu\r\n", M_OMCI_P.size());
             }
             else
             {
@@ -152,9 +152,18 @@ bool get_omci_s()
     closedir(dir);
     return true;
 }
+void platform_arch_info()
+{
+    printf("UI32_T size is [%zu]\r\n", sizeof(UI32_T));
+    printf("UI16_T size is [%zu]\r\n", sizeof(UI16_T));
+    printf("UI8_T  size is [%zu]\r\n", sizeof(UI8_T));
+    printf("BOOL_T size is [%zu]\r\n", sizeof(BOOL_T));
+}
 
 int main(int argc, char *argv[])
 {
+    platform_arch_info();
+
     if(!get_omci_s())
         printf("###### SUPPORTED ME FILE ERROR #######!!!!\r\n");
 

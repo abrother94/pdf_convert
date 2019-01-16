@@ -22,7 +22,32 @@ class ONT_G : public ME_S
         int m_2;
         char m_strin[256]={};
         void get_method();
-};
 
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_5_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_6_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_7_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
 #endif
 

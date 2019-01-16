@@ -10,7 +10,32 @@ case cid: \
 }\
 } while (0)
 
+enum Action 
+{ 
+    MSG_TYPE_GET    = 1, 
+    MSG_TYPE_SET    = 2 
+}; 
 
+typedef unsigned int    UI32_T;
+typedef unsigned short  UI16_T;
+typedef unsigned char   UI8_T;
+typedef unsigned char   BOOL_T;
+typedef int             I32_T;
+typedef short           I16_T;
+typedef char            I8_T;
+
+
+// ------------------------------------------------------------------
+//  1. to save attribute value 
+//     Value <= 4bytes 
+//     pValue >= 4bytes // Need allocate memory and release by itself
+// ------------------------------------------------------------------
+class Attribute_S
+{
+    public: 
+        UI32_T Value;
+        unsigned char * pValue;
+};
 
 class ME_S
 {
@@ -22,10 +47,31 @@ class ME_S
         virtual ~ME_S(){};
         virtual void get_method(){};
         virtual void set_method(){};
-        virtual bool chk_action(std::string in_action){};
 
         int m_class_id;
         int m_instance_id;
+
+        Attribute_S m_Attributes[17];
+
+        virtual bool apply(std::string in_action){};
+
+        virtual bool attribute_1_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_2_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_3_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_4_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_5_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_6_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_7_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_8_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_9_method( Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_10_method(Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_11_method(Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_12_method(Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_13_method(Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_14_method(Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_15_method(Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_16_method(Action in_Action, UI32_T *value, void *arg){};
+        virtual bool attribute_17_method(Action in_Action, UI32_T *value, void *arg){};
 };
 
 

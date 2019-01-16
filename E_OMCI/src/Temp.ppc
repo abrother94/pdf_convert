@@ -1,8 +1,9 @@
 #!/bin/bash
 
-CPP_TEMP()
+CPP_BODY()
 {
-local me_name="$1"
+    local me_name="$1"
+    local me_num="$2"
 
 echo "
 // ------------------------------------------------------------------
@@ -40,4 +41,50 @@ void $me_name::get_method()
 
 "
 
+}
+
+CPP_ATT()
+{
+    local me_name="$1"
+    local me_num="$2"
+
+    for(( n=1; n<= "$me_num"; n++))
+    do
+echo "
+	
+bool $me_name::attribute_"$n"_method(Action in_Action, UI32_T *value, void *arg)
+{
+    switch(in_Action)
+    {
+        case MSG_TYPE_GET:
+            {
+                // Default action for value == 4bytes
+		arg = (void *)&m_Attributes[$(($n-1))].Value;
+                break;
+            }
+        case MSG_TYPE_SET:
+            {
+                // Default action for value == 4bytes
+                m_Attributes[$(($n-1))].Value = *value;
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+    return true;
+}
+"
+
+    done
+
+}
+
+CPP_TEMP()
+{
+    local me_name="$1"
+    local me_num="$2"
+    CPP_BODY "$me_name" "$me_num"
+    CPP_ATT  "$me_name" "$me_num"
 }

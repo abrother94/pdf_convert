@@ -29,8 +29,9 @@ fi
 
 echo "ME_NAME[$ME_NAME]"
 
-HEAD_TEMP "$ME_NAME" >> "$INC_OUTPUT_FILE" 
-CPP_TEMP "$ME_NAME" >> "$CPP_OUTPUT_FILE" 
+# Auto create hpp cpp file #
+HEAD_TEMP "$ME_NAME" "$ATTRIB_NUM" >> "$INC_OUTPUT_FILE" 
+CPP_TEMP  "$ME_NAME" "$ATTRIB_NUM" >> "$CPP_OUTPUT_FILE" 
 
 echo "Create [$INC_OUTPUT_FILE] !"
 echo "Create [$CPP_OUTPUT_FILE] !"

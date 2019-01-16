@@ -1,9 +1,10 @@
 #!/bin/bash
 
-HEAD_TEMP()
+HEAD_TOP()
 {
-local me_name="$1"
-local UPPER=`echo $me_name | awk '{print toupper($0)}'`
+    local me_name="$1"
+    local att_num="$2"
+    local UPPER=`echo $me_name | awk '{print toupper($0)}'`
 
 echo "
 // ------------------------------------------------------------------
@@ -29,8 +30,39 @@ class $me_name : public ME_S
         int m_2;
         char m_strin[256]={};
         void get_method();
-};
+"
+}
 
+HEAD_BOT()
+{
+    local me_name="$1"
+    local att_num="$2"
+    local UPPER=`echo $me_name | awk '{print toupper($0)}'`
+echo "
+};
 #endif
 "
+}
+
+HEAD_ATT()
+{
+    local me_name="$1"
+    local att_num="$2"
+
+    for(( n=1; n <= "$att_num" ;n++))
+    do
+echo "
+        bool  attribute_"$n"_method(Action in_Action, unsigned *value, void *arg);
+"
+    done
+}
+
+
+HEAD_TEMP()
+{
+    local me_name="$1"
+    local att_num="$2"
+    HEAD_TOP "$me_name" "$att_num"
+    HEAD_ATT "$me_name" "$att_num"
+    HEAD_BOT "$me_name" "$att_num"
 }
