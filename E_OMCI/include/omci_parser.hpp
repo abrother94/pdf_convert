@@ -1,5 +1,10 @@
 #if !defined(PARSER_HPP_INCLUDED)
 #define PARSER_HPP_INCLUDED
+
+#include <common.hpp>
+#include <string> 
+#include <map>
+
 enum OMCI_ME_CLASS_ID_E
 {
 	// ----------------------------------------------
@@ -103,8 +108,6 @@ enum OMCI_ME_CLASS_ID_E
 									MECID_ALU_PROPRIETARY_CLASS_VALUE_FIRST ),
 };
 
-
-
 enum OMCI_MESSAGE_TYPE_E
 {
 	MSGTYPE_CREATE					= 4,
@@ -134,44 +137,69 @@ enum OMCI_MESSAGE_TYPE_E
 	MSGTYPE_MT_MASK					= 0x1F,
 };
 
-static char* OMCI_Actions_name[ OMCI_ACTIONS_MAX_ID_PLUS_1 ] =
+constexpr UI8_T OMCI_MSG_DB_MASK    = 0x80;
+constexpr UI8_T OMCI_MSG_AR_MASK    = 0x40;
+constexpr UI8_T OMCI_MSG_AK_MASK    = 0x20;
+constexpr UI8_T OMCI_MSG_MT_MASK    = 0x1F;
+
+constexpr UI8_T OFFSET_OMCI_TRANS_ID    = 0;
+constexpr UI8_T OFFSET_OMCI_MSG_TYPE    = (OFFSET_OMCI_TRANS_ID +2);
+constexpr UI8_T OFFSET_OMCI_DEV_ID      = (OFFSET_OMCI_MSG_TYPE +1);
+constexpr UI8_T OFFSET_OMCI_CLASS_ID    = (OFFSET_OMCI_DEV_ID +1);
+constexpr UI8_T OFFSET_OMCI_ME_ID       = (OFFSET_OMCI_CLASS_ID +2);
+constexpr UI8_T OFFSET_OMCI_MSG_CONTENT = (OFFSET_OMCI_ME_ID +2);
+constexpr UI8_T OFFSET_OMCI_TRAILER     = (OFFSET_OMCI_MSG_CONTENT +32);
+constexpr UI8_T OFFSET_OMCI_TRAILER_RES = (OFFSET_OMCI_TRAILER +0);
+constexpr UI8_T OFFSET_OMCI_TRAILER_CPCS=(OFFSET_OMCI_TRAILER_RES +2);
+constexpr UI8_T OFFSET_OMCI_TRAILER_CRC =(OFFSET_OMCI_TRAILER_CPCS +2);
+
+constexpr UI8_T OMCI_PKT_SIZE           =(OFFSET_OMCI_TRAILER_CRC +4);
+constexpr UI8_T MAX_SET_ATTRS_OFFSET    =(OFFSET_OMCI_TRAILER +0);
+constexpr UI8_T OFFSET_RESP_RESULT      =(OFFSET_OMCI_MSG_CONTENT +0);
+constexpr UI8_T OFFSET_AttrsMask        =(OFFSET_OMCI_MSG_CONTENT +0);
+constexpr UI8_T OMCI_MSG_CONTENT_SIZE   =32;
+constexpr UI8_T OMCI_GEM_HEADER_SIZE    =5;
+
+using namespace std;
+
+class OMCI_Parser
 {
-	"0??", "1??", "2??", "3??",
-	"CREATE", "5??", "DELETE", "7??", "SET", "GET",
-	"10??", "GET_ALL_ALARMS", "GET_ALL_ALARMS_NEXT",
-	"MIB_UPLOAD", "MIB_UPLOAD_NEXT", "MIB_RESET",
-	"ALARM", "ATTRIBUTE_VALUE_CHANGE", "TEST",
-	"START_SOFT_DOWNLOAD", "DOWNLOAD_SECTION", "END_SOFT_DOWNLOAD",
-	"ACTIVATE_IMAGE", "COMMIT_IMAGE", "SYNCHRONIZE_TIME",
-	"REBOOT", "GET_NEXT", "TEST_RESULT", "GET_CURRENT_DATA", "SET_ALU_NO_DATASYNC"
+    const std::map<UI8_T, std::string> M_ACTION_T = 
+    {
+        {0,"NO SUPPORT",},
+        {4,"CREATE",},
+        {6,"DELETE"},
+        {8,"SET",},
+        {9,"GET"},
+        {11,"GET_ALL_ALARMS"},
+        {12,"GET_ALL_ALARMS_NEXT"},
+        {13,"MIB_UPLOAD"},
+        {14,"MIB_UPLOAD_NEXT"},
+        {15,"MIB_RESET"},
+        {16,"ALARM"},
+        {17,"ATTRIBUTE_VALUE_CHANGE"},
+        {18,"TEST"},
+        {19,"START_SOFT_DOWNLOAD"},
+        {20,"DOWNLOAD_SECTION"},
+        {21,"END_SOFT_DOWNLOAD"},
+        {22,"ACTIVATE_IMAGE"},
+        {23,"COMMIT_IMAGE"},
+        {24,"SYNCHRONIZE_TIME"},
+        {25,"REBOOT"},
+        {26,"GET_NEXT"},
+        {27,"TEST_RESULT"},
+        {28,"GET_CURRENT_DATA"},
+        {29,"SET_ALU_NO_DATASYNC"},
+    };
+    public:
+    BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
+    BOOL_T get_me_by_class(UI16_T Class);
+    BOOL_T me_find_instance(UI16_T Class ,UI16_T ME_ID);
+    BOOL_T me_create_instance(UI16_T Class ,UI16_T ME_ID, UI8_T * pkt_p);
+    std::string get_omci_action_name(UI8_T action_ID);
+    UI16_T omci_pkt_parser(UI8_T *pkt_p);
+    private:
+    UI16_T get_omci_ui16(UI8_T *data);
 };
-
-
-
-#define OMCI_MSG_DB_MASK		 0x80
-#define OMCI_MSG_AR_MASK 		 0x40
-#define OMCI_MSG_AK_MASK		 0x20
-#define OMCI_MSG_MT_MASK		 0x1F
-
-#define OFFSET_OMCI_TRANS_ID     0
-#define OFFSET_OMCI_MSG_TYPE     (OFFSET_OMCI_TRANS_ID +2)
-#define OFFSET_OMCI_DEV_ID       (OFFSET_OMCI_MSG_TYPE +1)
-#define OFFSET_OMCI_CLASS_ID     (OFFSET_OMCI_DEV_ID +1)
-#define OFFSET_OMCI_ME_ID        (OFFSET_OMCI_CLASS_ID +2)
-#define OFFSET_OMCI_MSG_CONTENT  (OFFSET_OMCI_ME_ID +2)
-#define OFFSET_OMCI_TRAILER      (OFFSET_OMCI_MSG_CONTENT +32)
-#define OFFSET_OMCI_TRAILER_RES  (OFFSET_OMCI_TRAILER +0)
-#define OFFSET_OMCI_TRAILER_CPCS (OFFSET_OMCI_TRAILER_RES +2)
-#define OFFSET_OMCI_TRAILER_CRC  (OFFSET_OMCI_TRAILER_CPCS +2)
-#define OMCI_PKT_SIZE            (OFFSET_OMCI_TRAILER_CRC +4)
-
-
-#define MAX_SET_ATTRS_OFFSET			(OFFSET_OMCI_TRAILER +0)
-#define OFFSET_RESP_RESULT				(OFFSET_OMCI_MSG_CONTENT +0)
-#define OFFSET_AttrsMask				(OFFSET_OMCI_MSG_CONTENT +0)
-#define OMCI_MSG_CONTENT_SIZE    32
-#define OMCI_GEM_HEADER_SIZE     5
-
-
 
 #endif

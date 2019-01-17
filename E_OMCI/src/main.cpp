@@ -18,9 +18,7 @@ static constexpr const char DEFAULT_SUBSCRIPTION_FILE_PATH[] = "./";
 
 
 std::map<std::pair<int,int>, ME_S * > M_OMCI_P;
-//std::map<int, Json::Value> M_OMCI_S;
 std::map<std::pair<int,int>, Json::Value> M_OMCI_G;
-
 
 void release_all_me_obj()
 {
