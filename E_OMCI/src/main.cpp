@@ -9,6 +9,7 @@
 #include <json/json.hpp>
 #include <json/json.h>
 #include <common.hpp>
+#include <common_class.hpp>
 #include <all_me.hpp>
 
 using namespace std;
