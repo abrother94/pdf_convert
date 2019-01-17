@@ -4,6 +4,7 @@
 #include <common.hpp>
 #include <string> 
 #include <map>
+using namespace std;
 
 enum OMCI_ME_CLASS_ID_E
 {
@@ -142,29 +143,28 @@ constexpr UI8_T OMCI_MSG_AR_MASK    = 0x40;
 constexpr UI8_T OMCI_MSG_AK_MASK    = 0x20;
 constexpr UI8_T OMCI_MSG_MT_MASK    = 0x1F;
 
-constexpr UI8_T OFFSET_OMCI_TRANS_ID    = 0;
-constexpr UI8_T OFFSET_OMCI_MSG_TYPE    = (OFFSET_OMCI_TRANS_ID +2);
-constexpr UI8_T OFFSET_OMCI_DEV_ID      = (OFFSET_OMCI_MSG_TYPE +1);
-constexpr UI8_T OFFSET_OMCI_CLASS_ID    = (OFFSET_OMCI_DEV_ID +1);
-constexpr UI8_T OFFSET_OMCI_ME_ID       = (OFFSET_OMCI_CLASS_ID +2);
-constexpr UI8_T OFFSET_OMCI_MSG_CONTENT = (OFFSET_OMCI_ME_ID +2);
-constexpr UI8_T OFFSET_OMCI_TRAILER     = (OFFSET_OMCI_MSG_CONTENT +32);
-constexpr UI8_T OFFSET_OMCI_TRAILER_RES = (OFFSET_OMCI_TRAILER +0);
-constexpr UI8_T OFFSET_OMCI_TRAILER_CPCS=(OFFSET_OMCI_TRAILER_RES +2);
-constexpr UI8_T OFFSET_OMCI_TRAILER_CRC =(OFFSET_OMCI_TRAILER_CPCS +2);
+constexpr UI8_T OFFSET_OMCI_TRANS_ID     = 0;
+constexpr UI8_T OFFSET_OMCI_MSG_TYPE     = (OFFSET_OMCI_TRANS_ID +2);
+constexpr UI8_T OFFSET_OMCI_DEV_ID       = (OFFSET_OMCI_MSG_TYPE +1);
+constexpr UI8_T OFFSET_OMCI_CLASS_ID     = (OFFSET_OMCI_DEV_ID +1);
+constexpr UI8_T OFFSET_OMCI_ME_ID        = (OFFSET_OMCI_CLASS_ID +2);
+constexpr UI8_T OFFSET_OMCI_MSG_CONTENT  = (OFFSET_OMCI_ME_ID +2);
+constexpr UI8_T OFFSET_OMCI_TRAILER      = (OFFSET_OMCI_MSG_CONTENT +32);
+constexpr UI8_T OFFSET_OMCI_TRAILER_RES  = (OFFSET_OMCI_TRAILER +0);
+constexpr UI8_T OFFSET_OMCI_TRAILER_CPCS = (OFFSET_OMCI_TRAILER_RES +2);
+constexpr UI8_T OFFSET_OMCI_TRAILER_CRC  = (OFFSET_OMCI_TRAILER_CPCS +2);
 
-constexpr UI8_T OMCI_PKT_SIZE           =(OFFSET_OMCI_TRAILER_CRC +4);
-constexpr UI8_T MAX_SET_ATTRS_OFFSET    =(OFFSET_OMCI_TRAILER +0);
-constexpr UI8_T OFFSET_RESP_RESULT      =(OFFSET_OMCI_MSG_CONTENT +0);
-constexpr UI8_T OFFSET_AttrsMask        =(OFFSET_OMCI_MSG_CONTENT +0);
-constexpr UI8_T OMCI_MSG_CONTENT_SIZE   =32;
-constexpr UI8_T OMCI_GEM_HEADER_SIZE    =5;
+constexpr UI8_T OMCI_PKT_SIZE            = (OFFSET_OMCI_TRAILER_CRC +4);
+constexpr UI8_T MAX_SET_ATTRS_OFFSET     = (OFFSET_OMCI_TRAILER +0);
+constexpr UI8_T OFFSET_RESP_RESULT       = (OFFSET_OMCI_MSG_CONTENT +0);
+constexpr UI8_T OFFSET_AttrsMask         = (OFFSET_OMCI_MSG_CONTENT +0);
+constexpr UI8_T OMCI_MSG_CONTENT_SIZE    = 32;
+constexpr UI8_T OMCI_GEM_HEADER_SIZE     = 5;
 
-using namespace std;
 
 class OMCI_Parser
 {
-    const std::map<UI8_T, std::string> M_ACTION_T = 
+    const std::map<UI8_T, std::string> m_m_action_t = 
     {
         {0,"NO SUPPORT",},
         {4,"CREATE",},

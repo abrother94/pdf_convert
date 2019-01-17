@@ -1,156 +1,70 @@
-#include <iostream>
-#include <fstream>
 #include <istream>
-#include <dirent.h>
-#include <sys/types.h>
 #include <string.h>
-#include <typeinfo>
-
-#include <json/json.hpp>
-#include <json/json.h>
 #include <common.hpp>
-#include <common_class.hpp>
-#include <all_me.hpp>
+#include <me_c.hpp>
+#include <omci_parser.hpp>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-using namespace std;
-
-static constexpr const char DEFAULT_SUBSCRIPTION_FILE_PATH[] = "./";
 
 
-std::map<std::pair<int,int>, ME_S * > M_OMCI_P;
-std::map<std::pair<int,int>, Json::Value> M_OMCI_G;
-
-void release_all_me_obj()
+UI32_T get_uint_from_hex_string(char *string, UI8_T uint_bytes_count, void *uint_value)
 {
-    std::map < std::pair<int,int>, ME_S *>::iterator it;
-    for(auto it = M_OMCI_P.begin(); it != M_OMCI_P.end(); ++it) 
+	char temp_text[10]; // Up to UI32_T (4 bytes == 8 Hex bytes)
+
+	memset(temp_text,0,sizeof(temp_text));
+	switch (uint_bytes_count)
+	{
+	case 1:
+		sscanf(string,"%2c",temp_text);
+		*(UI8_T*)uint_value = (UI8_T)strtoul(temp_text, NULL, 16);
+		break;
+	case 2:
+		sscanf(string,"%4c",temp_text);
+		*(UI16_T*)uint_value = (UI16_T)strtoul(temp_text, NULL, 16);
+		break;
+	case 4:
+		sscanf(string,"%8c",temp_text);
+		*(UI32_T*)uint_value = (UI32_T)strtoul(temp_text, NULL, 16);
+		break;
+	default:
+		break;
+	}
+	return (2 * uint_bytes_count);
+}
+
+char* get_text_line(FILE* input_fp)
+{
+    char *read_buf = 0;
+    static UI32_T lineLen=0;
+    static I32_T Len=0;
+    OMCI_Parser omci_p;
+
+    while ((Len = getline(&read_buf,(size_t *)&lineLen ,input_fp)) !=  -1)
     {
-        ME_S * pME_S = it->second;
-        if(pME_S)
+        char omci_raw[256]={0};
+        UI8_T PC;
+        int sizeofTest= strlen(read_buf)/2;
+
+        printf("omci size is %d\r\n", sizeofTest);
+
+        char * OMCI_pkt_hex_string = read_buf;
+
+        for(int i = 0; i < sizeofTest; i++)
         {
-            delete pME_S;
+            OMCI_pkt_hex_string += get_uint_from_hex_string(OMCI_pkt_hex_string,1,(void*)&PC);
+            printf("%02X", PC);
+            omci_raw[i] = PC;
         }
-    }
-    M_OMCI_P.clear();
-}
-
-ME_S * get_me_obj(int class_id, int instance_id)
-{
-    ME_S *BB = NULL;
-    BB =  M_OMCI_P[std::make_pair(class_id, instance_id)]; 
-    if(!BB)
-        return NULL;
-    else
-        return BB;
-}
-
-// ------------------------------------------------------------------
-// 1. Add SWITCHCASE( XXX_CID, instance_id, XXX_ME_NAME) after you 
-//    use create_me_cpp.sh to create a new ME. 
-// ------------------------------------------------------------------
-
-bool create_me_obj(int class_id, int instance_id, Json::Value me_s)
-{
-    ME_S *pME = NULL;
-
-    pME = M_OMCI_P[std::make_pair(class_id, instance_id)];
-    if (pME == NULL)
-    {
-        switch(class_id)
-        {
-            SWITCHCASE(256 , instance_id, ONT_G, me_s);
-            SWITCHCASE(266, instance_id,  GEM_interworking_termination_point, me_s);
-            default:
-                break;
-        }
-        return true;
-    }
-    else
-    {
-        printf("Already exist class_id [%d] instance_id[%d]!!\r\n", class_id, instance_id);
-        return false;
-    }
+        printf("\r\n");
+        omci_p.omci_pkt_parser((unsigned char *)omci_raw);
+    }    
+    return read_buf;
 }
 
 
-// ------------------------------------------------------------------
-// 1. Collect supported ME info in S_ME/
-// ------------------------------------------------------------------
 
-bool get_omci_s()
-{
-    std::string ME_S_DIR="S_ME/";
-    struct dirent *entry;
-
-    DIR *dir = opendir(ME_S_DIR.c_str());
-
-    if (dir == NULL) 
-    {
-        printf("no such path exist!!\r\n");
-        return false;
-    }
-
-    while ((entry = readdir(dir)) != NULL) 
-    {
-        std::string dot(".");
-        std::string ddot("..");
-
-        std::string tmp_me_name = entry->d_name;
-
-        if((dot == tmp_me_name) || (ddot == tmp_me_name))
-            continue;
-
-        std::string tmp_me_cid = tmp_me_name.substr(0, tmp_me_name.find("_"));
-        printf("me name[%s] me cid[%s]\r\n", tmp_me_name.c_str(), tmp_me_cid.c_str());
-
-        std::string m_config_file_path = ME_S_DIR + tmp_me_name ;
-        printf("new pathname[%s]\r\n", m_config_file_path.c_str());
-
-        ifstream    m_source_files= {};
-
-        m_source_files.open(m_config_file_path);
-
-        if(m_source_files.good())
-        {   
-            Json::Value omci_s;
-            Json::Reader reader;
-
-            printf("Open file ok\r\n");
-            bool isJsonOK = (reader.parse(m_source_files, omci_s));
-
-            if(isJsonOK)
-            {
-                printf("Get omci_s ok \r\n");
-                printf("Class id:%d\r\n", omci_s["Class"].asInt());
-                int Class =  omci_s["Class"].asInt();
-                int Id =  omci_s["Id"].asInt();
-                printf("insert Class at :%d\r\n", Class);
-                printf("insert Id at :%d\r\n", Id);
-                //M_OMCI_S[Class]=omci_s; 
-                M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
-                //printf("s vecotr size is %d\r\n", M_OMCI_S.size());
-                printf("g vecotr size is %zu\r\n", M_OMCI_G.size());
-                //TEST add into me map 
-                create_me_obj(Class, Id, omci_s);
-
-                printf("p vecotr size is %zu\r\n", M_OMCI_P.size());
-            }
-            else
-            {
-                printf("Get omci_s ng\r\n");
-                return false;
-            }
-        }
-        else
-        {
-            printf("Open file ng\r\n");
-            return false;
-        }
-    }
-
-    closedir(dir);
-    return true;
-}
 void platform_arch_info()
 {
     printf("UI32_T size is [%zu]\r\n", sizeof(UI32_T));
@@ -161,16 +75,33 @@ void platform_arch_info()
 
 int main(int argc, char *argv[])
 {
-    platform_arch_info();
+    //platform_arch_info();
+    FILE *OMCI_cmds_fp;
+    char OMCI_Cmds_filename[256];
 
-    if(!get_omci_s())
-        printf("###### SUPPORTED ME FILE ERROR #######!!!!\r\n");
+    if(argc == 2 && strlen(argv[1]) >  0)
+    {
+        printf("filename[%s]\r\n", argv[1]);
 
-    ME_S * BB = get_me_obj(256, 0);
-    if(BB)
-        BB->get_method();
+        sprintf(OMCI_Cmds_filename,"%s",argv[1]);
+
+        if ((OMCI_cmds_fp = fopen(OMCI_Cmds_filename, "r"))==NULL)
+        {
+            printf("Failed to open file: %s for reading..",OMCI_Cmds_filename);
+            return 0;
+        }
+        else
+        {
+            char *omci_TEST = get_text_line(OMCI_cmds_fp);
+            free(omci_TEST);
+            fclose(OMCI_cmds_fp);
+        }
+        return 1;
+    }
     else
-        printf("##### CAN'T GET ME OBJ #####!!!!\r\n");
-    release_all_me_obj();
-    return 0;
+    {
+        printf("Please provide RAW_DATA_FILE of OMCI !!!!! \r\n");
+        return 0;
+    }
+    return 1;
 }

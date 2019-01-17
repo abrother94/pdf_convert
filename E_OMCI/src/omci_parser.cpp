@@ -37,7 +37,7 @@ std::string OMCI_Parser::get_omci_action_name(UI8_T action_ID)
         action_ID = 0;
 
     std::map<UI8_T, std::string>::const_iterator it ;
-    it = M_ACTION_T.find(action_ID);
+    it = m_m_action_t.find(action_ID);
     return it->second;
 }
 
@@ -50,13 +50,14 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     UI16_T ME_ID;
     UI16_T Attrs_mask;
     BOOL_T obj_exist = false; 
+    printf("OMCI_PKT_SIZE is %d\r\n", OMCI_PKT_SIZE);
 
     //---------------------------------------------------------------------
     // 1. If input omci packet is invalid, we cannot parse, nor process.
     //---------------------------------------------------------------------
-    if (omci_parser_validaterxpkt (pkt_p))
+    if(!omci_parser_validaterxpkt(pkt_p))
     {
-        return -1;
+        return 0;
     }
     memcpy(dPkt, pkt_p, OMCI_PKT_SIZE);
     memset(dPkt + OFFSET_RESP_RESULT, 0, OFFSET_OMCI_TRAILER - OFFSET_RESP_RESULT);

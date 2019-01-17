@@ -1,6 +1,9 @@
 #if !defined(COMMON_HPP_INCLUDED)
 #define COMMON_HPP_INCLUDED
 
+#include <json/json.hpp>
+#include <json/json.h>
+
 #define SWITCHCASE(cid, ins_id, me_name, me_s) do { \
 {\
 case cid: \

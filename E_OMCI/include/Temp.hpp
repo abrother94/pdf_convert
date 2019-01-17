@@ -19,7 +19,7 @@ echo "
 #include <json/json.hpp>
 #include <json/json.h>
 #include <common.hpp>
-#include <common_class.hpp>
+#include <base_class.hpp>
 
 class $me_name : public ME_S 
 {

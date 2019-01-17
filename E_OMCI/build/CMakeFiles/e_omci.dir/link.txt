@@ -1,1 +1,0 @@
-ccache /usr/bin/c++   -g   CMakeFiles/e_omci.dir/src/omci_parser.cpp.o CMakeFiles/e_omci.dir/src/main.cpp.o CMakeFiles/e_omci.dir/src/GEM_interworking_termination_point.cpp.o CMakeFiles/e_omci.dir/src/ONT_G.cpp.o  -o e_omci -rdynamic open_source/json-cxx/src/libjson-cxx.a -ljsoncpp 

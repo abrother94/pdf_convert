@@ -1,1 +1,0 @@
-ccache /usr/bin/c++   -g   CMakeFiles/example.dir/example.cpp.o  -o example -rdynamic ../src/libjson-cxx.a 

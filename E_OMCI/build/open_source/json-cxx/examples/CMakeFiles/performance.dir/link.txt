@@ -1,1 +1,0 @@
-ccache /usr/bin/c++   -g   CMakeFiles/performance.dir/performance.cpp.o  -o performance -rdynamic ../src/libjson-cxx.a 

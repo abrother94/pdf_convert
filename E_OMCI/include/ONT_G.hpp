@@ -107,7 +107,7 @@ Test result:           Test results are reported via a test result message if th
 #include <json/json.hpp>
 #include <json/json.h>
 #include <common.hpp>
-#include <common_class.hpp>
+#include <base_class.hpp>
 
 class ONT_G : public ME_S 
 {

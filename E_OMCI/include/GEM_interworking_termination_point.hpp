@@ -91,7 +91,7 @@ Notifications
 #include <json/json.hpp>
 #include <json/json.h>
 #include <common.hpp>
-#include <common_class.hpp>
+#include <base_class.hpp>
 
 class GEM_interworking_termination_point : public ME_S 
 {
