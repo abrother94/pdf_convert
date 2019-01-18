@@ -84,6 +84,12 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     //---------------------------------------------------------------------
     Action = (*(pkt_p + OFFSET_OMCI_MSG_TYPE)) & OMCI_MSG_MT_MASK;
     printf("PARSER: class[%d]  ME_ID:[%d]  Action[%s] [0x%04X]\n", Class, ME_ID, get_omci_action_name(Action).c_str(), Action);
+    if(ME_ID == 0)
+    {
+        printf("ME INSTANCE ID CAN'T BE 0 !!!!\r\n");
+        return 0;
+    }
+
 
     // Always igore notifications like: AVC from OLT. Alarm from OLT.
     if ((Action == MSGTYPE_ATTRIBUTE_VALUE_CHANGE) || (Action == MSGTYPE_ALARM))
@@ -95,6 +101,14 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     if ((Action == MSGTYPE_SET) || (Action == MSGTYPE_GET) || (Action == MSGTYPE_GET_CURRENT_DATA))
     {
         printf("attr_mask: %04X\n", Attrs_mask);
+    }
+
+    // Check action exist for this ME //
+    if( !m_me.check_action_valid(Class, Action))
+    {
+    
+        printf("Not support this Action!!\r\n");
+        return 0; 
     }
 
     //---------------------------------------------------------------------

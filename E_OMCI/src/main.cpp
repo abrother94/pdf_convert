@@ -39,24 +39,26 @@ char* get_text_line(FILE* input_fp)
     char *read_buf = 0;
     static UI32_T lineLen=0;
     static I32_T Len=0;
-
+    OMCI_Parser omci_p;
 
     while ((Len = getline(&read_buf,(size_t *)&lineLen ,input_fp)) !=  -1)
     {
-        char omci_raw[256]={0};
+        UI8_T omci_raw[256]={0};
         UI8_T PC;
         int sizeofTest= strlen(read_buf)/2;
 
         printf("omci size is %d\r\n", sizeofTest);
 
-        char * OMCI_pkt_hex_string = read_buf;
+        char * OMCI_pkt_hex_string =read_buf;
 
         for(int i = 0; i < sizeofTest; i++)
         {
             OMCI_pkt_hex_string += get_uint_from_hex_string(OMCI_pkt_hex_string,1,(void*)&PC);
             printf("%02X", PC);
-            omci_raw[i] = PC;
+            omci_raw[i] = (UI8_T)PC;
         }
+        printf("\r\n");
+        omci_p.omci_pkt_parser(omci_raw);
         printf("\r\n");
     }    
     return read_buf;
@@ -78,8 +80,8 @@ int main(int argc, char *argv[])
     FILE *OMCI_cmds_fp;
     char OMCI_Cmds_filename[256];
 
-    OMCI_Parser omci_p;
-    return 1;
+    //OMCI_Parser omci_p;
+    //return 1;
 
     if(argc == 2 && strlen(argv[1]) >  0)
     {

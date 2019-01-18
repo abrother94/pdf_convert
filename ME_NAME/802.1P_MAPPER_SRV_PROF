@@ -11,7 +11,7 @@ Managed entity id:            This attribute uniquely identifies each instance o
                               (R, Set-by-create) (mandatory) (2 bytes)
 TP pointer:                   This attribute points to an instance of the associated termination point.
                               The termination point type is determined by the TP type attribute:
-                              TP type          TP pointer points to…
+                              TP type          TP pointer points to?
                               0                Bridging mapping. Pointer should be set to 0xFFFF by
                                                OLT and ignored by ONT.
                               1                PPTP Ethernet UNI.
@@ -22,7 +22,7 @@ TP pointer:                   This attribute points to an instance of the associ
                               6                PPTP MoCA UNI.
                               Not supported Bridging mapping if TP pointer value is 0xFFFF. TP
                                                pointer may also point to PPTP Ethernet UNI.
-                          NOTE 1 – When the TP type is xDSL, the two most significant bits may be
+                          NOTE 1 ??When the TP type is xDSL, the two most significant bits may be
                           used to indicate a bearer channel.
                           (R, W, Set-by-create) (mandatory) (2 bytes)
                           Each of the following eight attributes points to the GEM interworking
@@ -50,7 +50,7 @@ DSCP to P-bit mapping:    This attribute is valid when the unmarked frame option
                           mapped. Once marked, the P-bit marked frame is then directed to the
                           GEM interworking termination point indicated by the interwork TP
                           pointer mappings. (R, W) (mandatory) (24 bytes)
-                          NOTE 2 − If certain bits in the DSCP field are to be ignored in the mapping
+                          NOTE 2 ??If certain bits in the DSCP field are to be ignored in the mapping
                           process, the attribute should be provisioned such that all possible values of
                           those bits produce the same P-bit mapping. This can be applied to the case
                           where the operator wishes to adopt the priority mechanism based on IP

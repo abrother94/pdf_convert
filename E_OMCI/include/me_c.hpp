@@ -22,6 +22,7 @@ class ME_C
         ~ME_C();
         ME_S * get_me_obj(int class_id, int instance_id);
         BOOL_T create_me_obj(int class_id, int instance_id, Json::Value me_s);
+        BOOL_T check_action_valid(UI16_T Class, UI16_T Action);
     private:
         BOOL_T get_omci_s();
         void release_all_me_obj();

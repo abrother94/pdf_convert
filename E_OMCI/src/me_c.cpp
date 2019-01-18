@@ -7,6 +7,7 @@
 #include <typeinfo>
 #include <all_me.hpp>
 #include <me_c.hpp>
+#include <omci_parser.hpp>
 
 ME_C::ME_C()
 {
@@ -137,7 +138,7 @@ BOOL_T ME_C::get_omci_s()
                 M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
                 //printf("s vecotr size is %d\r\n", M_OMCI_S.size());
                 printf("g vecotr size is %zu\r\n", M_OMCI_G.size());
-                create_me_obj(Class, 10, omci_s);
+                //create_me_obj(Class, 0, omci_s); 
                 //printf("p vecotr size is %zu\r\n", M_OMCI_P.size());
             }
             else
@@ -155,5 +156,38 @@ BOOL_T ME_C::get_omci_s()
 
     closedir(dir);
     return true;
+}
+
+BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
+{
+    Json::Value omci_s;
+
+    omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
+
+    std::string action= omci_s["Action"].asString();
+
+    printf("ME_C :: Action[%s]\r\n", action.c_str());
+
+    if(action.find("create") != std::string::npos && (Action == OMCI_Parser::get_omci_action_id("CREATE")))
+    {
+        return true;
+    }
+    if(action.find("delete")!= std::string::npos && (Action == OMCI_Parser::get_omci_action_id("DELETE")))
+    {
+        return true;
+    }
+    if(action.find("get")!= std::string::npos && (Action == OMCI_Parser::get_omci_action_id("GET")))
+    {
+        return true;
+    }
+    if(action.find("set")!= std::string::npos && (Action == OMCI_Parser::get_omci_action_id("SET")))
+    {
+        return true;
+    }
+    if(action.find("reboot")!= std::string::npos && (Action == OMCI_Parser::get_omci_action_id("SET")))
+    {
+        return true;
+    }
+    return false;
 }
 
