@@ -4,14 +4,14 @@
 #include <json/json.hpp>
 #include <json/json.h>
 
-#define SWITCHCASE(cid, ins_id, me_name, me_s) do { \
-{\
-case cid: \
-     me_name *A = new me_name(cid, ins_id, me_s);\
-     M_OMCI_P[std::make_pair(cid,ins_id)]=A;\
-     break;\
-}\
-} while (0)
+#define SWITCHCASE(cid, ins_id, me_name, me_s) \
+     case cid :\
+     {\
+         me_name *A = new me_name(cid, ins_id, me_s);\
+         printf("CID[%d]\r\n", cid);\
+         M_OMCI_P[std::make_pair(cid,ins_id)]=A;\
+         break;\
+     }
 
 enum Action 
 { 

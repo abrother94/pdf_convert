@@ -59,13 +59,16 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
 {
     ME_S *pME = NULL;
 
+    printf("create me object class id [%d]\r\n", class_id);
+
     pME = M_OMCI_P[std::make_pair(class_id, instance_id)];
     if (pME == NULL)
     {
         switch(class_id)
         {
+            SWITCHCASE(266 , instance_id, GEM_interworking_termination_point, me_s);
             SWITCHCASE(256 , instance_id, ONT_G, me_s);
-            SWITCHCASE(266, instance_id,  GEM_interworking_termination_point, me_s);
+            SWITCHCASE(281 , instance_id, Multicast_GEM_interworking_termination_point, me_s);
             default:
                 break;
         }
@@ -134,7 +137,7 @@ BOOL_T ME_C::get_omci_s()
                 M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
                 //printf("s vecotr size is %d\r\n", M_OMCI_S.size());
                 printf("g vecotr size is %zu\r\n", M_OMCI_G.size());
-                //create_me_obj(Class, Id, omci_s);
+                create_me_obj(Class, 10, omci_s);
                 //printf("p vecotr size is %zu\r\n", M_OMCI_P.size());
             }
             else

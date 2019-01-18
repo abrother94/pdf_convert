@@ -37,8 +37,20 @@ std::string OMCI_Parser::get_omci_action_name(UI8_T action_ID)
         action_ID = 0;
 
     std::map<UI8_T, std::string>::const_iterator it ;
-    it = m_m_action_t.find(action_ID);
+    it = g_action_t.find(action_ID);
     return it->second;
+}
+
+UI16_T OMCI_Parser::get_omci_action_id(std::string value)
+{
+    UI16_T key = 0;
+    for (auto &i : g_action_t) {
+        if (i.second == value) {
+            key = i.first;
+            break; // to stop searching
+        }
+    }
+    return key;
 }
 
 UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)

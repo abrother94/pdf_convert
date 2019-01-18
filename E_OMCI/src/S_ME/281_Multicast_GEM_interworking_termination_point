@@ -1,8 +1,8 @@
 {
-    "Class"       : 266 ,
+    "Class"       : 281 ,
     "Id"          : 0 ,
-    "Name"        : "GEM_interworking_termination_point" ,
-    "Action"      : "create, delete, get, set", 
+    "Name"        : "Multicast_GEM_interworking_termination_point" ,
+    "Action"      : "create, delete, get, get next, set", 
     "Created_by"  : "OLT" ,
     "Create_Time" : 0 
     
@@ -22,7 +22,7 @@
 {
 
     "Id"       : 2 ,
-    "Name"     : "GEM_port_network_CTP_connectivity_pointer" ,
+    "Name"     : "connectivity_pointer" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
@@ -55,11 +55,11 @@
 {
 
     "Id"       : 5 ,
-    "Name"     : "termination_point_pointer" ,
-    "Size"     : "2" ,
-    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Name"     : "Interworking_termination_point_pointer" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : 0,
-    "Mandtary" : "mandatory"
+    "Mandtary" : "optional"
     
 }
 ,
@@ -78,17 +78,6 @@
 
     "Id"       : 7 ,
     "Name"     : "Operational_state" ,
-    "Size"     : "1" ,
-    "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
-    "Mandtary" : "optional"
-    
-}
-,
-{
-
-    "Id"       : 8 ,
-    "Name"     : "GAL_profile_pointer" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
@@ -98,10 +87,10 @@
 ,
 {
 
-    "Id"       : 9 ,
-    "Name"     : "GAL_loopback_configuration" ,
+    "Id"       : 8 ,
+    "Name"     : "GAL_profile_pointer" ,
     "Size"     : "1" ,
-    "Access"   : "ATTR_ACCESS_RW",
+    "Access"   : "ATTR_ACCESS_RW_SC",
     "Value"    : 0,
     "Mandtary" : "mandatory"
     

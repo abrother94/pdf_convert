@@ -4,6 +4,8 @@
 #include <common.hpp>
 #include <string> 
 #include <map>
+#include <me_c.hpp>
+
 using namespace std;
 
 enum OMCI_ME_CLASS_ID_E
@@ -162,44 +164,49 @@ constexpr UI8_T OMCI_MSG_CONTENT_SIZE    = 32;
 constexpr UI8_T OMCI_GEM_HEADER_SIZE     = 5;
 
 
+const std::map<UI8_T, std::string> g_action_t = 
+{
+    {0,"NO_SUPPORT",},
+    {4,"CREATE",},
+    {6,"DELETE"},
+    {8,"SET",},
+    {9,"GET"},
+    {11,"GET_ALL_ALARMS"},
+    {12,"GET_ALL_ALARMS_NEXT"},
+    {13,"MIB_UPLOAD"},
+    {14,"MIB_UPLOAD_NEXT"},
+    {15,"MIB_RESET"},
+    {16,"ALARM"},
+    {17,"ATTRIBUTE_VALUE_CHANGE"},
+    {18,"TEST"},
+    {19,"START_SOFT_DOWNLOAD"},
+    {20,"DOWNLOAD_SECTION"},
+    {21,"END_SOFT_DOWNLOAD"},
+    {22,"ACTIVATE_IMAGE"},
+    {23,"COMMIT_IMAGE"},
+    {24,"SYNCHRONIZE_TIME"},
+    {25,"REBOOT"},
+    {26,"GET_NEXT"},
+    {27,"TEST_RESULT"},
+    {28,"GET_CURRENT_DATA"},
+    {29,"SET_ALU_NO_DATASYNC"},
+};
+
+
 class OMCI_Parser
 {
-    const std::map<UI8_T, std::string> m_m_action_t = 
-    {
-        {0,"NO SUPPORT",},
-        {4,"CREATE",},
-        {6,"DELETE"},
-        {8,"SET",},
-        {9,"GET"},
-        {11,"GET_ALL_ALARMS"},
-        {12,"GET_ALL_ALARMS_NEXT"},
-        {13,"MIB_UPLOAD"},
-        {14,"MIB_UPLOAD_NEXT"},
-        {15,"MIB_RESET"},
-        {16,"ALARM"},
-        {17,"ATTRIBUTE_VALUE_CHANGE"},
-        {18,"TEST"},
-        {19,"START_SOFT_DOWNLOAD"},
-        {20,"DOWNLOAD_SECTION"},
-        {21,"END_SOFT_DOWNLOAD"},
-        {22,"ACTIVATE_IMAGE"},
-        {23,"COMMIT_IMAGE"},
-        {24,"SYNCHRONIZE_TIME"},
-        {25,"REBOOT"},
-        {26,"GET_NEXT"},
-        {27,"TEST_RESULT"},
-        {28,"GET_CURRENT_DATA"},
-        {29,"SET_ALU_NO_DATASYNC"},
-    };
     public:
-    BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
-    BOOL_T get_me_by_class(UI16_T Class);
-    BOOL_T me_find_instance(UI16_T Class ,UI16_T ME_ID);
-    BOOL_T me_create_instance(UI16_T Class ,UI16_T ME_ID, UI8_T * pkt_p);
-    std::string get_omci_action_name(UI8_T action_ID);
-    UI16_T omci_pkt_parser(UI8_T *pkt_p);
+        BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
+        BOOL_T get_me_by_class(UI16_T Class);
+        BOOL_T me_find_instance(UI16_T Class ,UI16_T ME_ID);
+        BOOL_T me_create_instance(UI16_T Class ,UI16_T ME_ID, UI8_T * pkt_p);
+        static std::string get_omci_action_name(UI8_T action_ID);
+        static UI16_T get_omci_action_id(std::string value);
+        UI16_T omci_pkt_parser(UI8_T *pkt_p);
+
+        ME_C   m_me;
     private:
-    UI16_T get_omci_ui16(UI8_T *data);
+        UI16_T get_omci_ui16(UI8_T *data);
 };
 
 #endif

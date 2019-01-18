@@ -159,7 +159,8 @@ get_action()
     local ES='Notifications'
     #Action_mode=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e "s/$SS//g" | sed -e "s/$ES//g"`
     Action_mode=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | sed -e 's/\//_/g' | awk -F"\\\\\ {2,5}" '{print $1}' | tr '\n' " " | sed -e "s/$SS//g" | sed -e "s/$ES//g" `
-    echo "$Action_mode"
+    local action_type=`echo "$Action_mode" | tr '[:upper:]' '[:lower:]'`
+    echo "$action_type" 
 }
 
 get_attribute_mode()

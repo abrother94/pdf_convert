@@ -2,7 +2,7 @@
     "Class"       : 256 ,
     "Id"          : 0 ,
     "Name"        : "ONT_G" ,
-    "Action"      : "Get, set Reboot: Test: Synchronize time:", 
+    "Action"      : "get, set reboot: test: synchronize time:", 
     "Created_by"  : "OLT" ,
     "Create_Time" : 0 
     

@@ -3,5 +3,6 @@
 
 #include "ONT_G.hpp"
 #include "GEM_interworking_termination_point.hpp"
+#include "Multicast_GEM_interworking_termination_point.hpp"
 
 #endif 

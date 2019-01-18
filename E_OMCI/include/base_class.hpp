@@ -14,15 +14,17 @@ class ME_S
 {
     public:
 
-        Json::Value m_ME;
+        Json::Value m_j_me;
         ME_S():m_class_id(0),m_instance_id(0){return;};
-        ME_S(int class_id,int instance_id, Json::Value me_s):m_class_id(class_id),m_instance_id(instance_id),m_ME(me_s){return;};
+        ME_S(UI32_T class_id, UI32_T instance_id, Json::Value me_s);
+
         virtual ~ME_S(){};
         virtual void get_method(){};
         virtual void set_method(){};
 
-        int m_class_id;
-        int m_instance_id;
+        UI32_T m_class_id;
+        UI32_T m_instance_id;
+        UI32_T m_actions_table=0;
 
         Attribute_S m_Attributes[17];
 

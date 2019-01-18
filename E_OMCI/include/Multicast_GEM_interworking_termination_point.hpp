@@ -1,3 +1,4 @@
+/*
 9.2.5     Multicast GEM interworking termination point
 An instance of this managed entity represents a point in the ONT where a multicast service
 interworks with the GEM layer. At this point, a multicast bit stream is reconstructed from GEM
@@ -98,3 +99,58 @@ Alarm
       0     GFSA                          GEM frame starvation alarm
    1..207   Reserved
   208..223  Vendor-specific alarms        Not to be standardized
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(MULTICAST_GEM_INTERWORKING_TERMINATION_POINT_INCLUDE_HPP)
+#define  MULTICAST_GEM_INTERWORKING_TERMINATION_POINT_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class Multicast_GEM_interworking_termination_point : public ME_S 
+{
+    public:
+        Multicast_GEM_interworking_termination_point();
+        Multicast_GEM_interworking_termination_point(int class_id,int instance_id, Json::Value me_s);
+
+        ~Multicast_GEM_interworking_termination_point();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_5_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_6_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_7_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+

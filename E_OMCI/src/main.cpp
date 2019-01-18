@@ -39,7 +39,7 @@ char* get_text_line(FILE* input_fp)
     char *read_buf = 0;
     static UI32_T lineLen=0;
     static I32_T Len=0;
-    OMCI_Parser omci_p;
+
 
     while ((Len = getline(&read_buf,(size_t *)&lineLen ,input_fp)) !=  -1)
     {
@@ -58,7 +58,6 @@ char* get_text_line(FILE* input_fp)
             omci_raw[i] = PC;
         }
         printf("\r\n");
-        omci_p.omci_pkt_parser((unsigned char *)omci_raw);
     }    
     return read_buf;
 }
@@ -78,6 +77,9 @@ int main(int argc, char *argv[])
     //platform_arch_info();
     FILE *OMCI_cmds_fp;
     char OMCI_Cmds_filename[256];
+
+    OMCI_Parser omci_p;
+    return 1;
 
     if(argc == 2 && strlen(argv[1]) >  0)
     {
