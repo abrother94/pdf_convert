@@ -101,21 +101,21 @@ Test result:           Test results are reported via a test result message if th
 //    function in ME_S class ,too.
 // ------------------------------------------------------------------
 
-#if !defined(ONT_G_INCLUDE_HPP)
-#define  ONT_G_INCLUDE_HPP
+#if !defined(ME_ONT_G_INCLUDE_HPP)
+#define  ME_ONT_G_INCLUDE_HPP
 
 #include <json/json.hpp>
 #include <json/json.h>
 #include <common.hpp>
 #include <base_class.hpp>
 
-class ONT_G : public ME_S 
+class ME_ONT_G : public ME_S 
 {
     public:
-        ONT_G();
-        ONT_G(int class_id,int instance_id, Json::Value me_s);
+        ME_ONT_G();
+        ME_ONT_G(int class_id,int instance_id, Json::Value me_s);
 
-        ~ONT_G();
+        ~ME_ONT_G();
         int m_2;
         char m_strin[256]={};
         void get_method();

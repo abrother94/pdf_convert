@@ -174,7 +174,7 @@ get_attribute_mode()
     local RWPATTERN='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\))'
     local MANPATTERN='(\(mandatory\)|\(optional\))'
     local BYTEPATTERN='(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
-    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].*(\ {10}[^A-Za-z0-9\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" `
+    Attribute_Name=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].*(\ {3}[^A-Za-z0-9\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" `
 
     #while IFS=' ' read -r RW SET_GET SIZE;do
     while read -r ALL;do
@@ -224,7 +224,7 @@ get_me_attributes_num()
     local RWPATTERN='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\))'
     local MANPATTERN='(\(mandatory\)|\(optional\))'
     local BYTEPATTERN='(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
-    local count=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].*(\ {10}[^A-Za-z0-9\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" | wc -l`
+    local count=`sed -n "/$SS/,/$ES/p; /$ES/q" "$name" | egrep "((^ {1,30})|(^[A-Za-z].*(\ {3}[^A-Za-z0-9\(\)])))"  | sed -e 's/^[A-Za-z].* [^A-Za-z\(\)]//g' |sed -e 's/^ \{1,24\}//g' | tr '\n' " " |  egrep -o "$RWP" | wc -l`
 
     echo "$count"
 }
@@ -275,8 +275,9 @@ case "${ITEM}" in
 	echo $(find_me_class_id  "$ME_NAME")
 	;;
     "me_name")  
-	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g ; s/ /_/g ; s/-/_/g"`
-	echo "$ME_NAME"
+	ME_NAME=`cat $SECTION | egrep "^[9].[0-9]{1,2}.[0-9]{1,2}" | awk -F"^[9].[0-9]{1,2}.[0-9]{1,2}" '{print $2}'| sed -e "s/^ *//g ; s/ /_/g ; s/-/_/g; s/\./_/g"`
+	RE=`echo $ME_NAME | sed -e "s/^[0-9A-Za-z]/ME_&/g"`
+	echo "$RE"
 	;;
     "action")  		
 	echo $(get_action "$SECTION")

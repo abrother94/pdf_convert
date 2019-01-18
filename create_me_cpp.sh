@@ -34,6 +34,11 @@ HEAD_TEMP "$ME_NAME" "$ATTRIB_NUM" "$SECTION"  >> "$INC_OUTPUT_FILE"
 CPP_TEMP  "$ME_NAME" "$ATTRIB_NUM" >> "$CPP_OUTPUT_FILE" 
 
 echo "Create [$INC_OUTPUT_FILE] !"
+NEW_INC_LINE="#include \"$ME_NAME.hpp\""
+sed -i "/\/\/ADDHERE/a $NEW_INC_LINE" E_OMCI/include/all_me.hpp
+
 echo "Create [$CPP_OUTPUT_FILE] !"
+NEW_CPP_LINE="SWITCHCASE($CID , instance_id, $ME_NAME, me_s);"
+sed -i "/\/\/ADDHERE/a \            $NEW_CPP_LINE" E_OMCI/src/me_c.cpp
 
 exit

@@ -22,21 +22,22 @@ TP pointer:                   This attribute points to an instance of the associ
                               6                PPTP MoCA UNI.
                               Not supported Bridging mapping if TP pointer value is 0xFFFF. TP
                                                pointer may also point to PPTP Ethernet UNI.
-                          NOTE 1 ??When the TP type is xDSL, the two most significant bits may be
-                          used to indicate a bearer channel.
-                          (R, W, Set-by-create) (mandatory) (2 bytes)
-                          Each of the following eight attributes points to the GEM interworking
-                          termination point associated with the stated P-bit value. The null
-                          pointer 0xFFFF specifies that frames with the associated priority are to
-                          be discarded.
-Interwork TP pointer for P-bit priority 0:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Interwork TP pointer for P-bit priority 1:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Interwork TP pointer for P-bit priority 2:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Interwork TP pointer for P-bit priority 3:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Interwork TP pointer for P-bit priority 4:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Interwork TP pointer for P-bit priority 5:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Interwork TP pointer for P-bit priority 6:     (R, W, Set-by-create) (mandatory) (2 bytes)
-Interwork TP pointer for P-bit priority 7:     (R, W, Set-by-create) (mandatory) (2 bytes)
+                              NOTE 1 ??When the TP type is xDSL, the two most significant bits may be
+                              used to indicate a bearer channel.  (R, W, Set-by-create) (mandatory) (2 bytes)
+
+                              Each of the following eight attributes points to the GEM interworking
+                              termination point associated with the stated P-bit value. The null
+                              pointer 0xFFFF specifies that frames with the associated priority are to be discarded.
+
+ITP_OTR_FOR_PBIT_PRI 0:     (R, W, Set-by-create) (mandatory) (2 bytes)
+ITP_OTR_FOR_PBIT_PRI 1:     (R, W, Set-by-create) (mandatory) (2 bytes)
+ITP_OTR_FOR_PBIT_PRI 2:     (R, W, Set-by-create) (mandatory) (2 bytes)
+ITP_OTR_FOR_PBIT_PRI 3:     (R, W, Set-by-create) (mandatory) (2 bytes)
+ITP_OTR_FOR_PBIT_PRI 4:     (R, W, Set-by-create) (mandatory) (2 bytes)
+ITP_OTR_FOR_PBIT_PRI 5:     (R, W, Set-by-create) (mandatory) (2 bytes)
+ITP_OTR_FOR_PBIT_PRI 6:     (R, W, Set-by-create) (mandatory) (2 bytes)
+ITP_OTR_FOR_PBIT_PRI 7:     (R, W, Set-by-create) (mandatory) (2 bytes)
+
 Unmarked frame option:    This attribute specifies how the ONT should handle untagged Ethernet
                           frames received across the associated interface. Valid values include:
                           0   Convert from DSCP to 802.1p.
@@ -71,7 +72,7 @@ TP type:                      This attribute identifies the type of termination 
                               5 Mapper directly associated with a PPTP 802.11 UNI.
                               6 Mapper directly associated with a PPTP MoCA UNI.
                               (R, W, Set-by-create) (optional) (1 byte)
-Actions
+Action
 Create, delete, get, set
 Notifications
 None.

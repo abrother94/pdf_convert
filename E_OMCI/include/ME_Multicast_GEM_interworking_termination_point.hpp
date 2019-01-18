@@ -107,21 +107,21 @@ Alarm
 //    function in ME_S class ,too.
 // ------------------------------------------------------------------
 
-#if !defined(MULTICAST_GEM_INTERWORKING_TERMINATION_POINT_INCLUDE_HPP)
-#define  MULTICAST_GEM_INTERWORKING_TERMINATION_POINT_INCLUDE_HPP
+#if !defined(ME_MULTICAST_GEM_INTERWORKING_TERMINATION_POINT_INCLUDE_HPP)
+#define  ME_MULTICAST_GEM_INTERWORKING_TERMINATION_POINT_INCLUDE_HPP
 
 #include <json/json.hpp>
 #include <json/json.h>
 #include <common.hpp>
 #include <base_class.hpp>
 
-class Multicast_GEM_interworking_termination_point : public ME_S 
+class ME_Multicast_GEM_interworking_termination_point : public ME_S 
 {
     public:
-        Multicast_GEM_interworking_termination_point();
-        Multicast_GEM_interworking_termination_point(int class_id,int instance_id, Json::Value me_s);
+        ME_Multicast_GEM_interworking_termination_point();
+        ME_Multicast_GEM_interworking_termination_point(int class_id,int instance_id, Json::Value me_s);
 
-        ~Multicast_GEM_interworking_termination_point();
+        ~ME_Multicast_GEM_interworking_termination_point();
         int m_2;
         char m_strin[256]={};
         void get_method();
@@ -149,6 +149,9 @@ class Multicast_GEM_interworking_termination_point : public ME_S
 
 
         bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_9_method(Action in_Action, unsigned *value, void *arg);
 
 
 };

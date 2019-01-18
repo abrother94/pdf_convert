@@ -10,32 +10,32 @@
 #include <sys/types.h>
 #include <string.h>
 #include <typeinfo>
-#include <GEM_interworking_termination_point.hpp>
+#include <ME_ONT_G.hpp>
 
-GEM_interworking_termination_point::GEM_interworking_termination_point()
+ME_ONT_G::ME_ONT_G()
 {
 
 }
 
-GEM_interworking_termination_point::GEM_interworking_termination_point(int class_id,int instance_id,  Json::Value me_s):ME_S(class_id, instance_id, me_s)
+ME_ONT_G::ME_ONT_G(int class_id,int instance_id,  Json::Value me_s):ME_S(class_id, instance_id, me_s)
 {
 
 }
 
-GEM_interworking_termination_point::~GEM_interworking_termination_point()
+ME_ONT_G::~ME_ONT_G()
 {
-    printf("~GEM_interworking_termination_point\r\n");
+    printf("~ME_ONT_G\r\n");
 }
 
-void GEM_interworking_termination_point::get_method()
+void ME_ONT_G::get_method()
 { 
-    printf("GEM_interworking_termination_point get_method\r\n"); 
+    printf("ME_ONT_G get_method\r\n"); 
 }
 
 
 
 	
-bool GEM_interworking_termination_point::attribute_1_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_1_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -61,7 +61,7 @@ bool GEM_interworking_termination_point::attribute_1_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_2_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_2_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -87,7 +87,7 @@ bool GEM_interworking_termination_point::attribute_2_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_3_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_3_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -113,7 +113,7 @@ bool GEM_interworking_termination_point::attribute_3_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_4_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_4_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -139,7 +139,7 @@ bool GEM_interworking_termination_point::attribute_4_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_5_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_5_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -165,7 +165,7 @@ bool GEM_interworking_termination_point::attribute_5_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_6_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_6_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -191,7 +191,7 @@ bool GEM_interworking_termination_point::attribute_6_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_7_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_7_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -217,7 +217,7 @@ bool GEM_interworking_termination_point::attribute_7_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_8_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_8_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -243,7 +243,7 @@ bool GEM_interworking_termination_point::attribute_8_method(Action in_Action, UI
 
 
 	
-bool GEM_interworking_termination_point::attribute_9_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_ONT_G::attribute_9_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {

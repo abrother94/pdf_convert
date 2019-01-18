@@ -67,9 +67,10 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
     {
         switch(class_id)
         {
-            SWITCHCASE(266 , instance_id, GEM_interworking_termination_point, me_s);
-            SWITCHCASE(256 , instance_id, ONT_G, me_s);
-            SWITCHCASE(281 , instance_id, Multicast_GEM_interworking_termination_point, me_s);
+            //ADDHERE
+            SWITCHCASE(281 , instance_id, ME_Multicast_GEM_interworking_termination_point, me_s);
+            SWITCHCASE(256 , instance_id, ME_ONT_G, me_s);
+            //SWITCHCASE(281 , instance_id, Multicast_GEM_interworking_termination_point, me_s);
             default:
                 break;
         }
