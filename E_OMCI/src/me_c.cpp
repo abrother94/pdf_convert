@@ -68,6 +68,7 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
         switch(class_id)
         {
             //ADDHERE
+            SWITCHCASE(130 , instance_id, ME_802_1p_mapper_service_profile, me_s);
             SWITCHCASE(281 , instance_id, ME_Multicast_GEM_interworking_termination_point, me_s);
             SWITCHCASE(256 , instance_id, ME_ONT_G, me_s);
             //SWITCHCASE(281 , instance_id, Multicast_GEM_interworking_termination_point, me_s);
@@ -159,6 +160,17 @@ BOOL_T ME_C::get_omci_s()
     return true;
 }
 
+BOOL_T ME_C::check_me_s_valid(UI16_T Class)
+{
+    std::map<std::pair<int,int>, Json::Value>::const_iterator it;
+    it = M_OMCI_G.find(std::make_pair(Class, 0));
+
+    if (it == M_OMCI_G.end()) 
+        return false;
+    else 
+        return true;
+}
+
 BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
 {
     Json::Value omci_s;
@@ -166,8 +178,10 @@ BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
     omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
 
     std::string action= omci_s["Action"].asString();
+    std::string in_action = OMCI_Parser::get_omci_action_name(Action);
 
-    printf("ME_C :: Action[%s]\r\n", action.c_str());
+    printf("ME_C :: Class[%d] chk action[%s][%d] support action[%s][%d]\r\n", \
+    Class, in_action.c_str(),Action, action.c_str(), OMCI_Parser::get_omci_action_id("SET"));
 
     if(action.find("create") != std::string::npos && (Action == OMCI_Parser::get_omci_action_id("CREATE")))
     {

@@ -205,8 +205,10 @@ class OMCI_Parser
         UI16_T omci_pkt_parser(UI8_T *pkt_p);
 
         ME_C   m_me;
+
     private:
         UI16_T get_omci_ui16(UI8_T *data);
+        BOOL_T check_action_valid(UI16_T Class, UI16_T Action);
 };
 
 #endif

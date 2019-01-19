@@ -10,9 +10,15 @@ BOOL_T OMCI_Parser::omci_parser_validaterxpkt (UI8_T * pkt_p)
 {
     return true;
 }
+
+BOOL_T OMCI_Parser::check_action_valid(UI16_T Class, UI16_T Action)
+{
+    return m_me.check_action_valid(Class, Action);
+}
+
 BOOL_T OMCI_Parser::get_me_by_class(UI16_T Class)
 {
-    return true;
+    return m_me.check_me_s_valid(Class);
 }
 
 BOOL_T OMCI_Parser::me_find_instance (UI16_T Class ,UI16_T ME_ID)
@@ -104,18 +110,19 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     }
 
     // Check action exist for this ME //
-    if( !m_me.check_action_valid(Class, Action))
+    if( !check_action_valid(Class, Action) )
     {
-    
-        printf("Not support this Action!!\r\n");
+        printf("ME[%d] not support this action[%d]!!\r\n", Class, Action);
         return 0; 
     }
+    else
+        printf("Support this Action!\r\n");
 
     //---------------------------------------------------------------------
     // 3. Check has this me from ME_S. 
     //---------------------------------------------------------------------
 
-    if (get_me_by_class(Class))
+    if (!get_me_by_class(Class))
     {
         printf("NOT Supported ME (%d)\n",Class);
     }
