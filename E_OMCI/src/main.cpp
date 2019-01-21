@@ -47,7 +47,7 @@ char* get_text_line(FILE* input_fp)
         UI8_T PC;
         int sizeofTest= strlen(read_buf)/2;
 
-        printf("omci size is %d\r\n", sizeofTest);
+        printf("[%s]omci size is %d\r\n", __MY_FILE__, sizeofTest);
 
         char * OMCI_pkt_hex_string =read_buf;
 
@@ -85,13 +85,13 @@ int main(int argc, char *argv[])
 
     if(argc == 2 && strlen(argv[1]) >  0)
     {
-        printf("filename[%s]\r\n", argv[1]);
+        printf("[%s]filename[%s]\r\n",__MY_FILE__, argv[1]);
 
         sprintf(OMCI_Cmds_filename,"%s",argv[1]);
 
         if ((OMCI_cmds_fp = fopen(OMCI_Cmds_filename, "r"))==NULL)
         {
-            printf("Failed to open file: %s for reading..",OMCI_Cmds_filename);
+            printf("[%s]Failed to open file: %s for reading..",__MY_FILE__,OMCI_Cmds_filename);
             return 0;
         }
         else
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("Please provide RAW_DATA_FILE of OMCI !!!!! \r\n");
+        printf("[%s]Please provide RAW_DATA_FILE of OMCI !!!!! \r\n",__MY_FILE__);
         return 0;
     }
     return 1;

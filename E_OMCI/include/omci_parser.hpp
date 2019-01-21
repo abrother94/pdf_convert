@@ -199,7 +199,7 @@ class OMCI_Parser
         BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
         BOOL_T get_me_by_class(UI16_T Class);
         BOOL_T me_find_instance(UI16_T Class ,UI16_T ME_ID);
-        BOOL_T me_create_instance(UI16_T Class ,UI16_T ME_ID, UI8_T * pkt_p);
+        BOOL_T me_create_instance(UI16_T Class ,UI16_T ME_ID);
         static std::string get_omci_action_name(UI8_T action_ID);
         static UI16_T get_omci_action_id(std::string value);
         UI16_T omci_pkt_parser(UI8_T *pkt_p);

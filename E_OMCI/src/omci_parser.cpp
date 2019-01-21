@@ -21,13 +21,16 @@ BOOL_T OMCI_Parser::get_me_by_class(UI16_T Class)
     return m_me.check_me_s_valid(Class);
 }
 
-BOOL_T OMCI_Parser::me_find_instance (UI16_T Class ,UI16_T ME_ID)
+BOOL_T OMCI_Parser::me_find_instance(UI16_T Class ,UI16_T ME_ID)
 {
-    return true;
+    return m_me.check_me_o_valid(Class, ME_ID);
 }
 
-BOOL_T OMCI_Parser::me_create_instance(UI16_T Class ,UI16_T ME_ID, UI8_T * pkt_p)
+BOOL_T OMCI_Parser::me_create_instance(UI16_T Class ,UI16_T ME_ID)
 {
+    printf("[%s]Create me instance [%d] instance_id [%d]\r\n",__MY_FILE__,Class, ME_ID);
+    Json::Value omci_s= m_me.get_me_s_json(Class);
+    m_me.create_me_obj(Class, ME_ID, omci_s); 
     return true;
 }
 
@@ -68,7 +71,7 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     UI16_T ME_ID;
     UI16_T Attrs_mask;
     BOOL_T obj_exist = false; 
-    printf("OMCI_PKT_SIZE is %d\r\n", OMCI_PKT_SIZE);
+    printf("[%s]OMCI_PKT_SIZE is %d\r\n",__MY_FILE__ , OMCI_PKT_SIZE);
 
     //---------------------------------------------------------------------
     // 1. If input omci packet is invalid, we cannot parse, nor process.
@@ -89,10 +92,10 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     // 2. Get MessageType (Action) from input omci packet
     //---------------------------------------------------------------------
     Action = (*(pkt_p + OFFSET_OMCI_MSG_TYPE)) & OMCI_MSG_MT_MASK;
-    printf("PARSER: class[%d]  ME_ID:[%d]  Action[%s] [0x%04X]\n", Class, ME_ID, get_omci_action_name(Action).c_str(), Action);
+    printf("[%s]class[%d]  ME_ID:[%d]  Action[%s] [0x%04X]\n",__MY_FILE__, Class, ME_ID, get_omci_action_name(Action).c_str(), Action);
     if(ME_ID == 0)
     {
-        printf("ME INSTANCE ID CAN'T BE 0 !!!!\r\n");
+        printf("[%s]ME INSTANCE ID CAN'T BE 0 !!!!\r\n", __MY_FILE__);
         return 0;
     }
 
@@ -100,23 +103,23 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     // Always igore notifications like: AVC from OLT. Alarm from OLT.
     if ((Action == MSGTYPE_ATTRIBUTE_VALUE_CHANGE) || (Action == MSGTYPE_ALARM))
     {
-        printf("MSGTYPE_ATTRIBUTE_VALUE_CHANGE MSGTYPE_ALARM!!!\r\n");
+        printf("[%s]MSGTYPE_ATTRIBUTE_VALUE_CHANGE MSGTYPE_ALARM!!!\r\n", __MY_FILE__);
         return 0;
     }
 
     if ((Action == MSGTYPE_SET) || (Action == MSGTYPE_GET) || (Action == MSGTYPE_GET_CURRENT_DATA))
     {
-        printf("attr_mask: %04X\n", Attrs_mask);
+        printf("[%s]attr_mask: %04X\n", __MY_FILE__, Attrs_mask);
     }
 
     // Check action exist for this ME //
     if( !check_action_valid(Class, Action) )
     {
-        printf("ME[%d] not support this action[%d]!!\r\n", Class, Action);
+        printf("[%s]ME[%d] not support this action[%d]!!\r\n",__MY_FILE__, Class, Action);
         return 0; 
     }
     else
-        printf("Support this Action!\r\n");
+        printf("[%s]Support this Action!\r\n",__MY_FILE__);
 
     //---------------------------------------------------------------------
     // 3. Check has this me from ME_S. 
@@ -124,22 +127,20 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
 
     if (!get_me_by_class(Class))
     {
-        printf("NOT Supported ME (%d)\n",Class);
+        printf("[%s]NOT Supported ME (%d)\n",__MY_FILE__, Class);
+        return 0; 
     }
     else
     {
         obj_exist = me_find_instance(Class ,ME_ID);
         if (!obj_exist && (Action != MSGTYPE_CREATE))
         {
-            printf("ME ERR: ME CLass[%d] instance_ID NOT exist. cannot [%s]\n", Class, get_omci_action_name(Action).c_str());
+            printf("[%s]ME CLass[%d] instance_ID NOT exist. cannot [%s]\n",__MY_FILE__, Class, get_omci_action_name(Action).c_str());
+            return 0; 
         }
-        else
+        else if(obj_exist)
         {
-            // Check action is support or not //
-            //if (!((pME->Actions_table) & (1 << Action)))
-            {
-                printf("ME ERR: ME CLass[%d] Not support Action [%s]\n", Class, get_omci_action_name(Action).c_str());
-            }
+            printf("[%s]ME [%d] instance found. Prepare %s \n",__MY_FILE__ ,Class, get_omci_action_name(Action).c_str());
         }  
     }  
 
@@ -152,36 +153,36 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
         case MSGTYPE_CREATE:
             if (obj_exist)
             {
-                printf("ME ERR: ME_class(%d), ME instance(%d) exist, cannot create again\n", Class, ME_ID);
+                printf("[%s]ME_class(%d), ME instance(%d) exist, cannot create again\n",__MY_FILE__ ,Class, ME_ID);
             }
             else
-                me_create_instance(Class , ME_ID, pkt_p);
+                me_create_instance(Class , ME_ID);
 
             if (Class == MECID_VLAN_TAGGING_OP_CONFIG_DATA)
             {
-                printf("VTOCD tpe!!!!!!\r\n");
+                printf("[%s]VTOCD tpe!!!!!!\r\n", __MY_FILE__);
             }
             else if (Class == MECID_EXT_VLAN_TAGGING_OP_CONFIG_DATA)
             {
-                printf("E-VTOCD tpe!!!!!!\r\n");
+                printf("[%s]E-VTOCD tpe!!!!!!\r\n", __MY_FILE__);
             }
             break;
 
         case MSGTYPE_DELETE:
-            printf("MSGTYPE_DELETE!!!!!!\r\n");
+            printf("[%s]MSGTYPE_DELETE!!!!!!\r\n", __MY_FILE__);
             break;
 
         case MSGTYPE_SET:
-            printf("MSGTYPE_SET!!!!!!\r\n");
+            printf("[%s]MSGTYPE_SET!!!!!!\r\n", __MY_FILE__);
             break;
 
         case MSGTYPE_GET:
         case MSGTYPE_GET_CURRENT_DATA:
-            printf("MSGTYPE_GET!!!!!!\r\n");
+            printf("[%s]MSGTYPE_GET!!!!!!\r\n", __MY_FILE__);
             break;
 
         case MSGTYPE_GET_NEXT:
-            printf("MSGTYPE_GET_NEXT!!!!!!\r\n");
+            printf("[%s]MSGTYPE_GET_NEXT!!!!!!\r\n",__MY_FILE__);
             break;
 
             //-----------------------------------------------------------------
@@ -191,7 +192,7 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
             //   MIB_UPLOAD, MIB_UPLOAD_NEXT
             //-----------------------------------------------------------------
         case MSGTYPE_REBOOT:
-            printf("MSGTYPE_REBOOT!!!!!!\r\n");
+            printf("[%s]MSGTYPE_REBOOT!!!!!!\r\n",__MY_FILE__);
             break;
 
             //-----------------------------------------------------------------
@@ -204,7 +205,7 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
             break;
 
         default:
-            printf("ME ERR: illegal message Type : %d", Action);
+            printf("[%s]Illegal message Type : %d", __MY_FILE__, Action);
     }  // switch (Action)
     return 0;
 }

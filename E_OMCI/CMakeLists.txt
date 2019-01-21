@@ -23,6 +23,8 @@ INCLUDE_DIRECTORIES (
     ${JSONCPP_INCLUDE_DIRS}
 )
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__MY_FILE__='\"$(notdir $(abspath $<))\"'")
+
 FILE(GLOB E_OMCI_SOURCES "src/*.cpp")
 
 ADD_EXECUTABLE (e_omci ${E_OMCI_SOURCES})

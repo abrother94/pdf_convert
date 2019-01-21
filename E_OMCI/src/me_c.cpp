@@ -13,12 +13,12 @@ ME_C::ME_C()
 {
     if(get_omci_s())
     {
-        printf("get_omci_s OK!!\r\n");
+        printf("[%s]get_omci_s OK!!\r\n",__MY_FILE__);
     }
     else
     {
-        printf("get_omci_s NG!!\r\n");
-        printf("###### SUPPORTED ME FILE ERROR #######!!!!\r\n");
+        printf("[%s]get_omci_s NG!!\r\n", __MY_FILE__);
+        printf("[%s]###### SUPPORTED ME FILE ERROR #######!!!!\r\n", __MY_FILE__);
     }
 }
 
@@ -60,7 +60,7 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
 {
     ME_S *pME = NULL;
 
-    printf("create me object class id [%d]\r\n", class_id);
+    printf("[%s]Create me object class id [%d] instance id[%d] \r\n", __MY_FILE__, class_id, instance_id);
 
     pME = M_OMCI_P[std::make_pair(class_id, instance_id)];
     if (pME == NULL)
@@ -68,6 +68,7 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
         switch(class_id)
         {
             //ADDHERE
+            SWITCHCASE(272 , instance_id, ME_GAL_Ethernet_profile, me_s);
             SWITCHCASE(130 , instance_id, ME_802_1p_mapper_service_profile, me_s);
             SWITCHCASE(281 , instance_id, ME_Multicast_GEM_interworking_termination_point, me_s);
             SWITCHCASE(256 , instance_id, ME_ONT_G, me_s);
@@ -79,7 +80,7 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
     }
     else
     {
-        printf("Already exist class_id [%d] instance_id[%d]!!\r\n", class_id, instance_id);
+        printf("[%s]Already exist class_id [%d] instance_id[%d]!!\r\n", __MY_FILE__, class_id, instance_id);
         return false;
     }
 }
@@ -98,7 +99,7 @@ BOOL_T ME_C::get_omci_s()
 
     if (dir == NULL) 
     {
-        printf("no such path exist!!\r\n");
+        printf("[%s]no such path exist!!\r\n", __MY_FILE__);
         return false;
     }
 
@@ -113,10 +114,10 @@ BOOL_T ME_C::get_omci_s()
             continue;
 
         std::string tmp_me_cid = tmp_me_name.substr(0, tmp_me_name.find("_"));
-        printf("me name[%s] me cid[%s]\r\n", tmp_me_name.c_str(), tmp_me_cid.c_str());
+        printf("[%s]me name[%s] me cid[%s]\r\n", __MY_FILE__, tmp_me_name.c_str(), tmp_me_cid.c_str());
 
         std::string m_config_file_path = ME_S_DIR + tmp_me_name ;
-        printf("new pathname[%s]\r\n", m_config_file_path.c_str());
+        printf("[%s]new pathname[%s]\r\n",__MY_FILE__,  m_config_file_path.c_str());
 
         ifstream    m_source_files= {};
 
@@ -130,28 +131,22 @@ BOOL_T ME_C::get_omci_s()
 
             if(isJsonOK)
             {
-                printf("Get omci_s ok \r\n");
-                printf("Class id:%d\r\n", omci_s["Class"].asInt());
+                printf("[%s]Get omci_s ok \r\n", __MY_FILE__);
+                printf("[%s]Class id:%d\r\n", __MY_FILE__, omci_s["Class"].asInt());
                 int Class =  omci_s["Class"].asInt();
                 int Id =  omci_s["Id"].asInt();
-                //printf("insert Class at :%d\r\n", Class);
-                //printf("insert Id at :%d\r\n", Id);
-                //M_OMCI_S[Class]=omci_s; 
                 M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
-                //printf("s vecotr size is %d\r\n", M_OMCI_S.size());
-                printf("g vecotr size is %zu\r\n", M_OMCI_G.size());
-                //create_me_obj(Class, 0, omci_s); 
-                //printf("p vecotr size is %zu\r\n", M_OMCI_P.size());
+                printf("[%s]g vecotr size is %zu\r\n",__MY_FILE__ ,M_OMCI_G.size());
             }
             else
             {
-                printf("Get omci_s ng\r\n");
+                printf("[%s]Get omci_s ng\r\n", __MY_FILE__);
                 return false;
             }
         }
         else
         {
-            printf("Open file ng\r\n");
+            printf("[%s]Open file NG\r\n", __MY_FILE__);
             return false;
         }
     }
@@ -160,12 +155,40 @@ BOOL_T ME_C::get_omci_s()
     return true;
 }
 
+Json::Value  ME_C::get_me_s_json(UI16_T Class)
+{
+    Json::Value Tvalue;
+    std::map<std::pair<int,int>, Json::Value>::const_iterator it;
+    it = M_OMCI_G.find(std::make_pair(Class, 0));
+
+    if (it == M_OMCI_G.end()) 
+    {
+        Tvalue = it->second;
+        return Tvalue;
+    }
+    else
+        return Tvalue;
+}
+
+
 BOOL_T ME_C::check_me_s_valid(UI16_T Class)
 {
     std::map<std::pair<int,int>, Json::Value>::const_iterator it;
     it = M_OMCI_G.find(std::make_pair(Class, 0));
 
     if (it == M_OMCI_G.end()) 
+        return false;
+    else 
+        return true;
+}
+
+BOOL_T ME_C::check_me_o_valid(UI16_T Class, UI16_T instance_id)
+{
+    printf("[%s]check_me_o_valid Class[%d] instance_id[%d]\r\n",__MY_FILE__ ,Class, instance_id);
+    std::map<std::pair<int,int>, ME_S *>::const_iterator it;
+    it = M_OMCI_P.find(std::make_pair(Class, instance_id));
+
+    if (it == M_OMCI_P.end()) 
         return false;
     else 
         return true;
@@ -180,7 +203,7 @@ BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
     std::string action= omci_s["Action"].asString();
     std::string in_action = OMCI_Parser::get_omci_action_name(Action);
 
-    printf("ME_C :: Class[%d] chk action[%s][%d] support action[%s][%d]\r\n", \
+    printf("[%s]Class[%d] chk action[%s][%d] support action[%s][%d]\r\n",__MY_FILE__ , \
     Class, in_action.c_str(),Action, action.c_str(), OMCI_Parser::get_omci_action_id("SET"));
 
     if(action.find("create") != std::string::npos && (Action == OMCI_Parser::get_omci_action_id("CREATE")))
