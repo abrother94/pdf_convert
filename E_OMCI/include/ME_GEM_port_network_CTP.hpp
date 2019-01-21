@@ -1,3 +1,4 @@
+/*
 9.2.3    GEM port network CTP
 This managed entity represents the termination of a GEM port on an ONT. This managed entity
 aggregates connectivity functionality from the network view and alarms from the network element
@@ -63,3 +64,61 @@ Notifications
                                                  point (optional)
    6..207     Reserved
   208..223    Vendor-specific alarms             Not to be standardized
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_GEM_PORT_NETWORK_CTP_INCLUDE_HPP)
+#define  ME_GEM_PORT_NETWORK_CTP_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_GEM_port_network_CTP : public ME_S 
+{
+    public:
+        ME_GEM_port_network_CTP();
+        ME_GEM_port_network_CTP(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_GEM_port_network_CTP();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_5_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_6_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_7_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_9_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+

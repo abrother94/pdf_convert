@@ -1,0 +1,110 @@
+{
+    "Class"       : 268 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_GEM_port_network_CTP" ,
+    "Action"      : "create, delete, get, set", 
+    "Created_by"  : "OLT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "Port_id_value" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "T_CONT_pointer" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "Direction" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 5 ,
+    "Name"     : "_this_pointer_specifies_the_priority_queue_G_ME_serving_this__pointer_for_upstream" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 6 ,
+    "Name"     : "Traffic_descriptor_profile_pointer" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 7 ,
+    "Name"     : "UNI_counter" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 8 ,
+    "Name"     : "Priority_queue_pointer_for_downstream" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 9 ,
+    "Name"     : "Encryption_state" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+]
+}

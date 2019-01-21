@@ -1,0 +1,33 @@
+{
+    "Class"       : 2 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_ONT_data" ,
+    "Action"      : "get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:", 
+    "Created_by"  : "ONT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "MIB_data_sync" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+]
+}

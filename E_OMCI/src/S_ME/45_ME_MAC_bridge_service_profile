@@ -1,0 +1,121 @@
+{
+    "Class"       : 45 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_MAC_bridge_service_profile" ,
+    "Action"      : "create, delete, get, set", 
+    "Created_by"  : "OLT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "Spanning_tree_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "Learning_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "Port_bridging_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 5 ,
+    "Name"     : "Priority" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 6 ,
+    "Name"     : "Max_age" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 7 ,
+    "Name"     : "Hello_time" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 8 ,
+    "Name"     : "Forward_delay" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 9 ,
+    "Name"     : "Unknown_MAC_address_discard" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 10 ,
+    "Name"     : "MAC_learning_depth" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+]
+}

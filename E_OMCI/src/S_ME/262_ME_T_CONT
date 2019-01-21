@@ -1,0 +1,55 @@
+{
+    "Class"       : 262 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_T_CONT" ,
+    "Action"      : "get, set", 
+    "Created_by"  : "OLT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "Alloc_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "Mode_indicator" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "Policy" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+]
+}

@@ -30,6 +30,8 @@ class ME_C
 
     private:
         BOOL_T get_omci_s();
+        BOOL_T pre_create_me_obj();
+
         void release_all_me_obj();
 };
 

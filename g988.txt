@@ -6406,9 +6406,9 @@ ARC interval:         See clause I.1.8. (R, W) (optional) (1 byte)
 PPPoE filter:         This attribute controls filtering of PPPoE packets on this Ethernet port.
                       The value 0 allows packets of all types. The value 1 discards everything
                       but PPPoE packets. The default value is 0. (R, W) (optional) (1 byte)
-                                 equipment over the Ethernet PPTP. The value 1 enables power over the
-                                 Ethernet port. The default value 0 disables power feed. (R, W) (optional)
-                                 (1 byte)
+
+Power Control         equipment over the Ethernet PPTP. The value 1 enables power over the
+                      Ethernet port. The default value 0 disables power feed. (R, W) (optional) (1 byte)
 Actions
 Get, set
 Notifications

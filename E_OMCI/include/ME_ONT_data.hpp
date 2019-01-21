@@ -1,0 +1,75 @@
+/*
+9.1.3     ONT data
+This managed entity models the MIB itself. Clause I.1.2 explains the use of this managed entity
+with respect to MIB synchronization. Clause I.1.4 explains the alarm synchronization process, in
+which the get alarm messages are directed to the ONT data managed entity.
+The ONT automatically creates an instance of this managed entity, and updates the associated
+attributes according to data within the ONT itself.
+Relationships
+One instance of this managed entity is contained in an ONT.
+Managed entity id:      This attribute uniquely identifies each instance of this managed entity.
+                        There is only one instance, number 0. (R) (mandatory) (2 bytes)
+MIB data sync:          This attribute is used to check the alignment of the MIB of the ONT with
+                        the corresponding MIB in the OLT. MIB data sync relies on this attribute,
+                        which is a sequence number that can be checked by the OLT to see if the
+                        MIB snapshots for the OLT and ONT match. Refer to clause I.1.1 for a
+                        detailed description of this attribute. Upon ME instantiation, the ONT sets
+                        this attribute to 0. (R, W) (mandatory) (1 byte)
+Actions
+Get, set
+Get all alarms:         Latch a snapshot (i.e., copy) of the current alarm statuses of all managed
+                        entities and reset the alarm message counter.
+Get all alarms next:    Get the latched alarm status of the next managed entity within the current
+                        snapshot.
+MIB reset:              Reset the MIB data sync attribute to 0 and reset the MIB of the ONT to its
+                        default state. This default MIB consists of one instance of the ONT-G
+                        managed entity, one instance of the ONT data managed entity, two
+                        instances of the software image managed entity, zero or more instances of
+                        the cardholder managed entity, and zero or more instances of the priority
+                        queue-G managed entity (for the priority queues that reside in the ONT).
+MIB upload:             Latch a snapshot (i.e., copy) of the current MIB. Not every managed entity
+                        or every attribute is included in a MIB upload. Performance monitoring
+                        history data MEs are excluded; table attributes are excluded. Other MEs and
+                        attributes, such as the PPTP for the local craft terminal, are excluded as
+                        documented in their specific definitions.
+MIB upload next:        Get the latched attribute values of the managed entity within the current
+                        snapshot.
+Notifications
+None.
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_ONT_DATA_INCLUDE_HPP)
+#define  ME_ONT_DATA_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_ONT_data : public ME_S 
+{
+    public:
+        ME_ONT_data();
+        ME_ONT_data(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_ONT_data();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+

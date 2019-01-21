@@ -1,0 +1,187 @@
+{
+    "Class"       : 11 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_Physical_path_termination_point_Ethernet_UNI" ,
+    "Action"      : "get, set", 
+    "Created_by"  : "ONT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "Expected_type" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "Sensed_type" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "Auto_detection_configuration" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 5 ,
+    "Name"     : "Ethernet_loopback_configuration" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 6 ,
+    "Name"     : "Administrative_state" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 7 ,
+    "Name"     : "Operational_state" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 8 ,
+    "Name"     : "Configuration_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 9 ,
+    "Name"     : "Max_frame_size" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 10 ,
+    "Name"     : "DTE_or_DCE_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 11 ,
+    "Name"     : "Pause_time" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 12 ,
+    "Name"     : "Bridged_or_IP_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 13 ,
+    "Name"     : "ARC" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 14 ,
+    "Name"     : "ARC_interval" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 15 ,
+    "Name"     : "PPPoE_filter" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 16 ,
+    "Name"     : "Power_control" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+]
+}

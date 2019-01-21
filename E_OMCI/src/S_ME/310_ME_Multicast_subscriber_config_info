@@ -1,0 +1,77 @@
+{
+    "Class"       : 310 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_Multicast_subscriber_config_info" ,
+    "Action"      : "create, delete, get, set", 
+    "Created_by"  : "OLT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "ME_type" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "Multicast_operations_profile_pointer" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "Max_simultaneous_groups" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 5 ,
+    "Name"     : "Max_multicast_bandwidth" ,
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 6 ,
+    "Name"     : "Bandwidth_enforcement" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+]
+}

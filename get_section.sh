@@ -135,7 +135,7 @@ get_attribute_name()
 {
     local name="$1"
     local SS='Managed entity id:'
-    local ES='Action'
+    local ES='Actions'
     # Legnecy method
     #start_line=`cat "$name" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
     #start_line=`echo  "$start_to_action_content" | egrep -n -m 1  'Managed entity id:' | awk -F":" '{print $1}'`
@@ -169,7 +169,7 @@ get_attribute_mode()
     local ATTRI1="$2"
     local TYPE="$3"
     local SS='Managed entity id:'
-    local ES='Action'
+    local ES='Actions'
     local RWP='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\)) *(\(mandatory\)|\(optional\)) *(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
     local RWPATTERN='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\))'
     local MANPATTERN='(\(mandatory\)|\(optional\))'
@@ -219,7 +219,7 @@ get_me_attributes_num()
 {
     local name="$1"
     local SS='Managed entity id:'
-    local ES='Action'
+    local ES='Actions'
     local RWP='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\)) *(\(mandatory\)|\(optional\)) *(\([0-9]{1,2}(|N) (byte(|s))(|, where N is the number of entries in the table)\))'
     local RWPATTERN='(\(R\)|\(W\)|\(R, W\)|\(W, Set-by-create\)|\(R, Set-by-create\)|\(R, W, Set-by-create\))'
     local MANPATTERN='(\(mandatory\)|\(optional\))'

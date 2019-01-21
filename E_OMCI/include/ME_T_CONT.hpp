@@ -1,3 +1,4 @@
+/*
 9.2.2    T-CONT
 An instance of the traffic container managed entity T-CONT represents a logical connection group
 associated with a PLOAM layer alloc-id. A T-CONT can accommodate GEM packets in priority
@@ -48,3 +49,46 @@ Actions
 Get, set
 Notifications
 None.
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_T_CONT_INCLUDE_HPP)
+#define  ME_T_CONT_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_T_CONT : public ME_S 
+{
+    public:
+        ME_T_CONT();
+        ME_T_CONT(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_T_CONT();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+

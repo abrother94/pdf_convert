@@ -1,0 +1,154 @@
+{
+    "Class"       : 47 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_MAC_bridge_port_configuration_data" ,
+    "Action"      : "create, delete, get, set", 
+    "Created_by"  : "OLT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "Bridge_id_pointer" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "Port_num" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "TP_type" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 5 ,
+    "Name"     : "TP_pointer" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 6 ,
+    "Name"     : "Port_priority" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 7 ,
+    "Name"     : "Port_path_cost" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 8 ,
+    "Name"     : "Port_spanning_tree_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 9 ,
+    "Name"     : "Encapsulation_method" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 10 ,
+    "Name"     : "LAN_FCS_ind" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 11 ,
+    "Name"     : "Port_MAC_address" ,
+    "Size"     : "6" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 12 ,
+    "Name"     : "Outbound_TD_pointer" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 13 ,
+    "Name"     : "Inbound_TD_pointer" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+]
+}

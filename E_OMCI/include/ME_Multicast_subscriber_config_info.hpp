@@ -1,3 +1,4 @@
+/*
 9.3.28 Multicast subscriber config info
 This managed entity organizes data associated with multicast management at subscriber ports of
 802.1 bridges, including 802.1p mappers when the provisioning model is mapper-based rather than
@@ -43,3 +44,52 @@ Actions
 Create, delete, get, set
 Notifications
 None.
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_MULTICAST_SUBSCRIBER_CONFIG_INFO_INCLUDE_HPP)
+#define  ME_MULTICAST_SUBSCRIBER_CONFIG_INFO_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_Multicast_subscriber_config_info : public ME_S 
+{
+    public:
+        ME_Multicast_subscriber_config_info();
+        ME_Multicast_subscriber_config_info(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_Multicast_subscriber_config_info();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_5_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_6_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+

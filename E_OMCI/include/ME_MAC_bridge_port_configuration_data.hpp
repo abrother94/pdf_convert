@@ -1,3 +1,4 @@
+/*
 9.3.4   MAC bridge port configuration data
 This managed entity models a port on a MAC bridge. Instances of this managed entity are created
 and deleted by the OLT.
@@ -75,3 +76,73 @@ Actions
 Create, delete, get, set
 Notifications
 None.
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_MAC_BRIDGE_PORT_CONFIGURATION_DATA_INCLUDE_HPP)
+#define  ME_MAC_BRIDGE_PORT_CONFIGURATION_DATA_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_MAC_bridge_port_configuration_data : public ME_S 
+{
+    public:
+        ME_MAC_bridge_port_configuration_data();
+        ME_MAC_bridge_port_configuration_data(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_MAC_bridge_port_configuration_data();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_5_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_6_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_7_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_9_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_10_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_11_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_12_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_13_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+

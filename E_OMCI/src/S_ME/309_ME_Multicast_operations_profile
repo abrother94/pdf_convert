@@ -1,0 +1,165 @@
+{
+    "Class"       : 309 ,
+    "Id"          : 0 ,
+    "Name"        : "ME_Multicast_operations_profile" ,
+    "Action"      : "create, delete, get, get next, set", 
+    "Created_by"  : "OLT" ,
+    "Create_Time" : 0 
+    
+,
+"Attrs_info":[
+{
+
+    "Id"       : 1 ,
+    "Name"     : "Managed_entity_id" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 2 ,
+    "Name"     : "IGMP_version" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 3 ,
+    "Name"     : "Immediate_leave" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 4 ,
+    "Name"     : "Upstream_IGMP_TCI" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 5 ,
+    "Name"     : "Upstream_IGMP_tag_control" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 6 ,
+    "Name"     : "Upstream_IGMP_rate" ,
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 7 ,
+    "Name"     : "Dynamic_access_control_list_table" ,
+    "Size"     : "24N" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 8 ,
+    "Name"     : "Static_access_control_list_table" ,
+    "Size"     : "24N" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "mandatory"
+    
+}
+,
+{
+
+    "Id"       : 9 ,
+    "Name"     : "Lost_groups_list_table" ,
+    "Size"     : "10N" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 10 ,
+    "Name"     : "Robustness" ,
+    "Size"     : "1" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 11 ,
+    "Name"     : "Querier_IP_address" ,
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 12 ,
+    "Name"     : "Query_interval" ,
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 13 ,
+    "Name"     : "Query_max_response_time" ,
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 14 ,
+    "Name"     : "Last_member_query_interval" ,
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_RW",
+    "Value"    : 0,
+    "Mandtary" : "optional"
+    
+}
+]
+}

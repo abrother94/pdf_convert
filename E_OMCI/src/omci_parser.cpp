@@ -28,8 +28,8 @@ BOOL_T OMCI_Parser::me_find_instance(UI16_T Class ,UI16_T ME_ID)
 
 BOOL_T OMCI_Parser::me_create_instance(UI16_T Class ,UI16_T ME_ID)
 {
-    printf("[%s]Create me instance [%d] instance_id [%d]\r\n",__MY_FILE__,Class, ME_ID);
     Json::Value omci_s= m_me.get_me_s_json(Class);
+    printf("[%s]Create me instance Class[%d]Name[%s] instance_id [%d]\r\n",__MY_FILE__,Class,omci_s["Name"].asString().c_str() , ME_ID);
     m_me.create_me_obj(Class, ME_ID, omci_s); 
     return true;
 }
@@ -92,19 +92,18 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
     // 2. Get MessageType (Action) from input omci packet
     //---------------------------------------------------------------------
     Action = (*(pkt_p + OFFSET_OMCI_MSG_TYPE)) & OMCI_MSG_MT_MASK;
-    printf("[%s]class[%d]  ME_ID:[%d]  Action[%s] [0x%04X]\n",__MY_FILE__, Class, ME_ID, get_omci_action_name(Action).c_str(), Action);
-    if(ME_ID == 0)
+    printf("[%s]class[%d] ME_ID:[%d] Action[%s][0x%04X]\n",__MY_FILE__, Class, ME_ID, get_omci_action_name(Action).c_str(), Action);
+    if(ME_ID == 0 && Class != MECID_ONT_DATA) //ONT-DATA 
     {
         printf("[%s]ME INSTANCE ID CAN'T BE 0 !!!!\r\n", __MY_FILE__);
         return 0;
     }
 
-
     // Always igore notifications like: AVC from OLT. Alarm from OLT.
     if ((Action == MSGTYPE_ATTRIBUTE_VALUE_CHANGE) || (Action == MSGTYPE_ALARM))
     {
         printf("[%s]MSGTYPE_ATTRIBUTE_VALUE_CHANGE MSGTYPE_ALARM!!!\r\n", __MY_FILE__);
-        return 0;
+        //return 0;
     }
 
     if ((Action == MSGTYPE_SET) || (Action == MSGTYPE_GET) || (Action == MSGTYPE_GET_CURRENT_DATA))
@@ -112,26 +111,27 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
         printf("[%s]attr_mask: %04X\n", __MY_FILE__, Attrs_mask);
     }
 
-    // Check action exist for this ME //
-    if( !check_action_valid(Class, Action) )
-    {
-        printf("[%s]ME[%d] not support this action[%d]!!\r\n",__MY_FILE__, Class, Action);
-        return 0; 
-    }
-    else
-        printf("[%s]Support this Action!\r\n",__MY_FILE__);
-
     //---------------------------------------------------------------------
     // 3. Check has this me from ME_S. 
     //---------------------------------------------------------------------
 
     if (!get_me_by_class(Class))
     {
-        printf("[%s]NOT Supported ME (%d)\n",__MY_FILE__, Class);
+        printf("[%s]NOT Supported ME (%d) .Please check if impliment me skeleton\n",__MY_FILE__, Class);
         return 0; 
     }
     else
     {
+        // Check action exist for this ME //
+        if( !check_action_valid(Class, Action) )
+        {
+            printf("[%s]ME[%d] not support this action[%d]!!\r\n",__MY_FILE__, Class, Action);
+            return 0; 
+        }
+        else
+            printf("[%s]Support this Action!\r\n",__MY_FILE__);
+
+
         obj_exist = me_find_instance(Class ,ME_ID);
         if (!obj_exist && (Action != MSGTYPE_CREATE))
         {
@@ -191,6 +191,35 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p)
             //   MIB_RESET, GET_ALL_ALARMS, GET_ALL_ALARMS_NEXT,
             //   MIB_UPLOAD, MIB_UPLOAD_NEXT
             //-----------------------------------------------------------------
+            //		//-----------------------------------------------------------------
+		case MSGTYPE_MIB_RESET:
+		case MSGTYPE_GET_ALL_ALARMS:
+		case MSGTYPE_GET_ALL_ALARMS_NEXT:
+		case MSGTYPE_MIB_UPLOAD:
+		case MSGTYPE_MIB_UPLOAD_NEXT:
+		//-----------------------------------------------------------------
+		// MSGTYPE_TEST is not tested yet,
+		// because different ME_classes have their own packet format.
+		//-----------------------------------------------------------------
+		case MSGTYPE_TEST:
+		//-----------------------------------------------------------------
+		// Parser prepare msg_content field.
+		// ME_software_image.c will do all for
+		//   START_SOFTWARE_DOWNLOAD, DOWNLOAD_SECTION,
+		//   END_SOFTWARE_DOWNLOAD, ACTIVATE_SOFTWARE, COMMIT_SOFTWARE
+		//-----------------------------------------------------------------
+		case MSGTYPE_START_SOFTWARE_DOWNLOAD:
+		case MSGTYPE_DOWNLOAD_SECTION:
+		case MSGTYPE_END_SOFTWARE_DOWNLOAD:
+		case MSGTYPE_ACTIVATE_SOFTWARE:
+		case MSGTYPE_COMMIT_SOFTWARE:
+		//-----------------------------------------------------------------
+		// Parser prepare msg_content field.
+		// ME_ont_g.c will do all for
+		//   SYNCHRONIZE_TIME, REBOOT
+		//-----------------------------------------------------------------
+		case MSGTYPE_SYNCHRONIZE_TIME:
+
         case MSGTYPE_REBOOT:
             printf("[%s]MSGTYPE_REBOOT!!!!!!\r\n",__MY_FILE__);
             break;

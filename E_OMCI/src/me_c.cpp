@@ -14,6 +14,8 @@ ME_C::ME_C()
     if(get_omci_s())
     {
         printf("[%s]get_omci_s OK!!\r\n",__MY_FILE__);
+        if(!pre_create_me_obj())
+            printf("[%s]pre_create_me_obj NG!!\r\n",__MY_FILE__);
     }
     else
     {
@@ -25,6 +27,24 @@ ME_C::ME_C()
 ME_C::~ME_C()
 {
     release_all_me_obj();
+}
+
+// ------------------------------------------------------------------
+// 1.ME create by ONT
+//   MECID_ONT_DATA
+//   MECID_PPTP_ETHERNET_UNI
+// ------------------------------------------------------------------
+
+
+BOOL_T ME_C::pre_create_me_obj()
+{
+    BOOL_T res=false;
+    Json::Value Tvalue;
+    /*ONT_DATA*/
+    printf("[%s]pre_create_me_obj ONT_DATA\r\n", __MY_FILE__);
+    Tvalue = get_me_s_json(MECID_ONT_DATA);
+    res = create_me_obj(MECID_ONT_DATA, 0, Tvalue);
+    return res;
 }
 
 void ME_C::release_all_me_obj()
@@ -68,6 +88,14 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
         switch(class_id)
         {
             //ADDHERE
+            SWITCHCASE(310 , instance_id, ME_Multicast_subscriber_config_info, me_s);
+            SWITCHCASE(309 , instance_id, ME_Multicast_operations_profile, me_s);
+            SWITCHCASE(268 , instance_id, ME_GEM_port_network_CTP, me_s);
+            SWITCHCASE(262 , instance_id, ME_T_CONT, me_s);
+            SWITCHCASE(84 , instance_id, ME_VLAN_tagging_filter_data, me_s);
+            SWITCHCASE(47 , instance_id, ME_MAC_bridge_port_configuration_data, me_s);
+            SWITCHCASE(11 , instance_id, ME_Physical_path_termination_point_Ethernet_UNI, me_s);
+            SWITCHCASE(2 , instance_id, ME_ONT_data, me_s);
             SWITCHCASE(272 , instance_id, ME_GAL_Ethernet_profile, me_s);
             SWITCHCASE(130 , instance_id, ME_802_1p_mapper_service_profile, me_s);
             SWITCHCASE(281 , instance_id, ME_Multicast_GEM_interworking_termination_point, me_s);
@@ -134,7 +162,7 @@ BOOL_T ME_C::get_omci_s()
                 printf("[%s]Get omci_s ok \r\n", __MY_FILE__);
                 printf("[%s]Class id:%d\r\n", __MY_FILE__, omci_s["Class"].asInt());
                 int Class =  omci_s["Class"].asInt();
-                int Id =  omci_s["Id"].asInt();
+                int Id = 0; 
                 M_OMCI_G[std::make_pair(Class,Id)]=omci_s; 
                 printf("[%s]g vecotr size is %zu\r\n",__MY_FILE__ ,M_OMCI_G.size());
             }
@@ -163,11 +191,13 @@ Json::Value  ME_C::get_me_s_json(UI16_T Class)
 
     if (it == M_OMCI_G.end()) 
     {
-        Tvalue = it->second;
         return Tvalue;
     }
     else
+    {
+        Tvalue = it->second;
         return Tvalue;
+    }
 }
 
 
@@ -226,6 +256,15 @@ BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
     {
         return true;
     }
+    if(action.find("mib reset")!= std::string::npos && (Action == OMCI_Parser::get_omci_action_id("MIB_RESET")))
+    {
+        return true;
+    }
+    if(action.find("alarm")!= std::string::npos && (Action == OMCI_Parser::get_omci_action_id("ALARM")))
+    {
+        return true;
+    }
+
     return false;
 }
 

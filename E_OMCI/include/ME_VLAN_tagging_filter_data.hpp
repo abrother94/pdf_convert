@@ -1,3 +1,4 @@
+/*
 9.3.11 VLAN tagging filter data
 This managed entity organizes data associated with VLAN tagging. Instances of this managed
 entity are created and deleted by the OLT.
@@ -53,4 +54,46 @@ Actions
 Create, delete, get, set
 Notifications
 None.
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_VLAN_TAGGING_FILTER_DATA_INCLUDE_HPP)
+#define  ME_VLAN_TAGGING_FILTER_DATA_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_VLAN_tagging_filter_data : public ME_S 
+{
+    public:
+        ME_VLAN_tagging_filter_data();
+        ME_VLAN_tagging_filter_data(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_VLAN_tagging_filter_data();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
 

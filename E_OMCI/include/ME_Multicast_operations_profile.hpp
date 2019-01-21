@@ -1,3 +1,4 @@
+/*
 9.3.27 Multicast operations profile
 This managed entity expresses multicast policy. A multi-dwelling unit ONU may have several such
 policies, which are linked to subscribers as required. Some of the attributes configure IGMP
@@ -110,3 +111,76 @@ Notifications
                                              group(s).
           1..207 Reserved
         208..223 Vendor-specific alarms      Not to be standardized
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_MULTICAST_OPERATIONS_PROFILE_INCLUDE_HPP)
+#define  ME_MULTICAST_OPERATIONS_PROFILE_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_Multicast_operations_profile : public ME_S 
+{
+    public:
+        ME_Multicast_operations_profile();
+        ME_Multicast_operations_profile(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_Multicast_operations_profile();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_5_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_6_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_7_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_9_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_10_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_11_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_12_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_13_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_14_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+
