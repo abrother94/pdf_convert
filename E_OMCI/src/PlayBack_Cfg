@@ -1,0 +1,5 @@
+{
+"PLAYBACK"                : true,
+"OMCI_PLATBACK_FILE_PATH" : "E_OMCI_LOG",
+"OLT_PLATBACK_FILE_PATH"  : "E_OLT_LOG"
+}

@@ -14,7 +14,7 @@ using namespace std;
 OMCI_Parser::OMCI_Parser()
 {
     // ------------------------------------------------------------------
-    // Prepare OMCI LOG PATH . 
+    // Prepare OMCI Playback LOG PATH . 
     // ------------------------------------------------------------------
     std::string t_time;
     std::array<char, 32> buffer;
@@ -32,6 +32,8 @@ OMCI_Parser::OMCI_Parser()
     }
     else
         printf("[%s]Create log out path [%s] NG\r\b",__MY_FILE__,  m_log_out_path.c_str());
+
+
 }
 
 BOOL_T OMCI_Parser::omci_parser_validaterxpkt (UI8_T * pkt_p)

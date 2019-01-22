@@ -208,6 +208,7 @@ class OMCI_Parser
     private:
         std::string m_log_out_path;
         std::string m_log_in_path;
+        Json::Value m_playback_cfg;
         ME_C        m_me;
 
         UI16_T get_omci_ui16(UI8_T *data);

@@ -1,0 +1,30 @@
+{
+	"Attrs_info" : 
+	[
+		{
+			"Access" : "ATTR_ACCESS_R_SC",
+			"Id" : 1,
+			"Mandtary" : "mandatory",
+			"Name" : "Managed_entity_id",
+			"Size" : "2",
+			"Value" : "0"
+		},
+		{
+			"Access" : "ATTR_ACCESS_RW_SC",
+			"Id" : 2,
+			"Mandtary" : "mandatory",
+			"Name" : "size",
+			"Size" : "2",
+			"Value" : "0"
+		}
+	],
+	"Class" : 272,
+	"Create_Time" : 1548149611155895,
+	"Created_by" : "OLT",
+	"Current_Action" : "CREATE",
+	"Id" : 1,
+	"Name" : "ME_GAL_Ethernet_profile",
+	"Raw_Data" : "01BF440A0110000100300000000000000000000000000000000000000000000000000000000000000000002800",
+	"Supported_Action" : "create, delete, get, set",
+	"TransID" : 447
+}
