@@ -88,19 +88,21 @@ BOOL_T ME_C::create_me_obj(int class_id, int instance_id, Json::Value me_s)
         switch(class_id)
         {
             //ADDHERE
-            SWITCHCASE(310 , instance_id, ME_Multicast_subscriber_config_info, me_s);
-            SWITCHCASE(309 , instance_id, ME_Multicast_operations_profile, me_s);
-            SWITCHCASE(268 , instance_id, ME_GEM_port_network_CTP, me_s);
-            SWITCHCASE(262 , instance_id, ME_T_CONT, me_s);
-            SWITCHCASE(84 , instance_id, ME_VLAN_tagging_filter_data, me_s);
             SWITCHCASE(47 , instance_id, ME_MAC_bridge_port_configuration_data, me_s);
             SWITCHCASE(11 , instance_id, ME_Physical_path_termination_point_Ethernet_UNI, me_s);
+            SWITCHCASE(84 , instance_id, ME_VLAN_tagging_filter_data, me_s);
+            SWITCHCASE(46 , instance_id, ME_MAC_bridge_configuration_data, me_s);
+            SWITCHCASE(268 , instance_id, ME_GEM_port_network_CTP, me_s);
+            SWITCHCASE(45 , instance_id, ME_MAC_bridge_service_profile, me_s);
+            SWITCHCASE(266 , instance_id, ME_GEM_interworking_termination_point, me_s);
+            SWITCHCASE(310 , instance_id, ME_Multicast_subscriber_config_info, me_s);
+            SWITCHCASE(262 , instance_id, ME_T_CONT, me_s);
+            SWITCHCASE(309 , instance_id, ME_Multicast_operations_profile, me_s);
+            SWITCHCASE(171 , instance_id, ME_Extended_VLAN_tagging_operation_configuration_data, me_s);
             SWITCHCASE(2 , instance_id, ME_ONT_data, me_s);
-            SWITCHCASE(272 , instance_id, ME_GAL_Ethernet_profile, me_s);
             SWITCHCASE(130 , instance_id, ME_802_1p_mapper_service_profile, me_s);
             SWITCHCASE(281 , instance_id, ME_Multicast_GEM_interworking_termination_point, me_s);
-            SWITCHCASE(256 , instance_id, ME_ONT_G, me_s);
-            //SWITCHCASE(281 , instance_id, Multicast_GEM_interworking_termination_point, me_s);
+            SWITCHCASE(272 , instance_id, ME_GAL_Ethernet_profile, me_s);
             default:
                 break;
         }
@@ -230,7 +232,7 @@ BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
 
     omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
 
-    std::string action= omci_s["Action"].asString();
+    std::string action= omci_s["Supported_Action"].asString();
     std::string in_action = OMCI_Parser::get_omci_action_name(Action);
 
     printf("[%s]Class[%d] chk action[%s][%d] support action[%s][%d]\r\n",__MY_FILE__ , \

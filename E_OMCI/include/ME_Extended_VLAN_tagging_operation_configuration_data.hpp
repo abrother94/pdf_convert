@@ -1,0 +1,164 @@
+/*
+9.3.13 Extended VLAN tagging operation configuration data
+This managed entity organizes data associated with VLAN tagging. Regardless of its point of
+attachment, the specified tagging operations refer to the upstream direction. Instances of this
+managed entity are created and deleted by the OLT.
+Relationships
+Zero or one instance(s) of this managed entity may exist for an instance of any managed entity that
+can terminate or modify an Ethernet stream. By definition, tagging operation occurs farther away
+from the MAC bridge than filtering.
+Attributes
+Managed entity id:        This attribute provides a unique number for each instance of this
+                          managed entity. (R, Set-by-create) (mandatory) (2 bytes)
+
+Association type:         This attribute identifies the type of the ME associated with this
+                          extended VLAN tagging ME. Values are assigned as follows:
+                          0     MAC bridge port configuration data.
+                          1     802.1p mapper service profile.
+                          2     Physical path termination point Ethernet UNI.
+                          3     IP host config data.
+                          4     Physical path termination point xDSL UNI.
+                          5     GEM interworking termination point.
+                          6     Multicast GEM interworking termination point.
+                          7     Physical path termination point MoCA UNI.
+                          8     Physical path termination point 802.11 UNI.
+                          9     Ethernet flow termination point.
+                          (R, W, Set-by-create) (mandatory) (1 byte)
+
+Rcv frm VLAN              This attribute indicates the maximum number of VLAN tagging
+tagging opt table         operation entries that can be set in the received frame VLAN tagging
+max size:                 operation table. (R) (mandatory) (2 bytes)
+
+Input TPID:               This attribute gives the special TPID value for operations on the input
+                          (filtering) side of the table. Typical values include 0x88a8 and 0x9100.
+                          (R, W) (mandatory) (2 bytes)
+
+Output TPID:              This attribute gives the special TPID value for operations on the output
+                          (tagging) side of the table. Typical values include 0x88a8 and 0x9100.
+                          (R, W) (mandatory) (2 bytes)
+
+Downstream mode:         Regardless of its association, the extended VLAN tagging operation
+                         configuration data ME pertains to upstream traffic. This attribute
+                         specifies the mode for downstream mapping:
+                         0     The operation performed in the downstream direction is the
+                               inverse of that performed in the upstream direction. For
+                               one-to-one VLAN mappings, the inverse is trivially defined.
+                               Many-to-one mappings are possible, however, and these are
+                               treated as follows. If the many-to-one mapping results from
+                               multiple operation rules producing the same ANI-side tag
+                               configuration, then the first rule in the list defines the inverse
+                               operation. If the many-to-one mapping results from "do not care"
+                               fields in the filter being replaced with provisioned fields in the
+                               ANI-side tags, then the inverse is defined to set the corresponding
+                               fields on the ANI-side with their lowest value.
+                         1     No operation is performed in the downstream direction.
+                         All other values are reserved. (R, W) (mandatory) (1 byte)
+
+Rcv frm VLAN             This attribute is a table that filters and tags upstream frames. Each
+tagging opt table:       entry represents a tagging rule, comprising a filtering part (the first
+                         7 fields) and a treatment part (the last 7 fields). Each incoming
+                         upstream packet is matched against each rule in list order. The first rule
+                         that matches the packet is selected as the active rule, and the packet is
+                         then treated according to that rule.
+                         There are three categories of rules:  zero-tag, single-tag, and double-tag
+                         rules. Logically, these categories are separate, and apply to their
+                         respective incoming frame types. In other words, a single-tag rule
+                         should not apply to a double-tagged frame, even though the single-tag
+                         rule might match the outer tag of the double-tagged frame.
+                         Single-tag rules have a filter outer priority field = 15 (indicating no
+                         external tag), zero-tag rules have both filter priority fields = 15
+                         (indicating no tags), and double-tag rules have both filter priority fields
+                         set to a value that is different from 15 (indicating two tags).
+                         Each tagging rule is based on 'remove' and 'add' operation, where up to
+                         two tags can be removed or added. A modify operation is applied by
+                         the combination of 'remove' and 'add'.
+                         Note that when a single tag is added, the treatments use the 'inner tag'
+                         data-fields for definiteness – this is true even for treatments where a
+                         single tag is added to a frame that already has a tag, i.e., added as a
+                         second tag. The 'outer tag' data-fields are used only when two tags are
+                         added by the same rule.
+                         The terms 'inner' and 'outer' only have meaning with respect to the tags
+                         that are being filtered or added.
+                         One set operation can add, modify or delete one entry. The first 8 bytes
+                         of each entry are guaranteed to be unique, and are used to identify table
+                         entries (list order, above, refers to a sort on the first 8 bytes). The OLT
+                         deletes a table entry by setting its last eight bytes to all 0xFF.
+                         When the table is created, the ONT should predefine three entries that
+                         list the default treatment (of normal forwarding) for untagged,
+                         single-tagged, and double-tagged frames. As an exception to the rule
+                         on ordered processing, these default rules are always considered as a
+                         last resort for frames that do not match any other applicable rule. Best
+                         practice dictates that these entries not be deleted; however, they can be
+                         modified to produce the desired default behaviour.
+                         15, x, x, 15, x, x, x, (0, 15, x, x, 15, x, x)
+                         15, x, x, 14, x, x, x, (0, 15, x, x, 15, x, x)
+                         14, x, x, 14, x, x, x, (0, 15, x, x, 15, x, x)
+                         NOTE 1 – x is a "do not care" field and should be set to zero.
+                        (R, W) (mandatory) (16N bytes)
+
+
+Associated ME pointer:       This attribute points to the ME with which this extended VLAN
+                             tagging operation configuration data ME is associated.
+                             NOTE 3 – When the association type is xDSL, the two most significant bits
+                             may be used to indicate a bearer channel.
+                             (R, W, Set-by-create) (mandatory) (2 bytes)
+Actions
+Create, delete, get, get next, set
+Notifications
+None.
+                             
+*/
+
+// ------------------------------------------------------------------
+//  1.Create by create_me_cpp.sh ME_NAME/XXX_XXX_XXX automatically
+//  2.If want to add any new method , please also add another virtual 
+//    function in ME_S class ,too.
+// ------------------------------------------------------------------
+
+#if !defined(ME_EXTENDED_VLAN_TAGGING_OPERATION_CONFIGURATION_DATA_INCLUDE_HPP)
+#define  ME_EXTENDED_VLAN_TAGGING_OPERATION_CONFIGURATION_DATA_INCLUDE_HPP
+
+#include <json/json.hpp>
+#include <json/json.h>
+#include <common.hpp>
+#include <base_class.hpp>
+
+class ME_Extended_VLAN_tagging_operation_configuration_data : public ME_S 
+{
+    public:
+        ME_Extended_VLAN_tagging_operation_configuration_data();
+        ME_Extended_VLAN_tagging_operation_configuration_data(int class_id,int instance_id, Json::Value me_s);
+
+        ~ME_Extended_VLAN_tagging_operation_configuration_data();
+        int m_2;
+        char m_strin[256]={};
+        void get_method();
+
+
+        bool  attribute_1_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_2_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_3_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_4_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_5_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_6_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_7_method(Action in_Action, unsigned *value, void *arg);
+
+
+        bool  attribute_8_method(Action in_Action, unsigned *value, void *arg);
+
+
+};
+#endif
+

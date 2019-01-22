@@ -1,10 +1,13 @@
 {
-    "Class"       : 2 ,
-    "Id"          : 0 ,
-    "Name"        : "ME_ONT_data" ,
-    "Action"      : "get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:", 
-    "Created_by"  : "ONT" ,
-    "Create_Time" : 0 
+    "Class"            : 2 ,
+    "Id"               : 0 ,
+    "TransID"          : 0 ,
+    "Name"             : "ME_ONT_data" ,
+    "Supported_Action" : "get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:", 
+    "Current_Action"   : "get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:", 
+    "Created_by"       : "OLT" ,
+    "Raw_Data"         : "0" ,
+    "Create_Time"      : 0 
     
 ,
 "Attrs_info":[
@@ -14,7 +17,7 @@
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -25,7 +28,7 @@
     "Name"     : "MIB_data_sync" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }

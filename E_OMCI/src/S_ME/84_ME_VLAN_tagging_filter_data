@@ -1,10 +1,13 @@
 {
-    "Class"       : 84 ,
-    "Id"          : 0 ,
-    "Name"        : "ME_VLAN_tagging_filter_data" ,
-    "Action"      : "create, delete, get, set", 
-    "Created_by"  : "OLT" ,
-    "Create_Time" : 0 
+    "Class"            : 84 ,
+    "Id"               : 0 ,
+    "TransID"          : 0 ,
+    "Name"             : "ME_VLAN_tagging_filter_data" ,
+    "Supported_Action" : "create, delete, get, set", 
+    "Current_Action"   : "create, delete, get, set", 
+    "Created_by"       : "OLT" ,
+    "Raw_Data"         : "0" ,
+    "Create_Time"      : 0 
     
 ,
 "Attrs_info":[
@@ -14,7 +17,7 @@
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -25,7 +28,7 @@
     "Name"     : "VLAN_filter_list" ,
     "Size"     : "24" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -36,7 +39,7 @@
     "Name"     : "Forward_operation" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -47,7 +50,7 @@
     "Name"     : "Number_of_entries" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }

@@ -1,10 +1,13 @@
 {
-    "Class"       : 310 ,
-    "Id"          : 0 ,
-    "Name"        : "ME_Multicast_subscriber_config_info" ,
-    "Action"      : "create, delete, get, set", 
-    "Created_by"  : "OLT" ,
-    "Create_Time" : 0 
+    "Class"            : 310 ,
+    "Id"               : 0 ,
+    "TransID"          : 0 ,
+    "Name"             : "ME_Multicast_subscriber_config_info" ,
+    "Supported_Action" : "create, delete, get, set", 
+    "Current_Action"   : "create, delete, get, set", 
+    "Created_by"       : "OLT" ,
+    "Raw_Data"         : "0" ,
+    "Create_Time"      : 0 
     
 ,
 "Attrs_info":[
@@ -14,7 +17,7 @@
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -25,7 +28,7 @@
     "Name"     : "ME_type" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -36,7 +39,7 @@
     "Name"     : "Multicast_operations_profile_pointer" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -47,7 +50,7 @@
     "Name"     : "Max_simultaneous_groups" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -58,7 +61,7 @@
     "Name"     : "Max_multicast_bandwidth" ,
     "Size"     : "4" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -69,7 +72,7 @@
     "Name"     : "Bandwidth_enforcement" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }

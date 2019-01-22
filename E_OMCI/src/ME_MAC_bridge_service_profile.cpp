@@ -10,32 +10,32 @@
 #include <sys/types.h>
 #include <string.h>
 #include <typeinfo>
-#include <ME_ONT_G.hpp>
+#include <ME_MAC_bridge_service_profile.hpp>
 
-ME_ONT_G::ME_ONT_G()
+ME_MAC_bridge_service_profile::ME_MAC_bridge_service_profile()
 {
 
 }
 
-ME_ONT_G::ME_ONT_G(int class_id,int instance_id,  Json::Value me_s):ME_S(class_id, instance_id, me_s)
+ME_MAC_bridge_service_profile::ME_MAC_bridge_service_profile(int class_id,int instance_id,  Json::Value me_s):ME_S(class_id, instance_id, me_s)
 {
 
 }
 
-ME_ONT_G::~ME_ONT_G()
+ME_MAC_bridge_service_profile::~ME_MAC_bridge_service_profile()
 {
-    printf("~ME_ONT_G\r\n");
+    printf("~ME_MAC_bridge_service_profile\r\n");
 }
 
-void ME_ONT_G::get_method()
+void ME_MAC_bridge_service_profile::get_method()
 { 
-    printf("ME_ONT_G get_method\r\n"); 
+    printf("ME_MAC_bridge_service_profile get_method\r\n"); 
 }
 
 
 
 	
-bool ME_ONT_G::attribute_1_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_1_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -61,7 +61,7 @@ bool ME_ONT_G::attribute_1_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_2_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_2_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -87,7 +87,7 @@ bool ME_ONT_G::attribute_2_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_3_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_3_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -113,7 +113,7 @@ bool ME_ONT_G::attribute_3_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_4_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_4_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -139,7 +139,7 @@ bool ME_ONT_G::attribute_4_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_5_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_5_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -165,7 +165,7 @@ bool ME_ONT_G::attribute_5_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_6_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_6_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -191,7 +191,7 @@ bool ME_ONT_G::attribute_6_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_7_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_7_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -217,7 +217,7 @@ bool ME_ONT_G::attribute_7_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_8_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_8_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -243,7 +243,7 @@ bool ME_ONT_G::attribute_8_method(Action in_Action, UI32_T *value, void *arg)
 
 
 	
-bool ME_ONT_G::attribute_9_method(Action in_Action, UI32_T *value, void *arg)
+bool ME_MAC_bridge_service_profile::attribute_9_method(Action in_Action, UI32_T *value, void *arg)
 {
     switch(in_Action)
     {
@@ -257,6 +257,32 @@ bool ME_ONT_G::attribute_9_method(Action in_Action, UI32_T *value, void *arg)
             {
                 // Default action for value == 4bytes
                 m_Attributes[8].Value = *value;
+                break;
+            }
+        default:
+            {
+                break;
+            }
+    }
+    return true;
+}
+
+
+	
+bool ME_MAC_bridge_service_profile::attribute_10_method(Action in_Action, UI32_T *value, void *arg)
+{
+    switch(in_Action)
+    {
+        case MSG_TYPE_GET:
+            {
+                // Default action for value == 4bytes
+		arg = (void *)&m_Attributes[9].Value;
+                break;
+            }
+        case MSG_TYPE_SET:
+            {
+                // Default action for value == 4bytes
+                m_Attributes[9].Value = *value;
                 break;
             }
         default:

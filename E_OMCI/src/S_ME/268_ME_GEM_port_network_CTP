@@ -1,10 +1,13 @@
 {
-    "Class"       : 268 ,
-    "Id"          : 0 ,
-    "Name"        : "ME_GEM_port_network_CTP" ,
-    "Action"      : "create, delete, get, set", 
-    "Created_by"  : "OLT" ,
-    "Create_Time" : 0 
+    "Class"            : 268 ,
+    "Id"               : 0 ,
+    "TransID"          : 0 ,
+    "Name"             : "ME_GEM_port_network_CTP" ,
+    "Supported_Action" : "create, delete, get, set", 
+    "Current_Action"   : "create, delete, get, set", 
+    "Created_by"       : "OLT" ,
+    "Raw_Data"         : "0" ,
+    "Create_Time"      : 0 
     
 ,
 "Attrs_info":[
@@ -14,7 +17,7 @@
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -25,7 +28,7 @@
     "Name"     : "Port_id_value" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -36,7 +39,7 @@
     "Name"     : "T_CONT_pointer" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -47,7 +50,7 @@
     "Name"     : "Direction" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -58,7 +61,7 @@
     "Name"     : "_this_pointer_specifies_the_priority_queue_G_ME_serving_this__pointer_for_upstream" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -69,7 +72,7 @@
     "Name"     : "Traffic_descriptor_profile_pointer" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -80,7 +83,7 @@
     "Name"     : "UNI_counter" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -91,7 +94,7 @@
     "Name"     : "Priority_queue_pointer_for_downstream" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -102,7 +105,7 @@
     "Name"     : "Encryption_state" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }

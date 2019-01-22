@@ -58,7 +58,7 @@ char* get_text_line(FILE* input_fp)
             omci_raw[i] = (UI8_T)PC;
         }
         printf("\r\n");
-        omci_p.omci_pkt_parser(omci_raw);
+        omci_p.omci_pkt_parser(omci_raw, sizeofTest);
         printf("\r\n");
     }    
     return read_buf;

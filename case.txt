@@ -1,2 +1,46 @@
-256_ONT_G
-266_GEM_interworking_termination_point
+## VOLTHA_1_4 OMCI
+
+./create_me_s.sh ME_NAME/PPTP_ETH_UNI
+./create_me_cpp.sh ME_NAME/PPTP_ETH_UNI
+
+./create_me_s.sh ME_NAME/MULTICAST_GEM_ITP
+./create_me_cpp.sh ME_NAME/MULTICAST_GEM_ITP 
+
+./create_me_s.sh ME_NAME/802.1P_MAPPER_SRV_PROF
+./create_me_cpp.sh ME_NAME/802.1P_MAPPER_SRV_PROF
+
+./create_me_s.sh ME_NAME/ONT_DATA
+./create_me_cpp.sh ME_NAME/ONT_DATA  
+
+./create_me_s.sh ME_NAME/EXT_VLAN_TAGGING_OPT_CFG_DATA
+./create_me_cpp.sh ME_NAME/EXT_VLAN_TAGGING_OPT_CFG_DATA  
+
+./create_me_s.sh ME_NAME/MULTICAST_OPTS_PROF
+./create_me_cpp.sh ME_NAME/MULTICAST_OPTS_PROF
+
+./create_me_s.sh ME_NAME/T-CONT
+./create_me_cpp.sh ME_NAME/T-CONT
+
+./create_me_s.sh ME_NAME/MULTICAST_SUBSC_CFG_INFO
+./create_me_cpp.sh ME_NAME/MULTICAST_SUBSC_CFG_INFO  
+
+./create_me_s.sh ME_NAME/GEM_ITP
+./create_me_cpp.sh ME_NAME/GEM_ITP  
+
+./create_me_s.sh ME_NAME/MAC_BRG_SRV_PROF
+./create_me_cpp.sh ME_NAME/MAC_BRG_SRV_PROF
+
+./create_me_s.sh ME_NAME/GEM_PORT_NET_CTP
+./create_me_cpp.sh ME_NAME/GEM_PORT_NET_CTP 
+
+./create_me_s.sh ME_NAME/MAC_BRG_CFG_DATA
+./create_me_cpp.sh ME_NAME/MAC_BRG_CFG_DATA  
+
+./create_me_s.sh ME_NAME/GAL_ETH_PROF
+./create_me_cpp.sh ME_NAME/GAL_ETH_PROF
+
+./create_me_s.sh ME_NAME/VLAN_TAGGING_FILTER_DATA
+./create_me_cpp.sh ME_NAME/VLAN_TAGGING_FILTER_DATA
+
+./create_me_s.sh ME_NAME/MAC_BRG_PORT_CFG_DATA
+./create_me_cpp.sh ME_NAME/MAC_BRG_PORT_CFG_DATA

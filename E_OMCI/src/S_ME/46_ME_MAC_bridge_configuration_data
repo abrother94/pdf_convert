@@ -1,10 +1,10 @@
 {
-    "Class"            : 171 ,
+    "Class"            : 46 ,
     "Id"               : 0 ,
     "TransID"          : 0 ,
-    "Name"             : "ME_Extended_VLAN_tagging_operation_configuration_data" ,
-    "Supported_Action" : "create, delete, get, get next, set", 
-    "Current_Action"   : "create, delete, get, get next, set", 
+    "Name"             : "ME_MAC_bridge_configuration_data" ,
+    "Supported_Action" : "get, set", 
+    "Current_Action"   : "get, set", 
     "Created_by"       : "OLT" ,
     "Raw_Data"         : "0" ,
     "Create_Time"      : 0 
@@ -16,7 +16,7 @@
     "Id"       : 1 ,
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
-    "Access"   : "ATTR_ACCESS_R_SC",
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
     "Mandtary" : "mandatory"
     
@@ -25,9 +25,9 @@
 {
 
     "Id"       : 2 ,
-    "Name"     : "Association_type" ,
-    "Size"     : "1" ,
-    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Name"     : "Bridge_MAC_address" ,
+    "Size"     : "6" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
     "Mandtary" : "mandatory"
     
@@ -36,7 +36,7 @@
 {
 
     "Id"       : 3 ,
-    "Name"     : "Rcv_frm_VLAN_tagging_opt_table_max_size" ,
+    "Name"     : "Bridge_priority" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
@@ -47,9 +47,9 @@
 {
 
     "Id"       : 4 ,
-    "Name"     : "Input_TPID" ,
-    "Size"     : "2" ,
-    "Access"   : "ATTR_ACCESS_RW",
+    "Name"     : "Designated_root" ,
+    "Size"     : "8" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
     "Mandtary" : "mandatory"
     
@@ -58,9 +58,9 @@
 {
 
     "Id"       : 5 ,
-    "Name"     : "Output_TPID" ,
-    "Size"     : "2" ,
-    "Access"   : "ATTR_ACCESS_RW",
+    "Name"     : "Root_path_cost" ,
+    "Size"     : "4" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
     "Mandtary" : "mandatory"
     
@@ -69,9 +69,9 @@
 {
 
     "Id"       : 6 ,
-    "Name"     : "Downstream_mode" ,
+    "Name"     : "Bridge_port_count" ,
     "Size"     : "1" ,
-    "Access"   : "ATTR_ACCESS_RW",
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
     "Mandtary" : "mandatory"
     
@@ -80,9 +80,9 @@
 {
 
     "Id"       : 7 ,
-    "Name"     : "Rcv_frm_VLAN_tagging_opt_table" ,
-    "Size"     : "16N" ,
-    "Access"   : "ATTR_ACCESS_RW",
+    "Name"     : "Root_port_num" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
     "Mandtary" : "mandatory"
     
@@ -91,11 +91,22 @@
 {
 
     "Id"       : 8 ,
-    "Name"     : "Associated_ME_pointer" ,
+    "Name"     : "Hello_time" ,
     "Size"     : "2" ,
-    "Access"   : "ATTR_ACCESS_RW_SC",
+    "Access"   : "ATTR_ACCESS_R",
     "Value"    : "0",
-    "Mandtary" : "mandatory"
+    "Mandtary" : "optional"
+    
+}
+,
+{
+
+    "Id"       : 9 ,
+    "Name"     : "Actions_" ,
+    "Size"     : "2" ,
+    "Access"   : "ATTR_ACCESS_R",
+    "Value"    : "0",
+    "Mandtary" : "optional"
     
 }
 ]

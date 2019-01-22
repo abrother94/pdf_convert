@@ -1,10 +1,13 @@
 {
-    "Class"       : 272 ,
-    "Id"          : 0 ,
-    "Name"        : "ME_GAL_Ethernet_profile" ,
-    "Action"      : "create, delete, get, set", 
-    "Created_by"  : "OLT" ,
-    "Create_Time" : 0 
+    "Class"            : 272 ,
+    "Id"               : 0 ,
+    "TransID"          : 0 ,
+    "Name"             : "ME_GAL_Ethernet_profile" ,
+    "Supported_Action" : "create, delete, get, set", 
+    "Current_Action"   : "create, delete, get, set", 
+    "Created_by"       : "OLT" ,
+    "Raw_Data"         : "0" ,
+    "Create_Time"      : 0 
     
 ,
 "Attrs_info":[
@@ -14,7 +17,7 @@
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -25,7 +28,7 @@
     "Name"     : "size" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }

@@ -3,6 +3,8 @@
 
 #include <json/json.hpp>
 #include <json/json.h>
+#include <errno.h>
+#include <sys/stat.h>
 
 #define SWITCHCASE(cid, ins_id, me_name, me_s) \
      case cid :\
@@ -12,6 +14,8 @@
          M_OMCI_P[std::make_pair(cid,ins_id)]=A;\
          break;\
      }
+
+#define DEFAULT_MODE      S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH
 
 enum Action 
 { 
@@ -27,5 +31,7 @@ typedef int             I32_T;
 typedef short           I16_T;
 typedef char            I8_T;
 
+
+BOOL_T mkdirp(const char* path, mode_t mode = DEFAULT_MODE);
 
 #endif 

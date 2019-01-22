@@ -1,10 +1,13 @@
 {
-    "Class"       : 130 ,
-    "Id"          : 0 ,
-    "Name"        : "ME_802_1p_mapper_service_profile" ,
-    "Action"      : "create, delete, get, set", 
-    "Created_by"  : "OLT" ,
-    "Create_Time" : 0 
+    "Class"            : 130 ,
+    "Id"               : 0 ,
+    "TransID"          : 0 ,
+    "Name"             : "ME_802_1p_mapper_service_profile" ,
+    "Supported_Action" : "create, delete, get, set", 
+    "Current_Action"   : "create, delete, get, set", 
+    "Created_by"       : "OLT" ,
+    "Raw_Data"         : "0" ,
+    "Create_Time"      : 0 
     
 ,
 "Attrs_info":[
@@ -14,7 +17,7 @@
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -25,7 +28,7 @@
     "Name"     : "TP_pointer" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -36,7 +39,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_0" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -47,7 +50,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_1" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -58,7 +61,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_2" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -69,7 +72,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_3" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -80,7 +83,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_4" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -91,7 +94,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_5" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -102,7 +105,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_6" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -113,7 +116,7 @@
     "Name"     : "ITP_PTR_FOR_PBIT_PRI_7" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -124,7 +127,7 @@
     "Name"     : "Unmarked_frame_option" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -135,7 +138,7 @@
     "Name"     : "DSCP_to_P_bit_mapping" ,
     "Size"     : "24" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -146,7 +149,7 @@
     "Name"     : "Default_P_bit_marking" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -157,7 +160,7 @@
     "Name"     : "TP_type" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW_SC",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }

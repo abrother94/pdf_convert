@@ -44,12 +44,15 @@ BASIC_SET()
     local CLASS=$1
     local ME_NAME="$2"
     local ACTION="$3"
-    echo "    \"Class\"       : $CLASS ,
-    \"Id\"          : 0 ,
-    \"Name\"        : \"$ME_NAME\" ,
-    \"Action\"      : \"$ACTION\", 
-    \"Created_by\"  : \"OLT\" ,
-    \"Create_Time\" : 0 
+    echo "    \"Class\"            : $CLASS ,
+    \"Id\"               : 0 ,
+    \"TransID\"          : 0 ,
+    \"Name\"             : \"$ME_NAME\" ,
+    \"Supported_Action\" : \"$ACTION\", 
+    \"Current_Action\"   : \"$ACTION\", 
+    \"Created_by\"       : \"OLT\" ,
+    \"Raw_Data\"         : \"0\" ,
+    \"Create_Time\"      : 0 
     " >> ${OUTPUT_FILE}
 }
 
@@ -66,7 +69,7 @@ ATTRIB_SET()
     \"Name\"     : \"$ATT_NAME\" ,
     \"Size\"     : \"$SIZE\" ,
     \"Access\"   : \"$ACCESS\",
-    \"Value\"    : 0,
+    \"Value\"    : \"0\",
     \"Mandtary\" : \"$MAND\"
     " >> ${OUTPUT_FILE}
     J_B_END

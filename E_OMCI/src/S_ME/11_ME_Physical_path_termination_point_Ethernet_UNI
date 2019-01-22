@@ -1,10 +1,13 @@
 {
-    "Class"       : 11 ,
-    "Id"          : 0 ,
-    "Name"        : "ME_Physical_path_termination_point_Ethernet_UNI" ,
-    "Action"      : "get, set", 
-    "Created_by"  : "ONT" ,
-    "Create_Time" : 0 
+    "Class"            : 11 ,
+    "Id"               : 0 ,
+    "TransID"          : 0 ,
+    "Name"             : "ME_Physical_path_termination_point_Ethernet_UNI" ,
+    "Supported_Action" : "get, set", 
+    "Current_Action"   : "get, set", 
+    "Created_by"       : "OLT" ,
+    "Raw_Data"         : "0" ,
+    "Create_Time"      : 0 
     
 ,
 "Attrs_info":[
@@ -14,7 +17,7 @@
     "Name"     : "Managed_entity_id" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -25,7 +28,7 @@
     "Name"     : "Expected_type" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -36,7 +39,7 @@
     "Name"     : "Sensed_type" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -47,7 +50,7 @@
     "Name"     : "Auto_detection_configuration" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -58,7 +61,7 @@
     "Name"     : "Ethernet_loopback_configuration" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -69,7 +72,7 @@
     "Name"     : "Administrative_state" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -80,7 +83,7 @@
     "Name"     : "Operational_state" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -91,7 +94,7 @@
     "Name"     : "Configuration_ind" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_R",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -102,7 +105,7 @@
     "Name"     : "Max_frame_size" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -113,7 +116,7 @@
     "Name"     : "DTE_or_DCE_ind" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "mandatory"
     
 }
@@ -124,7 +127,7 @@
     "Name"     : "Pause_time" ,
     "Size"     : "2" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -135,7 +138,7 @@
     "Name"     : "Bridged_or_IP_ind" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -146,7 +149,7 @@
     "Name"     : "ARC" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -157,7 +160,7 @@
     "Name"     : "ARC_interval" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -168,7 +171,7 @@
     "Name"     : "PPPoE_filter" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }
@@ -179,7 +182,7 @@
     "Name"     : "Power_control" ,
     "Size"     : "1" ,
     "Access"   : "ATTR_ACCESS_RW",
-    "Value"    : 0,
+    "Value"    : "0",
     "Mandtary" : "optional"
     
 }

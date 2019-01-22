@@ -5,6 +5,7 @@
 #include <string> 
 #include <map>
 #include <me_c.hpp>
+#include <time.h>
 
 using namespace std;
 
@@ -196,19 +197,26 @@ const std::map<UI8_T, std::string> g_action_t =
 class OMCI_Parser
 {
     public:
-        BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
-        BOOL_T get_me_by_class(UI16_T Class);
-        BOOL_T me_find_instance(UI16_T Class ,UI16_T ME_ID);
-        BOOL_T me_create_instance(UI16_T Class ,UI16_T ME_ID);
+        OMCI_Parser();
+
         static std::string get_omci_action_name(UI8_T action_ID);
         static UI16_T get_omci_action_id(std::string value);
-        UI16_T omci_pkt_parser(UI8_T *pkt_p);
 
-        ME_C   m_me;
+        UI16_T omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size);
+
 
     private:
+        std::string m_log_out_path;
+        std::string m_log_in_path;
+        ME_C        m_me;
+
         UI16_T get_omci_ui16(UI8_T *data);
+
         BOOL_T check_action_valid(UI16_T Class, UI16_T Action);
+        BOOL_T check_me_class_valid(UI16_T Class);
+        BOOL_T check_me_instance_valid(UI16_T Class ,UI16_T ME_ID);
+        BOOL_T me_create_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, UI8_T *pkt_p, UI8_T pkt_size);
+        BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
 };
 
 #endif
