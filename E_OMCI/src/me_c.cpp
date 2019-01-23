@@ -44,6 +44,7 @@ BOOL_T ME_C::pre_create_me_obj()
     printf("[%s]pre_create_me_obj ONT_DATA\r\n", __MY_FILE__);
     Tvalue = get_me_s_json(MECID_ONT_DATA);
     res = create_me_obj(MECID_ONT_DATA, 0, Tvalue);
+
     return res;
 }
 

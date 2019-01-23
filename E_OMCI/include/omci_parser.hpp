@@ -194,6 +194,10 @@ const std::map<UI8_T, std::string> g_action_t =
 };
 
 
+static constexpr char PLAYBACK_CFG_NAME[]         = "PlayBack_Cfg";
+static constexpr char PLAYBACK_OLT_CFG_NAME[]     = "PlayBack_OLT_Cfg";
+
+
 class OMCI_Parser
 {
     public:
@@ -203,13 +207,16 @@ class OMCI_Parser
         static UI16_T get_omci_action_id(std::string value);
 
         UI16_T omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size);
-
+        void   omci_play_back();
 
     private:
         std::string m_log_out_path;
         std::string m_log_in_path;
         Json::Value m_playback_cfg;
-        ME_C        m_me;
+        ME_C   m_me;
+        UI16_T m_playback_omci_num = {0};
+
+        std::map<int, Json::Value> m_omci_playback;
 
         UI16_T get_omci_ui16(UI8_T *data);
 
@@ -218,6 +225,12 @@ class OMCI_Parser
         BOOL_T check_me_instance_valid(UI16_T Class ,UI16_T ME_ID);
         BOOL_T me_create_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, UI8_T *pkt_p, UI8_T pkt_size);
         BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
+
+        BOOL_T is_omci_log_enable();
+        BOOL_T is_omci_play_enable();
+        BOOL_T is_olt_play_enable();
+        void   get_cfg();
+        void   get_omci_playback_data();
 };
 
 #endif

@@ -67,12 +67,12 @@
 		}
 	],
 	"Class" : 171,
-	"Create_Time" : 1548149611167098,
+	"Create_Time" : 1548232798965255,
 	"Created_by" : "OLT",
 	"Current_Action" : "CREATE",
-	"Id" : 516,
+	"Id" : 514,
 	"Name" : "ME_Extended_VLAN_tagging_operation_configuration_data",
-	"Raw_Data" : "01E9440A00AB020402010400000000000000000000000000000000000000000000000000000000000000002800",
+	"Raw_Data" : "01D1440A00AB020202010200000000000000000000000000000000000000000000000000000000000000002800",
 	"Supported_Action" : "create, delete, get, get next, set",
-	"TransID" : 489
+	"TransID" : 465
 }

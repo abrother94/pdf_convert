@@ -1,4 +1,3 @@
-#include <omci_parser.hpp>
 #include <common.hpp>
 #include <arpa/inet.h>
 #include <stdio.h>
@@ -7,33 +6,185 @@
 #include <ostream>
 #include <iostream>
 #include <fstream>
+#include <istream>
 #include <sys/time.h>
+#include <dirent.h>
+#include <unistd.h>
+#include <omci_parser.hpp>
+
 
 using namespace std;
 
+
 OMCI_Parser::OMCI_Parser()
 {
-    // ------------------------------------------------------------------
-    // Prepare OMCI Playback LOG PATH . 
-    // ------------------------------------------------------------------
-    std::string t_time;
-    std::array<char, 32> buffer;
-    time_t rawtime;
-    time(&rawtime);
-    const auto timeinfo = localtime(&rawtime);
-    strftime(buffer.data(), sizeof(buffer) , "%Y_%m_%dT%H_%M_%S", timeinfo);
-    t_time = buffer.data();  
+    get_cfg();
+    get_omci_playback_data();
+}
 
-    m_log_out_path="./E_OMCI_LOG/" + t_time + "/";
 
-    if( mkdirp(m_log_out_path.c_str(), DEFAULT_MODE))
+void OMCI_Parser::omci_play_back()
+{
+    UI16_T i     = 0;
+    UI16_T delay = 0;
+
+    UI16_T key = 0;
+
+    std::vector<long long> dA;
+
+    // ------------------------------------------------------------------
+    // 1. Cal delay time between two omci .
+    // ------------------------------------------------------------------
+    //
+
+    for (auto &J : m_omci_playback) 
     {
-        printf("[%s]Create log out path [%s] OK\r\b",__MY_FILE__,  m_log_out_path.c_str());
+        Json::Value playback = J.second; 
+        long long t = playback["Create_Time"].asUInt64();
+        dA.push_back(t);
+        i++;
+    }
+
+    i=0;
+
+    for (auto &K : m_omci_playback) 
+    {
+        Json::Value playback = K.second; 
+        long long delay = dA[i+1] - dA[i];
+        printf("delay [%ll]\r\n", delay);
+
+        printf("raw[%d][%s]\r\n",i,  playback["Raw_Data"].asString().c_str());
+
+        if(delay > 0)
+            usleep(delay); 
+        i++;
+    }
+}
+
+
+void OMCI_Parser::get_omci_playback_data()
+{
+    if(is_omci_play_enable())
+    {
+        std::string ME_PLAYBACK_DIR(m_playback_cfg["OMCI_PLATBACK_FILE_PATH"].asString());
+        struct dirent *entry;
+
+        DIR *dir = opendir(ME_PLAYBACK_DIR.c_str());
+
+        if (dir == NULL) 
+        {
+            printf("[%s]no such path [%s] exist!!\r\n", __MY_FILE__, ME_PLAYBACK_DIR.c_str());
+            return;
+        }
+
+        while ((entry = readdir(dir)) != NULL) 
+        {
+            std::string dot(".");
+            std::string ddot("..");
+
+            std::string tmp_me_name = entry->d_name;
+
+            if((dot == tmp_me_name) || (ddot == tmp_me_name))
+                continue;
+
+            std::string trans_cid = tmp_me_name.substr(0, tmp_me_name.find("_"));
+            printf("[%s]me name[%s] me cid[%s]\r\n", __MY_FILE__, tmp_me_name.c_str(), trans_cid.c_str());
+
+            std::string m_config_file_path = ME_PLAYBACK_DIR + tmp_me_name ;
+            printf("[%s]new pathname[%s]\r\n",__MY_FILE__,  m_config_file_path.c_str());
+
+            ifstream    source_files= {};
+
+            source_files.open(m_config_file_path);
+
+            if(source_files.good())
+            {   
+                Json::Value omci_s;
+                Json::Reader reader;
+                BOOL_T isJsonOK = (reader.parse(source_files, omci_s));
+
+                if(isJsonOK)
+                {
+                    printf("[%s]Get playback omci_s ok \r\n", __MY_FILE__);
+                    printf("[%s]Class id:%d\r\n", __MY_FILE__, omci_s["Class"].asInt());
+                    int Class =  omci_s["Class"].asInt();
+                    m_omci_playback[std::stoi(trans_cid)]=omci_s; 
+                    m_playback_omci_num++;
+                    printf("[%s]m_playback_omci_num size is %zu\r\n",__MY_FILE__ ,m_omci_playback.size());
+                }
+                else
+                {
+                    printf("[%s]Get omci_s ng\r\n", __MY_FILE__);
+                    return;
+                }
+            }
+            else
+            {
+                printf("[%s]Open file NG\r\n", __MY_FILE__);
+                return;
+            }
+        }
+        closedir(dir);
+    }
+    return;
+}
+
+void OMCI_Parser::get_cfg()
+{
+    // ------------------------------------------------------------------
+    // Prepare PlayBack_Cfg data . 
+    // ------------------------------------------------------------------
+    ifstream    m_source_files= {};
+    std::string t_path = PLAYBACK_CFG_NAME;
+
+    m_source_files.open(t_path);
+
+    if(m_source_files.good())
+    {   
+        Json::Reader reader;
+        BOOL_T isJsonOK = (reader.parse(m_source_files, m_playback_cfg));
+
+        if(isJsonOK)
+        {
+            printf("[%s]Get PlayBack_Cfg OK \r\n", __MY_FILE__);
+            printf("[%s]PLAYBACK Enable[%d]\r\n", __MY_FILE__, m_playback_cfg["PLAYBACK"].asInt());
+            printf("[%s]RECORD PLAYBACK Enable[%d]\r\n", __MY_FILE__, m_playback_cfg["RECORD_PLAYBACK"].asInt());
+            printf("[%s]OMCI_PLATBACK_FILE_PATH[%s]\r\n", __MY_FILE__, m_playback_cfg["OMCI_PLATBACK_FILE_PATH"].asString().c_str());
+            printf("[%s]OLT_PLATBACK_FILE_PATH[%s]\r\n", __MY_FILE__, m_playback_cfg["OLT_PLATBACK_FILE_PATH"].asString().c_str());
+        }
+        else
+        {
+            printf("[%s]Get PlayBack_Cfg NG, Check JSON format !!!\r\n", __MY_FILE__);
+        }
     }
     else
-        printf("[%s]Create log out path [%s] NG\r\b",__MY_FILE__,  m_log_out_path.c_str());
+    {
+        printf("[%s]Open PlayBack_Cfg NG\r\n", __MY_FILE__);
+    }
 
+    // ------------------------------------------------------------------
+    // Prepare OMCI Playback LOG PATH 
+    // To Save OMCI log here. 
+    // ------------------------------------------------------------------
+    if(is_omci_log_enable())
+    {
+        std::string t_time;
+        std::array<char, 32> buffer;
+        time_t rawtime;
+        time(&rawtime);
+        const auto timeinfo = localtime(&rawtime);
+        strftime(buffer.data(), sizeof(buffer) , "%Y_%m_%dT%H_%M_%S", timeinfo);
+        t_time = buffer.data();  
 
+        m_log_out_path="./E_OMCI_LOG/" + t_time + "/";
+
+        if( mkdirp(m_log_out_path.c_str(), DEFAULT_MODE))
+        {
+            printf("[%s]Create log out path [%s] OK\r\b",__MY_FILE__,  m_log_out_path.c_str());
+        }
+        else
+            printf("[%s]Create log out path [%s] NG\r\b",__MY_FILE__,  m_log_out_path.c_str());
+    }
 }
 
 BOOL_T OMCI_Parser::omci_parser_validaterxpkt (UI8_T * pkt_p)
@@ -55,6 +206,17 @@ BOOL_T OMCI_Parser::check_me_instance_valid(UI16_T Class ,UI16_T ME_ID)
 {
     return m_me.check_me_o_valid(Class, ME_ID);
 }
+
+BOOL_T OMCI_Parser::is_omci_log_enable()
+{
+    return  m_playback_cfg["RECORD_PLAYBACK"].asBool(); 
+}
+
+BOOL_T OMCI_Parser::is_omci_play_enable()
+{
+    return  m_playback_cfg["PLAYBACK"].asBool(); 
+}
+
 
 BOOL_T OMCI_Parser::me_create_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, UI8_T *pkt_p,UI8_T pkt_size)
 {
@@ -89,12 +251,14 @@ BOOL_T OMCI_Parser::me_create_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_I
     //printf("raw data in omci_s[%s]\r\n" , omci_s["Raw_Data"].asString().c_str());
     m_me.create_me_obj(Class, ME_ID, omci_s); 
 
-    /*Chk if need log*/
-    std::string file_name=std::to_string(TransID)+ "_" + std::to_string(Class)+ "_" + std::to_string(ME_ID) + "_" + omci_s["Name"].asString();
-    std::ofstream ofile(m_log_out_path + file_name);
-    ofile << omci_s;
-    ofile.close();
-
+    /*Chk if need log*/  //Todo , to record all omci pkt //
+    if(is_omci_log_enable())
+    {
+        std::string file_name=std::to_string(TransID)+ "_" + std::to_string(Class)+ "_" + std::to_string(ME_ID) + "_" + omci_s["Name"].asString();
+        std::ofstream ofile(m_log_out_path + file_name);
+        ofile << omci_s;
+        ofile.close();
+    }
     return true;
 }
 
@@ -201,7 +365,8 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size)
 
 
         obj_exist = check_me_instance_valid(Class ,ME_ID);
-        if (!obj_exist && (Action != MSGTYPE_CREATE))
+
+        if (!obj_exist && (Action != MSGTYPE_CREATE)&& (Class != MECID_T_CONT)) //Todo , add exclusive class function to chk
         {
             printf("[%s]ME CLass[%d] instance_ID NOT exist. cannot [%s]\n",__MY_FILE__, Class, get_omci_action_name(Action).c_str());
             return 0; 
@@ -241,6 +406,14 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size)
             break;
 
         case MSGTYPE_SET:
+
+            /*T-CONT createed in ONT it self*/
+            if (Class == MECID_T_CONT)
+            {
+                printf("[%s]T_CONT CREATE/MSGTYPE_SET!!!!!!\r\n", __MY_FILE__);
+                me_create_instance(TransID, Class , ME_ID, pkt_p, pkt_size);
+            }
+
             printf("[%s]MSGTYPE_SET!!!!!!\r\n", __MY_FILE__);
             break;
 

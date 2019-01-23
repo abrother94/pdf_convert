@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 
 
@@ -59,6 +60,7 @@ char* get_text_line(FILE* input_fp)
         }
         printf("\r\n");
         omci_p.omci_pkt_parser(omci_raw, sizeofTest);
+        usleep(1000*100); 
         printf("\r\n");
     }    
     return read_buf;
@@ -76,12 +78,9 @@ void platform_arch_info()
 
 int main(int argc, char *argv[])
 {
-    //platform_arch_info();
+    platform_arch_info();
     FILE *OMCI_cmds_fp;
     char OMCI_Cmds_filename[256];
-
-    //OMCI_Parser omci_p;
-    //return 1;
 
     if(argc == 2 && strlen(argv[1]) >  0)
     {
@@ -104,7 +103,8 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("[%s]Please provide RAW_DATA_FILE of OMCI !!!!! \r\n",__MY_FILE__);
+        OMCI_Parser omci_p;
+        omci_p.omci_play_back();
         return 0;
     }
     return 1;

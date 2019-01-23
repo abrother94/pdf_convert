@@ -107,12 +107,12 @@
 		}
 	],
 	"Class" : 47,
-	"Create_Time" : 1548149611162180,
+	"Create_Time" : 1548232798163607,
 	"Created_by" : "OLT",
 	"Current_Action" : "CREATE",
-	"Id" : 514,
+	"Id" : 513,
 	"Name" : "ME_MAC_bridge_port_configuration_data",
-	"Raw_Data" : "01D5440A002F020202010201010200000000000000000000000000000000000000000000000000000000002800",
+	"Raw_Data" : "01CD440A002F020102010101010100000000000000000000000000000000000000000000000000000000002800",
 	"Supported_Action" : "create, delete, get, set",
-	"TransID" : 469
+	"TransID" : 461
 }
