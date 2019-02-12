@@ -227,6 +227,36 @@ BOOL_T ME_C::check_me_o_valid(UI16_T Class, UI16_T instance_id)
         return true;
 }
 
+UI16_T ME_C::get_attributes_size(UI16_T Class,UI16_T attr_id)
+{
+    Json::Value omci_s;
+    omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
+
+    std::string astring = omci_s["Attrs_info"][attr_id -1]["Size"].asString();
+
+    return std::stoi(astring);
+}
+
+std::string ME_C::get_attributes_name(UI16_T Class,UI16_T attr_id)
+{
+    Json::Value omci_s;
+    omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
+
+    std::string astring = omci_s["Attrs_info"][attr_id -1]["Name"].asString();
+
+    return astring;
+}
+
+
+
+UI16_T ME_C::get_attributes_num(UI16_T Class)
+{
+    Json::Value omci_s;
+    omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
+
+    return omci_s["Attrs_info"].size();
+}
+
 BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
 {
     Json::Value omci_s;

@@ -8,7 +8,7 @@ ME_S::ME_S(UI32_T class_id,UI32_T instance_id, Json::Value me_s)
     m_instance_id = instance_id;
     m_j_me          = me_s;
 
-    std::string action= m_j_me["Action"].asString();
+    std::string action= m_j_me["Supported_Action"].asString();
 
     printf("Action[%s]\r\n", action.c_str());
 

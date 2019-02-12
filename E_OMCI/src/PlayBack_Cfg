@@ -1,6 +1,6 @@
 {
 "PLAYBACK"                : true,
-"RECORD_PLAYBACK"         : false,
+"RECORD_PLAYBACK"         : true,
 "OMCI_PLATBACK_FILE_PATH" : "E_OMCI_LOG/2019_01_23T16_39_54/",
 "OLT_PLATBACK_FILE_PATH"  : "E_OLT_LOG"
 }

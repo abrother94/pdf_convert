@@ -2,7 +2,7 @@ UI32_T size is [4]
 UI16_T size is [2]
 UI8_T  size is [1]
 BOOL_T size is [1]
-[main.cpp]filename[FROM_VOLTHA_OMCI_GREP]
+[main.cpp]filename[FROM_ARC_OMCI]
 [me_c.cpp]me name[272_ME_GAL_Ethernet_profile] me cid[272]
 [me_c.cpp]new pathname[S_ME/272_ME_GAL_Ethernet_profile]
 [me_c.cpp]Get omci_s ok 
@@ -81,1603 +81,807 @@ BOOL_T size is [1]
 [me_c.cpp]get_omci_s OK!!
 [me_c.cpp]pre_create_me_obj ONT_DATA
 [me_c.cpp]Create me object class id [2] instance id[0] 
-Action[]
-action table[0x0000]
+Action[get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:]
+G
+S
+action table[0x0009]
 CID[2]
 [omci_parser.cpp]Get PlayBack_Cfg OK 
-[omci_parser.cpp]PLAYBACK Enable[0]
+[omci_parser.cpp]PLAYBACK Enable[1]
 [omci_parser.cpp]RECORD PLAYBACK Enable[1]
-[omci_parser.cpp]OMCI_PLATBACK_FILE_PATH[E_OMCI_LOG/2019_01_23T10_24_51/]
+[omci_parser.cpp]OMCI_PLATBACK_FILE_PATH[E_OMCI_LOG/2019_01_23T16_39_54/]
 [omci_parser.cpp]OLT_PLATBACK_FILE_PATH[E_OLT_LOG]
-[omci_parser.cpp]Create log out path [./E_OMCI_LOG/2019_01_23T16_39_54/] OK[main.cpp]omci size is 45
-01BD4F0A0002000000000000000000000000000000000000000000000000000000000000000000000000002800
+[omci_parser.cpp]Create log out path [./E_OMCI_LOG/2019_02_12T17_57_27/] OK[omci_parser.cpp]me name[447_272_1_ME_GAL_Ethernet_profile] me cid[447]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/447_272_1_ME_GAL_Ethernet_profile]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:272
+[omci_parser.cpp]m_playback_omci_num size is 1
+[omci_parser.cpp]me name[513_281_6_ME_Multicast_GEM_interworking_termination_point] me cid[513]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/513_281_6_ME_Multicast_GEM_interworking_termination_point]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:281
+[omci_parser.cpp]m_playback_omci_num size is 2
+[omci_parser.cpp]me name[453_47_8450_ME_MAC_bridge_port_configuration_data] me cid[453]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/453_47_8450_ME_MAC_bridge_port_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:47
+[omci_parser.cpp]m_playback_omci_num size is 3
+[omci_parser.cpp]me name[465_171_514_ME_Extended_VLAN_tagging_operation_configuration_data] me cid[465]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/465_171_514_ME_Extended_VLAN_tagging_operation_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:171
+[omci_parser.cpp]m_playback_omci_num size is 4
+[omci_parser.cpp]me name[455_84_8450_ME_VLAN_tagging_filter_data] me cid[455]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/455_84_8450_ME_VLAN_tagging_filter_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:84
+[omci_parser.cpp]m_playback_omci_num size is 5
+[omci_parser.cpp]me name[445_2_0_ME_ONT_data] me cid[445]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/445_2_0_ME_ONT_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:2
+[omci_parser.cpp]m_playback_omci_num size is 6
+[omci_parser.cpp]me name[457_171_513_ME_Extended_VLAN_tagging_operation_configuration_data] me cid[457]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/457_171_513_ME_Extended_VLAN_tagging_operation_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:171
+[omci_parser.cpp]m_playback_omci_num size is 7
+[omci_parser.cpp]me name[507_309_513_ME_Multicast_operations_profile] me cid[507]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/507_309_513_ME_Multicast_operations_profile]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:309
+[omci_parser.cpp]m_playback_omci_num size is 8
+[omci_parser.cpp]me name[478_268_1032_ME_GEM_port_network_CTP] me cid[478]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/478_268_1032_ME_GEM_port_network_CTP]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:268
+[omci_parser.cpp]m_playback_omci_num size is 9
+[omci_parser.cpp]me name[493_47_516_ME_MAC_bridge_port_configuration_data] me cid[493]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/493_47_516_ME_MAC_bridge_port_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:47
+[omci_parser.cpp]m_playback_omci_num size is 10
+[omci_parser.cpp]me name[511_268_260_ME_GEM_port_network_CTP] me cid[511]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/511_268_260_ME_GEM_port_network_CTP]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:268
+[omci_parser.cpp]m_playback_omci_num size is 11
+[omci_parser.cpp]me name[451_130_32769_ME_802_1p_mapper_service_profile] me cid[451]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/451_130_32769_ME_802_1p_mapper_service_profile]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:130
+[omci_parser.cpp]m_playback_omci_num size is 12
+[omci_parser.cpp]me name[476_262_32769_ME_T_CONT] me cid[476]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/476_262_32769_ME_T_CONT]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:262
+[omci_parser.cpp]m_playback_omci_num size is 13
+[omci_parser.cpp]me name[505_47_9000_ME_MAC_bridge_port_configuration_data] me cid[505]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/505_47_9000_ME_MAC_bridge_port_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:47
+[omci_parser.cpp]m_playback_omci_num size is 14
+[omci_parser.cpp]me name[481_47_515_ME_MAC_bridge_port_configuration_data] me cid[481]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/481_47_515_ME_MAC_bridge_port_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:47
+[omci_parser.cpp]m_playback_omci_num size is 15
+[omci_parser.cpp]me name[446_2_0_ME_ONT_data] me cid[446]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/446_2_0_ME_ONT_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:2
+[omci_parser.cpp]m_playback_omci_num size is 16
+[omci_parser.cpp]me name[473_171_515_ME_Extended_VLAN_tagging_operation_configuration_data] me cid[473]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/473_171_515_ME_Extended_VLAN_tagging_operation_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:171
+[omci_parser.cpp]m_playback_omci_num size is 17
+[omci_parser.cpp]me name[482_266_1032_ME_GEM_interworking_termination_point] me cid[482]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/482_266_1032_ME_GEM_interworking_termination_point]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:266
+[omci_parser.cpp]m_playback_omci_num size is 18
+[omci_parser.cpp]me name[461_47_513_ME_MAC_bridge_port_configuration_data] me cid[461]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/461_47_513_ME_MAC_bridge_port_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:47
+[omci_parser.cpp]m_playback_omci_num size is 19
+[omci_parser.cpp]me name[469_47_514_ME_MAC_bridge_port_configuration_data] me cid[469]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/469_47_514_ME_MAC_bridge_port_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:47
+[omci_parser.cpp]m_playback_omci_num size is 20
+[omci_parser.cpp]me name[477_262_32769_ME_T_CONT] me cid[477]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/477_262_32769_ME_T_CONT]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:262
+[omci_parser.cpp]m_playback_omci_num size is 21
+[omci_parser.cpp]me name[501_47_517_ME_MAC_bridge_port_configuration_data] me cid[501]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/501_47_517_ME_MAC_bridge_port_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:47
+[omci_parser.cpp]m_playback_omci_num size is 22
+[omci_parser.cpp]me name[489_171_516_ME_Extended_VLAN_tagging_operation_configuration_data] me cid[489]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/489_171_516_ME_Extended_VLAN_tagging_operation_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:171
+[omci_parser.cpp]m_playback_omci_num size is 23
+[omci_parser.cpp]me name[509_310_513_ME_Multicast_subscriber_config_info] me cid[509]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/509_310_513_ME_Multicast_subscriber_config_info]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:310
+[omci_parser.cpp]m_playback_omci_num size is 24
+[omci_parser.cpp]me name[449_45_513_ME_MAC_bridge_service_profile] me cid[449]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/449_45_513_ME_MAC_bridge_service_profile]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:45
+[omci_parser.cpp]m_playback_omci_num size is 25
+[omci_parser.cpp]me name[497_171_517_ME_Extended_VLAN_tagging_operation_configuration_data] me cid[497]
+[omci_parser.cpp]new pathname[E_OMCI_LOG/2019_01_23T16_39_54/497_171_517_ME_Extended_VLAN_tagging_operation_configuration_data]
+[omci_parser.cpp]Get playback omci_s ok 
+[omci_parser.cpp]Class id:171
+[omci_parser.cpp]m_playback_omci_num size is 26
+[main.cpp]omci size is 48
+00034F0A00020000000000000000000000000000000000000000000000000000000000000000000000000028F3B55CD1
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[2] ME_ID:[0] Action[MIB_RESET][0x000F]
 [me_c.cpp]Class[2] chk action[MIB_RESET][15] support action[get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:][8]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[2] instance_id[0]
 [omci_parser.cpp]ME [2] instance found. Prepare MIB_RESET 
-[omci_parser.cpp]Create me instance Class[2]Name[ME_ONT_data] instance_id [0] size[45] 
+[omci_parser.cpp]Create me instance Class[2]Name[ME_ONT_data] instance_id [0] size[48] 
 [me_c.cpp]Create me object class id [2] instance id[0] 
 [me_c.cpp]Already exist class_id [2] instance_id[0]!!
 [omci_parser.cpp]MSGTYPE_REBOOT!!!!!!
 
-[main.cpp]omci size is 45
-01BE4F0A0002000000000000000000000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+0004440A010A0400040005800100000001000000000000000000000000000000000000000000000000000028C3FC2838
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[2] ME_ID:[0] Action[MIB_RESET][0x000F]
-[me_c.cpp]Class[2] chk action[MIB_RESET][15] support action[get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[2] instance_id[0]
-[omci_parser.cpp]ME [2] instance found. Prepare MIB_RESET 
-[omci_parser.cpp]Create me instance Class[2]Name[ME_ONT_data] instance_id [0] size[45] 
-[me_c.cpp]Create me object class id [2] instance id[0] 
-[me_c.cpp]Already exist class_id [2] instance_id[0]!!
-[omci_parser.cpp]MSGTYPE_REBOOT!!!!!!
-
-[main.cpp]omci size is 49
-01BD2F0A00020000000000000000000000000000000000000000000000000000000000000000000000000028A586153B00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[2] ME_ID:[0] Action[MIB_RESET][0x000F]
-[me_c.cpp]Class[2] chk action[MIB_RESET][15] support action[get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[2] instance_id[0]
-[omci_parser.cpp]ME [2] instance found. Prepare MIB_RESET 
-[omci_parser.cpp]Create me instance Class[2]Name[ME_ONT_data] instance_id [0] size[49] 
-[me_c.cpp]Create me object class id [2] instance id[0] 
-[me_c.cpp]Already exist class_id [2] instance_id[0]!!
-[omci_parser.cpp]MSGTYPE_REBOOT!!!!!!
-
-[main.cpp]omci size is 49
-01BE2F0A000200000000000000000000000000000000000000000000000000000000000000000000000000289BE9164500
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[2] ME_ID:[0] Action[MIB_RESET][0x000F]
-[me_c.cpp]Class[2] chk action[MIB_RESET][15] support action[get, set get all alarms: get all alarms next: mib reset: mib upload: mib upload next:][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[2] instance_id[0]
-[omci_parser.cpp]ME [2] instance found. Prepare MIB_RESET 
-[omci_parser.cpp]Create me instance Class[2]Name[ME_ONT_data] instance_id [0] size[49] 
-[me_c.cpp]Create me object class id [2] instance id[0] 
-[me_c.cpp]Already exist class_id [2] instance_id[0]!!
-[omci_parser.cpp]MSGTYPE_REBOOT!!!!!!
-
-[main.cpp]omci size is 49
-0000100A000B010180000000000000000000000000000000000000000000000000000000000000130000002825291D7300
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[11] ME_ID:[257] Action[ALARM][0x0010]
-[omci_parser.cpp]MSGTYPE_ATTRIBUTE_VALUE_CHANGE MSGTYPE_ALARM!!!
-[me_c.cpp]Class[11] chk action[ALARM][16] support action[get, set][8]
-[omci_parser.cpp]ME[11] not support this action[16]!!
-
-[main.cpp]omci size is 49
-0000100A000B0103800000000000000000000000000000000000000000000000000000000000001400000028D8BB6D3000
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[11] ME_ID:[259] Action[ALARM][0x0010]
-[omci_parser.cpp]MSGTYPE_ATTRIBUTE_VALUE_CHANGE MSGTYPE_ALARM!!!
-[me_c.cpp]Class[11] chk action[ALARM][16] support action[get, set][8]
-[omci_parser.cpp]ME[11] not support this action[16]!!
-
-[main.cpp]omci size is 49
-0000100A000B0104800000000000000000000000000000000000000000000000000000000000001500000028F9E372BB00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[11] ME_ID:[260] Action[ALARM][0x0010]
-[omci_parser.cpp]MSGTYPE_ATTRIBUTE_VALUE_CHANGE MSGTYPE_ALARM!!!
-[me_c.cpp]Class[11] chk action[ALARM][16] support action[get, set][8]
-[omci_parser.cpp]ME[11] not support this action[16]!!
-
-[main.cpp]omci size is 45
-01BF440A0110000100300000000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[272] ME_ID:[1] Action[CREATE][0x0004]
-[me_c.cpp]Class[272] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[272] instance_id[1]
-[omci_parser.cpp]Create me instance Class[272]Name[ME_GAL_Ethernet_profile] instance_id [1] size[45] 
-[me_c.cpp]Create me object class id [272] instance id[1] 
-Action[]
-action table[0x0000]
-CID[272]
-
-[main.cpp]omci size is 49
-01BF240A01100001000000000000000000000000000000000000000000000000000000000000000000000028D69A2DB700
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[272] ME_ID:[1] Action[CREATE][0x0004]
-[me_c.cpp]Class[272] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[272] instance_id[1]
-[omci_parser.cpp]ME [272] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(272), ME instance(1) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C0440A0110000100300000000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[272] ME_ID:[1] Action[CREATE][0x0004]
-[me_c.cpp]Class[272] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[272] instance_id[1]
-[omci_parser.cpp]ME [272] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(272), ME instance(1) exist, cannot create again
-
-[main.cpp]omci size is 49
-01C0240A011000010700000000000000000000000000000000000000000000000000000000000000000000286B3504B300
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[272] ME_ID:[1] Action[CREATE][0x0004]
-[me_c.cpp]Class[272] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[272] instance_id[1]
-[omci_parser.cpp]ME [272] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(272), ME instance(1) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C1440A002D02010001008000140002000F000100000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[45] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[45] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[45] instance_id[513]
-[omci_parser.cpp]Create me instance Class[45]Name[ME_MAC_bridge_service_profile] instance_id [513] size[45] 
-[me_c.cpp]Create me object class id [45] instance id[513] 
-Action[]
-action table[0x0000]
-CID[45]
-
-[main.cpp]omci size is 45
-01C2440A002D02010001008000140002000F000100000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[45] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[45] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[45] instance_id[513]
-[omci_parser.cpp]ME [45] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(45), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C3440A00828001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[130] ME_ID:[32769] Action[CREATE][0x0004]
-[me_c.cpp]Class[130] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]Create me instance Class[130]Name[ME_802_1p_mapper_service_profile] instance_id [32769] size[45] 
-[me_c.cpp]Create me object class id [130] instance id[32769] 
-Action[]
-action table[0x0000]
-CID[130]
-
-[main.cpp]omci size is 45
-01C4440A00828001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[130] ME_ID:[32769] Action[CREATE][0x0004]
-[me_c.cpp]Class[130] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]ME [130] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(130), ME instance(32769) exist, cannot create again
-
-[main.cpp]omci size is 49
-01C1240A002D0201000000000000000000000000000000000000000000000000000000000000000000000028B98CABC000
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[45] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[45] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[45] instance_id[513]
-[omci_parser.cpp]ME [45] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(45), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 49
-01C2240A002D0201070000000000000000000000000000000000000000000000000000000000000000000028CAA8222D00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[45] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[45] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[45] instance_id[513]
-[omci_parser.cpp]ME [45] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(45), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C5440A002F210202010303800100000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[8450]
-[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [8450] size[45] 
-[me_c.cpp]Create me object class id [47] instance id[8450] 
-Action[]
-action table[0x0000]
-CID[47]
-
-[main.cpp]omci size is 49
-01C3240A008280010000000000000000000000000000000000000000000000000000000000000000000000284D3ABE8E00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[130] ME_ID:[32769] Action[CREATE][0x0004]
-[me_c.cpp]Class[130] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]ME [130] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(130), ME instance(32769) exist, cannot create again
-
-[main.cpp]omci size is 49
-01C4240A00828001070000000000000000000000000000000000000000000000000000000000000000000028C296673000
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[130] ME_ID:[32769] Action[CREATE][0x0004]
-[me_c.cpp]Class[130] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]ME [130] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(130), ME instance(32769) exist, cannot create again
-
-[main.cpp]omci size is 49
-01C5240A002F2102000000000000000000000000000000000000000000000000000000000000000000000028849D291D00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[8450]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(8450) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C6440A002F210202010303800100000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[8450]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(8450) exist, cannot create again
-
-[main.cpp]omci size is 49
-01C6240A002F21020700000000000000000000000000000000000000000000000000000000000000000000280112AA2600
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[8450]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(8450) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C7440A005421020FFB0000000000000000000000000000000000000000000010010000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[84] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[84] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[84] instance_id[8450]
-[omci_parser.cpp]Create me instance Class[84]Name[ME_VLAN_tagging_filter_data] instance_id [8450] size[45] 
-[me_c.cpp]Create me object class id [84] instance id[8450] 
-Action[]
-action table[0x0000]
-CID[84]
-
-[main.cpp]omci size is 49
-01C7240A005421020000000000000000000000000000000000000000000000000000000000000000000000283907C8F500
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[84] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[84] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[84] instance_id[8450]
-[omci_parser.cpp]ME [84] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(84), ME instance(8450) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C8440A005421020FFB0000000000000000000000000000000000000000000010010000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[84] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[84] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[84] instance_id[8450]
-[omci_parser.cpp]ME [84] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(84), ME instance(8450) exist, cannot create again
-
-[main.cpp]omci size is 49
-01C8240A0054210207000000000000000000000000000000000000000000000000000000000000000000002846A717E000
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[84] ME_ID:[8450] Action[CREATE][0x0004]
-[me_c.cpp]Class[84] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[84] instance_id[8450]
-[omci_parser.cpp]ME [84] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(84), ME instance(8450) exist, cannot create again
-
-[main.cpp]omci size is 45
-01C9440A00AB020102010100000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]Create me instance Class[171]Name[ME_Extended_VLAN_tagging_operation_configuration_data] instance_id [513] size[45] 
-[me_c.cpp]Create me object class id [171] instance id[513] 
-Action[]
-action table[0x0000]
-CID[171]
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01C9240A00AB02010000000000000000000000000000000000000000000000000000000000000000000000283CB8577C00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(513) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01CA440A00AB020102010100000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(513) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01CA240A00AB0201070000000000000000000000000000000000000000000000000000000000000000000028BE060D6400
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(513) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01CB480A00AB020138008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01CB280A00AB0201000000000000000000000000000000000000000000000000000000000000000000000028DBBBF89A00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01CC480A00AB020138008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01CC280A00AB0201000000000000000000000000000000000000000000000000000000000000000000000028D3F7A9AF00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01CD440A002F020102010101010100000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[513]
-[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [513] size[45] 
-[me_c.cpp]Create me object class id [47] instance id[513] 
-Action[]
-action table[0x0000]
-CID[47]
-
-[main.cpp]omci size is 49
-01CD240A002F020100000000000000000000000000000000000000000000000000000000000000000000002840885DCF00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[513]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01CE440A002F020102010101010100000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[513]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 49
-01CE240A002F020107000000000000000000000000000000000000000000000000000000000000000000002877D85D4800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[513]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01CF480A00AB02010400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01CF280A00AB0201000000000000000000000000000000000000000000000000000000000000000000000028080F445B00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01D0480A00AB02010400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01D0280A00AB02010000000000000000000000000000000000000000000000000000000000000000000000281ED6977B00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[513]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01D1440A00AB020202010200000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]Create me instance Class[171]Name[ME_Extended_VLAN_tagging_operation_configuration_data] instance_id [514] size[45] 
-[me_c.cpp]Create me object class id [171] instance id[514] 
-Action[]
-action table[0x0000]
-CID[171]
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01D1240A00AB02020000000000000000000000000000000000000000000000000000000000000000000000284155ECFB00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(514) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01D2440A00AB020202010200000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(514) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01D2240A00AB02020700000000000000000000000000000000000000000000000000000000000000000000285A6AF0E700
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(514) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01D3480A00AB020238008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01D3280A00AB02020000000000000000000000000000000000000000000000000000000000000000000000287D9AABE800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01D4480A00AB020238008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01D4280A00AB0202000000000000000000000000000000000000000000000000000000000000000000000028711608A100
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01D5440A002F020202010201010200000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[514]
-[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [514] size[45] 
-[me_c.cpp]Create me object class id [47] instance id[514] 
-Action[]
-action table[0x0000]
-CID[47]
-
-[main.cpp]omci size is 49
-01D5240A002F0202000000000000000000000000000000000000000000000000000000000000000000000028D1B257E200
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[514]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(514) exist, cannot create again
-
-[main.cpp]omci size is 45
-01D6440A002F020202010201010200000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[514]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(514) exist, cannot create again
-
-[main.cpp]omci size is 49
-01D6240A002F0202070000000000000000000000000000000000000000000000000000000000000000000028AC6489FE00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[514] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[514]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(514) exist, cannot create again
-
-[main.cpp]omci size is 45
-01D7480A00AB02020400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01D7280A00AB020200000000000000000000000000000000000000000000000000000000000000000000002811FAC68500
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01D8480A00AB02020400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01D8280A00AB0202000000000000000000000000000000000000000000000000000000000000000000000028559FF7FF00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01D9440A00AB020302010300000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]Create me instance Class[171]Name[ME_Extended_VLAN_tagging_operation_configuration_data] instance_id [515] size[45] 
-[me_c.cpp]Create me object class id [171] instance id[515] 
-Action[]
-action table[0x0000]
-CID[171]
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01D9240A00AB0203000000000000000000000000000000000000000000000000000000000000000000000028A797FC5100
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(515) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01DA440A00AB020302010300000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(515) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01DA240A00AB0203070000000000000000000000000000000000000000000000000000000000000000000028D374C3F500
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(515) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01DB480A00AB020338008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01DB280A00AB0203000000000000000000000000000000000000000000000000000000000000000000000028FF71897A00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01DC480A0106800180000400000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[262] ME_ID:[32769] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 8000
-[me_c.cpp]Class[262] chk action[SET][8] support action[get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[262] instance_id[32769]
-[omci_parser.cpp]T_CONT CREATE/MSGTYPE_SET!!!!!!
-[omci_parser.cpp]Create me instance Class[262]Name[ME_T_CONT] instance_id [32769] size[45] 
-[me_c.cpp]Create me object class id [262] instance id[32769] 
-Action[]
-action table[0x0000]
-CID[262]
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01DC280A0106800100000000000000000000000000000000000000000000000000000000000000000000002828B25EEB00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[262] ME_ID:[32769] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[262] chk action[SET][8] support action[get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[262] instance_id[32769]
-[omci_parser.cpp]ME [262] instance found. Prepare SET 
-[omci_parser.cpp]T_CONT CREATE/MSGTYPE_SET!!!!!!
-[omci_parser.cpp]Create me instance Class[262]Name[ME_T_CONT] instance_id [32769] size[49] 
-[me_c.cpp]Create me object class id [262] instance id[32769] 
-[me_c.cpp]Already exist class_id [262] instance_id[32769]!!
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01DD480A0106800180000400000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[262] ME_ID:[32769] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 8000
-[me_c.cpp]Class[262] chk action[SET][8] support action[get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[262] instance_id[32769]
-[omci_parser.cpp]ME [262] instance found. Prepare SET 
-[omci_parser.cpp]T_CONT CREATE/MSGTYPE_SET!!!!!!
-[omci_parser.cpp]Create me instance Class[262]Name[ME_T_CONT] instance_id [32769] size[45] 
-[me_c.cpp]Create me object class id [262] instance id[32769] 
-[me_c.cpp]Already exist class_id [262] instance_id[32769]!!
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01DD280A01068001000000000000000000000000000000000000000000000000000000000000000000000028CF4C40EF00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[262] ME_ID:[32769] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[262] chk action[SET][8] support action[get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[262] instance_id[32769]
-[omci_parser.cpp]ME [262] instance found. Prepare SET 
-[omci_parser.cpp]T_CONT CREATE/MSGTYPE_SET!!!!!!
-[omci_parser.cpp]Create me instance Class[262]Name[ME_T_CONT] instance_id [32769] size[49] 
-[me_c.cpp]Create me object class id [262] instance id[32769] 
-[me_c.cpp]Already exist class_id [262] instance_id[32769]!!
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01DE440A010C040804088001030100000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[268] ME_ID:[1032] Action[CREATE][0x0004]
-[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[268] instance_id[1032]
-[omci_parser.cpp]Create me instance Class[268]Name[ME_GEM_port_network_CTP] instance_id [1032] size[45] 
-[me_c.cpp]Create me object class id [268] instance id[1032] 
-Action[]
-action table[0x0000]
-CID[268]
-
-[main.cpp]omci size is 49
-01DE240A010C0408000000000000000000000000000000000000000000000000000000000000000000000028B4F138B300
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[268] ME_ID:[1032] Action[CREATE][0x0004]
-[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[268] instance_id[1032]
-[omci_parser.cpp]ME [268] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(268), ME instance(1032) exist, cannot create again
-
-[main.cpp]omci size is 45
-01DF440A010C040804088001030100000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[268] ME_ID:[1032] Action[CREATE][0x0004]
-[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[268] instance_id[1032]
-[omci_parser.cpp]ME [268] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(268), ME instance(1032) exist, cannot create again
-
-[main.cpp]omci size is 49
-01DF240A010C0408070000000000000000000000000000000000000000000000000000000000000000000028BA5A558400
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[268] ME_ID:[1032] Action[CREATE][0x0004]
-[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[268] instance_id[1032]
-[omci_parser.cpp]ME [268] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(268), ME instance(1032) exist, cannot create again
-
-[main.cpp]omci size is 45
-01E0480A00AB020338008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01E0280A00AB0203000000000000000000000000000000000000000000000000000000000000000000000028BDBF1BAE00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01E1440A002F020302010301010300000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[515]
-[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [515] size[45] 
-[me_c.cpp]Create me object class id [47] instance id[515] 
-Action[]
-action table[0x0000]
-CID[47]
-
-[main.cpp]omci size is 49
-01E1240A002F02030000000000000000000000000000000000000000000000000000000000000000000000287C3A75DE00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[515]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(515) exist, cannot create again
-
-[main.cpp]omci size is 45
-01E2440A010A040804080580010000000100000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[266] ME_ID:[1032] Action[CREATE][0x0004]
+[omci_parser.cpp]class[266] ME_ID:[1024] Action[CREATE][0x0004]
 [me_c.cpp]Class[266] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[266] instance_id[1032]
-[omci_parser.cpp]Create me instance Class[266]Name[ME_GEM_interworking_termination_point] instance_id [1032] size[45] 
-[me_c.cpp]Create me object class id [266] instance id[1032] 
-Action[]
-action table[0x0000]
+[me_c.cpp]check_me_o_valid Class[266] instance_id[1024]
+[omci_parser.cpp]Create me instance Class[266]Name[ME_GEM_interworking_termination_point] instance_id [1024] size[48] 
+[me_c.cpp]Create me object class id [266] instance id[1024] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[266]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [Managed_entity_id] attri[1][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [GEM_port_network_CTP_connectivity_pointer] attri[2][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0005]
+Attribute name [Interworking_option] attri[3][0x0005]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x8001]
+Attribute name [Service_profile_pointer] attri[4][0x8001]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [termination_point_pointer] attri[5][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [PPTP_counter] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[1]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [Operational_state] attri[7][0x0001]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [GAL_profile_pointer] attri[8][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01E2240A010A040800000000000000000000000000000000000000000000000000000000000000000000002890CAD80700
+[main.cpp]omci size is 48
+0005440A011000010030000000000000000000000000000000000000000000000000000000000000000000286FC8851E
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[266] ME_ID:[1032] Action[CREATE][0x0004]
-[me_c.cpp]Class[266] chk action[CREATE][4] support action[create, delete, get, set][8]
+[omci_parser.cpp]class[272] ME_ID:[1] Action[CREATE][0x0004]
+[me_c.cpp]Class[272] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[266] instance_id[1032]
-[omci_parser.cpp]ME [266] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(266), ME instance(1032) exist, cannot create again
+[me_c.cpp]check_me_o_valid Class[272] instance_id[1]
+[omci_parser.cpp]Create me instance Class[272]Name[ME_GAL_Ethernet_profile] instance_id [1] size[48] 
+[me_c.cpp]Create me object class id [272] instance id[1] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
+CID[272]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [Managed_entity_id] attri[1][0x0001]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 45
-01E3440A010A040804080580010000000100000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[266] ME_ID:[1032] Action[CREATE][0x0004]
-[me_c.cpp]Class[266] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[266] instance_id[1032]
-[omci_parser.cpp]ME [266] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(266), ME instance(1032) exist, cannot create again
-
-[main.cpp]omci size is 49
-01E3240A010A0408070000000000000000000000000000000000000000000000000000000000000000000028607FC99900
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[266] ME_ID:[1032] Action[CREATE][0x0004]
-[me_c.cpp]Class[266] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[266] instance_id[1032]
-[omci_parser.cpp]ME [266] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(266), ME instance(1032) exist, cannot create again
-
-[main.cpp]omci size is 45
-01E4440A002F020302010301010300000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[515]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(515) exist, cannot create again
-
-[main.cpp]omci size is 49
-01E4240A002F02030700000000000000000000000000000000000000000000000000000000000000000000288088109B00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[515] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[515]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(515) exist, cannot create again
-
-[main.cpp]omci size is 45
-01E5480A00AB02030400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01E5280A00AB0203000000000000000000000000000000000000000000000000000000000000000000000028A26941F100
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01E6480A008280017F800408040804080408040804080408040800000000000000000000000000000000002800
+[main.cpp]omci size is 48
+0006480A008280017F80040004000400040004000400040004000000000000000000000000000000000000284F2EFA51
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[130] ME_ID:[32769] Action[SET][0x0008]
 [omci_parser.cpp]attr_mask: 7F80
 [me_c.cpp]Class[130] chk action[SET][8] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]ME [130] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
+[omci_parser.cpp]ME CLass[130] instance_ID NOT exist. cannot [SET]
 
-[main.cpp]omci size is 49
-01E6280A0082800100000000000000000000000000000000000000000000000000000000000000000000002884A3D77200
+[main.cpp]omci size is 48
+0007440A00AB0202020102000000000000000000000000000000000000000000000000000000000000000028E0200B31
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[130] ME_ID:[32769] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[130] chk action[SET][8] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]ME [130] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01E7480A008280017F800408040804080408040804080408040800000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[130] ME_ID:[32769] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 7F80
-[me_c.cpp]Class[130] chk action[SET][8] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]ME [130] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01E7280A00828001000000000000000000000000000000000000000000000000000000000000000000000028AEA02D7600
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[130] ME_ID:[32769] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[130] chk action[SET][8] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
-[omci_parser.cpp]ME [130] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01E8480A00AB02030400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01E8280A00AB02030000000000000000000000000000000000000000000000000000000000000000000000284048AFDF00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[515] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[515]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01E9440A00AB020402010400000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[CREATE][0x0004]
+[omci_parser.cpp]class[171] ME_ID:[514] Action[CREATE][0x0004]
 [me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]Create me instance Class[171]Name[ME_Extended_VLAN_tagging_operation_configuration_data] instance_id [516] size[45] 
-[me_c.cpp]Create me object class id [171] instance id[516] 
-Action[]
-action table[0x0000]
+[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
+[omci_parser.cpp]Create me instance Class[171]Name[ME_Extended_VLAN_tagging_operation_configuration_data] instance_id [514] size[48] 
+[me_c.cpp]Create me object class id [171] instance id[514] 
+Action[create, delete, get, get next, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[171]
 [omci_parser.cpp]E-VTOCD tpe!!!!!!
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0202]
+Attribute name [Managed_entity_id] attri[1][0x0202]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0002]
+Attribute name [Association_type] attri[2][0x0002]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x0102]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table_max_size] attri[3][0x0102]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Input_TPID] attri[4][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Output_TPID] attri[5][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Downstream_mode] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[16]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table] attri[7][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01E9240A00AB0204000000000000000000000000000000000000000000000000000000000000000000000028689A4F6A00
+[main.cpp]omci size is 48
+0008480A00AB02023800810081000000000000000000000000000000000000000000000000000000000000287D1B36B0
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(516) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01EA440A00AB020402010400000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(516) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01EA240A00AB0204070000000000000000000000000000000000000000000000000000000000000000000028889AFA0B00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(516) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01EB480A00AB020438008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
+[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
 [omci_parser.cpp]attr_mask: 3800
 [me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
+[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
 [omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0202]
+Attribute name [Managed_entity_id] attri[1][0x0202]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0038]
+Attribute name [Association_type] attri[2][0x0038]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x0081]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table_max_size] attri[3][0x0081]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0081]
+Attribute name [Input_TPID] attri[4][0x0081]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Output_TPID] attri[5][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Downstream_mode] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[16]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table] attri[7][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01EB280A00AB0204000000000000000000000000000000000000000000000000000000000000000000000028F41685FD00
+[main.cpp]omci size is 48
+0009440A002D02010001008000140002000F0001000000000000000000000000000000000000000000000028FB8FB122
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
+[omci_parser.cpp]class[45] ME_ID:[513] Action[CREATE][0x0004]
+[me_c.cpp]Class[45] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
+[me_c.cpp]check_me_o_valid Class[45] instance_id[513]
+[omci_parser.cpp]Create me instance Class[45]Name[ME_MAC_bridge_service_profile] instance_id [513] size[48] 
+[me_c.cpp]Create me object class id [45] instance id[513] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
+CID[45]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Managed_entity_id] attri[1][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Spanning_tree_ind] attri[2][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [Learning_ind] attri[3][0x0001]
+[omci_parser.cpp]me_set_instance attr_id[4] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_bridging_ind] attri[4][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x8000]
+Attribute name [Priority] attri[5][0x8000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0x1400]
+Attribute name [Max_age] attri[6][0x1400]
+[omci_parser.cpp]me_set_instance attr_id[7] size[2]
+get_Value_From_Pointer sum[0x0200]
+Attribute name [Hello_time] attri[7][0x0200]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0x0F00]
+Attribute name [Forward_delay] attri[8][0x0F00]
+[omci_parser.cpp]me_set_instance attr_id[9] size[1]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [Unknown_MAC_address_discard] attri[9][0x0001]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 45
-01EC480A00AB020438008100810000000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+000A440A002F02010201020101020000000000000000000000000000000000000000000000000000000000282582C077
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01EC280A00AB0204000000000000000000000000000000000000000000000000000000000000000000000028CBAB9D0700
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01ED440A002F020402010401010400000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[516] Action[CREATE][0x0004]
+[omci_parser.cpp]class[47] ME_ID:[513] Action[CREATE][0x0004]
 [me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[516]
-[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [516] size[45] 
-[me_c.cpp]Create me object class id [47] instance id[516] 
-Action[]
-action table[0x0000]
+[me_c.cpp]check_me_o_valid Class[47] instance_id[513]
+[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [513] size[48] 
+[me_c.cpp]Create me object class id [47] instance id[513] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[47]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Managed_entity_id] attri[1][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Bridge_id_pointer] attri[2][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0002]
+Attribute name [Port_num] attri[3][0x0002]
+[omci_parser.cpp]me_set_instance attr_id[4] size[1]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [TP_type] attri[4][0x0001]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0102]
+Attribute name [TP_pointer] attri[5][0x0102]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_priority] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_path_cost] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_spanning_tree_ind] attri[8][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[9] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Encapsulation_method] attri[9][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[10] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [LAN_FCS_ind] attri[10][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[11] size[6]
+Attribute name [Port_MAC_address] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Outbound_TD_pointer] attri[12][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01ED240A002F02040000000000000000000000000000000000000000000000000000000000000000000000285FE888FE00
+[main.cpp]omci size is 48
+000B440A00828001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000000000000000000283C7650D1
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[516] Action[CREATE][0x0004]
+[omci_parser.cpp]class[130] ME_ID:[32769] Action[CREATE][0x0004]
+[me_c.cpp]Class[130] chk action[CREATE][4] support action[create, delete, get, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
+[omci_parser.cpp]Create me instance Class[130]Name[ME_802_1p_mapper_service_profile] instance_id [32769] size[48] 
+[me_c.cpp]Create me object class id [130] instance id[32769] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
+CID[130]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x8001]
+Attribute name [Managed_entity_id] attri[1][0x8001]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [TP_pointer] attri[2][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_0] attri[3][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_1] attri[4][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_2] attri[5][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_3] attri[6][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[7] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_4] attri[7][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_5] attri[8][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[9] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_6] attri[9][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[10] size[2]
+get_Value_From_Pointer sum[0xFFFF]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_7] attri[10][0xFFFF]
+[omci_parser.cpp]me_set_instance attr_id[11] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Unmarked_frame_option] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[24]
+Attribute name [DSCP_to_P_bit_mapping] attri[12][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[13] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Default_P_bit_marking] attri[13][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
+
+[main.cpp]omci size is 48
+000C440A002F2102020103038001000000000000000000000000000000000000000000000000000000000028C0B8A3A5
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[47] ME_ID:[8450] Action[CREATE][0x0004]
 [me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[516]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(516) exist, cannot create again
-
-[main.cpp]omci size is 45
-01EE440A002F020402010401010400000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[516] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[516]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(516) exist, cannot create again
-
-[main.cpp]omci size is 49
-01EE240A002F0204070000000000000000000000000000000000000000000000000000000000000000000028FFE37B2100
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[516] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[516]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(516) exist, cannot create again
-
-[main.cpp]omci size is 45
-01EF480A00AB02040400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01EF280A00AB0204000000000000000000000000000000000000000000000000000000000000000000000028619591B500
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01F0480A00AB02040400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01F0280A00AB0204000000000000000000000000000000000000000000000000000000000000000000000028FF8C90FD00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[516] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[516]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01F1440A00AB020502010500000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]Create me instance Class[171]Name[ME_Extended_VLAN_tagging_operation_configuration_data] instance_id [517] size[45] 
-[me_c.cpp]Create me object class id [171] instance id[517] 
-Action[]
-action table[0x0000]
-CID[171]
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01F1240A00AB020500000000000000000000000000000000000000000000000000000000000000000000002880CD8F2800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(517) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01F2440A00AB020502010500000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(517) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 49
-01F2240A00AB0205070000000000000000000000000000000000000000000000000000000000000000000028EF807E5F00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[171] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(171), ME instance(517) exist, cannot create again
-[omci_parser.cpp]E-VTOCD tpe!!!!!!
-
-[main.cpp]omci size is 45
-01F3480A00AB020538008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01F3280A00AB020500000000000000000000000000000000000000000000000000000000000000000000002872F95E5900
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01F4480A00AB020538008100810000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 3800
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01F4280A00AB020500000000000000000000000000000000000000000000000000000000000000000000002828DCF07100
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01F5440A002F020502010501010500000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[517]
-[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [517] size[45] 
-[me_c.cpp]Create me object class id [47] instance id[517] 
-Action[]
-action table[0x0000]
+[me_c.cpp]check_me_o_valid Class[47] instance_id[8450]
+[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [8450] size[48] 
+[me_c.cpp]Create me object class id [47] instance id[8450] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[47]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x2102]
+Attribute name [Managed_entity_id] attri[1][0x2102]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Bridge_id_pointer] attri[2][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0003]
+Attribute name [Port_num] attri[3][0x0003]
+[omci_parser.cpp]me_set_instance attr_id[4] size[1]
+get_Value_From_Pointer sum[0x0003]
+Attribute name [TP_type] attri[4][0x0003]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x8001]
+Attribute name [TP_pointer] attri[5][0x8001]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_priority] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_path_cost] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_spanning_tree_ind] attri[8][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[9] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Encapsulation_method] attri[9][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[10] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [LAN_FCS_ind] attri[10][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[11] size[6]
+Attribute name [Port_MAC_address] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Outbound_TD_pointer] attri[12][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01F5240A002F0205000000000000000000000000000000000000000000000000000000000000000000000028A20E62E100
+[main.cpp]omci size is 48
+000D440A005421020FFB00000000000000000000000000000000000000000000100100000000000000000028D325A581
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
+[omci_parser.cpp]class[84] ME_ID:[8450] Action[CREATE][0x0004]
+[me_c.cpp]Class[84] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[517]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(517) exist, cannot create again
+[me_c.cpp]check_me_o_valid Class[84] instance_id[8450]
+[omci_parser.cpp]Create me instance Class[84]Name[ME_VLAN_tagging_filter_data] instance_id [8450] size[48] 
+[me_c.cpp]Create me object class id [84] instance id[8450] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
+CID[84]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x2102]
+Attribute name [Managed_entity_id] attri[1][0x2102]
+[omci_parser.cpp]me_set_instance attr_id[2] size[24]
+Attribute name [VLAN_filter_list] attri[2][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0010]
+Attribute name [Forward_operation] attri[3][0x0010]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 45
-01F6440A002F020502010501010500000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+000E480A00AB02020400F8000000F8000000000F000000007FDC0000000000000000000000000000000000280C06EB89
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[517]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(517) exist, cannot create again
-
-[main.cpp]omci size is 49
-01F6240A002F0205070000000000000000000000000000000000000000000000000000000000000000000028746C30AB00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[517] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[517]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(517) exist, cannot create again
-
-[main.cpp]omci size is 45
-01F7480A00AB02050400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
+[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
 [omci_parser.cpp]attr_mask: 0400
 [me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
+[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
 [omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0202]
+Attribute name [Managed_entity_id] attri[1][0x0202]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0004]
+Attribute name [Association_type] attri[2][0x0004]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x00F8]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table_max_size] attri[3][0x00F8]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Input_TPID] attri[4][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x00F8]
+Attribute name [Output_TPID] attri[5][0x00F8]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Downstream_mode] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[16]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table] attri[7][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01F7280A00AB02050000000000000000000000000000000000000000000000000000000000000000000000286A27E8DD00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01F8480A00AB02050400F8000000F8000000000F000000007FDC00000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0400
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-01F8280A00AB02050000000000000000000000000000000000000000000000000000000000000000000000283C39751500
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[171] ME_ID:[517] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[171] instance_id[517]
-[omci_parser.cpp]ME [171] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-01F9440A002F232802010606000600000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+000F440A002F23280201060600060000000000000000000000000000000000000000000000000000000000280E34ED6C
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[47] ME_ID:[9000] Action[CREATE][0x0004]
 [me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[47] instance_id[9000]
-[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [9000] size[45] 
+[omci_parser.cpp]Create me instance Class[47]Name[ME_MAC_bridge_port_configuration_data] instance_id [9000] size[48] 
 [me_c.cpp]Create me object class id [47] instance id[9000] 
-Action[]
-action table[0x0000]
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[47]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x2328]
+Attribute name [Managed_entity_id] attri[1][0x2328]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Bridge_id_pointer] attri[2][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0006]
+Attribute name [Port_num] attri[3][0x0006]
+[omci_parser.cpp]me_set_instance attr_id[4] size[1]
+get_Value_From_Pointer sum[0x0006]
+Attribute name [TP_type] attri[4][0x0006]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0006]
+Attribute name [TP_pointer] attri[5][0x0006]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_priority] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_path_cost] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Port_spanning_tree_ind] attri[8][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[9] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Encapsulation_method] attri[9][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[10] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [LAN_FCS_ind] attri[10][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[11] size[6]
+Attribute name [Port_MAC_address] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Outbound_TD_pointer] attri[12][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01F9240A002F2328000000000000000000000000000000000000000000000000000000000000000000000028CFA70AFB00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[9000] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[9000]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(9000) exist, cannot create again
-
-[main.cpp]omci size is 45
-01FA440A002F232802010606000600000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[9000] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[9000]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(9000) exist, cannot create again
-
-[main.cpp]omci size is 49
-01FA240A002F23280700000000000000000000000000000000000000000000000000000000000000000000288F16EDD400
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[47] ME_ID:[9000] Action[CREATE][0x0004]
-[me_c.cpp]Class[47] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[47] instance_id[9000]
-[omci_parser.cpp]ME [47] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(47), ME instance(9000) exist, cannot create again
-
-[main.cpp]omci size is 45
-01FB440A0135020103000000000000000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+0010440A013502010300000000000000000000000000000000000000000000000000000000000000000000283248B751
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[309] ME_ID:[513] Action[CREATE][0x0004]
 [me_c.cpp]Class[309] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]Create me instance Class[309]Name[ME_Multicast_operations_profile] instance_id [513] size[45] 
+[omci_parser.cpp]Create me instance Class[309]Name[ME_Multicast_operations_profile] instance_id [513] size[48] 
 [me_c.cpp]Create me object class id [309] instance id[513] 
-Action[]
-action table[0x0000]
+Action[create, delete, get, get next, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[309]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Managed_entity_id] attri[1][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0003]
+Attribute name [IGMP_version] attri[2][0x0003]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Immediate_leave] attri[3][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Upstream_IGMP_TCI] attri[4][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Upstream_IGMP_tag_control] attri[5][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Upstream_IGMP_rate] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[24]
+Attribute name [Dynamic_access_control_list_table] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[24]
+Attribute name [Static_access_control_list_table] attri[8][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[9] size[10]
+Attribute name [Lost_groups_list_table] attri[9][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[10] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Robustness] attri[10][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[11] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Querier_IP_address] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Query_interval] attri[12][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[13] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Query_max_response_time] attri[13][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01FB240A013502010000000000000000000000000000000000000000000000000000000000000000000000282C3E9F4E00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[309] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(309), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01FC440A0135020103000000000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[309] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(309), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 49
-01FC240A0135020107000000000000000000000000000000000000000000000000000000000000000000002825FFF67600
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[309] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(309), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01FD440A0136020100020100000000000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+0011440A01360201000201000000000000000000000000000000000000000000000000000000000000000028F4B284EC
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[310] ME_ID:[513] Action[CREATE][0x0004]
 [me_c.cpp]Class[310] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[310] instance_id[513]
-[omci_parser.cpp]Create me instance Class[310]Name[ME_Multicast_subscriber_config_info] instance_id [513] size[45] 
+[omci_parser.cpp]Create me instance Class[310]Name[ME_Multicast_subscriber_config_info] instance_id [513] size[48] 
 [me_c.cpp]Create me object class id [310] instance id[513] 
-Action[]
-action table[0x0000]
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[310]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Managed_entity_id] attri[1][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [ME_type] attri[2][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Multicast_operations_profile_pointer] attri[3][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Max_simultaneous_groups] attri[4][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Max_multicast_bandwidth] attri[5][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01FD240A01360201000000000000000000000000000000000000000000000000000000000000000000000028061D3C8700
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[310] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[310] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[310] instance_id[513]
-[omci_parser.cpp]ME [310] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(310), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01FE440A0136020100020100000000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[310] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[310] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[310] instance_id[513]
-[omci_parser.cpp]ME [310] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(310), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 49
-01FE240A01360201070000000000000000000000000000000000000000000000000000000000000000000028B6307A7500
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[310] ME_ID:[513] Action[CREATE][0x0004]
-[me_c.cpp]Class[310] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[310] instance_id[513]
-[omci_parser.cpp]ME [310] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(310), ME instance(513) exist, cannot create again
-
-[main.cpp]omci size is 45
-01FF440A010C01040FA00000020000000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+0012440A010C01040FA0000002000000000000000000000000000000000000000000000000000000000000286182747F
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[268] ME_ID:[260] Action[CREATE][0x0004]
 [me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[268] instance_id[260]
-[omci_parser.cpp]Create me instance Class[268]Name[ME_GEM_port_network_CTP] instance_id [260] size[45] 
+[omci_parser.cpp]Create me instance Class[268]Name[ME_GEM_port_network_CTP] instance_id [260] size[48] 
 [me_c.cpp]Create me object class id [268] instance id[260] 
-Action[]
-action table[0x0000]
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[268]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0104]
+Attribute name [Managed_entity_id] attri[1][0x0104]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0FA0]
+Attribute name [Port_id_value] attri[2][0x0FA0]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [T_CONT_pointer] attri[3][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[4] size[1]
+get_Value_From_Pointer sum[0x0002]
+Attribute name [Direction] attri[4][0x0002]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [_this_pointer_specifies_the_priority_queue_G_ME_serving_this__pointer_for_upstream] attri[5][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Traffic_descriptor_profile_pointer] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [UNI_counter] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Priority_queue_pointer_for_downstream] attri[8][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-01FF240A010C01040000000000000000000000000000000000000000000000000000000000000000000000289435BA5C00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[268] ME_ID:[260] Action[CREATE][0x0004]
-[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[268] instance_id[260]
-[omci_parser.cpp]ME [268] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(268), ME instance(260) exist, cannot create again
-
-[main.cpp]omci size is 45
-0200440A010C01040FA00000020000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[268] ME_ID:[260] Action[CREATE][0x0004]
-[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[268] instance_id[260]
-[omci_parser.cpp]ME [268] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(268), ME instance(260) exist, cannot create again
-
-[main.cpp]omci size is 49
-0200240A010C01040700000000000000000000000000000000000000000000000000000000000000000000284E31987A00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[268] ME_ID:[260] Action[CREATE][0x0004]
-[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[268] instance_id[260]
-[omci_parser.cpp]ME [268] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(268), ME instance(260) exist, cannot create again
-
-[main.cpp]omci size is 45
-0201440A0119000601040000010000000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+0013440A011900060104000001000000000000000000000000000000000000000000000000000000000000288A52F50D
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[281] ME_ID:[6] Action[CREATE][0x0004]
 [me_c.cpp]Class[281] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[281] instance_id[6]
-[omci_parser.cpp]Create me instance Class[281]Name[ME_Multicast_GEM_interworking_termination_point] instance_id [6] size[45] 
+[omci_parser.cpp]Create me instance Class[281]Name[ME_Multicast_GEM_interworking_termination_point] instance_id [6] size[48] 
 [me_c.cpp]Create me object class id [281] instance id[6] 
-Action[]
-action table[0x0000]
+Action[create, delete, get, get next, set]
+C
+D
+G
+S
+action table[0x000F]
 CID[281]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0006]
+Attribute name [Managed_entity_id] attri[1][0x0006]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0104]
+Attribute name [connectivity_pointer] attri[2][0x0104]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Interworking_option] attri[3][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [Service_profile_pointer] attri[4][0x0001]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Interworking_termination_point_pointer] attri[5][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [PPTP_counter] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Operational_state] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [GAL_profile_pointer] attri[8][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-0201240A011900060000000000000000000000000000000000000000000000000000000000000000000000283997B25F00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[281] ME_ID:[6] Action[CREATE][0x0004]
-[me_c.cpp]Class[281] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[281] instance_id[6]
-[omci_parser.cpp]ME [281] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(281), ME instance(6) exist, cannot create again
-
-[main.cpp]omci size is 45
-0202440A0119000601040000010000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[281] ME_ID:[6] Action[CREATE][0x0004]
-[me_c.cpp]Class[281] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[281] instance_id[6]
-[omci_parser.cpp]ME [281] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(281), ME instance(6) exist, cannot create again
-
-[main.cpp]omci size is 49
-0202240A011900060700000000000000000000000000000000000000000000000000000000000000000000288ACA488800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[281] ME_ID:[6] Action[CREATE][0x0004]
-[me_c.cpp]Class[281] chk action[CREATE][4] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[281] instance_id[6]
-[omci_parser.cpp]ME [281] instance found. Prepare CREATE 
-[omci_parser.cpp]ME_class(281), ME instance(6) exist, cannot create again
-
-[main.cpp]omci size is 45
-0203480A01350201020040000FA00FA000000000E0000000EFFFFFFF0000000000000000000000000000002800
+[main.cpp]omci size is 48
+0014480A01350201020040000FA00FA000000000E0000000EFFFFFFF000000000000000000000000000000289C49901B
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
 [omci_parser.cpp]attr_mask: 0200
@@ -1685,65 +889,47 @@ CID[281]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[309] instance_id[513]
 [omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Managed_entity_id] attri[1][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0002]
+Attribute name [IGMP_version] attri[2][0x0002]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Immediate_leave] attri[3][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x4000]
+Attribute name [Upstream_IGMP_TCI] attri[4][0x4000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[1]
+get_Value_From_Pointer sum[0x000F]
+Attribute name [Upstream_IGMP_tag_control] attri[5][0x000F]
+[omci_parser.cpp]me_set_instance attr_id[6] size[4]
+get_Value_From_Pointer sum[0xA00FA000]
+Attribute name [Upstream_IGMP_rate] attri[6][0xA00FA000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[24]
+Attribute name [Dynamic_access_control_list_table] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[24]
+Attribute name [Static_access_control_list_table] attri[8][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[9] size[10]
+Attribute name [Lost_groups_list_table] attri[9][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[10] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Robustness] attri[10][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[11] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Querier_IP_address] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Query_interval] attri[12][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[13] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Query_max_response_time] attri[13][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-0203280A01350201000000000000000000000000000000000000000000000000000000000000000000000028CEE2920D00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[309] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-0204480A01350201020040000FA00FA000000000E0000000EFFFFFFF0000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0200
-[me_c.cpp]Class[309] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-0204280A013502010000000000000000000000000000000000000000000000000000000000000000000000287C86A20A00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[309] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-0205480A013502010001040FFB0000000000000000000000000000000000000000000000000000000000002800
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0001
-[me_c.cpp]Class[309] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 49
-0205280A013502010000000000000000000000000000000000000000000000000000000000000000000000286A9636BE00
-[omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[309] chk action[SET][8] support action[create, delete, get, get next, set][8]
-[omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
-
-[main.cpp]omci size is 45
-0206480A013502010001040FFB0000000000000000000000000000000000000000000000000000000000002800
+[main.cpp]omci size is 48
+0015480A013502010001040FFB0000000000000000000000000000000000000000000000000000000000002820F72F7B
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
 [omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
 [omci_parser.cpp]attr_mask: 0001
@@ -1751,34 +937,303 @@ CID[281]
 [omci_parser.cpp]Support this Action!
 [me_c.cpp]check_me_o_valid Class[309] instance_id[513]
 [omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0201]
+Attribute name [Managed_entity_id] attri[1][0x0201]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [IGMP_version] attri[2][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [Immediate_leave] attri[3][0x0001]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x040F]
+Attribute name [Upstream_IGMP_TCI] attri[4][0x040F]
+[omci_parser.cpp]me_set_instance attr_id[5] size[1]
+get_Value_From_Pointer sum[0x00FB]
+Attribute name [Upstream_IGMP_tag_control] attri[5][0x00FB]
+[omci_parser.cpp]me_set_instance attr_id[6] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Upstream_IGMP_rate] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[24]
+Attribute name [Dynamic_access_control_list_table] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[24]
+Attribute name [Static_access_control_list_table] attri[8][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[9] size[10]
+Attribute name [Lost_groups_list_table] attri[9][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[10] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Robustness] attri[10][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[11] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Querier_IP_address] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Query_interval] attri[12][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[13] size[4]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Query_max_response_time] attri[13][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
-[main.cpp]omci size is 49
-0206280A013502010000000000000000000000000000000000000000000000000000000000000000000000288A6E266E00
+[main.cpp]omci size is 48
+0016480A010680018000040000000000000000000000000000000000000000000000000000000000000000282390807E
 [omci_parser.cpp]OMCI_PKT_SIZE is 48
-[omci_parser.cpp]class[309] ME_ID:[513] Action[SET][0x0008]
-[omci_parser.cpp]attr_mask: 0000
-[me_c.cpp]Class[309] chk action[SET][8] support action[create, delete, get, get next, set][8]
+[omci_parser.cpp]class[262] ME_ID:[32769] Action[SET][0x0008]
+[omci_parser.cpp]attr_mask: 8000
+[me_c.cpp]Class[262] chk action[SET][8] support action[get, set][8]
 [omci_parser.cpp]Support this Action!
-[me_c.cpp]check_me_o_valid Class[309] instance_id[513]
-[omci_parser.cpp]ME [309] instance found. Prepare SET 
-[omci_parser.cpp]MSGTYPE_SET!!!!!!
+[me_c.cpp]check_me_o_valid Class[262] instance_id[32769]
+[omci_parser.cpp]T_CONT CREATE/MSGTYPE_SET!!!!!!
+[omci_parser.cpp]Create me instance Class[262]Name[ME_T_CONT] instance_id [32769] size[48] 
+[me_c.cpp]Create me object class id [262] instance id[32769] 
+Action[get, set]
+G
+S
+action table[0x0009]
+CID[262]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x8001]
+Attribute name [Managed_entity_id] attri[1][0x8001]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x8000]
+Attribute name [Alloc_id] attri[2][0x8000]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0004]
+Attribute name [Mode_indicator] attri[3][0x0004]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
+
+[main.cpp]omci size is 48
+0017440A010C0400040080010301000000000000000000000000000000000000000000000000000000000028B7D11868
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[268] ME_ID:[1024] Action[CREATE][0x0004]
+[me_c.cpp]Class[268] chk action[CREATE][4] support action[create, delete, get, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[268] instance_id[1024]
+[omci_parser.cpp]Create me instance Class[268]Name[ME_GEM_port_network_CTP] instance_id [1024] size[48] 
+[me_c.cpp]Create me object class id [268] instance id[1024] 
+Action[create, delete, get, set]
+C
+D
+G
+S
+action table[0x000F]
+CID[268]
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [Managed_entity_id] attri[1][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [Port_id_value] attri[2][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x8001]
+Attribute name [T_CONT_pointer] attri[3][0x8001]
+[omci_parser.cpp]me_set_instance attr_id[4] size[1]
+get_Value_From_Pointer sum[0x0003]
+Attribute name [Direction] attri[4][0x0003]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0100]
+Attribute name [_this_pointer_specifies_the_priority_queue_G_ME_serving_this__pointer_for_upstream] attri[5][0x0100]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Traffic_descriptor_profile_pointer] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [UNI_counter] attri[7][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Priority_queue_pointer_for_downstream] attri[8][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
+
+[main.cpp]omci size is 48
+0018440A010A04000400058001000000010000000000000000000000000000000000000000000000000000288313F932
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[266] ME_ID:[1024] Action[CREATE][0x0004]
+[me_c.cpp]Class[266] chk action[CREATE][4] support action[create, delete, get, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[266] instance_id[1024]
+[omci_parser.cpp]ME [266] instance found. Prepare CREATE 
+[omci_parser.cpp]ME_class(266), ME instance(1024) exist, cannot create again
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [Managed_entity_id] attri[1][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [GEM_port_network_CTP_connectivity_pointer] attri[2][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0005]
+Attribute name [Interworking_option] attri[3][0x0005]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x8001]
+Attribute name [Service_profile_pointer] attri[4][0x8001]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [termination_point_pointer] attri[5][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [PPTP_counter] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[1]
+get_Value_From_Pointer sum[0x0001]
+Attribute name [Operational_state] attri[7][0x0001]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [GAL_profile_pointer] attri[8][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
+
+[main.cpp]omci size is 48
+0019480A008280017F8004000400040004000400040004000400000000000000000000000000000000000028636D4AEB
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[130] ME_ID:[32769] Action[SET][0x0008]
+[omci_parser.cpp]attr_mask: 7F80
+[me_c.cpp]Class[130] chk action[SET][8] support action[create, delete, get, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[130] instance_id[32769]
+[omci_parser.cpp]ME [130] instance found. Prepare SET 
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x8001]
+Attribute name [Managed_entity_id] attri[1][0x8001]
+[omci_parser.cpp]me_set_instance attr_id[2] size[2]
+get_Value_From_Pointer sum[0x7F80]
+Attribute name [TP_pointer] attri[2][0x7F80]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_0] attri[3][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_1] attri[4][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_2] attri[5][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[6] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_3] attri[6][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[7] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_4] attri[7][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[8] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_5] attri[8][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[9] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_6] attri[9][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[10] size[2]
+get_Value_From_Pointer sum[0x0400]
+Attribute name [ITP_PTR_FOR_PBIT_PRI_7] attri[10][0x0400]
+[omci_parser.cpp]me_set_instance attr_id[11] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Unmarked_frame_option] attri[11][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[12] size[24]
+Attribute name [DSCP_to_P_bit_mapping] attri[12][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[13] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Default_P_bit_marking] attri[13][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
+
+[main.cpp]omci size is 48
+001A460A0054210200000000000000000000000000000000000000000000000000000000000000000000002800C70637
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[84] ME_ID:[8450] Action[DELETE][0x0006]
+[me_c.cpp]Class[84] chk action[DELETE][6] support action[create, delete, get, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[84] instance_id[8450]
+[omci_parser.cpp]ME [84] instance found. Prepare DELETE 
+[omci_parser.cpp]MSGTYPE_DELETE!!!!!!
+
+[main.cpp]omci size is 48
+001B440A00542102001400000000000000000000000000000000000000000000100100000000000000000028602DBEC8
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[84] ME_ID:[8450] Action[CREATE][0x0004]
+[me_c.cpp]Class[84] chk action[CREATE][4] support action[create, delete, get, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[84] instance_id[8450]
+[omci_parser.cpp]ME [84] instance found. Prepare CREATE 
+[omci_parser.cpp]ME_class(84), ME instance(8450) exist, cannot create again
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x2102]
+Attribute name [Managed_entity_id] attri[1][0x2102]
+[omci_parser.cpp]me_set_instance attr_id[2] size[24]
+Attribute name [VLAN_filter_list] attri[2][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[3] size[1]
+get_Value_From_Pointer sum[0x0010]
+Attribute name [Forward_operation] attri[3][0x0010]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
+
+[main.cpp]omci size is 48
+001C480A00AB02020400F8000000F8000000000F0000000000A400000000000000000000000000000000002842884274
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
+[omci_parser.cpp]attr_mask: 0400
+[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
+[omci_parser.cpp]ME [171] instance found. Prepare SET 
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0202]
+Attribute name [Managed_entity_id] attri[1][0x0202]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0004]
+Attribute name [Association_type] attri[2][0x0004]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x00F8]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table_max_size] attri[3][0x00F8]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Input_TPID] attri[4][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x00F8]
+Attribute name [Output_TPID] attri[5][0x00F8]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Downstream_mode] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[16]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table] attri[7][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
+
+[main.cpp]omci size is 48
+001D480A00AB02020400F800000080000000400F0000000800A4000000000000000000000000000000000028934EE4B3
+[omci_parser.cpp]OMCI_PKT_SIZE is 48
+[omci_parser.cpp]class[171] ME_ID:[514] Action[SET][0x0008]
+[omci_parser.cpp]attr_mask: 0400
+[me_c.cpp]Class[171] chk action[SET][8] support action[create, delete, get, get next, set][8]
+[omci_parser.cpp]Support this Action!
+[me_c.cpp]check_me_o_valid Class[171] instance_id[514]
+[omci_parser.cpp]ME [171] instance found. Prepare SET 
+[omci_parser.cpp]me_set_instance attrOffset[6] 
+[omci_parser.cpp]me_set_instance attr_id[1] size[2]
+get_Value_From_Pointer sum[0x0202]
+Attribute name [Managed_entity_id] attri[1][0x0202]
+[omci_parser.cpp]me_set_instance attr_id[2] size[1]
+get_Value_From_Pointer sum[0x0004]
+Attribute name [Association_type] attri[2][0x0004]
+[omci_parser.cpp]me_set_instance attr_id[3] size[2]
+get_Value_From_Pointer sum[0x00F8]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table_max_size] attri[3][0x00F8]
+[omci_parser.cpp]me_set_instance attr_id[4] size[2]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Input_TPID] attri[4][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[5] size[2]
+get_Value_From_Pointer sum[0x0080]
+Attribute name [Output_TPID] attri[5][0x0080]
+[omci_parser.cpp]me_set_instance attr_id[6] size[1]
+get_Value_From_Pointer sum[0x0000]
+Attribute name [Downstream_mode] attri[6][0x0000]
+[omci_parser.cpp]me_set_instance attr_id[7] size[16]
+Attribute name [Rcv_frm_VLAN_tagging_opt_table] attri[7][0x0000]
+[omci_parser.cpp]MSGTYPE_SET OK !!!!!!
 
 ~ME_ONT_data
 ~ME_MAC_bridge_service_profile
 ~ME_MAC_bridge_port_configuration_data
 ~ME_MAC_bridge_port_configuration_data
 ~ME_MAC_bridge_port_configuration_data
-~ME_MAC_bridge_port_configuration_data
-~ME_MAC_bridge_port_configuration_data
-~ME_MAC_bridge_port_configuration_data
-~ME_MAC_bridge_port_configuration_data
 ~ME_VLAN_tagging_filter_data
 ~ME_802_1p_mapper_service_profile
-~ME_Extended_VLAN_tagging_operation_configuration_data
-~ME_Extended_VLAN_tagging_operation_configuration_data
-~ME_Extended_VLAN_tagging_operation_configuration_data
-~ME_Extended_VLAN_tagging_operation_configuration_data
 ~ME_Extended_VLAN_tagging_operation_configuration_data
 ~ME_T_CONT
 ~ME_GEM_interworking_termination_point

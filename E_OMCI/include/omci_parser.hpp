@@ -164,6 +164,7 @@ constexpr UI8_T OFFSET_AttrsMask         = (OFFSET_OMCI_MSG_CONTENT +0);
 constexpr UI8_T OMCI_MSG_CONTENT_SIZE    = 32;
 constexpr UI8_T OMCI_GEM_HEADER_SIZE     = 5;
 
+constexpr UI8_T OFFSET_SET_AttrsValue_START = (OFFSET_OMCI_ME_ID);
 
 const std::map<UI8_T, std::string> g_action_t = 
 {
@@ -219,11 +220,13 @@ class OMCI_Parser
         std::map<int, Json::Value> m_omci_playback;
 
         UI16_T get_omci_ui16(UI8_T *data);
+        UI32_T get_Value_From_Pointer(UI8_T *ptr, UI8_T size);
 
         BOOL_T check_action_valid(UI16_T Class, UI16_T Action);
         BOOL_T check_me_class_valid(UI16_T Class);
         BOOL_T check_me_instance_valid(UI16_T Class ,UI16_T ME_ID);
         BOOL_T me_create_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, UI8_T *pkt_p, UI8_T pkt_size);
+        BOOL_T me_set_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, UI8_T *pkt_p, UI8_T pkt_size);
         BOOL_T omci_parser_validaterxpkt (UI8_T * pkt_p);
 
         BOOL_T is_omci_log_enable();

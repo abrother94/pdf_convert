@@ -25,6 +25,9 @@ class ME_C
         BOOL_T check_action_valid(UI16_T Class, UI16_T Action);
         BOOL_T check_me_s_valid(UI16_T Class);
         BOOL_T check_me_o_valid(UI16_T Class, UI16_T instance_id);
+        UI16_T get_attributes_size(UI16_T Class, UI16_T attr_id);
+        std::string  get_attributes_name(UI16_T Class, UI16_T attr_id);
+        UI16_T get_attributes_num(UI16_T Class);
 
         Json::Value  get_me_s_json(UI16_T Class);
 

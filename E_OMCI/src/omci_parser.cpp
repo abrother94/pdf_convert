@@ -262,10 +262,83 @@ BOOL_T OMCI_Parser::me_create_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_I
     return true;
 }
 
+BOOL_T OMCI_Parser::me_set_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, UI8_T *pkt_p,UI8_T pkt_size)
+{
+    int attrOffset = OFFSET_SET_AttrsValue_START;
+    int  attrnum , i;
+
+    ME_S *pTmp = NULL;
+    attrnum = m_me.get_attributes_num(Class);
+
+    if(pTmp = m_me.get_me_obj(Class, ME_ID))
+    {
+        printf("[%s]me_set_instance attrOffset[%d] \r\n",__MY_FILE__, attrOffset);
+
+        for (i = 1; i < attrnum; i++)
+        {
+            UI16_T tmpAttrSize   = 0;
+            UI8_T  tmpAttrFormat = 0;
+            tmpAttrFormat        = 4;
+            tmpAttrSize          = m_me.get_attributes_size(Class,i); 
+            std::string tmpName  = m_me.get_attributes_name(Class,i);
+
+            printf("[%s]me_set_instance attr_id[%d] size[%d]\r\n",__MY_FILE__, i, tmpAttrSize);
+
+            if(1)
+            {
+                // Check attr support or not
+                // Get Attrs mask bit //
+                if (tmpAttrFormat == 1)
+                {
+                    return false;
+                }
+
+                if ((tmpAttrFormat == 2) || (tmpAttrFormat == 3))
+                {  
+                    // memcpy // 
+                }
+                else
+                {  
+                    // not-table-string-block attribute_format all use .uint32
+                    // memcpy // 
+					printf("Attribute name [%s] attri[%d][0x%04X]\r\n",tmpName.c_str() , i, get_Value_From_Pointer (pkt_p + attrOffset, tmpAttrSize));
+                }
+                attrOffset += tmpAttrSize;
+            }  
+        } 
+        return true;
+    }
+    else
+    {
+        printf("[%s]Error: me_set_instance\r\n",__MY_FILE__);
+        return false; 
+    }
+}
 
 UI16_T OMCI_Parser::get_omci_ui16(UI8_T *data)
 {
 	return ntohs(*((UI16_T*)data));
+}
+
+// ------------------------------------------------------------------
+//  1. Get value of size is 4 from pkt.
+// ------------------------------------------------------------------
+UI32_T  OMCI_Parser::get_Value_From_Pointer(UI8_T *ptr, UI8_T size)
+{
+	UI32_T sum = 0;
+	UI8_T i;
+	
+	if (size > 4)
+		return (sum);
+
+	for (i = 0; i < size; ++i)
+	{
+		sum = sum * 256 + (*(ptr + i));
+	}
+
+    printf("get_Value_From_Pointer sum[0x%04X]\r\n", sum);
+
+	return (sum);
 }
 
 std::string OMCI_Parser::get_omci_action_name(UI8_T action_ID)
@@ -399,12 +472,6 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size)
             {
                 printf("[%s]E-VTOCD tpe!!!!!!\r\n", __MY_FILE__);
             }
-            break;
-
-        case MSGTYPE_DELETE:
-            printf("[%s]MSGTYPE_DELETE!!!!!!\r\n", __MY_FILE__);
-            break;
-
         case MSGTYPE_SET:
 
             /*T-CONT createed in ONT it self*/
@@ -414,7 +481,16 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size)
                 me_create_instance(TransID, Class , ME_ID, pkt_p, pkt_size);
             }
 
-            printf("[%s]MSGTYPE_SET!!!!!!\r\n", __MY_FILE__);
+            if(me_set_instance(TransID, Class , ME_ID, pkt_p, pkt_size))
+                printf("[%s]MSGTYPE_SET OK !!!!!!\r\n", __MY_FILE__);
+            else
+                printf("[%s]MSGTYPE_SET NG !!!!!!\r\n", __MY_FILE__);
+
+            break;
+
+
+        case MSGTYPE_DELETE:
+            printf("[%s]MSGTYPE_DELETE!!!!!!\r\n", __MY_FILE__);
             break;
 
         case MSGTYPE_GET:
