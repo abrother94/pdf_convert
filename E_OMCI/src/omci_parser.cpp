@@ -267,6 +267,10 @@ BOOL_T OMCI_Parser::me_set_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, 
     int attrOffset = OFFSET_SET_AttrsValue_START;
     int  attrnum , i;
 
+    std::string tmpClassName  = m_me.get_me_name(Class);
+
+    printf("[%s]me_set_instance Class name[%s] \r\n",__MY_FILE__, tmpClassName);
+
     ME_S *pTmp = NULL;
     attrnum = m_me.get_attributes_num(Class);
 
@@ -301,7 +305,7 @@ BOOL_T OMCI_Parser::me_set_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, 
                 {  
                     // not-table-string-block attribute_format all use .uint32
                     // memcpy // 
-					printf("Attribute name [%s] attri[%d][0x%04X]\r\n",tmpName.c_str() , i, get_Value_From_Pointer (pkt_p + attrOffset, tmpAttrSize));
+					printf("[%s]Attribute name [%s] attri[%d][0x%04X]\r\n",__MY_FILE__, tmpName.c_str() , i, get_Value_From_Pointer (pkt_p + attrOffset, tmpAttrSize));
                 }
                 attrOffset += tmpAttrSize;
             }  

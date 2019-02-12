@@ -247,14 +247,20 @@ std::string ME_C::get_attributes_name(UI16_T Class,UI16_T attr_id)
     return astring;
 }
 
-
-
 UI16_T ME_C::get_attributes_num(UI16_T Class)
 {
     Json::Value omci_s;
     omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
 
     return omci_s["Attrs_info"].size();
+}
+
+std::string ME_C::get_me_name(UI16_T Class)
+{
+    Json::Value omci_s;
+    omci_s = M_OMCI_G[std::make_pair(Class, 0)]; 
+
+    return omci_s["Name"].asString();
 }
 
 BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
