@@ -23,6 +23,20 @@ enum Action
     MSG_TYPE_SET    = 2 
 }; 
 
+
+enum ME_ATTR_FORMAT_FLAG_E
+{
+    ATTR_FORMAT_POINTER		= 1,
+    ATTR_FORMAT_BIT_FIELD	= 2,
+    ATTR_FORMAT_INT			= 3,
+    ATTR_FORMAT_UINT		= 4,
+    ATTR_FORMAT_STRING		= 5,
+    ATTR_FORMAT_ENUMERATION	= 6,
+    ATTR_FORMAT_TABLE		= 7,
+    ATTR_FORMAT_BLOCK		= 8  
+};
+
+
 typedef unsigned int    UI32_T;
 typedef unsigned short  UI16_T;
 typedef unsigned char   UI8_T;

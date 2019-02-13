@@ -248,17 +248,8 @@ BOOL_T OMCI_Parser::me_create_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_I
     omci_s["Id"]             = ME_ID;
     omci_s["Current_Action"] = get_omci_action_name(Action).c_str();
     omci_s["Create_Time"]    = start_utime;
-    //printf("raw data in omci_s[%s]\r\n" , omci_s["Raw_Data"].asString().c_str());
     m_me.create_me_obj(Class, ME_ID, omci_s); 
 
-    /*Chk if need log*/  //Todo , to record all omci pkt //
-    if(is_omci_log_enable())
-    {
-        std::string file_name=std::to_string(TransID)+ "_" + std::to_string(Class)+ "_" + std::to_string(ME_ID) + "_" + omci_s["Name"].asString();
-        std::ofstream ofile(m_log_out_path + file_name);
-        ofile << omci_s;
-        ofile.close();
-    }
     return true;
 }
 
@@ -269,7 +260,7 @@ BOOL_T OMCI_Parser::me_set_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, 
 
     std::string tmpClassName  = m_me.get_me_name(Class);
 
-    printf("[%s]me_set_instance Class name[%s] \r\n",__MY_FILE__, tmpClassName);
+    printf("[%s]me_set_instance Class name[%s] \r\n",__MY_FILE__, tmpClassName.c_str());
 
     ME_S *pTmp = NULL;
     attrnum = m_me.get_attributes_num(Class);
@@ -278,38 +269,112 @@ BOOL_T OMCI_Parser::me_set_instance(UI16_T TransID ,UI16_T Class ,UI16_T ME_ID, 
     {
         printf("[%s]me_set_instance attrOffset[%d] \r\n",__MY_FILE__, attrOffset);
 
+        Json::Value tmp_omci_s =   pTmp->get_j_me();
+
         for (i = 1; i < attrnum; i++)
         {
+
             UI16_T tmpAttrSize   = 0;
-            UI8_T  tmpAttrFormat = 0;
-            tmpAttrFormat        = 4;
+            UI8_T  tmpAttrFormat = ATTR_FORMAT_UINT;
             tmpAttrSize          = m_me.get_attributes_size(Class,i); 
             std::string tmpName  = m_me.get_attributes_name(Class,i);
 
+            if(tmpAttrSize > 4)
+                tmpAttrFormat = ATTR_FORMAT_BLOCK; 
+
             printf("[%s]me_set_instance attr_id[%d] size[%d]\r\n",__MY_FILE__, i, tmpAttrSize);
 
-            if(1)
+            // Check attr support or not
+            // Get Attrs mask bit //
+            if (tmpAttrFormat == 1)
             {
-                // Check attr support or not
-                // Get Attrs mask bit //
-                if (tmpAttrFormat == 1)
-                {
-                    return false;
-                }
+                return false;
+            }
 
-                if ((tmpAttrFormat == 2) || (tmpAttrFormat == 3))
-                {  
-                    // memcpy // 
+            if ((tmpAttrFormat == 2) || (tmpAttrFormat == 3))
+            {  
+                // memcpy // 
+                return false;
+            }
+            else if(tmpAttrFormat == ATTR_FORMAT_UINT)
+            {  
+                UI8_T ii;
+                UI8_T raw_data[128] = {0};
+                UI8_T tmp_tvalue[8] = {0};
+
+                UI32_T t32value = 0;
+                // not-table-string-block attribute_format all use .uint32
+                switch (tmpAttrSize)
+                {
+                    case 1:
+                        {
+                            t32value = get_Value_From_Pointer(pkt_p + attrOffset, tmpAttrSize);
+                            printf("t32value[0x%02X]\r\n", t32value);
+                            memcpy(tmp_tvalue, &t32value, tmpAttrSize*2);
+                            sprintf((char *)&raw_data[0],"%02X",*(tmp_tvalue));
+
+                            std::string raw((char *)raw_data);
+
+                            printf("[%s]Attribute name [%s] attri[%d][0x%04X] raw[%s]\r\n",__MY_FILE__, tmpName.c_str() , i, tmp_tvalue[0] , raw.c_str());
+                            tmp_omci_s["Attrs_info"][i-1]["Value"] = raw.c_str(); 
+                            break;
+                        }
+                    case 2:
+                        {
+                            t32value = get_Value_From_Pointer(pkt_p + attrOffset, tmpAttrSize);
+                            UI16_T t16value = get_omci_ui16((UI8_T *)&t32value);
+                            memcpy(tmp_tvalue, &t16value, tmpAttrSize*2);
+
+                            for(ii = 0; ii < tmpAttrSize ; ii++)
+                            {
+                                sprintf((char *)&raw_data[2*ii],"%02X",*(tmp_tvalue + ii) );
+                            }
+
+                            std::string raw((char *)raw_data);
+                            printf("[%s]Attribute name [%s] attri[%d][0x%04X] raw[%s]\r\n",__MY_FILE__, tmpName.c_str() , i, t32value , raw.c_str());
+                            tmp_omci_s["Attrs_info"][i-1]["Value"] = raw.c_str(); 
+                            break;
+                        }
+                    case 4:
+                        {
+                            t32value = get_Value_From_Pointer(pkt_p + attrOffset, tmpAttrSize);
+                            UI32_T t32cvalue = get_omci_ui32((UI8_T *)&t32value);
+                            printf("t32cvalue[0x%02X]\r\n", t32cvalue);
+                            memcpy(tmp_tvalue, &t32cvalue, tmpAttrSize*2);
+
+                            for(ii = 0; ii < tmpAttrSize ; ii++)
+                            {
+                                sprintf((char *)&raw_data[2*ii],"%02X",*(tmp_tvalue + ii) );
+                            }
+
+                            std::string raw((char *)raw_data);
+                            printf("[%s]Attribute name [%s] attri[%d][0x%04X] raw[%s]\r\n",__MY_FILE__, tmpName.c_str() , i, t32value , raw.c_str());
+                            tmp_omci_s["Attrs_info"][i-1]["Value"] = raw.c_str(); 
+                            break;
+                        }
+                    default:
+                        break;
                 }
-                else
-                {  
-                    // not-table-string-block attribute_format all use .uint32
-                    // memcpy // 
-					printf("[%s]Attribute name [%s] attri[%d][0x%04X]\r\n",__MY_FILE__, tmpName.c_str() , i, get_Value_From_Pointer (pkt_p + attrOffset, tmpAttrSize));
-                }
-                attrOffset += tmpAttrSize;
-            }  
+           }
+            else
+            {
+                printf("[%s]Not set :: ToDo :: Attribute name [%s] attri[%d] \r\n",__MY_FILE__, tmpName.c_str() , i);
+            }
+
+            attrOffset += tmpAttrSize;
         } 
+
+        pTmp->set_j_me(tmp_omci_s);
+
+        /*Chk if need log*/  //Todo , to record all omci pkt //
+        if(is_omci_log_enable())
+        {
+            std::string file_name=std::to_string(TransID)+ "_" + std::to_string(Class)+ "_" + std::to_string(ME_ID) + "_" + tmp_omci_s["Name"].asString();
+            std::ofstream ofile(m_log_out_path + file_name);
+            ofile << tmp_omci_s;
+            ofile.close();
+        }
+
         return true;
     }
     else
@@ -323,6 +388,13 @@ UI16_T OMCI_Parser::get_omci_ui16(UI8_T *data)
 {
 	return ntohs(*((UI16_T*)data));
 }
+
+UI32_T OMCI_Parser::get_omci_ui32(UI8_T *data)
+{
+	return ntohl(*((UI32_T*)data));
+}
+
+
 
 // ------------------------------------------------------------------
 //  1. Get value of size is 4 from pkt.
@@ -340,7 +412,7 @@ UI32_T  OMCI_Parser::get_Value_From_Pointer(UI8_T *ptr, UI8_T size)
 		sum = sum * 256 + (*(ptr + i));
 	}
 
-    printf("get_Value_From_Pointer sum[0x%04X]\r\n", sum);
+    //printf("get_Value_From_Pointer sum[0x%04X]\r\n", sum);
 
 	return (sum);
 }

@@ -27,6 +27,8 @@ class ME_S
         UI32_T m_actions_table=0;
 
         Attribute_S m_Attributes[17];
+        Json::Value get_j_me(){return m_j_me;}; 
+        void set_j_me(Json::Value i_m_me ){m_j_me = i_m_me;}; 
 
         virtual bool apply(std::string in_action){};
 
