@@ -63,6 +63,7 @@ char* get_text_line(FILE* input_fp)
         usleep(1000*100); 
         printf("\r\n");
     }    
+    omci_p.omci_show();
     return read_buf;
 }
 

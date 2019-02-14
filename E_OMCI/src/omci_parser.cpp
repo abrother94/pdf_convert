@@ -634,3 +634,7 @@ UI16_T OMCI_Parser::omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size)
     }  // switch (Action)
     return 0;
 }
+void OMCI_Parser::omci_show()
+{
+    m_me.show_all_me_obj();
+}

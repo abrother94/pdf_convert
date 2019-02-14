@@ -307,3 +307,28 @@ BOOL_T ME_C::check_action_valid(UI16_T Class, UI16_T Action)
     return false;
 }
 
+void ME_C::show_all_me_obj()
+{
+    std::map < std::pair<int,int>, ME_S *>::iterator it;
+
+    printf("\r\n");
+
+    for(auto it = M_OMCI_P.begin(); it != M_OMCI_P.end(); ++it) 
+    {
+        int i;
+        ME_S * pME_S = it->second;
+        Json::Value tmp_omci_s =   pME_S->get_j_me();
+        UI8_T attrnum = tmp_omci_s["Attrs_info"].size(); 
+
+        printf("\r\n\r\n");
+        printf("ME NAME[%s] INS_ID[%d] \r\n", tmp_omci_s["Name"].asString().c_str(), tmp_omci_s["Id"].asInt());
+
+        for(i = 0; i < attrnum; i++)
+        {
+            printf("    Attribute[%d] Name[%s] Value[%s]\r\n", i+1, tmp_omci_s["Attrs_info"][i]["Name"].asString().c_str(), tmp_omci_s["Attrs_info"][i]["Value"].asString().c_str() );
+        }
+    }
+    printf("\r\n\r\n");
+}
+
+

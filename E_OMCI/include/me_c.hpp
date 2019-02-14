@@ -33,6 +33,7 @@ class ME_C
         std::string get_me_name(UI16_T Class);
 
         Json::Value  get_me_s_json(UI16_T Class);
+        void show_all_me_obj();
 
     private:
         BOOL_T get_omci_s();

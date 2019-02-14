@@ -209,6 +209,7 @@ class OMCI_Parser
 
         UI16_T omci_pkt_parser(UI8_T *pkt_p, UI8_T pkt_size);
         void   omci_play_back();
+        void   omci_show();
 
     private:
         std::string m_log_out_path;
